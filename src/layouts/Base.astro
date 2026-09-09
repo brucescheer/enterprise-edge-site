@@ -150,8 +150,17 @@ const headDesc = ogDescription ?? description;
 
         width and height are set so the header reserves the space before the
         image arrives and nothing shifts on load. */}
+    {/* Two lockups, one box. The phrase stops being legible below about
+        380px wide, and the kit's own guidance is to drop it at small header
+        widths rather than shrink it, so <picture> serves the tagline version
+        on wide screens and the compact one below 700px. Both artworks share
+        the same canvas, so the box does not change shape when they swap and
+        only one file is ever downloaded. */}
     <a class="brand" href="/" aria-label="The Enterprise Edge, home">
-      <img src="/assets/ee-lockup-dark.png" alt="" width="620" height="139" />
+      <picture>
+        <source media="(min-width: 700px)" srcset="/assets/ee-lockup-tagline-dark.png" />
+        <img src="/assets/ee-lockup-dark.png" alt="" width="620" height="139" />
+      </picture>
     </a>
     <nav class="site-nav" aria-label="Primary">
       {NAV.map((n) => (
