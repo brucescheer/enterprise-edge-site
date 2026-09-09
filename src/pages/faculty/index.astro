@@ -44,6 +44,14 @@ const slugFor = (edgeName) => EDGES.find((e) => e.name === edgeName)?.slug;
             <h2>{p.name}</h2>
             {p.title && <p class="person-title">{p.title}</p>}
             <p set:html={p.bio} />
+            {p.awards && (
+              <div class="creds">
+                <p class="creds-label">Awards and recognition</p>
+                <ul>
+                  {p.awards.map((a) => <li>{a}</li>)}
+                </ul>
+              </div>
+            )}
             <p class="person-cta">
               <a class="btn" href={inquiryLink(p)}>Email {p.name.split(' ')[0]}</a>
               {p.site && (

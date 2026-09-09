@@ -57,7 +57,7 @@ export const EDGES = [
         },
       ],
       followOn:
-        'Bruce runs Find Value, Communicate Value and Quantify Value as engagements with revenue teams, and works with earlier-stage companies selling into enterprise as well.',
+        'Bruce runs Find Value, Communicate Value and Quantify Value as engagements with revenue teams through Inspire Your Buyers, and works with earlier-stage companies selling into enterprise as well.',
     },
   },
   {
@@ -196,11 +196,20 @@ export const FACULTY = [
   {
     name: 'Bruce Scheer',
     edge: 'The Value Edge',
-    title: 'Author of Inspire Your Buyers',
+    title: 'President of Inspire Your Buyers',
     photo: '/assets/bruce-scheer.jpg',
     email: 'bruce@inspireyourbuyers.com',
     bio:
-      'Bruce has spent his career enabling enterprise marketers and sellers at Microsoft, HP, Adobe, SAP, Oracle, Google and eBay Enterprise, along with Tableau and Concur. He helps B2B revenue teams align on one value narrative and a business case a CFO will sign, and he wrote the Amazon bestseller <i>Inspire Your Buyers: Go to Market with a Story that Sizzles</i>.',
+      'Bruce helps revenue teams find their differentiated position, align on a narrative spine, and quantify their unique value. He has spent his career enabling enterprise marketers and sellers at Microsoft, HP, Adobe, SAP, Oracle, Google and eBay Enterprise, along with Tableau and Concur. He wrote the Amazon bestseller <i>Inspire Your Buyers: Go to Market with a Story that Sizzles</i>.',
+    /* Earned on client engagements Bruce worked on directly, across prior
+       roles and companies. Same list as the About page on
+       inspireyourbuyers.com, trimmed to the four industry awards. */
+    awards: [
+      'CEB (now Gartner) B2B Campaign of the Year, Alcatel-Lucent Virtual Hotel',
+      'HP Marketing Circle of Excellence, Microsoft and HP Frontline Partnership',
+      'ITSMA Diamond Award, SITA Sales Excellence',
+      'Singapore Quality Award, Citibank Asia Pacific Technology',
+    ],
     site: 'https://inspireyourbuyers.com/',
     siteLabel: 'inspireyourbuyers.com',
   },
@@ -214,6 +223,8 @@ export const FACULTY = [
        way: these are the numbers he stands behind publicly. */
     bio:
       'Dean spent more than twenty years running Procurement and Sourcing at Kaiser Permanente, Yahoo, Levi Strauss and Ingram Micro. As Chief Procurement and Supply Officer at Kaiser Permanente he delivered over $1 billion in savings against a $6 billion spend. At Levi Strauss he built a Procurement capability that had not existed before him, on the transformation team that took the company to its 2019 IPO. He founded ConvergSPT to help revenue teams engage Procurement as an ally instead of an obstacle.',
+    /* TODO: Dean's awards and recognition, if he wants them listed. */
+    awards: null,
     site: 'https://www.convergspt.com',
     siteLabel: 'convergspt.com',
   },
@@ -228,6 +239,9 @@ export const FACULTY = [
        unsourced there and this site cites or says nothing. */
     bio:
       'Sandy spent four years at Oracle, finishing as Global Lead for Cloud Customer Insights, Executive Engagement and Success. She watched a company treat thousands of customer relationships as a maintenance problem rather than a growth engine, at staggering and avoidable cost. She founded Revenue Retention Advisors to fix that, and built the 3D Framework, Diagnose, Design and Drive, that she now runs with B2B SaaS CEOs and CROs to turn an existing customer base into predictable expansion.',
+    /* TODO: Sandy's awards. Her LinkedIn lists an Oracle Social Cloud
+       Platform Customer Award and a Forrester CX certification. */
+    awards: null,
     /* www.revenuecco.com is live and is hers (it names Revenue Retention
        Advisors), but as of 2026-09-09 its page title is still the unedited
        Webflow template string, "Authority - Webflow HTML website template".
