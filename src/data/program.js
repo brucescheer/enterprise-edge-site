@@ -186,6 +186,16 @@ export const CITIES = [
        read the other, and they must not disagree. */
     startDate: '2026-10-23T09:00:00+08:00',
     endDate: '2026-10-23T13:00:00+08:00',
+    /* A token fee, deliberately. It does not cover the room or the meal and
+       is not intended to; the three of us absorb those. It exists to protect
+       the show rate, because a seat that cost something is a seat that gets
+       used, and free registration turns into a reconfirmation chase.
+
+       Written as a display string rather than a number so each city can carry
+       its own currency. Attendees in Singapore pay in SGD, so decide whether
+       this should read S$150 rather than making people convert. Never write a
+       price here that the Luma event does not actually charge. */
+    price: 'US$100',
     lumaUrl: null,
   },
   { city: 'Los Angeles', region: 'California', venue: null, date: null, time: null, lumaUrl: null },
@@ -207,6 +217,9 @@ export const CITIES = [
        in step with the human-readable fields above. */
     startDate: '2026-10-08T09:00:00-07:00',
     endDate: '2026-10-08T13:00:00-07:00',
+    /* Same token fee as every other city. See the note on Singapore's price
+       for what it is and is not for. */
+    price: 'US$100',
     lumaUrl: null,
   },
   { city: 'Dallas', region: 'Texas', venue: null, date: null, time: null, lumaUrl: null },

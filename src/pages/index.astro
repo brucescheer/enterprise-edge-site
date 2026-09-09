@@ -178,6 +178,7 @@ const jsonLd = {
 
       <p>That is not hospitality for its own sake. You are giving us a working morning out of a week that did not have one spare, and the room you spend it in decides whether the conversation stays polite or gets somewhere.</p>
       <p>The meal is on the agenda rather than after it, because a good share of the value is in it. The people beside you are running revenue organizations at your scale, working the same problems on different accounts. An hour with them over a proper meal earns its place.</p>
+      <p>A seat costs a token fee. It does not cover the room or the meal and it is not meant to. It is there because a seat that cost something is a seat that gets used, and because twenty people who turned up beats sixty who meant to.</p>
       {/* Venue marks identify where a session is held. The site makes no
           claim that a venue hosts, sponsors or endorses the program, and the
           alt text says so. */}
@@ -225,6 +226,7 @@ const jsonLd = {
               {c.doors && <span class="detail">Doors {c.doors}</span>}
               {c.time && <span class="detail">{c.time}</span>}
               {c.venue && <span class="detail">{c.venue}</span>}
+              {c.price && <span class="detail price">{c.price}</span>}
               <span class="go">Reserve a seat</span>
             </a>
           ) : c.date ? (
@@ -234,6 +236,7 @@ const jsonLd = {
               {c.doors && <span class="detail">Doors {c.doors}</span>}
               {c.time && <span class="detail">{c.time}</span>}
               {c.venue && <span class="detail">{c.venue}</span>}
+              {c.price && <span class="detail price">{c.price}</span>}
               <span class="tbd">Registration opens soon</span>
             </div>
           ) : (

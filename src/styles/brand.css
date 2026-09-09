@@ -539,3 +539,8 @@ a.date.is-open .when{color:var(--white)}
 .band-ink .venue figcaption b{color:var(--white)}
 .venue figcaption span{font-size:.95rem;color:var(--muted)}
 .band-ink .venue figcaption span{color:var(--pale)}
+
+/* The price on a city tile. Amber, because it is the one detail a reader
+   scans for and the one that decides whether they keep reading. */
+.date .detail.price{font-family:var(--font-head);font-weight:700;
+  color:var(--amber);font-size:1.05rem;margin-top:.35rem}
