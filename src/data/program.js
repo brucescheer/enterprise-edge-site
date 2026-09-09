@@ -189,6 +189,10 @@ export const HAS_DATES = CITIES.some((c) => c.lumaUrl);
    and mean the same set of mail. */
 export const INQUIRY_SUBJECT = 'Inquiry for Enterprise Edge';
 
+/* phone is the dialable E.164 form for the href; phoneDisplay is what a
+   reader sees. Keeping them separate means the printed number can be spaced
+   for legibility without breaking the tel: link. */
+
 export const inquiryLink = (person) =>
   `mailto:${person.email}?subject=${encodeURIComponent(INQUIRY_SUBJECT)}`;
 
@@ -199,6 +203,8 @@ export const FACULTY = [
     title: 'President of Inspire Your Buyers',
     photo: '/assets/bruce-scheer.jpg',
     email: 'bruce@inspireyourbuyers.com',
+    phone: '+14254449595',
+    phoneDisplay: '+1 425 444 9595',
     bio:
       'Bruce helps revenue teams find their differentiated position, align on a narrative spine, and quantify their unique value. He has spent his career enabling enterprise marketers and sellers at Microsoft, HP, Adobe, SAP, Oracle, Google and eBay Enterprise, along with Tableau and Concur. He wrote the Amazon bestseller <i>Inspire Your Buyers: Go to Market with a Story that Sizzles</i>.',
     /* Earned on client engagements Bruce worked on directly, across prior
@@ -219,6 +225,8 @@ export const FACULTY = [
     title: 'Founder and CEO of ConvergSPT. Former Fortune 500 Chief Procurement Officer.',
     photo: '/assets/dean-edwards.jpg',
     email: 'dean.edwards@convergspt.com',
+    phone: '+19256996485',
+    phoneDisplay: '+1 925 699 6485',
     /* Every claim here comes from Dean's own LinkedIn profile. Keep it that
        way: these are the numbers he stands behind publicly. */
     bio:
@@ -234,6 +242,8 @@ export const FACULTY = [
     title: 'Founder and CEO of Revenue Retention Advisors. Formerly Oracle.',
     photo: '/assets/sandy-yu.jpg',
     email: 'sandy@revenuecco.com',
+    phone: '+14156998981',
+    phoneDisplay: '+1 415 699 8981',
     /* From Sandy's own LinkedIn profile. Her summary carries several market
        statistics; they are deliberately left off the site because they are
        unsourced there and this site cites or says nothing. */

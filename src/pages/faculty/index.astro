@@ -54,6 +54,7 @@ const slugFor = (edgeName) => EDGES.find((e) => e.name === edgeName)?.slug;
             )}
             <p class="person-cta">
               <a class="btn" href={inquiryLink(p)}>Email {p.name.split(' ')[0]}</a>
+              <a class="more" href={`tel:${p.phone}`}>{p.phoneDisplay}</a>
               {p.site && (
                 <a class="more" href={p.site} target="_blank" rel="noopener noreferrer">{p.siteLabel}</a>
               )}

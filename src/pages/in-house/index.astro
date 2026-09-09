@@ -52,7 +52,7 @@ const canonical = 'https://getenterpriseedge.com/in-house/';
            clients individually, so a single lead form would need an owner and
            a routing rule that does not exist. An inquiry goes to a person.
            Whoever gets the mail loops in the other two. -->
-      <p>In-house sessions are contracted with each of us individually, so the fastest path is a direct conversation. Write to whichever of us you already know, or to whoever owns the edge you most need. We will loop in the other two.</p>
+      <p>Write to us or give us a call. Reach whichever of us you already know, or whoever owns the edge you most need. We will loop in the other two.</p>
 
       <div class="contacts">
         {FACULTY.map((p) => (
@@ -62,6 +62,7 @@ const canonical = 'https://getenterpriseedge.com/in-house/';
             <span>{p.edge}</span>
             <a class="btn" href={inquiryLink(p)}>Email {p.name.split(' ')[0]}</a>
             <a class="contact-mail" href={inquiryLink(p)}>{p.email}</a>
+            <a class="contact-tel" href={`tel:${p.phone}`}>{p.phoneDisplay}</a>
           </div>
         ))}
       </div>
