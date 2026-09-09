@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { FACULTY, EDGES } from '../../data/program';
+import { FACULTY, EDGES, inquiryLink } from '../../data/program';
 
 const title = 'Who We Are: The Enterprise Edge';
 const description =
@@ -44,9 +44,12 @@ const slugFor = (edgeName) => EDGES.find((e) => e.name === edgeName)?.slug;
             <h2>{p.name}</h2>
             {p.title && <p class="person-title">{p.title}</p>}
             <p set:html={p.bio} />
-            {p.site && (
-              <p><a class="more" href={p.site} target="_blank" rel="noopener noreferrer">{p.siteLabel}</a></p>
-            )}
+            <p class="person-cta">
+              <a class="btn" href={inquiryLink(p)}>Email {p.name.split(' ')[0]}</a>
+              {p.site && (
+                <a class="more" href={p.site} target="_blank" rel="noopener noreferrer">{p.siteLabel}</a>
+              )}
+            </p>
           </div>
         </div>
       </div>

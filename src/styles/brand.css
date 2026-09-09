@@ -409,3 +409,58 @@ a.date .go{display:block;margin-top:.6rem;font-family:var(--font-head);
   font-weight:700;font-size:.9rem;text-transform:uppercase;letter-spacing:.08em;
   color:var(--amber)}
 a.date:hover .go{text-decoration:underline}
+
+/* ---------- Contact cards ----------
+   Three people, three addresses, no shared inbox and no form. Each card is a
+   person rather than a role, because that is how the collaboration actually
+   works: you hire one of them, not "us".
+
+   On the dark band the card is the raised ink, so the amber button still has
+   its 8.79:1 against a surface that reads as a panel rather than the page. */
+.contacts{display:grid;grid-template-columns:1fr;gap:1.25rem;margin-top:2.5rem;
+  max-width:60rem}
+/* The How to start section is band-measure, which caps every direct child of
+   .wrap at the 46rem reading measure. That is right for its prose and wrong
+   for a three-column card grid: at 46rem each card was about 230px and both
+   the long addresses wrapped onto two lines.
+
+   Written as .band-measure .wrap > .contacts rather than bumping .contacts
+   alone. The shared rule is (0,2,0); a lone .contacts is (0,1,0) and would
+   lose. This matches it at (0,2,0) and wins on source order, which is the
+   habit the IYB README recommends after a page-local one-class override
+   silently beat a shared rule there. */
+.band-measure .wrap > .contacts{max-width:60rem}
+@media (min-width:720px){
+  .contacts{grid-template-columns:repeat(3,1fr);gap:1.5rem}
+}
+.contact{background:var(--ink-raised);padding:1.75rem 1.5rem;border-radius:3px;
+  border-top:3px solid var(--amber);display:flex;flex-direction:column;
+  align-items:flex-start;gap:.35rem}
+.band-bone .contact,.band-bone2 .contact{background:var(--white);
+  border-top-color:var(--bronze)}
+.contact img{width:4.5rem;height:4.5rem;border-radius:50%;object-fit:cover;
+  margin-bottom:.6rem;display:block}
+.contact b{font-family:var(--font-head);font-weight:700;font-size:1.35rem;
+  color:var(--white);line-height:1.2}
+.band-bone .contact b,.band-bone2 .contact b{color:var(--ink)}
+.contact > span{font-family:var(--font-head);font-weight:600;font-size:1rem;
+  color:var(--amber);text-transform:uppercase;letter-spacing:.06em;
+  margin-bottom:1rem}
+.band-bone .contact > span,.band-bone2 .contact > span{color:var(--bronze)}
+.contact .btn{font-size:1.1rem;padding:.7rem 1.2rem;width:100%;text-align:center}
+/* The address is shown as well as linked. A mailto: that opens nothing useful
+   is a dead end on a locked-down corporate desktop, and this audience is on
+   locked-down corporate desktops. Selectable text is the fallback. */
+/* overflow-wrap:anywhere rather than word-break:break-all. break-all splits
+   at whatever character lands on the edge even when the address would fit,
+   which turned bruce@inspireyourbuyers.com into two lines ending "...buyers."
+   and "com". anywhere only breaks when there is genuinely no room. */
+.contact-mail{font-size:.85rem;color:var(--pale);text-decoration:none;
+  margin-top:.75rem;overflow-wrap:anywhere;
+  border-bottom:1px solid var(--line-dark)}
+.contact-mail:hover{color:var(--amber);border-bottom-color:var(--amber)}
+.band-bone .contact-mail,.band-bone2 .contact-mail{color:var(--muted);
+  border-bottom-color:var(--line)}
+
+.person-cta{display:flex;flex-wrap:wrap;align-items:center;gap:1.25rem;
+  margin-top:1.75rem}

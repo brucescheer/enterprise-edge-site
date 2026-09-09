@@ -179,12 +179,26 @@ export const HAS_DATES = CITIES.some((c) => c.lumaUrl);
    when it does not, so a missing photo looks deliberate instead of broken.
    Portraits should be square and at least 640px; they are displayed at 220px
    and 2x for retina. */
+/* mailto for an inquiry, addressed to one person.
+
+   There is no lead form on this site and no shared inbox: the three contract
+   with clients individually, so an inquiry goes to a person, not to "us".
+
+   One subject line for all three, so whoever receives it can recognise where
+   it came from and the three can talk about "the Enterprise Edge inquiries"
+   and mean the same set of mail. */
+export const INQUIRY_SUBJECT = 'Inquiry for Enterprise Edge';
+
+export const inquiryLink = (person) =>
+  `mailto:${person.email}?subject=${encodeURIComponent(INQUIRY_SUBJECT)}`;
+
 export const FACULTY = [
   {
     name: 'Bruce Scheer',
     edge: 'The Value Edge',
     title: 'Author of Inspire Your Buyers',
     photo: '/assets/bruce-scheer.jpg',
+    email: 'bruce@inspireyourbuyers.com',
     bio:
       'Bruce has spent his career enabling enterprise marketers and sellers at Microsoft, HP, Adobe, SAP, Oracle, Google and eBay Enterprise, along with Tableau and Concur. He helps B2B revenue teams align on one value narrative and a business case a CFO will sign, and he wrote the Amazon bestseller <i>Inspire Your Buyers: Go to Market with a Story that Sizzles</i>.',
     site: 'https://inspireyourbuyers.com/',
@@ -195,6 +209,7 @@ export const FACULTY = [
     edge: 'The Approval Edge',
     title: 'Founder and CEO of ConvergSPT. Former Fortune 500 Chief Procurement Officer.',
     photo: '/assets/dean-edwards.jpg',
+    email: 'dean.edwards@convergspt.com',
     /* Every claim here comes from Dean's own LinkedIn profile. Keep it that
        way: these are the numbers he stands behind publicly. */
     bio:
@@ -207,13 +222,17 @@ export const FACULTY = [
     edge: 'The Growth Edge',
     title: 'Founder and CEO of Revenue Retention Advisors. Formerly Oracle.',
     photo: '/assets/sandy-yu.jpg',
+    email: 'sandy@revenuecco.com',
     /* From Sandy's own LinkedIn profile. Her summary carries several market
        statistics; they are deliberately left off the site because they are
        unsourced there and this site cites or says nothing. */
     bio:
       'Sandy spent four years at Oracle, finishing as Global Lead for Cloud Customer Insights, Executive Engagement and Success. She watched a company treat thousands of customer relationships as a maintenance problem rather than a growth engine, at staggering and avoidable cost. She founded Revenue Retention Advisors to fix that, and built the 3D Framework, Diagnose, Design and Drive, that she now runs with B2B SaaS CEOs and CROs to turn an existing customer base into predictable expansion.',
-    /* TODO: confirm Sandy's site. Her contact address is @revenuecco.com,
-       which implies a domain, but implying is not confirming. */
+    /* www.revenuecco.com is live and is hers (it names Revenue Retention
+       Advisors), but as of 2026-09-09 its page title is still the unedited
+       Webflow template string, "Authority - Webflow HTML website template".
+       Linking it would put that in the browser tab of anyone we send there.
+       Fill this in once she has finished the site. */
     site: null,
     siteLabel: null,
   },

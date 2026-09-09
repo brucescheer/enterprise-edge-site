@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { EDGES } from '../../data/program';
+import { EDGES, FACULTY, inquiryLink } from '../../data/program';
 
 const title = 'Bring It In-House: The Enterprise Edge';
 const description =
@@ -48,14 +48,26 @@ const canonical = 'https://getenterpriseedge.com/in-house/';
     <div class="wrap">
       <p class="eyebrow">How to start</p>
       <h2>Talk to whichever of us you know.</h2>
-      <!-- No form here on purpose. Three people contract separately, so a
-           single lead form would need an owner and a routing rule that does
-           not exist yet. Until it does, the honest CTA is a direct
-           conversation. Revisit once the three agree who fields inbound. -->
-      <p>In-house sessions are contracted with each of us individually, so the fastest path is a direct conversation. Reach whichever of the three of us you already know, or come to a public session first and see the whole thing before you commit your team to it.</p>
+      <!-- No form and no shared inbox, on purpose. The three contract with
+           clients individually, so a single lead form would need an owner and
+           a routing rule that does not exist. An inquiry goes to a person.
+           Whoever gets the mail loops in the other two. -->
+      <p>In-house sessions are contracted with each of us individually, so the fastest path is a direct conversation. Write to whichever of us you already know, or to whoever owns the edge you most need. We will loop in the other two.</p>
+
+      <div class="contacts">
+        {FACULTY.map((p) => (
+          <div class="contact">
+            {p.photo && <img src={p.photo} alt="" width="72" height="72" loading="lazy" aria-hidden="true" />}
+            <b>{p.name}</b>
+            <span>{p.edge}</span>
+            <a class="btn" href={inquiryLink(p)}>Email {p.name.split(' ')[0]}</a>
+            <a class="contact-mail" href={inquiryLink(p)}>{p.email}</a>
+          </div>
+        ))}
+      </div>
+
       <div class="cta-pair">
-        <a class="btn" href="/#dates">See public dates</a>
-        <a class="more" href="/faculty/">Meet the three of us</a>
+        <a class="more" href="/#dates">Or come to a public session first</a>
       </div>
     </div>
   </section>
