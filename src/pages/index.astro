@@ -20,6 +20,17 @@ const ORDERED_CITIES = [
   ...CITIES.filter((c) => !c.startDate),
 ];
 
+/* "In Singapore that is The American Club" was hardcoded, which would have
+   quietly become wrong the moment a venue changed or a second one was
+   confirmed. Built from the data instead, as "A in City, B in City". */
+const VENUES = CITIES.filter((c) => c.venue);
+const VENUE_LIST = VENUES.map((c, i) => {
+  const clause = `${c.venue} in ${c.city}`;
+  if (i === 0) return clause;
+  if (i === VENUES.length - 1) return ` and ${clause}`;
+  return `, ${clause}`;
+}).join('');
+
 const jsonLd = {
   '@graph': [
     {
@@ -166,7 +177,7 @@ const jsonLd = {
         <li><b>The meal</b><span>Debrief, and no rush to leave<i>Bring the deals that are stuck. That is the conversation.</i></span></li>
       </ul>
 
-      <p class="fine" style="margin-top:2rem">Attendance is deliberately limited, so the room stays small enough for people to speak candidly about deals they would not discuss on a webinar.</p>
+      <p class="fine" style="margin-top:2rem">Twenty-five seats a city, and every one of them approved before it is confirmed. The room stays small enough for people to speak candidly about deals they would not discuss on a webinar.</p>
     </div>
   </section>
 
@@ -174,10 +185,12 @@ const jsonLd = {
     <div class="wrap">
       <p class="eyebrow">The room</p>
       <h2>First-class venues. The meal is on us.</h2>
-      <p>We run these in the best rooms we can find. In Singapore that is The American Club.</p>
+      {/* Venues listed from the data so this sentence cannot go stale or
+          name a room we are no longer in. */}
+      <p>We run these in the best rooms we can find: {VENUE_LIST}.</p>
 
       <p>That is not hospitality for its own sake. You are giving us a working morning out of a week that did not have one spare, and the room you spend it in decides whether the conversation stays polite or gets somewhere.</p>
-      <p>The meal is on the agenda rather than after it, because a good share of the value is in it. The people beside you are running revenue organizations at your scale, working the same problems on different accounts. An hour with them over a proper meal earns its place.</p>
+      <p>Where a session runs into a meal, the meal is on the agenda rather than after it, because a good share of the value is in it. The people beside you are running revenue organizations at your scale, working the same problems on different accounts. An hour with them over a proper meal earns its place.</p>
       <p>A seat costs a token fee. It does not cover the room or the meal and it is not meant to. It is there because a seat that cost something is a seat that gets used, and because twenty people who turned up beats sixty who meant to.</p>
       {/* Venue marks identify where a session is held. The site makes no
           claim that a venue hosts, sponsors or endorses the program, and the
@@ -196,8 +209,9 @@ const jsonLd = {
   <section class="band band-bone2 band-measure">
     <div class="wrap">
       <p class="eyebrow">Who should be in the room</p>
-      <h2>Revenue and success leaders running 50 sellers or more.</h2>
-      <p>CROs, VPs of Sales, VPs of Customer Success, and the enablement leaders who own how a large team sells. That headcount is the filter, and we would rather say so than waste your morning.</p>
+      <h2>Revenue leaders running 50 sellers or more.</h2>
+      <p>CROs, VPs and SVPs of Sales, and the revenue enablement leaders who own how a large team sells. Typically B2B companies above $100 million in revenue, with around two thousand people. We make selective exceptions down to $50 million and twenty sellers.</p>
+      <p>The specific person we are looking for has healthy enterprise deals stalling or quietly disappearing, and cannot see what is happening inside the customer&rsquo;s organization to cause it. Or has customers who are perfectly happy and somehow never expand.</p>
       <p>It is where our heritage is. Bruce spent his career enabling enterprise marketers and sellers at Microsoft, HP, Adobe, SAP, Oracle, Google and eBay Enterprise. Dean ran Procurement for Kaiser Permanente, Yahoo and Levi Strauss. Sandy led cloud customer insight and success at Oracle. Between us we have been on every side of the enterprise deal except yours.</p>
       <p>Bring the deals that are not moving, the accounts you are trying to grow, and the questions that do not have easy answers.</p>
     </div>
@@ -210,7 +224,7 @@ const jsonLd = {
       <p class="lede">
         {HAS_REGISTRATION
           ? 'Each city is its own session with its own registration. Pick yours to reserve a seat.'
-          : 'Each city runs as its own session, in a first-class venue, with a meal. Registration opens city by city.'}
+          : 'Each city runs as its own session, in a first-class venue. Twenty-five seats, approved before they are confirmed. Registration opens city by city.'}
       </p>
 
       {/* Three states per city, in ORDERED_CITIES order so the next session
@@ -226,6 +240,8 @@ const jsonLd = {
               {c.doors && <span class="detail">Doors {c.doors}</span>}
               {c.time && <span class="detail">{c.time}</span>}
               {c.venue && <span class="detail">{c.venue}</span>}
+              {c.venueAddress && <span class="detail">{c.venueAddress}</span>}
+              {c.meal && <span class="detail">{c.meal}</span>}
               {c.price && <span class="detail price">{c.price}</span>}
               <span class="go">Reserve a seat</span>
             </a>
@@ -236,6 +252,8 @@ const jsonLd = {
               {c.doors && <span class="detail">Doors {c.doors}</span>}
               {c.time && <span class="detail">{c.time}</span>}
               {c.venue && <span class="detail">{c.venue}</span>}
+              {c.venueAddress && <span class="detail">{c.venueAddress}</span>}
+              {c.meal && <span class="detail">{c.meal}</span>}
               {c.price && <span class="detail price">{c.price}</span>}
               <span class="tbd">Registration opens soon</span>
             </div>

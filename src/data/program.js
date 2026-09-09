@@ -153,6 +153,14 @@ export const EDGES = [
 /* Cities for the run. Each city is its OWN Luma event, so each row carries
    its own `lumaUrl` and the tile links straight to that event.
 
+   Rows are listed in date order here, though the homepage sorts them anyway.
+
+   THE FEE IS A TOKEN, NOT COST RECOVERY. US$99 does not cover the room or the
+   meal and is not meant to; the three absorb those. It exists to protect the
+   show rate, because a seat that cost something is a seat that gets used and
+   free registration turns into a reconfirmation chase. Never write copy
+   claiming it covers costs.
+
    A row moves through three states and the tile renders each differently:
 
      1. no date            "Dates soon", not a link
@@ -170,60 +178,105 @@ export const EDGES = [
    October 23 2026 is a Friday; it was briefly published here as a Thursday. */
 export const CITIES = [
   {
+    city: 'San Francisco',
+    region: 'California',
+    venue: 'Clavius Wealth Management',
+    venueAddress: '555 Mission Street',
+    venueLogo: null,
+    date: 'Thursday, October 8, 2026',
+    doors: null,
+    time: '1:00pm to 4:00pm',
+    /* No meal listed for San Francisco. The session runs the afternoon, so
+       there is no lunch in it, and nothing here should imply one. If a
+       reception or refreshments get added, put them in `meal` and the room
+       section picks them up. */
+    meal: null,
+    /* ISO form for schema.org only. San Francisco is on Pacific Daylight Time
+       until 1 November 2026, so October 8 is UTC-7. Keep these in step with
+       the human-readable fields above: search engines read one, people read
+       the other, and they must not disagree. */
+    startDate: '2026-10-08T13:00:00-07:00',
+    endDate: '2026-10-08T16:00:00-07:00',
+    price: 'US$99',
+    lumaUrl: null,
+  },
+  {
+    city: 'Los Angeles',
+    region: 'California',
+    /* TODO: confirm the venue's full legal name. It was referred to on the
+       call only as "the LA Club", downtown rather than Santa Monica. */
+    venue: 'The LA Club',
+    venueAddress: null,
+    venueLogo: null,
+    date: 'Thursday, October 15, 2026',
+    /* Doors is its own field rather than part of `time` because it is the one
+       detail people plan their morning around, and not every city runs on the
+       same shape. A city without it renders one line fewer. */
+    doors: '9:00am',
+    time: '9:30am to 12:30pm',
+    meal: 'Lunch afterwards',
+    startDate: '2026-10-15T09:30:00-07:00',
+    endDate: '2026-10-15T13:00:00-07:00',
+    price: 'US$99',
+    lumaUrl: null,
+  },
+  {
     city: 'Singapore',
     region: null,
     venue: 'The American Club',
+    venueAddress: null,
     /* The venue's own mark, used to identify where the session is held.
        Nothing on this site claims the venue is a host, sponsor or partner,
        and the alt text says "venue" for the same reason. If a venue asks us
        not to use their mark, set this to null and the name still renders. */
     venueLogo: '/assets/venue-american-club.jpg',
     date: 'Friday, October 23, 2026',
+    doors: null,
     time: '9:00am to 1:00pm',
-    /* ISO form for schema.org only. Singapore is UTC+8 and does not observe
-       daylight saving, so the offset is fixed. Keep these in step with the
-       human-readable `date` and `time` above: search engines read one, people
-       read the other, and they must not disagree. */
+    meal: 'Lunch included',
+    /* Singapore is UTC+8 and does not observe daylight saving, so the offset
+       is fixed. */
     startDate: '2026-10-23T09:00:00+08:00',
     endDate: '2026-10-23T13:00:00+08:00',
-    /* A token fee, deliberately. It does not cover the room or the meal and
-       is not intended to; the three of us absorb those. It exists to protect
-       the show rate, because a seat that cost something is a seat that gets
-       used, and free registration turns into a reconfirmation chase.
-
-       Written as a display string rather than a number so each city can carry
-       its own currency. Attendees in Singapore pay in SGD, so decide whether
-       this should read S$150 rather than making people convert. Never write a
-       price here that the Luma event does not actually charge. */
-    price: 'US$100',
+    /* Attendees here pay in SGD. Decide whether this should read S$150 rather
+       than making people convert US$99 in their heads. Whatever it says has
+       to match what the Luma event actually charges. */
+    price: 'US$99',
     lumaUrl: null,
   },
-  { city: 'Los Angeles', region: 'California', venue: null, date: null, time: null, lumaUrl: null },
   {
-    city: 'San Francisco',
-    region: 'California',
+    city: 'Dallas',
+    region: 'Texas',
     venue: null,
+    venueAddress: null,
     venueLogo: null,
-    date: 'Thursday, October 8, 2026',
-    /* Doors is its own field rather than part of `time` because it is the one
-       detail people plan their morning around, and because not every city
-       runs on the same shape. A city without it simply renders one line
-       fewer. */
-    doors: '8:30am',
-    time: '9:00am to noon, then a meal',
-    /* ISO form for schema.org only. San Francisco is on Pacific Daylight Time
-       until 1 November 2026, so October 8 is UTC-7. endDate covers the meal,
-       which is part of the session rather than something after it. Keep these
-       in step with the human-readable fields above. */
-    startDate: '2026-10-08T09:00:00-07:00',
-    endDate: '2026-10-08T13:00:00-07:00',
-    /* Same token fee as every other city. See the note on Singapore's price
-       for what it is and is not for. */
-    price: 'US$100',
+    date: 'Wednesday, December 2, 2026',
+    doors: null,
+    /* Dallas runs in the morning and Austin the next day: the three drive
+       down between them. Neither has a venue or a confirmed clock time yet,
+       so the tile shows the date and says registration opens soon. */
+    time: 'Morning',
+    meal: null,
+    startDate: '2026-12-02T09:00:00-06:00',
+    endDate: '2026-12-02T13:00:00-06:00',
+    price: 'US$99',
     lumaUrl: null,
   },
-  { city: 'Dallas', region: 'Texas', venue: null, date: null, time: null, lumaUrl: null },
-  { city: 'Austin', region: 'Texas', venue: null, date: null, time: null, lumaUrl: null },
+  {
+    city: 'Austin',
+    region: 'Texas',
+    venue: null,
+    venueAddress: null,
+    venueLogo: null,
+    date: 'Thursday, December 3, 2026',
+    doors: null,
+    time: null,
+    meal: null,
+    startDate: '2026-12-03T09:00:00-06:00',
+    endDate: '2026-12-03T13:00:00-06:00',
+    price: 'US$99',
+    lumaUrl: null,
+  },
 ];
 
 /* The calendar listing every city event. Used for the header CTA and anywhere
