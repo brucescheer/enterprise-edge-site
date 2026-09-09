@@ -1,0 +1,8 @@
+# The Enterprise Edge
+# Everything here is meant to be found, including by AI crawlers: this site
+# exists to be read before someone decides to attend.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://getenterpriseedge.com/sitemap-index.xml

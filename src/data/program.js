@@ -57,7 +57,7 @@ export const EDGES = [
         },
       ],
       followOn:
-        'Bruce runs Find Value, Communicate Value and Quantify Value as engagements with revenue teams through Inspire Your Buyers, and works with earlier-stage companies selling into enterprise as well.',
+        'Bruce runs Find Value, Communicate Value and Quantify Value as engagements with revenue teams through Inspire Your Buyers. The Enterprise Edge is built for organizations with 50 sellers or more; if you are earlier stage and selling into enterprise, this hour still stands on its own and he works with smaller teams too.',
     },
   },
   {
@@ -181,8 +181,9 @@ export const HAS_DATES = CITIES.some((c) => c.lumaUrl);
    and 2x for retina. */
 /* mailto for an inquiry, addressed to one person.
 
-   There is no lead form on this site and no shared inbox: the three contract
-   with clients individually, so an inquiry goes to a person, not to "us".
+   There is no shared inbox to route to, so an inquiry goes to a named person
+   and they bring in the other two. That is a plumbing fact, not something the
+   copy should explain to the reader.
 
    One subject line for all three, so whoever receives it can recognise where
    it came from and the three can talk about "the Enterprise Edge inquiries"

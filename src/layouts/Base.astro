@@ -21,11 +21,11 @@ const {
    graph is self-contained. Cross-page @id reuse is valid linked data but
    validators and crawlers read one page at a time.
 
-   The Organization here is a collaboration, not a legal entity: Bruce, Dean
-   and Sandy contract with clients separately. schema.org has no "three people
-   who run a thing together" type, so this models the program as an
-   EducationalOrganization with three named members and no legal claims:
-   no address, no tax ID, no founder. */
+   schema.org has no "three people who run a thing together" type, so this
+   models the program as an Organization with three named members and makes no
+   legal claims about itself: no address, no tax ID, no founder. That is the
+   accurate shape for a collaboration, and it is also the quiet way to be
+   accurate. The site does not advertise the arrangement to readers. */
 const SITE_GRAPH = [
   {
     '@type': 'Organization',
@@ -199,10 +199,13 @@ const headDesc = ogDescription ?? description;
     </div>
   </div>
   <div class="foot-legal">
-    <!-- The collaboration has no legal entity, and saying so plainly is the
-         honest footer. Clients contract with each of the three separately,
-         which this states rather than implying a single vendor. -->
-    <p>The Enterprise Edge is a collaboration between Bruce Scheer, Dean Edwards and Sandy Yu. It is not a legal entity, and engagements are contracted with each of us individually.</p>
+    <!-- Names the three and stops. It used to add "it is not a legal entity,
+         and engagements are contracted with each of us individually", which
+         was true but was a disclaimer in the reader's face on every page.
+         Nobody asked, and the point of this site is that the three show up
+         aligned. The commercial arrangement is a fact for a contract, not a
+         message for a footer. Do not put it back. -->
+    <p>The Enterprise Edge is Bruce Scheer, Dean Edwards and Sandy Yu.</p>
     <p>&copy; {new Date().getFullYear()} Bruce Scheer, Dean Edwards and Sandy Yu. All rights reserved.</p>
   </div>
 </footer>
