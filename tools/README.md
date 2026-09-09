@@ -18,3 +18,16 @@ rules before re-rendering or the image silently falls back to a system font.
 
 The headline is deliberately the first sentence only. "You're in none of them"
 is the payoff and it belongs on the page, not in the thumbnail.
+
+# Cropping a headshot
+
+Portraits are 800x800 and framed head and shoulders. `sips` only crops from
+the centre, which is wrong for a photo where the face is not centred, so
+`crop.swift` does an offset crop through CoreGraphics:
+
+```
+swift tools/crop.swift <in.jpg> <out.jpg> <x> <y> <w> <h> 800
+```
+
+x and y are from the top left of the source image. Bruce's was
+`215 0 570 570` from a 1000x813 original.
