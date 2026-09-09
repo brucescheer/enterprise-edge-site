@@ -1,0 +1,241 @@
+---
+import '../styles/brand.css';
+import { LUMA_URL } from '../data/program';
+
+const {
+  title,
+  description,
+  canonical,
+  ogTitle,
+  ogDescription,
+  ogImage = 'https://getenterpriseedge.com/assets/ee-og-1200x630.png',
+  ogImageAlt = 'The Enterprise Edge. Three rooms decide your deal.',
+  ogImageWidth = 1200,
+  ogImageHeight = 630,
+  ogType = 'website',
+  robots = 'index,follow,max-image-preview:large,max-snippet:-1',
+  jsonLd = null,
+} = Astro.props;
+
+/* Identity nodes ship on every page, not just the homepage, so each page's
+   graph is self-contained. Cross-page @id reuse is valid linked data but
+   validators and crawlers read one page at a time.
+
+   The Organization here is a collaboration, not a legal entity: Bruce, Dean
+   and Sandy contract with clients separately. schema.org has no "three people
+   who run a thing together" type, so this models the program as an
+   EducationalOrganization with three named members and no legal claims —
+   no address, no tax ID, no founder. */
+const SITE_GRAPH = [
+  {
+    '@type': 'Organization',
+    '@id': 'https://getenterpriseedge.com/#organization',
+    name: 'The Enterprise Edge',
+    url: 'https://getenterpriseedge.com/',
+    description:
+      'A half-day masterclass on the three rooms that decide enterprise deals, led by Bruce Scheer, Dean Edwards and Sandy Yu.',
+    member: [
+      { '@id': 'https://getenterpriseedge.com/#bruce' },
+      { '@id': 'https://getenterpriseedge.com/#dean' },
+      { '@id': 'https://getenterpriseedge.com/#sandy' },
+    ],
+  },
+  {
+    '@type': 'Person',
+    '@id': 'https://getenterpriseedge.com/#bruce',
+    name: 'Bruce Scheer',
+    jobTitle: 'Go-to-market narrative strategist',
+    sameAs: ['https://inspireyourbuyers.com/'],
+  },
+  {
+    '@type': 'Person',
+    '@id': 'https://getenterpriseedge.com/#dean',
+    name: 'Dean Edwards',
+    jobTitle: 'Former Fortune 500 Chief Procurement Officer',
+  },
+  {
+    '@type': 'Person',
+    '@id': 'https://getenterpriseedge.com/#sandy',
+    name: 'Sandy Yu',
+  },
+  {
+    '@type': 'WebSite',
+    '@id': 'https://getenterpriseedge.com/#website',
+    url: 'https://getenterpriseedge.com/',
+    name: 'The Enterprise Edge',
+    publisher: { '@id': 'https://getenterpriseedge.com/#organization' },
+  },
+];
+const pageNodes = jsonLd ? (jsonLd['@graph'] ?? [jsonLd]) : [];
+const merged = [];
+const seen = new Set();
+for (const node of [...SITE_GRAPH, ...pageNodes]) {
+  const id = node['@id'];
+  if (id) {
+    if (seen.has(id)) continue;
+    seen.add(id);
+  }
+  merged.push(node);
+}
+const graphLd = { '@context': 'https://schema.org', '@graph': merged };
+
+const NAV = [
+  { href: '/#edges', label: 'The Three Edges' },
+  { href: '/assessment/', label: 'Assessment' },
+  { href: '/#dates', label: 'Dates' },
+  { href: '/faculty/', label: 'Who We Are' },
+  { href: '/in-house/', label: 'In-House' },
+];
+
+const here = Astro.url.pathname;
+const isCurrent = (href) => here === href;
+
+const headTitle = ogTitle ?? title;
+const headDesc = ogDescription ?? description;
+---
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<meta name="description" content={description}>
+<link rel="canonical" href={canonical}>
+<meta name="robots" content={robots}>
+<meta name="theme-color" content="#141A22">
+
+<meta property="og:type" content={ogType}>
+<meta property="og:site_name" content="The Enterprise Edge">
+<meta property="og:title" content={headTitle}>
+<meta property="og:description" content={headDesc}>
+<meta property="og:url" content={canonical}>
+<meta property="og:image" content={ogImage}>
+<meta property="og:image:width" content={ogImageWidth}>
+<meta property="og:image:height" content={ogImageHeight}>
+<meta property="og:image:alt" content={ogImageAlt}>
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={headTitle}>
+<meta name="twitter:description" content={headDesc}>
+<meta name="twitter:image" content={ogImage}>
+<meta name="twitter:image:alt" content={ogImageAlt}>
+
+<!-- Fonts are served from this origin, so no visitor IP reaches a third
+     party to load them. Same reasoning as inspireyourbuyers.com: it is a
+     standing question on enterprise privacy reviews, and this audience runs
+     those reviews for a living. -->
+<link rel="icon" href="/assets/ee-mark.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="/">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="preload" href="/fonts/ArchivoNarrow-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/Inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<script type="application/ld+json" set:html={JSON.stringify(graphLd)} />
+
+<!-- Set before first paint so the reveal styles never apply when JS is off.
+     If this never runs, nothing is ever hidden. -->
+<script is:inline>document.documentElement.className += ' js';</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="head-sentinel" aria-hidden="true"></div>
+
+<header class="site-head">
+  <div class="head-in">
+    <a class="brand" href="/">
+      <img src="/assets/ee-mark.svg" alt="" width="30" height="30" aria-hidden="true">
+      <b>The Enterprise</b><i>Edge</i>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      {NAV.map((n) => (
+        <a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined}>{n.label}</a>
+      ))}
+      <a class="nav-cta" href={LUMA_URL} target="_blank" rel="noopener noreferrer">Reserve a Seat</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <slot />
+</main>
+
+<footer class="site-foot">
+  <div class="foot-in">
+    <div class="foot-col">
+      <h2>The Enterprise Edge</h2>
+      <p class="fine" style="max-width:20rem">Three rooms decide your enterprise deal. This is a half day on all three.</p>
+    </div>
+    <div class="foot-col">
+      <h2>The Program</h2>
+      <ul>
+        <li><a href="/#edges">The Three Edges</a></li>
+        <li><a href="/#dates">Dates and Cities</a></li>
+        <li><a href="/#agenda">The Half Day</a></li>
+        <li><a href="/assessment/">Take the Assessment</a></li>
+        <li><a href="/in-house/">Bring It In-House</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h2>Who We Are</h2>
+      <ul>
+        <li><a href="/value-edge/">Bruce Scheer</a></li>
+        <li><a href="/approval-edge/">Dean Edwards</a></li>
+        <li><a href="/growth-edge/">Sandy Yu</a></li>
+        <li><a href="/faculty/">All three of us</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h2>Register</h2>
+      <ul>
+        <li><a href={LUMA_URL} target="_blank" rel="noopener noreferrer">Reserve a seat on Luma</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-legal">
+    <!-- The collaboration has no legal entity, and saying so plainly is the
+         honest footer. Clients contract with each of the three separately,
+         which this states rather than implying a single vendor. -->
+    <p>The Enterprise Edge is a collaboration between Bruce Scheer, Dean Edwards and Sandy Yu. It is not a legal entity, and engagements are contracted with each of us individually.</p>
+    <p>&copy; {new Date().getFullYear()} Bruce Scheer, Dean Edwards and Sandy Yu. All rights reserved.</p>
+  </div>
+</footer>
+
+<script is:inline>
+  /* Condense the header once a 120px sentinel leaves the viewport. An
+     observer rather than a scroll listener, so the browser does the work off
+     the main thread. */
+  (function () {
+    var head = document.querySelector('.site-head');
+    var sentinel = document.querySelector('.head-sentinel');
+    if (head && sentinel && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        head.classList.toggle('is-stuck', !entries[0].isIntersecting);
+      }).observe(sentinel);
+    }
+
+    /* Reveal bands as they arrive. The .js gate is dropped after 2.5s if this
+       never starts, so content can never be stranded at opacity:0. */
+    var bands = document.querySelectorAll('main .band');
+    if (!('IntersectionObserver' in window) || !bands.length) {
+      document.documentElement.classList.remove('js');
+      return;
+    }
+    var started = false;
+    var io = new IntersectionObserver(function (entries) {
+      started = true;
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    bands.forEach(function (b) { io.observe(b); });
+    setTimeout(function () {
+      if (!started) document.documentElement.classList.remove('js');
+    }, 2500);
+  })();
+</script>
+</body>
+</html>

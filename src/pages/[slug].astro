@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+import { EDGES, FACULTY, LUMA_URL } from '../data/program';
+
+/* One template for all three edges, driven by src/data/program.js. The names
+   were still moving when this was built (Dean's hour ran as "The Procurement
+   Edge" in Seattle), so three hand-written pages would have meant three places
+   to miss on a rename. Here the slug, the URL and every mention come from one
+   field. */
+export function getStaticPaths() {
+  return EDGES.map((edge) => ({
+    params: { slug: edge.slug },
+    props: { edge },
+  }));
+}
+
+const { edge } = Astro.props;
+const person = FACULTY.find((f) => f.name === edge.speaker);
+const others = EDGES.filter((e) => e.slug !== edge.slug);
+
+const title = `${edge.name} — The Enterprise Edge`;
+const description = `${edge.promise}. ${edge.blurb}`.slice(0, 300);
+const canonical = `https://getenterpriseedge.com/${edge.slug}/`;
+---
+<Base title={title} description={description} canonical={canonical}>
+
+  <section class="band band-ink hero">
+    <div class="wrap">
+      <p class="eyebrow">{edge.num} &nbsp;/&nbsp; {edge.domain}</p>
+      <h1>{edge.name}</h1>
+      <p class="lede">{edge.page.lede}</p>
+      <div class="cta-pair">
+        <a class="btn" href={LUMA_URL} target="_blank" rel="noopener noreferrer">Reserve a Seat</a>
+        <a class="more" href="/#edges">All three edges</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-bone band-measure">
+    <div class="wrap">
+      <p class="eyebrow">The room</p>
+      <h2 style="max-width:24ch">{edge.room}.</h2>
+      <p>{edge.blurb}</p>
+    </div>
+  </section>
+
+  <section class="band band-bone2">
+    <div class="wrap">
+      <p class="eyebrow">What the hour covers</p>
+      <h2>The work</h2>
+      <div class="cards cards-2" style="margin-top:2.5rem">
+        {edge.page.cover.map((c) => (
+          <div class="card">
+            <h3>{c.h}</h3>
+            <p>{c.p}</p>
+          </div>
+        ))}
+      </div>
+      {edge.page.takeaway && (
+        <div class="pull" style="margin-top:2.5rem">
+          <p>{edge.page.takeaway}</p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  {person && (
+    <section class="band band-ink band-measure">
+      <div class="wrap">
+        <p class="eyebrow">Who leads it</p>
+        <h2>{person.name}</h2>
+        {person.title && <p class="lede">{person.title}</p>}
+        <p set:html={person.bio} />
+        <p>{edge.page.followOn}</p>
+        {person.site && (
+          <p><a class="more" href={person.site} target="_blank" rel="noopener noreferrer">{person.siteLabel}</a></p>
+        )}
+      </div>
+    </section>
+  )}
+
+  <section class="band band-bone">
+    <div class="wrap">
+      <p class="eyebrow">The other two rooms</p>
+      <h2>One hour is a third of the deal.</h2>
+      <p style="max-width:44rem">A deal has to clear all three rooms. The half day takes them in order, because the order is the argument.</p>
+      <div class="cards cards-2" style="margin-top:2.5rem">
+        {others.map((o) => (
+          <div class="card">
+            <p class="eyebrow">{o.num} &nbsp;{o.domain}</p>
+            <h3><a href={`/${o.slug}/`} style="color:inherit;text-decoration:none">{o.name}</a></h3>
+            <p>{o.promise}. With {o.speaker}.</p>
+          </div>
+        ))}
+      </div>
+      <div class="cta-pair">
+        <a class="btn" href={LUMA_URL} target="_blank" rel="noopener noreferrer">Reserve a Seat</a>
+        <a class="more" href="/in-house/">Bring it to your team</a>
+      </div>
+    </div>
+  </section>
+
+</Base>

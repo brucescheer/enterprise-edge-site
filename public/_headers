@@ -1,0 +1,14 @@
+# Cloudflare Pages headers.
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+
+# Fonts are fingerprint-free and never change under the same filename.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Astro fingerprints everything under /_astro/.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable

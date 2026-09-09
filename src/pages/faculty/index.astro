@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import { FACULTY, LUMA_URL } from '../../data/program';
+
+const title = 'Who We Are — The Enterprise Edge';
+const description =
+  'Bruce Scheer, Dean Edwards and Sandy Yu. One seller, one buyer, one operator who had to keep the customer. Each leads one hour of The Enterprise Edge.';
+const canonical = 'https://getenterpriseedge.com/faculty/';
+---
+<Base title={title} description={description} canonical={canonical}>
+
+  <section class="band band-ink hero">
+    <div class="wrap">
+      <p class="eyebrow">Who we are</p>
+      <h1>Three people. Three sides of the same deal.</h1>
+      <p class="lede">We came at enterprise deals from different chairs, and we kept arriving at the same conclusion about where they go wrong.</p>
+
+      <div class="pull">
+        <p><b>Bruce</b> will get your customers to say yes. <b>Dean</b> will make sure the damn deal closes. <b>Sandy</b> will help you grow the account.</p>
+      </div>
+    </div>
+  </section>
+
+  {FACULTY.map((p, i) => (
+    <section class={`band ${i % 2 === 0 ? 'band-bone' : 'band-bone2'} band-measure`}>
+      <div class="wrap">
+        <p class="eyebrow">{p.edge}</p>
+        <h2>{p.name}</h2>
+        {p.title && <p class="lede">{p.title}</p>}
+        <p set:html={p.bio} />
+        {p.site && (
+          <p>
+            <a class="more" href={p.site} target="_blank" rel="noopener noreferrer">{p.siteLabel}</a>
+          </p>
+        )}
+      </div>
+    </section>
+  ))}
+
+  <section class="band band-ink band-measure">
+    <div class="wrap">
+      <h2>We work together here. We work separately everywhere else.</h2>
+      <p>The Enterprise Edge is a collaboration, not a firm. Each of us runs our own practice, and anything that follows a session is contracted with that person directly. If one hour lands harder than the others for your team, go straight to the person who taught it.</p>
+      <div class="cta-pair">
+        <a class="btn" href={LUMA_URL} target="_blank" rel="noopener noreferrer">Reserve a Seat</a>
+        <a class="more" href="/in-house/">Bring the program in-house</a>
+      </div>
+    </div>
+  </section>
+
+</Base>

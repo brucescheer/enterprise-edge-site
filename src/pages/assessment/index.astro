@@ -1,0 +1,262 @@
+---
+import Base from '../../layouts/Base.astro';
+import { EDGES, LUMA_URL } from '../../data/program';
+
+/* NOTE ON WHERE THIS LIVES.
+
+   inspireyourbuyers.com keeps its assessment in public/ as a byte-for-byte
+   standalone file, which forces a hand-maintained duplicate of the header,
+   the footer and the whole brand stylesheet. That is worth it there for one
+   reason only: the URL is printed in Chapter 9 of a published book and can
+   never move.
+
+   Nothing here is printed in a book. So this is an ordinary Astro page and
+   inherits the real layout. Do not "port the IYB pattern" onto it.
+
+   No data leaves the browser. There is no endpoint, no storage, no analytics
+   call, and no email gate. Everything below runs on the answers in the DOM.
+   The audience for this site runs enterprise privacy reviews for a living;
+   an assessment that quietly posts somewhere is the wrong first impression. */
+
+const title = 'Which room is costing you the most? — The Enterprise Edge';
+const description =
+  'A 12-question diagnostic across the three rooms that decide enterprise deals: whether the business believes you, whether the organization can approve you, and whether the customer stays and grows. Instant score, nothing collected.';
+const canonical = 'https://getenterpriseedge.com/assessment/';
+
+const QUESTIONS = [
+  { edge: 0, t: 'If I asked ten people here what value we create, I would get one answer, not ten.' },
+  { edge: 0, t: 'Our champions can retell our value story accurately when we are not in the room.' },
+  { edge: 0, t: 'We can show a buyer what we are worth in their numbers, not in ours.' },
+  { edge: 0, t: 'We know what a buyer does if they buy nothing at all, and we can argue against it.' },
+
+  { edge: 1, t: 'We know what Procurement, Finance and Legal will evaluate before they open the file.' },
+  { edge: 1, t: 'When the price challenge lands, we widen the value conversation instead of discounting.' },
+  { edge: 1, t: 'Our champion has what they need to make the risk case without us there.' },
+  { edge: 1, t: 'Our deals clear commercial review on the first pass more often than not.' },
+
+  { edge: 2, t: 'We see retention risk while an account is still healthy, not at renewal.' },
+  { edge: 2, t: 'Our expansion comes out of customer outcomes, not off a renewal calendar.' },
+  { edge: 2, t: 'We know who inside our customer actually holds the relationship.' },
+  { edge: 2, t: 'Growth in existing accounts is a plan here, not a scramble each quarter.' },
+];
+
+const SCALE = [
+  { v: 1, l: 'Strongly disagree' },
+  { v: 2, l: 'Disagree' },
+  { v: 3, l: 'Mixed' },
+  { v: 4, l: 'Agree' },
+  { v: 5, l: 'Strongly agree' },
+];
+---
+<Base title={title} description={description} canonical={canonical}>
+
+  <section class="band band-ink hero band-measure">
+    <div class="wrap">
+      <p class="eyebrow">The Enterprise Edge assessment</p>
+      <h1>Which room is costing you the most?</h1>
+      <p class="lede">Twelve statements, about four minutes. You get a score on each of the three rooms and a straight answer about which one is leaking.</p>
+      <p class="fine">Nothing is collected. No email, no sign-in, no storage. The scoring runs in your browser and disappears when you close the tab.</p>
+    </div>
+  </section>
+
+  <section class="band band-bone">
+    <div class="wrap">
+      <form id="assess" novalidate>
+        <p class="eyebrow">Rate each statement as it is today, not as you would like it to be</p>
+
+        <ol class="qlist">
+          {QUESTIONS.map((q, i) => (
+            <li class="q">
+              <fieldset>
+                <legend><span class="qnum">{String(i + 1).padStart(2, '0')}</span>{q.t}</legend>
+                <div class="scale" role="radiogroup">
+                  {SCALE.map((s) => (
+                    <label class="opt">
+                      <input type="radio" name={`q${i}`} value={s.v} data-edge={q.edge} />
+                      <span class="dot" aria-hidden="true"></span>
+                      <span class="lab">{s.l}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            </li>
+          ))}
+        </ol>
+
+        <p id="err" class="err" role="status" hidden></p>
+        <div class="cta-pair">
+          <button class="btn" type="submit">Score my three rooms</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="band band-ink" id="result" hidden>
+    <div class="wrap">
+      <p class="eyebrow">Your result</p>
+      <h2 id="verdict">&nbsp;</h2>
+      <p class="lede" id="verdict-sub">&nbsp;</p>
+
+      <div class="scores" id="scores"></div>
+
+      <div class="pull" style="margin-top:2.5rem">
+        <p id="advice">&nbsp;</p>
+      </div>
+
+      <div class="cta-pair">
+        <a class="btn" href={LUMA_URL} target="_blank" rel="noopener noreferrer">Reserve a Seat</a>
+        <a class="more" id="edge-link" href="/">Read about that room</a>
+      </div>
+      <p class="fine" style="margin-top:2rem">Scored in your browser. Nothing was sent anywhere. Reload the page to start over.</p>
+    </div>
+  </section>
+
+  <script is:inline define:vars={{ EDGES }}>
+    (function () {
+      var form = document.getElementById('assess');
+      var result = document.getElementById('result');
+      var err = document.getElementById('err');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        /* Four statements per edge, 1-5 each, so each edge scores 4-20. */
+        var totals = [0, 0, 0];
+        var counts = [0, 0, 0];
+        var missing = 0;
+
+        for (var i = 0; i < 12; i++) {
+          var picked = form.querySelector('input[name="q' + i + '"]:checked');
+          var row = form.querySelectorAll('.q')[i];
+          if (!picked) {
+            missing++;
+            row.classList.add('unanswered');
+            continue;
+          }
+          row.classList.remove('unanswered');
+          var edge = +picked.dataset.edge;
+          totals[edge] += +picked.value;
+          counts[edge]++;
+        }
+
+        if (missing) {
+          err.hidden = false;
+          err.textContent =
+            missing === 1
+              ? 'One statement is still unrated. It is marked below.'
+              : missing + ' statements are still unrated. They are marked below.';
+          form.querySelector('.unanswered').scrollIntoView({ block: 'center' });
+          return;
+        }
+        err.hidden = true;
+
+        /* Normalise 4-20 onto 0-100 so the three bars compare directly. */
+        var pct = totals.map(function (t) { return Math.round(((t - 4) / 16) * 100); });
+
+        var weakest = 0;
+        for (var j = 1; j < 3; j++) if (pct[j] < pct[weakest]) weakest = j;
+
+        var edge = EDGES[weakest];
+        var LABEL = ['believe you', 'approve you', 'stay and grow'];
+
+        document.getElementById('verdict').textContent = edge.name + '.';
+        document.getElementById('verdict-sub').textContent =
+          'On your own read, this is the room where your deals are leaking hardest — the one where they decide whether to ' +
+          LABEL[weakest] + '.';
+
+        var advice;
+        if (pct[weakest] >= 75) {
+          advice = 'All three rooms scored well, which is rare. Come for the room, then — everyone else in it is running an organization your size and working the same problems on different accounts.';
+        } else if (pct[weakest] >= 50) {
+          advice = 'A soft spot rather than a hole. It is the kind of gap that costs you deals you never find out about, because a deal that dies in a room you are not in does not send a reason.';
+        } else {
+          advice = 'That is a hole, not a soft spot. Deals are almost certainly stalling here now, and the loss reports will be blaming something else.';
+        }
+        document.getElementById('advice').textContent = advice;
+
+        var link = document.getElementById('edge-link');
+        link.href = '/' + edge.slug + '/';
+        link.textContent = 'Read about ' + edge.name;
+
+        var box = document.getElementById('scores');
+        box.innerHTML = '';
+        EDGES.forEach(function (ed, k) {
+          var row = document.createElement('div');
+          row.className = 'score' + (k === weakest ? ' is-weak' : '');
+          var bar = document.createElement('div');
+          bar.className = 'bar';
+          var fill = document.createElement('i');
+          fill.style.width = pct[k] + '%';
+          bar.appendChild(fill);
+          var head = document.createElement('b');
+          head.textContent = ed.name;
+          var num = document.createElement('span');
+          num.className = 'pct';
+          num.textContent = pct[k] + '%';
+          row.appendChild(head);
+          row.appendChild(bar);
+          row.appendChild(num);
+          box.appendChild(row);
+        });
+
+        result.hidden = false;
+        /* The reveal styles hide bands until observed; this one appears after
+           the observer has already passed, so it is marked in by hand. */
+        result.classList.add('is-in');
+        result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    })();
+  </script>
+
+  <style>
+    .qlist{list-style:none;margin:2rem 0 0;padding:0;max-width:46rem;counter-reset:none}
+    .q{margin:0 0 .5rem;padding:1.5rem 0;border-bottom:1px solid var(--line)}
+    .q fieldset{border:0;margin:0;padding:0}
+    .q legend{font-family:var(--font-head);font-weight:600;font-size:1.25rem;
+      line-height:1.35;color:var(--ink);padding:0;margin:0 0 1rem;display:block;width:100%}
+    .qnum{display:inline-block;font-family:var(--font-numeral);color:var(--bronze);
+      font-size:1.1rem;margin-right:.65rem;letter-spacing:.04em}
+    .scale{display:grid;grid-template-columns:1fr;gap:.35rem}
+    @media (min-width:720px){
+      .scale{grid-template-columns:repeat(5,1fr);gap:.5rem}
+    }
+    .opt{display:flex;align-items:center;gap:.6rem;cursor:pointer;
+      padding:.55rem .6rem;border:1px solid var(--line);border-radius:2px;
+      background:var(--white);transition:border-color .15s ease}
+    @media (min-width:720px){
+      .opt{flex-direction:column;text-align:center;gap:.45rem;padding:.75rem .4rem}
+    }
+    .opt:hover{border-color:var(--bronze)}
+    /* The native input is the accessible control and stays focusable; it is
+       moved off-screen rather than display:none, which would drop it out of
+       the tab order and out of the radiogroup. */
+    .opt input{position:absolute;opacity:0;width:1px;height:1px}
+    .dot{width:1.15rem;height:1.15rem;border:2px solid var(--muted);
+      border-radius:50%;flex:0 0 auto;display:block}
+    .opt input:checked ~ .dot{border-color:var(--bronze);background:var(--bronze);
+      box-shadow:inset 0 0 0 3px var(--white)}
+    .opt input:focus-visible ~ .dot{outline:3px solid var(--amber);outline-offset:3px}
+    .lab{font-size:.9rem;line-height:1.25;color:var(--text)}
+    .opt input:checked ~ .lab{font-weight:600}
+    .q.unanswered{background:rgba(143,93,10,.06)}
+    .q.unanswered legend{color:var(--bronze)}
+    .err{font-family:var(--font-head);font-weight:700;font-size:1.15rem;
+      color:var(--bronze);margin:1.5rem 0 0}
+
+    .scores{margin-top:2.5rem;max-width:46rem;display:grid;gap:1.25rem}
+    .score{display:grid;grid-template-columns:1fr;gap:.4rem;align-items:center}
+    @media (min-width:640px){
+      .score{grid-template-columns:12rem minmax(0,1fr) 3.5rem;gap:1.25rem}
+    }
+    .score b{font-family:var(--font-head);font-weight:600;font-size:1.2rem;color:var(--white)}
+    .score .bar{background:rgba(215,220,228,.16);height:.85rem;border-radius:2px;overflow:hidden}
+    .score .bar i{display:block;height:100%;background:var(--pale);border-radius:2px}
+    .score .pct{font-family:var(--font-head);font-weight:700;font-size:1.2rem;
+      color:var(--pale);text-align:right}
+    /* Only the weakest room takes the accent. Amber is the signal colour on
+       this site and the whole point of the result is one room, not three. */
+    .score.is-weak b,.score.is-weak .pct{color:var(--amber)}
+    .score.is-weak .bar i{background:var(--amber)}
+  </style>
+
+</Base>

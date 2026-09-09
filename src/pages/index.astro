@@ -1,0 +1,192 @@
+---
+import Base from '../layouts/Base.astro';
+import { EDGES, CITIES, LUMA_URL } from '../data/program';
+
+const title = 'The Enterprise Edge — A Half-Day Masterclass for Enterprise Revenue Leaders';
+const description =
+  'A half day for B2B revenue and customer success leaders running 50+ sellers. Bruce Scheer, Dean Edwards and Sandy Yu on getting the business to believe you, the organization to approve you, and the customer to stay and grow.';
+const canonical = 'https://getenterpriseedge.com/';
+
+const jsonLd = {
+  '@graph': [
+    {
+      '@type': 'Course',
+      '@id': 'https://getenterpriseedge.com/#course',
+      name: 'The Enterprise Edge',
+      description,
+      provider: { '@id': 'https://getenterpriseedge.com/#organization' },
+      hasCourseInstance: CITIES.map((c) => ({
+        '@type': 'CourseInstance',
+        courseMode: 'onsite',
+        name: `The Enterprise Edge — ${c.city}`,
+        location: {
+          '@type': 'Place',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: c.city,
+            ...(c.region ? { addressRegion: c.region } : {}),
+          },
+        },
+      })),
+    },
+  ],
+};
+---
+<Base
+  title={title}
+  description={description}
+  canonical={canonical}
+  jsonLd={jsonLd}
+>
+
+  <section class="band band-ink hero">
+    <div class="wrap">
+      <p class="eyebrow">A half day for enterprise revenue leaders</p>
+      <h1>Your biggest deals get decided in three rooms. You&rsquo;re in none of them.</h1>
+      <p class="lede">Three hours. Three people who have been in those rooms &mdash; one as the seller, one as the buyer who decided which deals moved forward, and one who had to keep the customer long after the ink dried.</p>
+      <div class="cta-pair">
+        <a class="btn" href={LUMA_URL} target="_blank" rel="noopener noreferrer">Reserve a Seat</a>
+        <a class="more" href="#edges">See what we cover</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-bone band-measure">
+    <div class="wrap">
+      <p class="eyebrow">The problem</p>
+      <h2>You can do everything right and still lose.</h2>
+      <p>Strong product. A champion who genuinely wants you to win. A business case you were proud to hand over.</p>
+      <p>And the deal stalls. Or it shrinks. Or it slides two quarters you cannot afford.</p>
+      <p>Here is what actually happened. Somewhere between the demo and the signature, your deal moved into a room you were not invited to. It happened three times. You only ever saw the outcome.</p>
+      <!-- Both figures are Bruce's standard bench and appear in his own
+           materials. The source URLs still need the verification pass before
+           launch: confirm each resolves to a page stating this exact number. -->
+      <p>The numbers bear it out. 86% of B2B purchases stall somewhere in the buying process (Forrester). Between 40 and 60% of qualified pipeline ends not in a loss you can learn from, but in no decision at all (The JOLT Effect). You don&rsquo;t get the business, and you cannot even say why.</p>
+      <p class="emph">Most teams prepare hard for the first room, walk into the second one hoping, and find out about the third when the renewal number comes in.</p>
+    </div>
+  </section>
+
+  <section class="band band-bone2 band-measure" id="promise">
+    <div class="wrap">
+      <p class="eyebrow">What you leave with</p>
+      <h2>New ideas to improve revenue performance.</h2>
+      <p>Working frameworks across the whole revenue motion, not one slice of it. How you acquire customers, how you get contracts approved, and how you grow the accounts you win. Most programs take one of those three. The gaps between them are where the revenue actually goes.</p>
+      <p>And the other half of the value is sitting next to you.</p>
+      <p>Every seat belongs to someone running a revenue organization at your scale, working the same problems on different accounts. The cross-fertilizing is not a side effect of the format. It is half the reason we cap the room.</p>
+    </div>
+  </section>
+
+  <section class="band band-ink" id="edges">
+    <div class="wrap">
+      <p class="eyebrow">The three edges</p>
+      <h2>Three rooms, three hours, three people who have sat in them.</h2>
+      <p class="lede">Each hour takes one room. Together they are the Enterprise Edge.</p>
+
+      <div class="pull">
+        <p><b>Bruce</b> will get your customers to say yes. <b>Dean</b> will make sure the damn deal closes. <b>Sandy</b> will help you grow the account.</p>
+      </div>
+
+      <div class="edges">
+        {EDGES.map((e) => (
+          <article class="edge">
+            <div class="edge-num" aria-hidden="true">{e.num}</div>
+            <div>
+              <p class="edge-domain">{e.domain}</p>
+              <h3>{e.name}</h3>
+              <p class="edge-promise">{e.promise}</p>
+              <p>{e.blurb}</p>
+              <ul class="edge-disciplines">
+                {e.disciplines.map((d) => <li set:html={d} />)}
+              </ul>
+              {e.extra && <p class="fine" style="margin-top:1rem" set:html={e.extra} />}
+            </div>
+            <div class="edge-who">
+              <b>{e.speaker}</b>
+              <span>{e.room}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-bone band-measure">
+    <div class="wrap">
+      <p class="eyebrow">The outcome</p>
+      <h2>What it looks like when all three rooms go your way</h2>
+      <p>Your champion tells the room the same story you would have told it, in their own words, without you there to correct anything.</p>
+      <p>Procurement opens the file and finds a case already built the way they would have built it. The price challenge still comes. It lands on a wider conversation about value instead of on your margin.</p>
+      <p>And a year later, the review your customer runs without you is about where to expand next, not about whether to renew.</p>
+      <p>That is one deal that moved through all three rooms without you in any of them. It is also the only kind of deal that scales.</p>
+    </div>
+  </section>
+
+  <section class="band band-ink" id="agenda">
+    <div class="wrap">
+      <p class="eyebrow">The half day</p>
+      <h2>Three hours. No slideware marathon.</h2>
+      <p class="lede">Candid conversation, working frameworks, and a room of senior leaders comparing notes on deals that are not moving.</p>
+
+      <ul class="agenda">
+        <li><b>Doors</b><span>Coffee, refreshments and introductions.<i>Come early. The best conversations start before the first slide.</i></span></li>
+        <li><b>Hour 1</b><span>The Value Edge, with Bruce Scheer<i>Find Value, Communicate Value, Quantify Value.</i></span></li>
+        <li><b>Hour 2</b><span>The Approval Edge, with Dean Edwards<i>What Procurement, Finance and Legal actually evaluate.</i></span></li>
+        <li><b>Hour 3</b><span>The Growth Edge, with Sandy Yu<i>Protecting the revenue you have and growing what comes next.</i></span></li>
+        <li><b>After</b><span>Debrief and networking<i>Bring the deals that are stuck. That is the conversation.</i></span></li>
+      </ul>
+
+      <p class="fine" style="margin-top:2rem">Attendance is deliberately limited, so the room stays small enough for people to speak candidly about deals they would not discuss on a webinar.</p>
+    </div>
+  </section>
+
+  <section class="band band-bone2 band-measure">
+    <div class="wrap">
+      <p class="eyebrow">Who should be in the room</p>
+      <h2>Revenue and success leaders running 50 sellers or more.</h2>
+      <p>CROs, VPs of Sales, VPs of Customer Success, and the enablement leaders who own how a large team sells. That headcount is the filter, and we would rather say so than waste your morning.</p>
+      <p>It is where our heritage is. Dean and Sandy spent their careers inside large enterprises &mdash; one deciding which suppliers got approved, one keeping and growing the accounts after they were. At that scale the three rooms are not three conversations. They are three systems, and systems are what stall.</p>
+      <p>Bring the deals that are not moving, the accounts you are trying to grow, and the questions that do not have easy answers.</p>
+      <!-- Bruce's smaller-account path, stated once and pointed off-site. It
+           belongs here rather than hidden: without it, an earlier-stage reader
+           either self-selects out of everything or shows up to the wrong room. -->
+      <p class="fine">Earlier stage, selling into enterprise? The Value Edge hour stands on its own. Bruce runs Find Value, Communicate Value and Quantify Value with smaller teams at <a href="https://inspireyourbuyers.com/" target="_blank" rel="noopener noreferrer">inspireyourbuyers.com</a>.</p>
+    </div>
+  </section>
+
+  <section class="band band-ink" id="dates">
+    <div class="wrap">
+      <p class="eyebrow">2027 cities</p>
+      <h2>Where we&rsquo;re running it</h2>
+      <p class="lede">Dates are being set now. Reserve a seat on Luma and you will hear the moment your city opens.</p>
+
+      <div class="dates">
+        {CITIES.map((c) => (
+          <div class="date">
+            <b>{c.city}</b>
+            {c.date
+              ? <span>{c.date}</span>
+              : <span class="tbd">Dates soon</span>}
+          </div>
+        ))}
+      </div>
+
+      <div class="cta-pair">
+        <a class="btn" href={LUMA_URL} target="_blank" rel="noopener noreferrer">Reserve a Seat</a>
+        <a class="btn btn-ghost" href="/in-house/">Bring it to your team</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-bone band-measure">
+    <div class="wrap">
+      <h2>Three rooms. You&rsquo;re in none of them.</h2>
+      <p>You cannot follow your deal in there. You can only decide what it arrives with, and who is ready to make the case once it does.</p>
+      <p class="emph">Which of the three rooms is costing you the most right now?</p>
+      <div class="cta-pair">
+        <a class="btn" href="/assessment/">Find out in four minutes</a>
+        <a class="more" href={LUMA_URL} target="_blank" rel="noopener noreferrer">Or just reserve a seat</a>
+      </div>
+    </div>
+  </section>
+
+</Base>

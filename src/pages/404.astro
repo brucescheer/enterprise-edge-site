@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+const canonical = 'https://getenterpriseedge.com/404/';
+---
+<Base
+  title="Page not found — The Enterprise Edge"
+  description="That page does not exist."
+  canonical={canonical}
+  robots="noindex,follow"
+>
+  <section class="band band-ink hero band-measure">
+    <div class="wrap">
+      <p class="eyebrow">404</p>
+      <h1>That room doesn&rsquo;t exist.</h1>
+      <p class="lede">The three that do are on the homepage.</p>
+      <div class="cta-pair">
+        <a class="btn" href="/">Back to the program</a>
+      </div>
+    </div>
+  </section>
+</Base>
