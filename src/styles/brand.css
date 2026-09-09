@@ -501,3 +501,13 @@ a.date:hover .go{text-decoration:underline}
 @media (min-width:820px){
   .edge-who img{margin-top:.25rem}
 }
+
+/* The legal block's links need the same visible treatment as the footer
+   columns above them, which they do not inherit: .site-foot a is defined for
+   the column lists, and these sit in .foot-legal where the surrounding text
+   is already pale. An underline rather than a colour change, since the block
+   is small and a colour shift at this size is easy to miss. */
+.foot-legal a{color:var(--pale);text-decoration:underline;
+  text-decoration-color:var(--amber);text-decoration-thickness:2px;
+  text-underline-offset:3px}
+.foot-legal a:hover{color:var(--white);text-decoration-thickness:3px}

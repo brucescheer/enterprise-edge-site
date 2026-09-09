@@ -1,0 +1,99 @@
+---
+import Base from '../../layouts/Base.astro';
+import { FACULTY } from '../../data/program';
+
+/* Every claim on this page was verified against the built site and the live
+   response headers on 2026-09-09, not assumed:
+
+     no analytics of any kind in the source
+     no Set-Cookie on any page, including under a bot-like user agent
+     no third-party resource loads (fonts are self-hosted; the only external
+       URLs are outbound links the reader clicks)
+     no localStorage, sessionStorage, indexedDB or document.cookie anywhere
+     one Cloudflare-injected script, email-decode.min.js, served from this
+       origin
+
+   If any of that changes, this page has to change with it. Adding an
+   analytics tag or a form without updating this page turns an accurate
+   privacy policy into a false one, which is worse than not having had it.
+
+   The audience for this site runs corporate security reviews for a living
+   and one hour of the program is about surviving them. Precision here is a
+   credibility asset, not a compliance chore. */
+
+const EFFECTIVE = 'September 9, 2026';
+const title = 'Privacy: The Enterprise Edge';
+const description =
+  'How The Enterprise Edge handles information when you visit this website, take the assessment, or contact us. No analytics, no cookies, no tracking.';
+const canonical = 'https://getenterpriseedge.com/privacy/';
+---
+<Base title={title} description={description} canonical={canonical}>
+
+  <section class="band band-ink hero band-measure">
+    <div class="wrap">
+      <p class="eyebrow">Privacy</p>
+      <h1>Privacy</h1>
+      <p class="fine">Effective {EFFECTIVE}</p>
+      <p class="lede">This explains what happens to information when you visit this website, take the assessment, or get in touch.</p>
+    </div>
+  </section>
+
+  <section class="band band-bone band-measure">
+    <div class="wrap">
+      <h2>The short version</h2>
+      <p>This site runs no analytics, sets no cookies, and loads nothing from a third party. There is no form to fill in and no mailing list to join. The assessment scores your answers in your browser and forgets them when you close the tab. Nothing you do here is recorded, measured, or sent anywhere.</p>
+      <p>The rest of this page is the detail behind that, because a claim like the one above is worth checking.</p>
+    </div>
+  </section>
+
+  <section class="band band-bone2 band-measure">
+    <div class="wrap">
+      <h2>Who we are</h2>
+      <p>This website is run by Bruce Scheer, Dean Edwards and Sandy Yu, who together deliver The Enterprise Edge.</p>
+      <p>For any privacy question or request, write to whichever of us you prefer:</p>
+      <ul class="plain">
+        {FACULTY.map((p) => (
+          <li><b>{p.name}</b>, <a href={`mailto:${p.email}`}>{p.email}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="band band-bone band-measure">
+    <div class="wrap">
+      <h2>Information you choose to share</h2>
+      <p>If you email or call one of us, we receive what you send. That may include your name, address, phone number, company, and whatever is in your message. We use it to reply, to arrange a session, and to keep a record of the conversation.</p>
+      <p>When an inquiry concerns the program as a whole, whoever receives it will usually bring the other two into the conversation. If you would rather it stayed with the person you wrote to, say so and it will.</p>
+      <p>We do not sell, rent, or trade what you send us, and we do not add you to a mailing list because you wrote to us.</p>
+      <p>Please do not send sensitive personal information that your inquiry does not need.</p>
+
+      <h2>The assessment</h2>
+      <p>The assessment at <a href="/assessment/">getenterpriseedge.com/assessment/</a> scores your answers in your browser. Its code has no endpoint to send them to. It does not ask for your email address, does not save anything in cookies or browser storage, and keeps no record of your answers or your score. Reloading or closing the page resets it completely.</p>
+      <p>That means we cannot see your result, and we cannot produce it for you later. If you want us to know what it said, you have to tell us.</p>
+
+      <h2>Loading the website</h2>
+      <p>The site is hosted on Cloudflare Pages. Cloudflare processes the connection in order to serve and protect the site, which involves your IP address, your browser and device information, which pages you requested, and when. That is ordinary web server processing and it happens before any of our code runs.</p>
+      <p>Fonts, images, styles and scripts are all served from this website. Loading a page discloses nothing about you to any third party beyond the hosting just described.</p>
+      <p>Cloudflare also scrambles the email addresses printed on this site so that address-harvesting robots cannot read them, and serves a small script from this domain to unscramble them for you. That script exists to hide the addresses, not to learn anything about you.</p>
+
+      <h2>Cookies and tracking</h2>
+      <p>This site sets no cookies and uses no browser storage. There is no Google Analytics, no Cloudflare Web Analytics, no session recording, no heatmap, no chat widget, no advertising pixel, and no tag manager. We do not build a profile of you, and we have no way to recognise you if you come back.</p>
+      <p>Because nothing here tracks you, there is no consent banner to click and no Do Not Track signal for us to respond to differently. Cloudflare may set a short-lived security cookie if its bot protection is triggered by a particular request. That is a security measure, not a measurement one.</p>
+
+      <h2>Links to other websites</h2>
+      <p>This site links out to each of our own practices and to Luma, where registration for a session happens. Once you follow a link you are on someone else&rsquo;s website under their privacy policy, not this one. Registering for a session is handled entirely by Luma, and anything you enter there is theirs to explain.</p>
+
+      <h2>Your choices</h2>
+      <p>Because we hold nothing unless you send it to us, most requests are simple. Write to any of us and ask what we have, ask for a copy, ask for a correction, or ask us to delete it. We will do it.</p>
+      <p>Depending on where you live you may have formal rights over your personal information, including access, correction, deletion, and objection. Ask and we will honour them. We will not treat you differently for asking.</p>
+
+      <h2>Children</h2>
+      <p>This site is for people running enterprise revenue organizations. It is not directed at children and we do not knowingly collect anything from them.</p>
+
+      <h2>Changes</h2>
+      <p>If we add anything that changes the answers above, a form, a mailing list, or any kind of measurement, this page gets updated at the same time and the effective date changes with it.</p>
+      <p>Last updated {EFFECTIVE}.</p>
+    </div>
+  </section>
+
+</Base>
