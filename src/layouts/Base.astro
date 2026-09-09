@@ -1,6 +1,6 @@
 ---
 import '../styles/brand.css';
-import { LUMA_URL, HAS_DATES } from '../data/program';
+import { LUMA_URL, HAS_REGISTRATION } from '../data/program';
 
 const {
   title,
@@ -84,7 +84,7 @@ const NAV = [
   { href: '/assessment/', label: 'Assessment' },
   { href: '/#dates', label: 'Dates' },
   { href: '/faculty/', label: 'Who We Are' },
-  { href: '/in-house/', label: 'In-House' },
+  { href: '/work-with-us/', label: 'Work With Us' },
 ];
 
 const here = Astro.url.pathname;
@@ -153,8 +153,14 @@ const headDesc = ogDescription ?? description;
       ))}
       {/* Registration happens on Luma, one event per city. Until a city has a
           real event, this points at the dates section rather than at a Luma
-          calendar with nothing on it. Flips automatically via HAS_DATES. */}
-      {HAS_DATES
+          calendar with nothing on it.
+
+          Keyed on HAS_REGISTRATION, not HAS_DATES. Those two came apart the
+          moment a city had a confirmed date but no event page yet, and this
+          button was still on the old flag: it read "Reserve a Seat" and sent
+          people to a Luma calendar with nothing on it. A date existing is not
+          the same as a seat being bookable. */}
+      {HAS_REGISTRATION
         ? <a class="nav-cta" href={LUMA_URL} target="_blank" rel="noopener noreferrer">Reserve a Seat</a>
         : <a class="nav-cta" href="/#dates">See Dates</a>}
     </nav>
@@ -178,7 +184,7 @@ const headDesc = ogDescription ?? description;
         <li><a href="/#dates">Dates and Cities</a></li>
         <li><a href="/#agenda">The Half Day</a></li>
         <li><a href="/assessment/">Take the Assessment</a></li>
-        <li><a href="/in-house/">Bring It In-House</a></li>
+        <li><a href="/work-with-us/">Work With Us</a></li>
       </ul>
     </div>
     <div class="foot-col">
@@ -194,7 +200,7 @@ const headDesc = ogDescription ?? description;
       <h2>Attend</h2>
       <ul>
         <li><a href="/#dates">Dates and cities</a></li>
-        {HAS_DATES && <li><a href={LUMA_URL} target="_blank" rel="noopener noreferrer">All events on Luma</a></li>}
+        {HAS_REGISTRATION && <li><a href={LUMA_URL} target="_blank" rel="noopener noreferrer">All events on Luma</a></li>}
       </ul>
     </div>
   </div>

@@ -184,7 +184,7 @@ const jsonLd = {
   <section class="band band-bone band-measure">
     <div class="wrap">
       <p class="eyebrow">The room</p>
-      <h2>First-class venues. The meal is on us.</h2>
+      <h2>First-class venues. The room is part of the program.</h2>
       {/* Venues listed from the data so this sentence cannot go stale or
           name a room we are no longer in. */}
       <p>We run these in the best rooms we can find: {VENUE_LIST}.</p>
@@ -192,14 +192,32 @@ const jsonLd = {
       <p>That is not hospitality for its own sake. You are giving us a working morning out of a week that did not have one spare, and the room you spend it in decides whether the conversation stays polite or gets somewhere.</p>
       <p>Where a session runs into a meal, the meal is on the agenda rather than after it, because a good share of the value is in it. The people beside you are running revenue organizations at your scale, working the same problems on different accounts. An hour with them over a proper meal earns its place.</p>
       <p>A seat costs a token fee. It does not cover the room or the meal and it is not meant to. It is there because a seat that cost something is a seat that gets used, and because twenty people who turned up beats sixty who meant to.</p>
-      {/* Venue marks identify where a session is held. The site makes no
-          claim that a venue hosts, sponsors or endorses the program, and the
-          alt text says so. */}
+      {/* Venue photographs identify where each session is held. The site
+          makes no claim that a venue hosts, sponsors or endorses the
+          program, and the alt text says "the venue in" for that reason.
+
+          Cropping happens in CSS rather than to the files. That keeps the
+          Wikimedia image we distribute byte-identical to the original, which
+          matters because a crop is an adaptation under CC BY-SA and would
+          otherwise carry its own licensing obligation. */}
       <div class="venues">
-        {CITIES.filter((c) => c.venueLogo).map((c) => (
+        {CITIES.filter((c) => c.venuePhoto).map((c) => (
           <figure class="venue">
-            <img src={c.venueLogo} alt={`${c.venue}, the venue in ${c.city}`} width="120" height="120" loading="lazy" />
-            <figcaption><b>{c.venue}</b><span>{c.city}</span></figcaption>
+            <img
+              src={c.venuePhoto}
+              alt={`${c.venue}, the venue in ${c.city}`}
+              loading="lazy"
+              style={c.venuePhotoPosition ? `object-position:${c.venuePhotoPosition}` : undefined}
+            />
+            <figcaption>
+              <b>{c.venue}</b>
+              <span>{c.city}</span>
+              {c.venuePhotoCredit && (
+                <small class="credit">
+                  <a href={c.venuePhotoCredit.authorUrl} target="_blank" rel="noopener noreferrer">{c.venuePhotoCredit.text}</a>, <a href={c.venuePhotoCredit.licenceUrl} target="_blank" rel="noopener noreferrer">{c.venuePhotoCredit.licence}</a>
+                </small>
+              )}
+            </figcaption>
           </figure>
         ))}
       </div>
@@ -268,7 +286,7 @@ const jsonLd = {
 
       <div class="cta-pair">
         <a class="btn" href="/assessment/">Take the assessment</a>
-        <a class="btn btn-ghost" href="/in-house/">Bring it to your team</a>
+        <a class="btn btn-ghost" href="/work-with-us/">Bring it to your team</a>
       </div>
     </div>
   </section>

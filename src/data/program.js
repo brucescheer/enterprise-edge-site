@@ -183,6 +183,20 @@ export const CITIES = [
     venue: 'Clavius Wealth Management',
     venueAddress: '555 Mission Street',
     venueLogo: null,
+    venuePhoto: '/assets/venue-555-mission.jpg',
+    venuePhotoPosition: 'center 30%',
+    /* Wikimedia Commons, CC BY-SA 4.0, which requires attribution. The credit
+       renders under the photo and both links have to stay: one to the author,
+       one to the licence. Removing either breaks the licence terms. Note that
+       cropping is an adaptation, so the cropped version is itself CC BY-SA;
+       the crop here is done in CSS rather than to the file, which keeps the
+       distributed image identical to the original. */
+    venuePhotoCredit: {
+      text: '555 Mission Street by Dead.rabbit',
+      authorUrl: 'https://commons.wikimedia.org/wiki/File:555_Mission_Street_from_Salesforce_Park_02.jpg',
+      licence: 'CC BY-SA 4.0',
+      licenceUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    },
     date: 'Thursday, October 8, 2026',
     doors: null,
     time: '1:00pm to 4:00pm',
@@ -203,11 +217,16 @@ export const CITIES = [
   {
     city: 'Los Angeles',
     region: 'California',
-    /* TODO: confirm the venue's full legal name. It was referred to on the
-       call only as "the LA Club", downtown rather than Santa Monica. */
-    venue: 'The LA Club',
-    venueAddress: null,
+    venue: 'City Club Los Angeles',
+    venueAddress: 'Downtown',
     venueLogo: null,
+    venuePhoto: '/assets/venue-city-club-la.jpg',
+    /* Where to anchor the crop inside a 4:3 box. Buildings want their upper
+       half; a centred crop of a tall shot lands on the pavement. */
+    venuePhotoPosition: 'center 32%',
+    /* From the club's own website. Their photograph of their own building,
+       used to show where the session is. */
+    venuePhotoCredit: null,
     date: 'Thursday, October 15, 2026',
     /* Doors is its own field rather than part of `time` because it is the one
        detail people plan their morning around, and not every city runs on the
@@ -230,6 +249,13 @@ export const CITIES = [
        and the alt text says "venue" for the same reason. If a venue asks us
        not to use their mark, set this to null and the name still renders. */
     venueLogo: '/assets/venue-american-club.jpg',
+    venuePhoto: '/assets/venue-american-club-photo.jpg',
+    venuePhotoPosition: 'center 45%',
+    /* This one came off Google Maps, so it is somebody's user-contributed
+       photograph rather than the club's own or a freely licensed one. It is
+       the weakest provenance of the three. Ask the Club for theirs and
+       replace it. */
+    venuePhotoCredit: null,
     date: 'Friday, October 23, 2026',
     doors: null,
     time: '9:00am to 1:00pm',

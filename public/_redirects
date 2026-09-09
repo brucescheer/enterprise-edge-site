@@ -1,0 +1,4 @@
+# /in-house/ became /work-with-us/ when the page grew from one engagement type
+# to four. 301 rather than 302: the move is permanent.
+/in-house/  /work-with-us/  301
+/in-house   /work-with-us/  301

@@ -1,0 +1,121 @@
+---
+import Base from '../../layouts/Base.astro';
+import { EDGES, FACULTY, inquiryLink } from '../../data/program';
+
+/* This page replaced /in-house/, which covered one engagement type well and
+   left the other three unanswered.
+
+   The reason it exists: someone who spends a half day with the three of us is
+   not only attending, they are deciding whether to hire one of us. A site
+   that shows the program and never says how to buy anything makes that
+   person go and ask, which most of them will not do. */
+
+const title = 'Work With Us: The Enterprise Edge';
+const description =
+  'Run The Enterprise Edge for your own team, book one of us for a keynote, or bring in the person whose edge you most need. In-house and offsite workshops, keynotes, and private consulting.';
+const canonical = 'https://getenterpriseedge.com/work-with-us/';
+
+const WAYS = [
+  {
+    n: '01',
+    h: 'The half day, in-house',
+    p: 'The same three hours, run for your own revenue organization. The public sessions use examples. In-house uses yours: the stalled deal, the account that will not expand, the price challenge you lost last quarter. Everyone in the room owns a piece of the same number, which lets the conversation get specific in a way a public room never can.',
+  },
+  {
+    n: '02',
+    h: 'Your sales kickoff or offsite',
+    p: 'Run as the anchor session, three hours that give the rest of the agenda something to hang on. A kickoff usually has plenty of energy and not much of a shared frame. This supplies the frame, and the team leaves with one story to align on and a shared read on where deals are leaking.',
+  },
+  {
+    n: '03',
+    h: 'A keynote',
+    p: 'One of us on your stage, at a company meeting, a customer event or an industry conference. Shorter, sharper, and built around whichever edge your audience most needs to hear about.',
+  },
+  {
+    n: '04',
+    h: 'Private consulting',
+    p: 'Sustained work with one of us, on the part of the motion that is actually costing you. This is where most follow-on work lands, and it is contracted with that person directly.',
+  },
+];
+---
+<Base title={title} description={description} canonical={canonical}>
+
+  <section class="band band-ink hero">
+    <div class="wrap">
+      <p class="eyebrow">Work with us</p>
+      <h1>Four ways, and you do not have to take all three of us.</h1>
+      <p class="lede">Most people who spend a half day with us are deciding something bigger than whether the morning was useful. Here is what the rest of it looks like.</p>
+    </div>
+  </section>
+
+  <section class="band band-bone">
+    <div class="wrap">
+      <p class="eyebrow">The four</p>
+      <h2>How this usually goes</h2>
+      <div class="edges">
+        {WAYS.map((w) => (
+          <article class="edge">
+            <div class="edge-num" aria-hidden="true">{w.n}</div>
+            <div>
+              <h3>{w.h}</h3>
+              <p>{w.p}</p>
+            </div>
+            <div />
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-bone2 band-measure">
+    <div class="wrap">
+      <p class="eyebrow">All three, or one</p>
+      <h2>Take the whole arc, or just the part that hurts.</h2>
+      <p>The three edges are built to work together, and a team that hears all three gets the whole revenue motion in one morning. That is the version we would argue for.</p>
+      <p>It is not the only version. If your deals are dying in security review, you need Dean and you do not need a half day to get there. If every customer is happy and none of them expand, that is Sandy. If ten people in your company would describe your value ten different ways, that is Bruce.</p>
+      <p>Tell whoever you write to what is actually going wrong. If it belongs to one of the others, they will say so.</p>
+    </div>
+  </section>
+
+  <section class="band band-bone">
+    <div class="wrap">
+      <p class="eyebrow">The three hours</p>
+      <h2>What a team walks out with</h2>
+      <div class="cards">
+        {EDGES.map((e) => (
+          <div class="card">
+            <p class="eyebrow">{e.num} &nbsp;{e.name}</p>
+            <h3>{e.promise}</h3>
+            <p>{e.blurb}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-ink band-measure">
+    <div class="wrap">
+      <p class="eyebrow">How to start</p>
+      <h2>Talk to whichever of us you know.</h2>
+      <p>Write to us or give us a call. Reach whichever of us you already know, or whoever owns the edge you most need. We will loop in the other two.</p>
+
+      <div class="contacts">
+        {FACULTY.map((p) => (
+          <div class="contact">
+            {p.photo && <img src={p.photo} alt="" width="72" height="72" loading="lazy" aria-hidden="true" />}
+            <b>{p.name}</b>
+            <span>{p.edge}</span>
+            <a class="btn" href={inquiryLink(p)}>Email {p.name.split(' ')[0]}</a>
+            <a class="contact-mail" href={inquiryLink(p)}>{p.email}</a>
+            <a class="contact-tel" href={`tel:${p.phone}`}>{p.phoneDisplay}</a>
+          </div>
+        ))}
+      </div>
+
+      <div class="cta-pair">
+        <a class="more" href="/#dates">Or come to a public session first</a>
+      </div>
+    </div>
+  </section>
+
+</Base>

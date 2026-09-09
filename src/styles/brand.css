@@ -531,11 +531,30 @@ a.date.is-open .when{color:var(--white)}
    modest size beside the venue name rather than as a banner: the mark is a
    wayfinding detail, and a large one would read as a sponsorship lockup,
    which it is not. */
-.venues{display:flex;flex-wrap:wrap;gap:1.75rem;margin:2rem 0 0}
-.venue{display:flex;align-items:center;gap:1rem;margin:0}
-.venue img{width:5rem;height:5rem;border-radius:3px;display:block;flex:0 0 auto}
+/* Three venues in a row on desktop, stacked on a phone. Each photo sits in
+   a 4:3 box with object-fit:cover, so three very different source shapes
+   (two tall towers and one low clubhouse) line up without any of them being
+   letterboxed or stretched. Where the crop lands is set per city, because a
+   centred crop of a tall building lands on the pavement. */
+.venues{display:grid;grid-template-columns:1fr;gap:1.75rem;margin:2.5rem 0 0}
+@media (min-width:760px){
+  .venues{grid-template-columns:repeat(3,1fr);gap:1.5rem}
+}
+.venue{margin:0;display:flex;flex-direction:column}
+.venue img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center;
+  border-radius:3px;display:block;background:var(--bone-2)}
+.venue figcaption{margin-top:.85rem}
 .venue figcaption b{display:block;font-family:var(--font-head);font-weight:700;
   font-size:1.2rem;color:var(--ink);line-height:1.2}
+/* Photo credit. Small and quiet, but it is a licence condition rather than a
+   nicety: the CC BY-SA image has to name its author and its licence, and both
+   links have to work. Do not remove it to tidy the layout. */
+.venue .credit{display:block;margin-top:.5rem;font-size:.8rem;line-height:1.4;
+  color:var(--muted)}
+.venue .credit a{color:inherit;text-decoration:underline;
+  text-decoration-color:var(--line);text-underline-offset:2px}
+.venue .credit a:hover{color:var(--ink);text-decoration-color:var(--bronze)}
+.band-ink .venue .credit{color:var(--pale)}
 .band-ink .venue figcaption b{color:var(--white)}
 .venue figcaption span{font-size:.95rem;color:var(--muted)}
 .band-ink .venue figcaption span{color:var(--pale)}
