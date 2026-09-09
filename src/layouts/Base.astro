@@ -143,9 +143,15 @@ const headDesc = ogDescription ?? description;
 
 <header class="site-head">
   <div class="head-in">
-    <a class="brand" href="/">
-      <img src="/assets/ee-mark.svg" alt="" width="34" height="34" aria-hidden="true">
-      <b>The Enterprise</b><i>Edge</i>
+    {/* The finished lockup, mark and wordmark as one artwork. It replaced a
+        hand-set version of the same thing; the accessible name moves onto the
+        link because the image now carries the words and repeating them in alt
+        text would announce the brand twice.
+
+        width and height are set so the header reserves the space before the
+        image arrives and nothing shifts on load. */}
+    <a class="brand" href="/" aria-label="The Enterprise Edge, home">
+      <img src="/assets/ee-lockup-dark.png" alt="" width="620" height="139" />
     </a>
     <nav class="site-nav" aria-label="Primary">
       {NAV.map((n) => (

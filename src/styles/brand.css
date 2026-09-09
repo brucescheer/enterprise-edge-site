@@ -84,21 +84,25 @@ img{max-width:100%}
 .site-head{background:var(--ink);color:var(--white)}
 .head-in{max-width:72rem;margin:0 auto;padding:1rem 1.25rem;
   display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;flex:0 0 auto}
+.brand{display:flex;align-items:center;text-decoration:none;flex:0 0 auto}
 /* The mark sits with the type, not above it: centred alignment, and the two
    words keep their own baseline relationship via line-height. */
-.brand img{display:block;flex:0 0 auto;border-radius:3px}
+/* One artwork rather than a mark plus type. Height drives the size and width
+   follows, so the lockup keeps its proportions at every breakpoint, and the
+   width/height attributes on the tag reserve the box before it loads. */
+/* Sized larger than it first looks like it needs. The wordmark occupies only
+   a band in the middle of a tall lockup, so a height that seems generous
+   still renders the words smaller than the nav links beside them, which puts
+   the brand below its own navigation. 4.4rem is where the wordmark reads at
+   nav weight. */
+.brand img{display:block;height:4.4rem;width:auto;max-width:100%;
+  transition:height .22s ease}
+@media (max-width:520px){
+  .brand img{height:3.4rem}
+}
 /* Wordmark is set in type, not an image. There is no logo file yet, and a
    type lockup is the honest placeholder: it is legible, it scales, and it is
    trivially replaced by an <img> when a mark exists. */
-/* Tracked out and one weight lighter than it was, following Dean's lockup.
-   The wordmark is set in type rather than shipped as an image so it stays
-   crisp, recolours with the tokens, and can be read by anything that reads
-   text. */
-.brand b{font-family:var(--font-head);font-weight:600;font-size:1.4rem;
-  letter-spacing:.12em;color:var(--white);text-transform:uppercase}
-.brand i{font-style:normal;font-family:var(--font-head);font-weight:600;
-  font-size:1.4rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
 .site-nav{margin-left:auto;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
 .site-nav a{color:var(--pale);text-decoration:none;font-size:.95rem;
   padding:.35rem 0;border-bottom:2px solid transparent}
@@ -320,6 +324,7 @@ p{line-height:1.6;margin:0 0 1.15rem;max-width:40rem}
   .head-in{transition:padding .22s ease}
   .site-head.is-stuck{box-shadow:0 2px 16px rgba(20,26,34,.4)}
   .site-head.is-stuck .head-in{padding-top:.5rem;padding-bottom:.5rem}
+  .site-head.is-stuck .brand img{height:2.6rem}
   :root{--anchor-offset:5rem}
 }
 [id]{scroll-margin-top:var(--anchor-offset)}
