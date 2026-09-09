@@ -1,11 +1,18 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { FACULTY, LUMA_URL } from '../../data/program';
+import { FACULTY, EDGES } from '../../data/program';
 
-const title = 'Who We Are — The Enterprise Edge';
+const title = 'Who We Are: The Enterprise Edge';
 const description =
-  'Bruce Scheer, Dean Edwards and Sandy Yu. One seller, one buyer, one operator who had to keep the customer. Each leads one hour of The Enterprise Edge.';
+  'Bruce Scheer, Dean Edwards and Sandy Yu. One who sells value, one who approved the deals, one who grows the account. Each leads one hour of The Enterprise Edge.';
 const canonical = 'https://getenterpriseedge.com/faculty/';
+
+/* Initials for the monogram fallback, so a person without a headshot still
+   gets a portrait-shaped element and the row does not collapse to text. */
+const initials = (name) =>
+  name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
+
+const slugFor = (edgeName) => EDGES.find((e) => e.name === edgeName)?.slug;
 ---
 <Base title={title} description={description} canonical={canonical}>
 
@@ -13,7 +20,7 @@ const canonical = 'https://getenterpriseedge.com/faculty/';
     <div class="wrap">
       <p class="eyebrow">Who we are</p>
       <h1>Three people. Three sides of the same deal.</h1>
-      <p class="lede">We came at enterprise deals from different chairs, and we kept arriving at the same conclusion about where they go wrong.</p>
+      <p class="lede">We came at enterprise revenue from different chairs, and we kept arriving at the same conclusion about where it goes wrong.</p>
 
       <div class="pull">
         <p><b>Bruce</b> will get your customers to say yes. <b>Dean</b> will make sure the damn deal closes. <b>Sandy</b> will help you grow the account.</p>
@@ -22,17 +29,26 @@ const canonical = 'https://getenterpriseedge.com/faculty/';
   </section>
 
   {FACULTY.map((p, i) => (
-    <section class={`band ${i % 2 === 0 ? 'band-bone' : 'band-bone2'} band-measure`}>
+    <section class={`band ${i % 2 === 0 ? 'band-bone' : 'band-bone2'}`}>
       <div class="wrap">
-        <p class="eyebrow">{p.edge}</p>
-        <h2>{p.name}</h2>
-        {p.title && <p class="lede">{p.title}</p>}
-        <p set:html={p.bio} />
-        {p.site && (
-          <p>
-            <a class="more" href={p.site} target="_blank" rel="noopener noreferrer">{p.siteLabel}</a>
-          </p>
-        )}
+        <div class="person">
+          <div class="person-photo">
+            {p.photo
+              ? <img src={p.photo} alt={p.name} width="220" height="220" loading="lazy" />
+              : <span class="mono" aria-hidden="true">{initials(p.name)}</span>}
+          </div>
+          <div class="person-text">
+            <p class="eyebrow">
+              <a href={`/${slugFor(p.edge)}/`}>{p.edge}</a>
+            </p>
+            <h2>{p.name}</h2>
+            {p.title && <p class="person-title">{p.title}</p>}
+            <p set:html={p.bio} />
+            {p.site && (
+              <p><a class="more" href={p.site} target="_blank" rel="noopener noreferrer">{p.siteLabel}</a></p>
+            )}
+          </div>
+        </div>
       </div>
     </section>
   ))}
@@ -42,7 +58,7 @@ const canonical = 'https://getenterpriseedge.com/faculty/';
       <h2>We work together here. We work separately everywhere else.</h2>
       <p>The Enterprise Edge is a collaboration, not a firm. Each of us runs our own practice, and anything that follows a session is contracted with that person directly. If one hour lands harder than the others for your team, go straight to the person who taught it.</p>
       <div class="cta-pair">
-        <a class="btn" href={LUMA_URL} target="_blank" rel="noopener noreferrer">Reserve a Seat</a>
+        <a class="btn" href="/#dates">See dates and cities</a>
         <a class="more" href="/in-house/">Bring the program in-house</a>
       </div>
     </div>

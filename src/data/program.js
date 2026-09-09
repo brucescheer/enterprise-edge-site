@@ -1,50 +1,51 @@
 /* Single source of truth for the program. Every page reads from here.
 
-   THE ONE THING MOST LIKELY TO CHANGE: edge 02's name. Bruce ran it as "The
-   Procurement Edge" in Seattle (49 attendees) and has since floated "The
-   Approval Edge". It is a single field here, and the slug is derived from it,
-   so a rename is a one-line change plus a redirect. Do not hardcode either
-   name anywhere else. */
+   HOUSE RULES FOR ANY COPY IN THIS FILE:
+
+   1. No em dashes and no en dashes. Not one. Recast with a period or a colon.
+      This is Bruce's standing rule across everything he publishes.
+   2. Nobody "carries" a narrative, a story or a case. Champions MAKE the case
+      and TAKE it into the room. Also his standing rule.
+   3. No bowtie, no hourglass, no Winning by Design stage vocabulary. The three
+      edges cover acquisition, contracting and growth, which is the same ground
+      their Bowtie model covers, and that model is theirs.
+
+   THE ONE THING MOST LIKELY TO CHANGE: edge 02's name. It ran as "The
+   Procurement Edge" in Seattle and is now "The Approval Edge". It is a single
+   field here and the slug derives from it, so a rename is one line plus a
+   redirect. Do not hardcode an edge name anywhere else. */
 
 export const EDGES = [
   {
     num: '01',
+    /* The three `domain` labels together cover the whole revenue motion:
+       acquisition, contracting, growth. See house rule 3 before drawing them. */
+    domain: 'Customer acquisition',
     name: 'The Value Edge',
     slug: 'value-edge',
-    /* The three `domain` labels together cover the whole revenue motion:
-       acquisition, contracting, growth.
-
-       DO NOT render these as a bowtie, an hourglass, or anything with a pinch
-       in the middle, and do not adopt Winning by Design's stage vocabulary.
-       That model is theirs. The three-rooms framing on this site reaches the
-       same coverage by a different route and stays original; a bowtie graphic
-       would throw that away and copy something we have no right to. */
-    domain: 'Customer acquisition',
     speaker: 'Bruce Scheer',
-    room: 'The room where they decide whether they believe you',
-    promise: 'Get the business to believe you',
+    job: 'Getting the business to believe you',
+    promise: 'Get them to say yes',
     blurb:
-      'Your champion is sold. Nobody else in the buying group has met you. What reaches them is whatever your champion can repeat, and whatever your champion can defend. Bruce works the three disciplines that decide what that is.',
+      'Your champion is sold. Nobody else in the buying group has met you. What reaches them is whatever your champion can repeat and whatever your champion can defend, which means your story is doing the selling long before anyone reads a proposal.',
     disciplines: [
-      '<b>Find Value</b> — uncover what buyers actually care about and why it matters now, in alignment with your market position and your differentiated value.',
-      '<b>Communicate Value</b> — turn your solution into a value narrative that sizzles for the people who have to say yes.',
-      '<b>Quantify Value</b> — make a CFO-ready business case, not vendor-centric black box math.',
+      '<b>Find Value</b> is uncovering what buyers actually care about and why it matters now, in alignment with your market position and your differentiated value.',
+      '<b>Communicate Value</b> is turning your solution into a value narrative that sizzles for the people who have to say yes.',
+      '<b>Quantify Value</b> is making a CFO-ready business case, not vendor-centric black box math.',
     ],
-    /* Bruce's Value Buying material: the three returns. Kept out of the
-       disciplines list because it is a preview, not a fourth discipline. */
     extra:
-      'Plus a look at Value Buying from the buyer’s side: return on the solution (ROI), return on the buying experience itself (ROE), and return on the future they are signing up for when they invest with you today (ROF).',
+      'Plus a look at Value Buying from the buyer’s side, across three returns: return on the solution (ROI), return on the buying experience itself (ROE), and return on the future they are signing up for when they invest with you today (ROF).',
     page: {
       lede:
-        'Your champion is sold. Nobody else in the buying group has met you. What reaches them is whatever your champion can repeat and whatever your champion can defend — which means the deal is decided by the quality of your story long before anyone reads your proposal.',
+        'Your champion is sold. Nobody else in the buying group has met you. What reaches them is whatever your champion can repeat and whatever your champion can defend, so the deal is decided by the quality of your story long before anyone opens your proposal.',
       cover: [
         {
           h: 'Find Value',
-          p: 'Uncover what buyers actually care about and why it matters now. This runs outside-in before it runs inside-out: the market context, what customers do without you (including nothing), where you are genuinely different, what that difference is worth in the customer’s own dollars, and which buyers feel it hard enough to act.',
+          p: 'Uncover what buyers actually care about and why it matters now. This runs outside in before it runs inside out: the market context, what customers do without you including nothing at all, where you are genuinely different, what that difference is worth in the customer’s own dollars, and which buyers feel it hard enough to act.',
         },
         {
           h: 'Communicate Value',
-          p: 'Turn the solution into a value narrative that sizzles for the people who have to say yes. One story your whole revenue organization aligns on and delivers the same way — website, seller, champion, board deck. When ten leaders give ten different answers, the buying group hears noise and picks no decision.',
+          p: 'Turn the solution into a value narrative that sizzles for the people who have to say yes. One story your whole revenue organization aligns on and delivers the same way, from the website to the seller to the champion’s board deck. When ten leaders give ten different answers, the buying group hears noise and picks no decision.',
         },
         {
           h: 'Quantify Value',
@@ -61,29 +62,34 @@ export const EDGES = [
   },
   {
     num: '02',
+    domain: 'Contracting and approval',
     /* See the note at the top of this file before renaming. */
     name: 'The Approval Edge',
     slug: 'approval-edge',
-    domain: 'Contracting and approval',
     speaker: 'Dean Edwards',
-    room: 'The room where they decide whether you are safe to approve',
-    promise: 'Get the organization to approve you',
+    job: 'Getting the deal through approval',
+    promise: 'Get the deal closed',
     blurb:
-      'Procurement, Finance and Legal were not in the meetings where you built the case. They arrive at the end, and they arrive sceptical. Dean spent two decades on their side of that table, and he shows you what they are actually looking for.',
+      'Procurement, Finance, Legal, InfoSec and now AI governance were in none of the meetings where you built the case. They arrive at the end, they arrive sceptical, and they are measured on things nobody told you about. Dean spent two decades on their side of that table.',
     disciplines: [
-      'What enterprise Procurement teams really evaluate, and where deals become vulnerable.',
+      'What enterprise Procurement teams really evaluate, and where a strong deal becomes vulnerable.',
+      'How security review and AI governance review became the gates that quietly cost you a quarter.',
       'How to answer price pressure by widening the value conversation instead of discounting on reflex.',
-      'How to equip your champion to make the value and risk case through Procurement, Finance and Legal when you are not in the room.',
+      'How to equip your champion to make the value and risk case when you are not in the room.',
     ],
     extra:
-      'The goal is not to beat Procurement. It is to become easy to approve. Every attendee leaves with Dean’s Procurement-readiness checklist.',
+      'The goal is not to beat Procurement. It is to become easy to approve. Every attendee leaves with Dean’s approval-readiness checklist.',
     page: {
       lede:
-        'Procurement, Finance and Legal were not in any of the meetings where you built the case. They arrive at the end, they arrive sceptical, and they are measured on things nobody told you about. Dean spent two decades on their side of that table deciding which deals moved forward.',
+        'Procurement, Finance, Legal, InfoSec and now AI governance were in none of the meetings where you built the case. They arrive at the end, they arrive sceptical, and they are measured on things nobody told you about. Dean spent two decades on their side of that table deciding which deals moved forward.',
       cover: [
         {
           h: 'What they actually evaluate',
           p: 'The criteria a commercial review runs on, which are rarely the ones your champion described. Where a strong deal becomes vulnerable, and what a reviewer is looking for when they ask a question that sounds like a formality.',
+        },
+        {
+          h: 'InfoSec and AI governance',
+          p: 'Security review was already a gate. AI governance is the new one, and most sellers walk into it unprepared: where the data goes, what the model was trained on, what happens to customer information, who is accountable when it gets something wrong. Deals now stall here that would have closed two years ago, and the stall rarely announces itself as a security problem.',
         },
         {
           h: 'The price challenge',
@@ -91,34 +97,31 @@ export const EDGES = [
         },
         {
           h: 'Equipping your champion',
-          p: 'How to hand your champion a value case and a risk case they can make through Procurement, Finance and Legal when you are not in the room — in their words, at their level of detail, answerable under challenge.',
-        },
-        {
-          h: 'Becoming easy to approve',
-          p: 'The goal is not to beat Procurement. Deals that clear quickly are the ones that arrive looking like something the reviewer already knows how to approve.',
+          p: 'How to hand your champion a value case and a risk case they can make through Procurement, Finance, Legal and security review when you are not there. In their words, at their level of detail, answerable under challenge.',
         },
       ],
-      takeaway: 'Every attendee leaves with Dean’s Procurement-readiness checklist.',
-      /* TODO: confirm with Dean how he wants ConvergSPT engagements described
-         here. Placeholder is deliberately general rather than inventing a
-         service list he would then have to correct. */
+      takeaway:
+        'The goal is not to beat Procurement. It is to become easy to approve.',
+      /* TODO: confirm with Dean how he wants ConvergSPT engagements described.
+         Deliberately general rather than inventing a service list he would
+         then have to correct. */
       followOn:
-        'Dean advises revenue organizations on commercial readiness and approval strategy through ConvergSPT.',
+        'Through ConvergSPT, Dean runs workshops and advisory sessions on Procurement engagement, plus deal-readiness frameworks for account planning and negotiation prep. His work is used by teams at CD&R, Tenable and BlackLine.',
     },
   },
   {
     num: '03',
+    domain: 'Growth and expansion',
     name: 'The Growth Edge',
     slug: 'growth-edge',
-    domain: 'Growth and expansion',
     speaker: 'Sandy Yu',
-    room: 'The room where they decide whether to renew, expand, or start looking',
-    promise: 'Get the customer to stay and grow',
+    job: 'Getting the account to grow',
+    promise: 'Grow the account',
     blurb:
-      'Winning the deal is the beginning. A year later there is a review you are not invited to, and the outcome is either expansion or a quiet search for your replacement. Sandy works on what decides which.',
+      'Winning the deal is the beginning. A year later there is a review you are not invited to, and it ends in expansion or in a quiet search for your replacement. Sandy works on what decides which.',
     disciplines: [
-      'What it takes to protect the revenue you already have, before it is at risk rather than after.',
-      'Where genuine expansion comes from — customer outcomes and relationships, not a renewal calendar.',
+      'How to protect the revenue you already have, before it is at risk rather than after.',
+      'Where genuine expansion comes from: customer outcomes and relationships, not a renewal calendar.',
       'How to make retention a result instead of a recovery effort.',
     ],
     extra: null,
@@ -136,20 +139,24 @@ export const EDGES = [
         },
         {
           h: 'Trust as the mechanism',
-          p: 'The kind of trust that makes retention a result rather than a rescue — what builds it after the sale, what quietly spends it, and who in your organization is actually holding it.',
+          p: 'The kind of trust that makes retention a result rather than a rescue. What builds it after the sale, what quietly spends it, and who in your organization is actually holding it.',
         },
       ],
       /* TODO: Sandy to confirm how she wants her practice and any attendee
          takeaway described. Left general on purpose. */
       followOn:
-        'Sandy works with revenue and customer success organizations on retention and expansion after the win.',
+        'Sandy runs the 3D Framework with revenue and customer success organizations that want expansion to be a system rather than a hope.',
     },
   },
 ];
 
-/* Cities for the 2027 run. Dates are not set yet; each city renders the same
-   "dates announcing soon" state until a date lands here. Add `date` and
-   `lumaUrl` per city as they firm up and the row starts linking. */
+/* Cities for the 2027 run. Each city gets its OWN Luma event, so each row
+   carries its own `lumaUrl` and the tile links straight to that event.
+
+   Fill in `date` and `lumaUrl` together. A city with a url renders as a
+   clickable tile; a city without one renders as an unlinked "dates soon"
+   tile. A date with no url would be a tile that looks clickable and is not,
+   which is the one combination to avoid. */
 export const CITIES = [
   { city: 'Los Angeles', region: 'California', date: null, lumaUrl: null },
   { city: 'San Francisco', region: 'California', date: null, lumaUrl: null },
@@ -158,38 +165,55 @@ export const CITIES = [
   { city: 'Singapore', region: null, date: null, lumaUrl: null },
 ];
 
-/* Registration is handled entirely on Luma. This site never takes a booking;
-   every primary CTA points here. Replace with the real calendar URL. */
+/* The calendar listing every city event. Used for the header CTA and anywhere
+   a specific city is not in play. Individual events live on CITIES above. */
 export const LUMA_URL = 'https://luma.com/';
 
+/* True once at least one city has a real event behind it. Until then the CTAs
+   say dates are being set rather than sending people to a calendar with
+   nothing on it. */
+export const HAS_DATES = CITIES.some((c) => c.lumaUrl);
+
+/* `photo` is a path under /assets/ or null. The faculty page and the edge
+   pages both render a portrait when one exists and fall back to a monogram
+   when it does not, so a missing photo looks deliberate instead of broken.
+   Portraits should be square and at least 640px; they are displayed at 220px
+   and 2x for retina. */
 export const FACULTY = [
   {
     name: 'Bruce Scheer',
     edge: 'The Value Edge',
     title: 'Author of Inspire Your Buyers',
+    photo: '/assets/bruce-scheer.jpg',
     bio:
-      'Bruce helps B2B revenue teams align on one value narrative and a business case a CFO will sign. He wrote the Amazon bestseller <i>Inspire Your Buyers: Go to Market with a Story that Sizzles</i>, and has built go-to-market foundations with teams at Tableau, Concur and Alcatel-Lucent.',
+      'Bruce has spent his career enabling enterprise marketers and sellers at Microsoft, HP, Adobe, SAP, Oracle, Google and eBay Enterprise, along with Tableau and Concur. He helps B2B revenue teams align on one value narrative and a business case a CFO will sign, and he wrote the Amazon bestseller <i>Inspire Your Buyers: Go to Market with a Story that Sizzles</i>.',
     site: 'https://inspireyourbuyers.com/',
     siteLabel: 'inspireyourbuyers.com',
   },
   {
     name: 'Dean Edwards',
     edge: 'The Approval Edge',
-    title: 'Founder, ConvergSPT',
+    title: 'Founder and CEO of ConvergSPT. Former Fortune 500 Chief Procurement Officer.',
+    photo: '/assets/dean-edwards.jpg',
+    /* Every claim here comes from Dean's own LinkedIn profile. Keep it that
+       way: these are the numbers he stands behind publicly. */
     bio:
-      'Dean spent more than two decades in senior procurement leadership at Kaiser Permanente, Yahoo and Levi Strauss, managing over $20 billion in spend. He evaluated suppliers, challenged business cases, and decided which deals were ready to move. He knows what Procurement looks for because he was the one looking.',
-    /* TODO: confirm the ConvergSPT URL with Dean before launch. Left null so
-       the card renders without a link rather than guessing one. */
-    site: null,
-    siteLabel: null,
+      'Dean spent more than twenty years running Procurement and Sourcing at Kaiser Permanente, Yahoo, Levi Strauss and Ingram Micro. As Chief Procurement and Supply Officer at Kaiser Permanente he delivered over $1 billion in savings against a $6 billion spend. At Levi Strauss he built a Procurement capability that had not existed before him, on the transformation team that took the company to its 2019 IPO. He founded ConvergSPT to help revenue teams engage Procurement as an ally instead of an obstacle.',
+    site: 'https://www.convergspt.com',
+    siteLabel: 'convergspt.com',
   },
   {
     name: 'Sandy Yu',
     edge: 'The Growth Edge',
-    /* TODO: Sandy's title, company and one-line credential. */
-    title: null,
+    title: 'Founder and CEO of Revenue Retention Advisors. Formerly Oracle.',
+    photo: '/assets/sandy-yu.jpg',
+    /* From Sandy's own LinkedIn profile. Her summary carries several market
+       statistics; they are deliberately left off the site because they are
+       unsourced there and this site cites or says nothing. */
     bio:
-      'Sandy works on what happens after the win — protecting existing revenue and building real expansion out of customer outcomes, relationships and trust.',
+      'Sandy spent four years at Oracle, finishing as Global Lead for Cloud Customer Insights, Executive Engagement and Success. She watched a company treat thousands of customer relationships as a maintenance problem rather than a growth engine, at staggering and avoidable cost. She founded Revenue Retention Advisors to fix that, and built the 3D Framework, Diagnose, Design and Drive, that she now runs with B2B SaaS CEOs and CROs to turn an existing customer base into predictable expansion.',
+    /* TODO: confirm Sandy's site. Her contact address is @revenuecco.com,
+       which implies a domain, but implying is not confirming. */
     site: null,
     siteLabel: null,
   },

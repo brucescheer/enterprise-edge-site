@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { EDGES, LUMA_URL } from '../../data/program';
+import { EDGES } from '../../data/program';
 
 /* NOTE ON WHERE THIS LIVES.
 
@@ -18,9 +18,9 @@ import { EDGES, LUMA_URL } from '../../data/program';
    The audience for this site runs enterprise privacy reviews for a living;
    an assessment that quietly posts somewhere is the wrong first impression. */
 
-const title = 'Which room is costing you the most? — The Enterprise Edge';
+const title = 'Which of the three is costing you the most? The Enterprise Edge assessment';
 const description =
-  'A 12-question diagnostic across the three rooms that decide enterprise deals: whether the business believes you, whether the organization can approve you, and whether the customer stays and grows. Instant score, nothing collected.';
+  'A 12-question diagnostic across the three jobs that decide enterprise revenue: getting the business to believe you, getting the deal through approval, and growing the account afterward. Instant score, nothing collected.';
 const canonical = 'https://getenterpriseedge.com/assessment/';
 
 const QUESTIONS = [
@@ -30,9 +30,9 @@ const QUESTIONS = [
   { edge: 0, t: 'We know what a buyer does if they buy nothing at all, and we can argue against it.' },
 
   { edge: 1, t: 'We know what Procurement, Finance and Legal will evaluate before they open the file.' },
+  { edge: 1, t: 'We clear security review and AI governance review without losing a quarter to it.' },
   { edge: 1, t: 'When the price challenge lands, we widen the value conversation instead of discounting.' },
   { edge: 1, t: 'Our champion has what they need to make the risk case without us there.' },
-  { edge: 1, t: 'Our deals clear commercial review on the first pass more often than not.' },
 
   { edge: 2, t: 'We see retention risk while an account is still healthy, not at renewal.' },
   { edge: 2, t: 'Our expansion comes out of customer outcomes, not off a renewal calendar.' },
@@ -53,8 +53,8 @@ const SCALE = [
   <section class="band band-ink hero band-measure">
     <div class="wrap">
       <p class="eyebrow">The Enterprise Edge assessment</p>
-      <h1>Which room is costing you the most?</h1>
-      <p class="lede">Twelve statements, about four minutes. You get a score on each of the three rooms and a straight answer about which one is leaking.</p>
+      <h1>Which of the three is costing you the most?</h1>
+      <p class="lede">Twelve statements, about four minutes. You get a score on each of the three edges and a straight answer about which one is leaking.</p>
       <p class="fine">Nothing is collected. No email, no sign-in, no storage. The scoring runs in your browser and disappears when you close the tab.</p>
     </div>
   </section>
@@ -85,7 +85,7 @@ const SCALE = [
 
         <p id="err" class="err" role="status" hidden></p>
         <div class="cta-pair">
-          <button class="btn" type="submit">Score my three rooms</button>
+          <button class="btn" type="submit">Score my three edges</button>
         </div>
       </form>
     </div>
@@ -104,8 +104,8 @@ const SCALE = [
       </div>
 
       <div class="cta-pair">
-        <a class="btn" href={LUMA_URL} target="_blank" rel="noopener noreferrer">Reserve a Seat</a>
-        <a class="more" id="edge-link" href="/">Read about that room</a>
+        <a class="btn" href="/#dates">See dates and cities</a>
+        <a class="more" id="edge-link" href="/">Read about that edge</a>
       </div>
       <p class="fine" style="margin-top:2rem">Scored in your browser. Nothing was sent anywhere. Reload the page to start over.</p>
     </div>
@@ -157,18 +157,22 @@ const SCALE = [
         for (var j = 1; j < 3; j++) if (pct[j] < pct[weakest]) weakest = j;
 
         var edge = EDGES[weakest];
-        var LABEL = ['believe you', 'approve you', 'stay and grow'];
+        var LABEL = [
+          'getting the business to believe you',
+          'getting the deal through approval',
+          'growing the account after the win',
+        ];
 
         document.getElementById('verdict').textContent = edge.name + '.';
         document.getElementById('verdict-sub').textContent =
-          'On your own read, this is the room where your deals are leaking hardest — the one where they decide whether to ' +
+          'On your own read, this is where your revenue is leaking hardest: ' +
           LABEL[weakest] + '.';
 
         var advice;
         if (pct[weakest] >= 75) {
-          advice = 'All three rooms scored well, which is rare. Come for the room, then — everyone else in it is running an organization your size and working the same problems on different accounts.';
+          advice = 'All three scored well, which is rare. Come for the room, then. Everyone else in it is running an organization your size and working the same problems on different accounts.';
         } else if (pct[weakest] >= 50) {
-          advice = 'A soft spot rather than a hole. It is the kind of gap that costs you deals you never find out about, because a deal that dies in a room you are not in does not send a reason.';
+          advice = 'A soft spot rather than a hole. It is the kind of gap that costs you deals you never find out about, because a deal that dies in a meeting you are not in does not send a reason.';
         } else {
           advice = 'That is a hole, not a soft spot. Deals are almost certainly stalling here now, and the loss reports will be blaming something else.';
         }

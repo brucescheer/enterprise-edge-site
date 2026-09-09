@@ -1,6 +1,6 @@
 ---
 import '../styles/brand.css';
-import { LUMA_URL } from '../data/program';
+import { LUMA_URL, HAS_DATES } from '../data/program';
 
 const {
   title,
@@ -9,7 +9,7 @@ const {
   ogTitle,
   ogDescription,
   ogImage = 'https://getenterpriseedge.com/assets/ee-og-1200x630.png',
-  ogImageAlt = 'The Enterprise Edge. Three rooms decide your deal.',
+  ogImageAlt = 'The Enterprise Edge. Get them to say yes, get the deal closed, grow the account.',
   ogImageWidth = 1200,
   ogImageHeight = 630,
   ogType = 'website',
@@ -24,7 +24,7 @@ const {
    The Organization here is a collaboration, not a legal entity: Bruce, Dean
    and Sandy contract with clients separately. schema.org has no "three people
    who run a thing together" type, so this models the program as an
-   EducationalOrganization with three named members and no legal claims —
+   EducationalOrganization with three named members and no legal claims:
    no address, no tax ID, no founder. */
 const SITE_GRAPH = [
   {
@@ -33,7 +33,7 @@ const SITE_GRAPH = [
     name: 'The Enterprise Edge',
     url: 'https://getenterpriseedge.com/',
     description:
-      'A half-day masterclass on the three rooms that decide enterprise deals, led by Bruce Scheer, Dean Edwards and Sandy Yu.',
+      'A half-day masterclass on the three jobs that decide enterprise revenue: acquisition, approval and growth. Led by Bruce Scheer, Dean Edwards and Sandy Yu.',
     member: [
       { '@id': 'https://getenterpriseedge.com/#bruce' },
       { '@id': 'https://getenterpriseedge.com/#dean' },
@@ -151,7 +151,12 @@ const headDesc = ogDescription ?? description;
       {NAV.map((n) => (
         <a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined}>{n.label}</a>
       ))}
-      <a class="nav-cta" href={LUMA_URL} target="_blank" rel="noopener noreferrer">Reserve a Seat</a>
+      {/* Registration happens on Luma, one event per city. Until a city has a
+          real event, this points at the dates section rather than at a Luma
+          calendar with nothing on it. Flips automatically via HAS_DATES. */}
+      {HAS_DATES
+        ? <a class="nav-cta" href={LUMA_URL} target="_blank" rel="noopener noreferrer">Reserve a Seat</a>
+        : <a class="nav-cta" href="/#dates">See Dates</a>}
     </nav>
   </div>
 </header>
@@ -164,7 +169,7 @@ const headDesc = ogDescription ?? description;
   <div class="foot-in">
     <div class="foot-col">
       <h2>The Enterprise Edge</h2>
-      <p class="fine" style="max-width:20rem">Three rooms decide your enterprise deal. This is a half day on all three.</p>
+      <p class="fine" style="max-width:20rem">Enterprise revenue is three jobs, not one. This is a half day on all three.</p>
     </div>
     <div class="foot-col">
       <h2>The Program</h2>
@@ -186,9 +191,10 @@ const headDesc = ogDescription ?? description;
       </ul>
     </div>
     <div class="foot-col">
-      <h2>Register</h2>
+      <h2>Attend</h2>
       <ul>
-        <li><a href={LUMA_URL} target="_blank" rel="noopener noreferrer">Reserve a seat on Luma</a></li>
+        <li><a href="/#dates">Dates and cities</a></li>
+        {HAS_DATES && <li><a href={LUMA_URL} target="_blank" rel="noopener noreferrer">All events on Luma</a></li>}
       </ul>
     </div>
   </div>
