@@ -1,21 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="The Enterprise Edge">
   <!--
-    Dean's concept, rebuilt as geometry rather than traced from the mockup so
-    it stays crisp at 16px and scales to any size.
+    Dean's mark. Four slabs receding in perspective, and the way through them,
+    lit. Half-heights come from one linear function of x, so the recession is
+    consistent and the mark can be regenerated rather than nudged by hand.
+    SLOPE is set so the door's near edge lands just inside the box; raise it
+    and the opening runs off the canvas.
 
-    Four receding bars are the known structure. The fifth is the way through,
-    lit. It replaces an earlier three-bar mark that spelled an E, which read
-    as a monogram and said nothing.
-
-    No gradients or glow: at favicon size both turn to mud, and the idea
-    survives as flat shapes.
+    The floor light is deliberately faint. It reads at 64px and up and
+    disappears politely at favicon size, where a gradient or a blur would
+    turn the whole mark to mud.
   -->
   <rect width="64" height="64" rx="6" fill="#141A22"/>
-  <g fill="#5A6577">
-    <rect x="13" y="35" width="5" height="19"/>
-    <rect x="20" y="29" width="5" height="25"/>
-    <rect x="27" y="23" width="5" height="31"/>
-    <rect x="34" y="17" width="5" height="37"/>
+
+  <g fill="#4A5364">
+    <polygon points="11,23 15,21.4 15,42.6 11,41"/>
+    <polygon points="19,19.8 23,18.2 23,45.8 19,44.2"/>
+    <polygon points="27,16.6 31,15 31,49 27,47.4"/>
+    <polygon points="35,13.4 39,11.8 39,52.2 35,50.6"/>
   </g>
-  <rect x="42" y="10" width="8" height="44" fill="#F2A93B"/>
+
+  <polygon points="43.50,54.00 53.50,58.00 33,60.5 26,56.5" fill="#F2A93B" opacity=".16"/>
+
+  <polygon points="43.5,10 53.5,6 53.5,58 43.5,54" fill="#F2A93B"/>
+  <polygon points="53.5,6 55,5.4 55,58.6 53.5,58" fill="#FFC766"/>
 </svg>

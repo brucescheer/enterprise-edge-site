@@ -91,10 +91,14 @@ img{max-width:100%}
 /* Wordmark is set in type, not an image. There is no logo file yet, and a
    type lockup is the honest placeholder: it is legible, it scales, and it is
    trivially replaced by an <img> when a mark exists. */
-.brand b{font-family:var(--font-head);font-weight:700;font-size:1.5rem;
-  letter-spacing:.005em;color:var(--white);text-transform:uppercase}
-.brand i{font-style:normal;font-family:var(--font-head);font-weight:700;
-  font-size:1.5rem;text-transform:uppercase;color:var(--amber)}
+/* Tracked out and one weight lighter than it was, following Dean's lockup.
+   The wordmark is set in type rather than shipped as an image so it stays
+   crisp, recolours with the tokens, and can be read by anything that reads
+   text. */
+.brand b{font-family:var(--font-head);font-weight:600;font-size:1.4rem;
+  letter-spacing:.12em;color:var(--white);text-transform:uppercase}
+.brand i{font-style:normal;font-family:var(--font-head);font-weight:600;
+  font-size:1.4rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
 .site-nav{margin-left:auto;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
 .site-nav a{color:var(--pale);text-decoration:none;font-size:.95rem;
   padding:.35rem 0;border-bottom:2px solid transparent}
@@ -127,6 +131,18 @@ img{max-width:100%}
 .foot-col{flex:1 1 14rem;min-width:12rem}
 .site-foot h2{font-family:var(--font-head);font-weight:600;color:var(--white);
   font-size:1rem;margin:0 0 .75rem;text-transform:uppercase;letter-spacing:.06em}
+
+/* The tagline earns its place in the footer rather than the header, where a
+   second line would push the nav taller on every page. The rule after it is
+   from Dean's lockup and is the one piece of pure decoration on the site. */
+/* The rule sits under the tagline rather than beside it. Beside it worked
+   only while the line fitted: the footer column is 14rem, the tagline wraps
+   there, and a flex rule then floated in the gap next to the first line. */
+.foot-tagline{margin:.9rem 0 0;font-family:var(--font-head);font-weight:600;
+  font-size:.9rem;line-height:1.5;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--pale);max-width:none}
+.foot-tagline::after{content:"";display:block;width:1.75rem;height:2px;
+  background:var(--amber);margin-top:.7rem}
 .site-foot ul{list-style:none;margin:0;padding:0}
 .site-foot li{margin-bottom:.45rem}
 .site-foot a{color:var(--pale);text-decoration:none}
