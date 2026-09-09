@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { EDGES, CITIES, FACULTY, HAS_DATES } from '../data/program';
+import { EDGES, CITIES, FACULTY, HAS_DATES, HAS_REGISTRATION } from '../data/program';
 
 const title = 'The Enterprise Edge: A Half-Day Masterclass for Enterprise Revenue Leaders';
 const description =
@@ -15,12 +15,19 @@ const jsonLd = {
       name: 'The Enterprise Edge',
       description,
       provider: { '@id': 'https://getenterpriseedge.com/#organization' },
-      hasCourseInstance: CITIES.map((c) => ({
+      /* Only cities with a confirmed date become CourseInstance entries. A
+         placeholder instance with no date and no venue is not something a
+         search engine can do anything useful with, and it invites a rich
+         result advertising a session that has no date. */
+      hasCourseInstance: CITIES.filter((c) => c.startDate).map((c) => ({
         '@type': 'CourseInstance',
         courseMode: 'onsite',
         name: `The Enterprise Edge: ${c.city}`,
+        startDate: c.startDate,
+        endDate: c.endDate,
         location: {
           '@type': 'Place',
+          ...(c.venue ? { name: c.venue } : {}),
           address: {
             '@type': 'PostalAddress',
             addressLocality: c.city,
@@ -135,18 +142,28 @@ const jsonLd = {
   <section class="band band-ink" id="agenda">
     <div class="wrap">
       <p class="eyebrow">The half day</p>
-      <h2>Three hours. No slideware marathon.</h2>
+      <h2>Three working hours, then lunch.</h2>
       <p class="lede">Candid conversation, working frameworks, and a room of senior leaders comparing notes on deals that are not moving.</p>
 
       <ul class="agenda">
-        <li><b>Doors</b><span>Coffee, refreshments and introductions.<i>Come early. The best conversations start before the first slide.</i></span></li>
+        <li><b>Doors</b><span>Coffee and introductions<i>Come early. The best conversations start before the first slide.</i></span></li>
         <li><b>Hour 1</b><span>The Value Edge, with Bruce Scheer<i>Find Value, Communicate Value, Quantify Value.</i></span></li>
         <li><b>Hour 2</b><span>The Approval Edge, with Dean Edwards<i>What Procurement, Finance, Legal, InfoSec and AI governance actually evaluate.</i></span></li>
         <li><b>Hour 3</b><span>The Growth Edge, with Sandy Yu<i>Protecting the revenue you have and growing what comes next.</i></span></li>
-        <li><b>After</b><span>Debrief and networking<i>Bring the deals that are stuck. That is the conversation.</i></span></li>
+        <li><b>Lunch</b><span>Debrief over a proper meal<i>Bring the deals that are stuck. That is the conversation.</i></span></li>
       </ul>
 
       <p class="fine" style="margin-top:2rem">Attendance is deliberately limited, so the room stays small enough for people to speak candidly about deals they would not discuss on a webinar.</p>
+    </div>
+  </section>
+
+  <section class="band band-bone band-measure">
+    <div class="wrap">
+      <p class="eyebrow">The room</p>
+      <h2>First-class venues. Lunch is served.</h2>
+      <p>We run these in the best rooms we can find. In Singapore that is The American Club.</p>
+      <p>That is not hospitality for its own sake. You are giving us a working morning out of a week that did not have one spare, and the room you spend it in decides whether the conversation stays polite or gets somewhere.</p>
+      <p>Lunch is on the agenda rather than after it, because a good share of the value is in it. The people beside you are running revenue organizations at your scale, working the same problems on different accounts. An hour with them over a proper meal earns its place.</p>
     </div>
   </section>
 
@@ -162,25 +179,36 @@ const jsonLd = {
 
   <section class="band band-ink" id="dates">
     <div class="wrap">
-      <p class="eyebrow">2027 cities</p>
-      <h2>{HAS_DATES ? 'Pick your city' : 'Where we’re running it'}</h2>
+      <p class="eyebrow">Cities</p>
+      <h2>{HAS_DATES ? 'Where and when' : 'Where we’re running it'}</h2>
       <p class="lede">
-        {HAS_DATES
-          ? 'Each city is its own session with its own registration. Click your city to reserve a seat.'
-          : 'Dates are being set now. Each city runs as its own session with its own registration.'}
+        {HAS_REGISTRATION
+          ? 'Each city is its own session with its own registration. Pick yours to reserve a seat.'
+          : 'Each city runs as its own session, in a first-class venue, with lunch. Registration opens city by city.'}
       </p>
 
-      {/* A city with a Luma event renders as a link straight to that event. A
-          city without one renders as a plain tile, so nothing looks clickable
-          that is not. Fill in date and lumaUrl together in program.js. */}
+      {/* Three states per city, handled in CITIES order so the one with a
+          date leads. A tile links only when there is genuinely an event page
+          behind it; a dated city without one says so rather than looking
+          clickable and doing nothing. */}
       <div class="dates">
         {CITIES.map((c) => (
           c.lumaUrl ? (
             <a class="date is-open" href={c.lumaUrl} target="_blank" rel="noopener noreferrer">
               <b>{c.city}</b>
-              <span>{c.date}</span>
+              <span class="when">{c.date}</span>
+              {c.time && <span class="detail">{c.time}</span>}
+              {c.venue && <span class="detail">{c.venue}</span>}
               <span class="go">Reserve a seat</span>
             </a>
+          ) : c.date ? (
+            <div class="date is-set">
+              <b>{c.city}</b>
+              <span class="when">{c.date}</span>
+              {c.time && <span class="detail">{c.time}</span>}
+              {c.venue && <span class="detail">{c.venue}</span>}
+              <span class="tbd">Registration opens soon</span>
+            </div>
           ) : (
             <div class="date">
               <b>{c.city}</b>

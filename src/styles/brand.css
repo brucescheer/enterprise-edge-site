@@ -511,3 +511,17 @@ a.date:hover .go{text-decoration:underline}
   text-decoration-color:var(--amber);text-decoration-thickness:2px;
   text-underline-offset:3px}
 .foot-legal a:hover{color:var(--white);text-decoration-thickness:3px}
+
+/* ---------- City tile detail ----------
+   A tile carries up to four lines now: city, date, time, venue, and a status.
+   `when` is the date and takes the emphasis; `detail` covers time and venue,
+   which are useful but should not compete with it. */
+.date .when{display:block;font-family:var(--font-head);font-weight:600;
+  font-size:1.1rem;color:var(--amber);margin-bottom:.4rem}
+.date .detail{display:block;font-size:.95rem;color:var(--pale);line-height:1.4}
+/* A dated city that cannot be booked yet. The amber top rule marks it as real
+   without making the tile look clickable, which it is not until there is an
+   event page behind it. */
+.date.is-set{border-top:3px solid var(--amber);padding-top:calc(1.5rem - 3px)}
+.date.is-set .tbd{margin-top:.75rem;display:block}
+a.date.is-open .when{color:var(--white)}

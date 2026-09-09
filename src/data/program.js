@@ -150,29 +150,57 @@ export const EDGES = [
   },
 ];
 
-/* Cities for the 2027 run. Each city gets its OWN Luma event, so each row
-   carries its own `lumaUrl` and the tile links straight to that event.
+/* Cities for the run. Each city is its OWN Luma event, so each row carries
+   its own `lumaUrl` and the tile links straight to that event.
 
-   Fill in `date` and `lumaUrl` together. A city with a url renders as a
-   clickable tile; a city without one renders as an unlinked "dates soon"
-   tile. A date with no url would be a tile that looks clickable and is not,
-   which is the one combination to avoid. */
+   A row moves through three states and the tile renders each differently:
+
+     1. no date            "Dates soon", not a link
+     2. date, no lumaUrl   date and venue shown, "Registration opens soon"
+     3. date and lumaUrl   the whole tile links to that city's event
+
+   State 2 exists because a date is often set well before the event page is.
+   Announcing the date is worth doing on its own, and a tile that looks
+   clickable but is not would be worse than either.
+
+   `time` is local to the city and is printed as given. Do not convert it or
+   add a timezone abbreviation the venue would not use.
+
+   Write the weekday out and check it against a calendar before committing.
+   October 23 2026 is a Friday; it was briefly published here as a Thursday. */
 export const CITIES = [
-  { city: 'Los Angeles', region: 'California', date: null, lumaUrl: null },
-  { city: 'San Francisco', region: 'California', date: null, lumaUrl: null },
-  { city: 'Dallas', region: 'Texas', date: null, lumaUrl: null },
-  { city: 'Austin', region: 'Texas', date: null, lumaUrl: null },
-  { city: 'Singapore', region: null, date: null, lumaUrl: null },
+  {
+    city: 'Singapore',
+    region: null,
+    venue: 'The American Club',
+    date: 'Friday, October 23, 2026',
+    time: '9:00am to 1:00pm',
+    /* ISO form for schema.org only. Singapore is UTC+8 and does not observe
+       daylight saving, so the offset is fixed. Keep these in step with the
+       human-readable `date` and `time` above: search engines read one, people
+       read the other, and they must not disagree. */
+    startDate: '2026-10-23T09:00:00+08:00',
+    endDate: '2026-10-23T13:00:00+08:00',
+    lumaUrl: null,
+  },
+  { city: 'Los Angeles', region: 'California', venue: null, date: null, time: null, lumaUrl: null },
+  { city: 'San Francisco', region: 'California', venue: null, date: null, time: null, lumaUrl: null },
+  { city: 'Dallas', region: 'Texas', venue: null, date: null, time: null, lumaUrl: null },
+  { city: 'Austin', region: 'Texas', venue: null, date: null, time: null, lumaUrl: null },
 ];
 
 /* The calendar listing every city event. Used for the header CTA and anywhere
    a specific city is not in play. Individual events live on CITIES above. */
 export const LUMA_URL = 'https://luma.com/';
 
-/* True once at least one city has a real event behind it. Until then the CTAs
-   say dates are being set rather than sending people to a calendar with
-   nothing on it. */
-export const HAS_DATES = CITIES.some((c) => c.lumaUrl);
+/* Two different questions, and they stopped having the same answer the moment
+   Singapore got a date but not yet an event page.
+
+   HAS_DATES: is there anything to announce? Drives the headings and the CTA
+   labels. HAS_REGISTRATION: can anyone actually book a seat yet? Drives
+   whether a CTA is allowed to say "reserve". */
+export const HAS_DATES = CITIES.some((c) => c.date);
+export const HAS_REGISTRATION = CITIES.some((c) => c.lumaUrl);
 
 /* `photo` is a path under /assets/ or null. The faculty page and the edge
    pages both render a portrait when one exists and fall back to a monogram
