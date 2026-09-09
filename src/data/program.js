@@ -252,12 +252,12 @@ export const FACULTY = [
     /* TODO: Sandy's awards. Her LinkedIn lists an Oracle Social Cloud
        Platform Customer Award and a Forrester CX certification. */
     awards: null,
-    /* www.revenuecco.com is live and is hers (it names Revenue Retention
-       Advisors), but as of 2026-09-09 its page title is still the unedited
-       Webflow template string, "Authority - Webflow HTML website template".
-       Linking it would put that in the browser tab of anyone we send there.
-       Fill this in once she has finished the site. */
-    site: null,
-    siteLabel: null,
+    /* /homepage, not the root. The root of revenuecco.com still carries the
+       unedited Webflow template title, "Authority - Webflow HTML website
+       template", which would sit in the browser tab of anyone we sent there.
+       /homepage is titled "Revenue Retention Advisors". Revisit if she fixes
+       the root, since /homepage is the odd URL of the two. */
+    site: 'https://www.revenuecco.com/homepage',
+    siteLabel: 'revenuecco.com',
   },
 ];

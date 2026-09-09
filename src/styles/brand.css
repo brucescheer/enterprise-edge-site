@@ -491,3 +491,13 @@ a.date:hover .go{text-decoration:underline}
 .contact-tel:hover{color:var(--amber);border-bottom-color:var(--amber)}
 .band-bone .contact-tel,.band-bone2 .contact-tel{color:var(--muted);
   border-bottom-color:var(--line)}
+
+/* Portrait in the edge row's right-hand column. Small and round, because it
+   is there to put a face to the name rather than to compete with the edge
+   title on the left. On mobile the row stacks and the portrait leads the
+   speaker block, which is the one place it reads as a byline. */
+.edge-who img{width:5.5rem;height:5.5rem;border-radius:50%;object-fit:cover;
+  display:block;margin:0 0 .85rem}
+@media (min-width:820px){
+  .edge-who img{margin-top:.25rem}
+}

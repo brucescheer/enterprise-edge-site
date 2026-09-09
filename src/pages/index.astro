@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { EDGES, CITIES, HAS_DATES } from '../data/program';
+import { EDGES, CITIES, FACULTY, HAS_DATES } from '../data/program';
 
 const title = 'The Enterprise Edge: A Half-Day Masterclass for Enterprise Revenue Leaders';
 const description =
@@ -101,6 +101,17 @@ const jsonLd = {
               {e.extra && <p class="fine" style="margin-top:1rem" set:html={e.extra} />}
             </div>
             <div class="edge-who">
+              {/* Portrait comes from FACULTY, matched on speaker name, so a
+                  photo is stored once and appears everywhere that person does. */}
+              {FACULTY.find((f) => f.name === e.speaker)?.photo && (
+                <img
+                  src={FACULTY.find((f) => f.name === e.speaker).photo}
+                  alt={e.speaker}
+                  width="88"
+                  height="88"
+                  loading="lazy"
+                />
+              )}
               <b>{e.speaker}</b>
               <span>{e.job}</span>
             </div>
