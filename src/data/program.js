@@ -173,6 +173,11 @@ export const CITIES = [
     city: 'Singapore',
     region: null,
     venue: 'The American Club',
+    /* The venue's own mark, used to identify where the session is held.
+       Nothing on this site claims the venue is a host, sponsor or partner,
+       and the alt text says "venue" for the same reason. If a venue asks us
+       not to use their mark, set this to null and the name still renders. */
+    venueLogo: '/assets/venue-american-club.jpg',
     date: 'Friday, October 23, 2026',
     time: '9:00am to 1:00pm',
     /* ISO form for schema.org only. Singapore is UTC+8 and does not observe

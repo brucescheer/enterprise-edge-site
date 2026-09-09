@@ -525,3 +525,17 @@ a.date:hover .go{text-decoration:underline}
 .date.is-set{border-top:3px solid var(--amber);padding-top:calc(1.5rem - 3px)}
 .date.is-set .tbd{margin-top:.75rem;display:block}
 a.date.is-open .when{color:var(--white)}
+
+/* ---------- Venue marks ----------
+   A venue's own logo, shown to identify where a session is held. Set at a
+   modest size beside the venue name rather than as a banner: the mark is a
+   wayfinding detail, and a large one would read as a sponsorship lockup,
+   which it is not. */
+.venues{display:flex;flex-wrap:wrap;gap:1.75rem;margin:2rem 0 0}
+.venue{display:flex;align-items:center;gap:1rem;margin:0}
+.venue img{width:5rem;height:5rem;border-radius:3px;display:block;flex:0 0 auto}
+.venue figcaption b{display:block;font-family:var(--font-head);font-weight:700;
+  font-size:1.2rem;color:var(--ink);line-height:1.2}
+.band-ink .venue figcaption b{color:var(--white)}
+.venue figcaption span{font-size:.95rem;color:var(--muted)}
+.band-ink .venue figcaption span{color:var(--pale)}

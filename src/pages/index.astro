@@ -162,8 +162,20 @@ const jsonLd = {
       <p class="eyebrow">The room</p>
       <h2>First-class venues. Lunch is served.</h2>
       <p>We run these in the best rooms we can find. In Singapore that is The American Club.</p>
+
       <p>That is not hospitality for its own sake. You are giving us a working morning out of a week that did not have one spare, and the room you spend it in decides whether the conversation stays polite or gets somewhere.</p>
       <p>Lunch is on the agenda rather than after it, because a good share of the value is in it. The people beside you are running revenue organizations at your scale, working the same problems on different accounts. An hour with them over a proper meal earns its place.</p>
+      {/* Venue marks identify where a session is held. The site makes no
+          claim that a venue hosts, sponsors or endorses the program, and the
+          alt text says so. */}
+      <div class="venues">
+        {CITIES.filter((c) => c.venueLogo).map((c) => (
+          <figure class="venue">
+            <img src={c.venueLogo} alt={`${c.venue}, the venue in ${c.city}`} width="120" height="120" loading="lazy" />
+            <figcaption><b>{c.venue}</b><span>{c.city}</span></figcaption>
+          </figure>
+        ))}
+      </div>
     </div>
   </section>
 
