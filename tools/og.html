@@ -7,10 +7,17 @@
 body{width:1200px;height:630px;background:#141A22;color:#fff;
   font-family:'Inter',sans-serif;padding:66px 72px;display:flex;
   flex-direction:column;justify-content:space-between;overflow:hidden}
-.top{display:flex;align-items:center}
-/* The finished tagline lockup, used whole. It carries the mark, the wordmark
-   and the phrase as one artwork, so nothing here re-typesets any of them. */
-.lockup{width:430px;display:block}
+.top{display:flex;align-items:center;gap:16px}
+/* Composed the same way as the site header so the two cannot drift: the
+   kit's symbol, then the wordmark and phrase set in the same fonts. Sizes
+   are the header's, scaled up for a 1200px card. */
+.sym{height:104px;width:auto;display:block;flex:0 0 auto}
+.type{display:flex;flex-direction:column;gap:7px}
+.nm{font-family:'Archivo Narrow',sans-serif;font-weight:600;font-size:35px;
+  letter-spacing:2.45px;text-transform:uppercase;color:#fff;line-height:1}
+.nm i{font-style:normal;color:#F2A93B}
+.ph{font-family:'Inter',sans-serif;font-weight:400;font-size:17px;
+  letter-spacing:3.74px;text-transform:uppercase;color:#D7DCE4;line-height:1}
 .wm span{color:#F2A93B}
 h1{font-family:'Archivo Narrow',sans-serif;font-weight:700;font-size:88px;
   line-height:1.02;letter-spacing:-.5px;max-width:19ch}
@@ -20,7 +27,11 @@ h1{font-family:'Archivo Narrow',sans-serif;font-weight:700;font-size:88px;
 .who b{color:#F2A93B;font-weight:600}
 </style></head><body>
 <div class="top">
-  <img class="lockup" src="file:///Users/brucescheer/enterprise-edge-site/public/assets/ee-lockup-tagline-dark.png" alt="">
+  <img class="sym" src="file:///Users/brucescheer/enterprise-edge-site/public/assets/ee-symbol.png" alt="">
+  <div class="type">
+    <div class="nm">The Enterprise <i>Edge</i></div>
+    <div class="ph">Clarity creates advantage</div>
+  </div>
   
 </div>
 <div>

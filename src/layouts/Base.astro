@@ -150,17 +150,24 @@ const headDesc = ogDescription ?? description;
 
         width and height are set so the header reserves the space before the
         image arrives and nothing shifts on load. */}
-    {/* Two lockups, one box. The phrase stops being legible below about
-        380px wide, and the kit's own guidance is to drop it at small header
-        widths rather than shrink it, so <picture> serves the tagline version
-        on wide screens and the compact one below 700px. Both artworks share
-        the same canvas, so the box does not change shape when they swap and
-        only one file is ever downloaded. */}
+    {/* The lockup is composed here rather than used as a flat image: the
+        kit's symbol, then the wordmark and phrase set live in the same fonts
+        the artwork was typeset in, which this site already self-hosts.
+
+        The baked lockup could not be adjusted. Measured off the artwork, its
+        phrase rendered at a 5.7px cap height in this header, and there was no
+        way to grow it without growing the symbol with it. Composed, the three
+        parts size independently, stay crisp at any zoom, recolour with the
+        tokens, and cost one 40KB image instead of a 50KB one.
+
+        The phrase is dropped below 700px in CSS rather than shrunk, which is
+        the kit's own guidance. */}
     <a class="brand" href="/" aria-label="The Enterprise Edge, home">
-      <picture>
-        <source media="(min-width: 700px)" srcset="/assets/ee-lockup-tagline-dark.png" />
-        <img src="/assets/ee-lockup-dark.png" alt="" width="620" height="139" />
-      </picture>
+      <img class="brand-symbol" src="/assets/ee-symbol.png" alt="" width="1254" height="1254" />
+      <span class="brand-type">
+        <span class="brand-name">The Enterprise <i>Edge</i></span>
+        <span class="brand-phrase">Clarity creates advantage</span>
+      </span>
     </a>
     <nav class="site-nav" aria-label="Primary">
       {NAV.map((n) => (

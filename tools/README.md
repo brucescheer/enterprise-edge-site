@@ -31,3 +31,15 @@ swift tools/crop.swift <in.jpg> <out.jpg> <x> <y> <w> <h> 800
 
 x and y are from the top left of the source image. Bruce's was
 `215 0 570 570` from a 1000x813 original.
+
+# The symbol
+
+`public/assets/ee-symbol.png` is the shipped copy, downscaled to 320px because
+the header renders it at 68px and the Open Graph card at 104px. The original
+1254px export from the brand kit is kept at `tools/source/ee-symbol-1254.png`
+for anything that needs it, such as print or a larger placement.
+
+The lockup is not a baked image. The header composes the symbol with live text
+in Archivo Narrow and Inter, so the symbol, the wordmark and the phrase can be
+sized independently. The sizes and how they were derived are documented in
+`src/styles/brand.css` under "The lockup".

@@ -84,31 +84,51 @@ img{max-width:100%}
 .site-head{background:var(--ink);color:var(--white)}
 .head-in{max-width:72rem;margin:0 auto;padding:1rem 1.25rem;
   display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
-.brand{display:flex;align-items:center;text-decoration:none;flex:0 0 auto}
+.brand{display:flex;align-items:center;gap:.85rem;text-decoration:none;flex:0 0 auto}
 /* The mark sits with the type, not above it: centred alignment, and the two
    words keep their own baseline relationship via line-height. */
 /* One artwork rather than a mark plus type. Height drives the size and width
    follows, so the lockup keeps its proportions at every breakpoint, and the
    width/height attributes on the tag reserve the box before it loads. */
-/* Sized by WIDTH rather than height, because legibility of the phrase is a
-   function of width: "CLARITY CREATES ADVANTAGE" holds down to about 380px
-   across the lockup and falls apart below it. Height-driven sizing made that
-   impossible to reason about.
+/* ---------- The lockup ----------
+   Composed from three parts so each can be sized on its own. Every number
+   below was derived by measuring the kit's baked lockup as it rendered in
+   this header, then applying the adjustment asked for.
 
-   Below 700px the markup swaps to the compact lockup, which carries no
-   phrase and reads fine at 250px. */
-.brand picture{display:block}
-.brand img{display:block;width:380px;height:auto;max-width:100%;
-  transition:width .22s ease}
+   At 380px wide the artwork gave a 63.5px symbol, a 13.7px wordmark cap
+   height and a 5.7px phrase cap height. Targets: symbol 15% smaller, wordmark
+   20% larger, phrase 40% larger with slightly tighter tracking.
+
+     symbol   63.5 -> 54.0 ink height. The file is 79.5% ink, so the element
+                     is 54 / 0.795 = 68px tall.
+     wordmark 13.7 -> 16.4 cap height. Archivo Narrow caps are .72 of em,
+                     so 16.4 / .72 = 23px.
+     phrase    5.7 ->  8.0 cap height. Inter caps are .727 of em,
+                     so 8.0 / .727 = 11px.
+
+   Change a size here, not by scaling the whole lockup. */
+.brand-symbol{display:block;height:68px;width:auto;flex:0 0 auto}
+.brand-type{display:flex;flex-direction:column;gap:.4rem;min-width:0}
+.brand-name{font-family:var(--font-head);font-weight:600;font-size:23px;
+  letter-spacing:.07em;text-transform:uppercase;color:var(--white);line-height:1}
+.brand-name i{font-style:normal;color:var(--amber)}
+.brand-phrase{font-family:var(--font-body);font-weight:400;font-size:11px;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--pale);line-height:1;
+  white-space:nowrap}
+
+/* Below 700px the phrase goes rather than shrinking, and the rest steps down
+   with the header. */
 @media (max-width:699px){
-  .brand img{width:250px}
+  .brand-phrase{display:none}
+  .brand-symbol{height:52px}
+  .brand-name{font-size:19px}
 }
 @media (max-width:420px){
-  .brand img{width:210px}
+  .brand-symbol{height:44px}
+  .brand-name{font-size:16px}
 }
-/* Wordmark is set in type, not an image. There is no logo file yet, and a
-   type lockup is the honest placeholder: it is legible, it scales, and it is
-   trivially replaced by an <img> when a mark exists. */
+
+/* ---------- Primary nav ---------- */
 .site-nav{margin-left:auto;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
 .site-nav a{color:var(--pale);text-decoration:none;font-size:.95rem;
   padding:.35rem 0;border-bottom:2px solid transparent}
@@ -330,7 +350,8 @@ p{line-height:1.6;margin:0 0 1.15rem;max-width:40rem}
   .head-in{transition:padding .22s ease}
   .site-head.is-stuck{box-shadow:0 2px 16px rgba(20,26,34,.4)}
   .site-head.is-stuck .head-in{padding-top:.5rem;padding-bottom:.5rem}
-  .site-head.is-stuck .brand img{width:300px}
+  .site-head.is-stuck .brand-symbol{height:52px}
+  .site-head.is-stuck .brand-phrase{display:none}
   :root{--anchor-offset:5rem}
 }
 [id]{scroll-margin-top:var(--anchor-offset)}
