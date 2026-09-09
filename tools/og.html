@@ -8,12 +8,16 @@ body{width:1200px;height:630px;background:#141A22;color:#fff;
   font-family:'Inter',sans-serif;padding:66px 72px;display:flex;
   flex-direction:column;justify-content:space-between;overflow:hidden}
 .top{display:flex;align-items:center;gap:16px}
-.mark{width:44px;height:44px;border-radius:5px;background:#141A22;
-  border:2px solid #F2A93B;position:relative;flex:0 0 auto}
-.mark i{position:absolute;left:9px;height:5px;background:#F2A93B;display:block}
-.mark i:nth-child(1){top:10px;width:22px}
-.mark i:nth-child(2){top:17.5px;width:15px}
-.mark i:nth-child(3){top:25px;width:22px}
+/* Matches public/assets/ee-mark.svg. Four receding bars and the lit way
+   through. Keep the two in step. */
+.mark{width:54px;height:54px;border-radius:5px;background:#141A22;
+  position:relative;flex:0 0 auto;overflow:hidden}
+.mark i{position:absolute;bottom:8px;background:#5A6577;display:block;width:4px}
+.mark i:nth-child(1){left:10px;height:14px}
+.mark i:nth-child(2){left:15px;height:19px}
+.mark i:nth-child(3){left:20px;height:24px}
+.mark i:nth-child(4){left:25px;height:28px}
+.mark i:nth-child(5){left:32px;height:33px;width:6px;background:#F2A93B}
 .wm{font-family:'Archivo Narrow',sans-serif;font-weight:700;font-size:30px;
   text-transform:uppercase;letter-spacing:.5px}
 .wm span{color:#F2A93B}
@@ -25,7 +29,7 @@ h1{font-family:'Archivo Narrow',sans-serif;font-weight:700;font-size:88px;
 .who b{color:#F2A93B;font-weight:600}
 </style></head><body>
 <div class="top">
-  <div class="mark"><i></i><i></i><i></i></div>
+  <div class="mark"><i></i><i></i><i></i><i></i><i></i></div>
   <div class="wm">The Enterprise <span>Edge</span></div>
 </div>
 <div>
