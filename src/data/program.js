@@ -265,10 +265,11 @@ export const CITIES = [
        is fixed. */
     startDate: '2026-10-23T09:00:00+08:00',
     endDate: '2026-10-23T13:00:00+08:00',
-    /* Singapore is US$100, not the US$99 the American cities charge. Prices
-       are per city for exactly this reason. Whatever it says has to match
-       what the Luma event actually charges. */
-    price: 'US$100',
+    /* Singapore charges S$99 in Singapore dollars, not US$99. Prices are
+       per-city display strings for exactly this reason: attendees see their
+       own currency rather than converting in their heads. Whatever it says
+       has to match what the Luma event actually charges. */
+    price: 'S$99',
     lumaUrl: null,
   },
   {
