@@ -120,10 +120,10 @@ const headDesc = ogDescription ?? description;
 <meta name="twitter:image" content={ogImage}>
 <meta name="twitter:image:alt" content={ogImageAlt}>
 
-<!-- Fonts are served from this origin, so no visitor IP reaches a third
+{/* Fonts are served from this origin, so no visitor IP reaches a third
      party to load them. Same reasoning as inspireyourbuyers.com: it is a
      standing question on enterprise privacy reviews, and this audience runs
-     those reviews for a living. -->
+     those reviews for a living. */}
 <link rel="icon" href="/assets/ee-mark.svg" type="image/svg+xml">
 
 <link rel="preconnect" href="/">
@@ -133,8 +133,8 @@ const headDesc = ogDescription ?? description;
 
 <script type="application/ld+json" set:html={JSON.stringify(graphLd)} />
 
-<!-- Set before first paint so the reveal styles never apply when JS is off.
-     If this never runs, nothing is ever hidden. -->
+{/* Set before first paint so the reveal styles never apply when JS is off.
+     If this never runs, nothing is ever hidden. */}
 <script is:inline>document.documentElement.className += ' js';</script>
 </head>
 <body>
@@ -199,12 +199,12 @@ const headDesc = ogDescription ?? description;
     </div>
   </div>
   <div class="foot-legal">
-    <!-- Names the three and stops. It used to add "it is not a legal entity,
+    {/* Names the three and stops. It used to add "it is not a legal entity,
          and engagements are contracted with each of us individually", which
          was true but was a disclaimer in the reader's face on every page.
          Nobody asked, and the point of this site is that the three show up
          aligned. The commercial arrangement is a fact for a contract, not a
-         message for a footer. Do not put it back. -->
+         message for a footer. Do not put it back. */}
     <p>The Enterprise Edge is Bruce Scheer, Dean Edwards and Sandy Yu.</p>
     <p>&copy; {new Date().getFullYear()} Bruce Scheer, Dean Edwards and Sandy Yu. All rights reserved.</p>
   </div>
