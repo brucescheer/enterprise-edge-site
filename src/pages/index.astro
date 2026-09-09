@@ -7,6 +7,19 @@ const description =
   'A half day for B2B revenue and customer success leaders running 50+ sellers. Bruce Scheer, Dean Edwards and Sandy Yu on getting customers to say yes, getting the deal through approval, and growing the account.';
 const canonical = 'https://getenterpriseedge.com/';
 
+/* Dated cities first and soonest first, then the ones still to be scheduled.
+   The tiles used to rely on the order of the CITIES array, which was fine
+   while exactly one city had a date. With two, array order put the later
+   session above the sooner one and below a city with no date at all.
+   Compared as Dates rather than as strings: these carry different UTC
+   offsets, so comparing the ISO text would not reliably sort them. */
+const ORDERED_CITIES = [
+  ...CITIES.filter((c) => c.startDate).sort(
+    (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+  ),
+  ...CITIES.filter((c) => !c.startDate),
+];
+
 const jsonLd = {
   '@graph': [
     {
@@ -142,15 +155,15 @@ const jsonLd = {
   <section class="band band-ink" id="agenda">
     <div class="wrap">
       <p class="eyebrow">The half day</p>
-      <h2>Three working hours, then lunch.</h2>
+      <h2>A half day, and then a meal on us.</h2>
       <p class="lede">Candid conversation, working frameworks, and a room of senior leaders comparing notes on deals that are not moving.</p>
 
       <ul class="agenda">
-        <li><b>Doors</b><span>Coffee and introductions<i>Come early. The best conversations start before the first slide.</i></span></li>
+        <li><b>Doors</b><span>Drinks and light networking<i>Come early. The best conversations start before the first slide.</i></span></li>
         <li><b>Hour 1</b><span>The Value Edge, with Bruce Scheer<i>Find Value, Communicate Value, Quantify Value.</i></span></li>
         <li><b>Hour 2</b><span>The Approval Edge, with Dean Edwards<i>What Procurement, Finance, Legal, InfoSec and AI governance actually evaluate.</i></span></li>
         <li><b>Hour 3</b><span>The Growth Edge, with Sandy Yu<i>Protecting the revenue you have and growing what comes next.</i></span></li>
-        <li><b>Lunch</b><span>Debrief over a proper meal<i>Bring the deals that are stuck. That is the conversation.</i></span></li>
+        <li><b>The meal</b><span>Debrief, and no rush to leave<i>Bring the deals that are stuck. That is the conversation.</i></span></li>
       </ul>
 
       <p class="fine" style="margin-top:2rem">Attendance is deliberately limited, so the room stays small enough for people to speak candidly about deals they would not discuss on a webinar.</p>
@@ -160,11 +173,11 @@ const jsonLd = {
   <section class="band band-bone band-measure">
     <div class="wrap">
       <p class="eyebrow">The room</p>
-      <h2>First-class venues. Lunch is served.</h2>
+      <h2>First-class venues. The meal is on us.</h2>
       <p>We run these in the best rooms we can find. In Singapore that is The American Club.</p>
 
       <p>That is not hospitality for its own sake. You are giving us a working morning out of a week that did not have one spare, and the room you spend it in decides whether the conversation stays polite or gets somewhere.</p>
-      <p>Lunch is on the agenda rather than after it, because a good share of the value is in it. The people beside you are running revenue organizations at your scale, working the same problems on different accounts. An hour with them over a proper meal earns its place.</p>
+      <p>The meal is on the agenda rather than after it, because a good share of the value is in it. The people beside you are running revenue organizations at your scale, working the same problems on different accounts. An hour with them over a proper meal earns its place.</p>
       {/* Venue marks identify where a session is held. The site makes no
           claim that a venue hosts, sponsors or endorses the program, and the
           alt text says so. */}
@@ -196,19 +209,20 @@ const jsonLd = {
       <p class="lede">
         {HAS_REGISTRATION
           ? 'Each city is its own session with its own registration. Pick yours to reserve a seat.'
-          : 'Each city runs as its own session, in a first-class venue, with lunch. Registration opens city by city.'}
+          : 'Each city runs as its own session, in a first-class venue, with a meal. Registration opens city by city.'}
       </p>
 
-      {/* Three states per city, handled in CITIES order so the one with a
-          date leads. A tile links only when there is genuinely an event page
+      {/* Three states per city, in ORDERED_CITIES order so the next session
+          leads. A tile links only when there is genuinely an event page
           behind it; a dated city without one says so rather than looking
           clickable and doing nothing. */}
       <div class="dates">
-        {CITIES.map((c) => (
+        {ORDERED_CITIES.map((c) => (
           c.lumaUrl ? (
             <a class="date is-open" href={c.lumaUrl} target="_blank" rel="noopener noreferrer">
               <b>{c.city}</b>
               <span class="when">{c.date}</span>
+              {c.doors && <span class="detail">Doors {c.doors}</span>}
               {c.time && <span class="detail">{c.time}</span>}
               {c.venue && <span class="detail">{c.venue}</span>}
               <span class="go">Reserve a seat</span>
@@ -217,6 +231,7 @@ const jsonLd = {
             <div class="date is-set">
               <b>{c.city}</b>
               <span class="when">{c.date}</span>
+              {c.doors && <span class="detail">Doors {c.doors}</span>}
               {c.time && <span class="detail">{c.time}</span>}
               {c.venue && <span class="detail">{c.venue}</span>}
               <span class="tbd">Registration opens soon</span>

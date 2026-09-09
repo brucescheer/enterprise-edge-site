@@ -189,7 +189,26 @@ export const CITIES = [
     lumaUrl: null,
   },
   { city: 'Los Angeles', region: 'California', venue: null, date: null, time: null, lumaUrl: null },
-  { city: 'San Francisco', region: 'California', venue: null, date: null, time: null, lumaUrl: null },
+  {
+    city: 'San Francisco',
+    region: 'California',
+    venue: null,
+    venueLogo: null,
+    date: 'Thursday, October 8, 2026',
+    /* Doors is its own field rather than part of `time` because it is the one
+       detail people plan their morning around, and because not every city
+       runs on the same shape. A city without it simply renders one line
+       fewer. */
+    doors: '8:30am',
+    time: '9:00am to noon, then a meal',
+    /* ISO form for schema.org only. San Francisco is on Pacific Daylight Time
+       until 1 November 2026, so October 8 is UTC-7. endDate covers the meal,
+       which is part of the session rather than something after it. Keep these
+       in step with the human-readable fields above. */
+    startDate: '2026-10-08T09:00:00-07:00',
+    endDate: '2026-10-08T13:00:00-07:00',
+    lumaUrl: null,
+  },
   { city: 'Dallas', region: 'Texas', venue: null, date: null, time: null, lumaUrl: null },
   { city: 'Austin', region: 'Texas', venue: null, date: null, time: null, lumaUrl: null },
 ];
