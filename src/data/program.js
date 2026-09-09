@@ -200,11 +200,12 @@ export const CITIES = [
     date: 'Thursday, October 8, 2026',
     doors: null,
     time: '1:00pm to 4:00pm',
-    /* No meal listed for San Francisco. The session runs the afternoon, so
-       there is no lunch in it, and nothing here should imply one. If a
-       reception or refreshments get added, put them in `meal` and the room
-       section picks them up. */
-    meal: null,
+    /* The session runs the afternoon, so there is no lunch in it. It ends in
+       a reception instead. `endDate` below stays at 4:00pm, which is when the
+       content ends: the reception has no confirmed finish, and inventing one
+       for the structured data would put a time on the site that nobody has
+       agreed. */
+    meal: 'Light meal and drinks after',
     /* ISO form for schema.org only. San Francisco is on Pacific Daylight Time
        until 1 November 2026, so October 8 is UTC-7. Keep these in step with
        the human-readable fields above: search engines read one, people read
@@ -264,10 +265,10 @@ export const CITIES = [
        is fixed. */
     startDate: '2026-10-23T09:00:00+08:00',
     endDate: '2026-10-23T13:00:00+08:00',
-    /* Attendees here pay in SGD. Decide whether this should read S$150 rather
-       than making people convert US$99 in their heads. Whatever it says has
-       to match what the Luma event actually charges. */
-    price: 'US$99',
+    /* Singapore is US$100, not the US$99 the American cities charge. Prices
+       are per city for exactly this reason. Whatever it says has to match
+       what the Luma event actually charges. */
+    price: 'US$100',
     lumaUrl: null,
   },
   {
