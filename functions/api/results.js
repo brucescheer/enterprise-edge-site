@@ -195,6 +195,24 @@ export async function onRequestPost({ request, env }) {
     ? [{ filename: 'enterprise-edge-assessment.png', content: b64, content_id: 'ee-card' }]
     : [];
 
+  /* The real lockup, symbol and wordmark and tagline, rather than the header
+     approximating it in Helvetica. Email cannot load @font-face, so setting
+     the wordmark as live text meant Archivo Narrow everywhere except in the
+     one place people look first.
+
+     Attached by `path` rather than base64: Resend fetches it and inlines it,
+     which keeps a 24KB asset out of every request the browser makes. It is a
+     cid attachment rather than a remote <img> on purpose, because this
+     audience reads mail in clients that block remote images by default and a
+     blocked masthead is a worse first impression than none. The <td> behind
+     it carries the ink background, so if it does fail the band stays dark
+     and the alt text reads. */
+  attachments.push({
+    path: `${SITE}/assets/ee-lockup-email.png`,
+    filename: 'the-enterprise-edge.png',
+    content_id: 'ee-lockup',
+  });
+
   const nine = DIMS.map((x, i) => bar(x.label, pcts[i], pcts[i] === lo)).join('');
   /* Only the internal note draws the three edge bars. The reader's email has
      the card, which already shows them, and Start here names the one that
@@ -223,13 +241,14 @@ export async function onRequestPost({ request, env }) {
   </td></tr>
 </table></body></html>`;
 
+  /* Full bleed. The image is 1200x260 and carries the same 36px gutter the
+     rest of the message uses, baked in at 2x, so the lockup lines up with the
+     copy below it and stays sharp on a retina screen. */
   const header = `
-  <tr><td bgcolor="${INK}" style="background:${INK};${pad};padding-top:30px;padding-bottom:30px">
-    <div style="font-family:${HEAD};font-size:17px;font-weight:700;letter-spacing:3px;
-      color:#FFFFFF;text-transform:uppercase;line-height:1.1">The Enterprise <span style="color:${AMBER}">Edge</span></div>
-    <div style="font-family:${HEAD};font-size:10px;letter-spacing:2.6px;color:${PALE};
-      text-transform:uppercase;margin-top:7px">Clarity creates advantage</div>
-  </td></tr>
+  <tr><td bgcolor="${INK}" style="background:${INK};font-size:0;line-height:0">
+    <img src="cid:ee-lockup" width="600"
+      alt="The Enterprise Edge. Clarity creates advantage."
+      style="display:block;width:100%;max-width:600px;height:auto;border:0"></td></tr>
   <tr><td bgcolor="${AMBER}" height="5" style="background:${AMBER};height:5px;font-size:0;line-height:0">&nbsp;</td></tr>`;
 
   const foot = `

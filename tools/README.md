@@ -43,3 +43,27 @@ The lockup is not a baked image. The header composes the symbol with live text
 in Archivo Narrow and Inter, so the symbol, the wordmark and the phrase can be
 sized independently. The sizes and how they were derived are documented in
 `src/styles/brand.css` under "The lockup".
+
+# The email masthead
+
+`email-lockup.html` is the source of `public/assets/ee-lockup-email.png`, the
+lockup at the top of the assessment result email. Same renderer as the Open
+Graph card:
+
+```
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new \
+  --disable-gpu --hide-scrollbars --force-device-scale-factor=1 \
+  --window-size=1200,260 \
+  --screenshot=public/assets/ee-lockup-email.png \
+  "file://$PWD/tools/email-lockup.html"
+```
+
+It exists because email clients cannot load `@font-face`. Setting the wordmark
+as live HTML meant Archivo Narrow everywhere on the site except the one place
+people look first. The file is 1200x260 and displays 600 wide, so it is 2x, and
+the 72px padding in the source is the email's own 36px gutter doubled. Keep
+both in step or the lockup stops lining up with the copy under it.
+
+`functions/api/results.js` attaches it by `path` and references it as
+`cid:ee-lockup`, so Resend fetches it at send time. That means a redeploy of
+the site is enough to change the masthead in every future email.

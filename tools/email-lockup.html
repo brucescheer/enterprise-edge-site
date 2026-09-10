@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:'Archivo Narrow';font-weight:500 700;
+  src:url('file:///Users/brucescheer/enterprise-edge-site/public/fonts/ArchivoNarrow-latin.woff2') format('woff2')}
+@font-face{font-family:'Inter';font-weight:400 600;
+  src:url('file:///Users/brucescheer/enterprise-edge-site/public/fonts/Inter-latin.woff2') format('woff2')}
+*{margin:0;padding:0;box-sizing:border-box}
+/* Rendered at 2x and displayed 600 wide in the email, so every number here is
+   double the display value. The 72px padding is 36 in the email, which is the
+   same gutter the rest of that message uses, so the band can go full bleed
+   and the lockup still lines up with the text below it. */
+body{width:1200px;height:260px;background:#141A22;display:flex;align-items:center;
+  padding:0 72px;overflow:hidden}
+.lock{display:flex;align-items:center;gap:26px}
+/* The site header's proportions, doubled: symbol 68px, name 23px, phrase 11px. */
+.sym{height:136px;width:auto;display:block;flex:0 0 auto}
+.type{display:flex;flex-direction:column;gap:14px}
+.nm{font-family:'Archivo Narrow',sans-serif;font-weight:600;font-size:46px;
+  letter-spacing:3.22px;text-transform:uppercase;color:#fff;line-height:1}
+.nm i{font-style:normal;color:#F2A93B}
+.ph{font-family:'Inter',sans-serif;font-weight:400;font-size:22px;
+  letter-spacing:4.84px;text-transform:uppercase;color:#D7DCE4;line-height:1}
+</style></head><body>
+<div class="lock">
+  <img class="sym" src="file:///Users/brucescheer/enterprise-edge-site/public/assets/ee-symbol.png" alt="">
+  <div class="type">
+    <div class="nm">The Enterprise <i>Edge</i></div>
+    <div class="ph">Clarity creates advantage</div>
+  </div>
+</div>
+</body></html>
