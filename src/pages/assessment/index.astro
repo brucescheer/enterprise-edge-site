@@ -165,7 +165,7 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
       });
 
       function drawRadar(pcts) {
-        var n = DIMENSIONS.length, R = 108, CX = 232, CY = 192;
+        var n = DIMENSIONS.length, R = 128, CX = 268, CY = 220;
         function pt(i, r) {
           var a = (i / n) * 2 * Math.PI - Math.PI / 2;
           return [CX + Math.cos(a) * r, CY + Math.sin(a) * r];
@@ -186,20 +186,20 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
         out.push('<polygon class="rs" points="' + shape + '"/>');
         pcts.forEach(function (v, i) {
           var p = pt(i, R * Math.max(v, 3) / 100);
-          out.push('<circle class="rd" cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="3.5"/>');
+          out.push('<circle class="rd" cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="4.5"/>');
         });
         var lo = Math.min.apply(null, pcts);
         DIMENSIONS.forEach(function (d, i) {
-          var p = pt(i, R + 22);
+          var p = pt(i, R + 28);
           var anchor = Math.abs(p[0] - CX) < 8 ? 'middle' : (p[0] > CX ? 'start' : 'end');
           var lines = d.axis.split('\n');
           lines.forEach(function (ln, k) {
-            var y = p[1] + k * 13.5 - (lines.length - 1) * 6.5;
+            var y = p[1] + k * 16 - (lines.length - 1) * 8;
             out.push('<text class="rl' + (pcts[i] === lo ? ' weak' : '') + '" x="' + p[0].toFixed(1) +
               '" y="' + y.toFixed(1) + '" text-anchor="' + anchor + '">' + ln + '</text>');
           });
         });
-        return '<svg viewBox="0 0 464 384" role="img" aria-label="Your nine dimension scores">' + out.join('') + '</svg>';
+        return '<svg viewBox="0 0 536 448" role="img" aria-label="Your nine dimension scores">' + out.join('') + '</svg>';
       }
 
       function finish() {
@@ -220,24 +220,54 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
         $('band-copy').textContent = band.copy;
         $('radar').innerHTML = drawRadar(pcts);
 
-        var lowest = 0;
-        for (var j = 1; j < pcts.length; j++) if (pcts[j] < pcts[lowest]) lowest = j;
-        var dim = DIMENSIONS[lowest], edge = EDGES[dim.edge];
-        $('weak-dim').textContent = dim.label + ', ' + pcts[lowest] + '%';
-        $('weak-copy').textContent =
-          'Of the nine, this is where your own answers put you lowest. It sits inside ' + edge.name + '.';
+        /* Ties are real and common on an eighteen-statement instrument, so
+           report every dimension at the lowest score rather than silently
+           picking the first. The radar already highlights all of them; the
+           text used to name one, which read as a bug. */
+        var lo = Math.min.apply(null, pcts);
+        var lowIdx = [];
+        pcts.forEach(function (v, i) { if (v === lo) lowIdx.push(i); });
+        var lowDims = lowIdx.map(function (i) { return DIMENSIONS[i]; });
+        var names = lowDims.map(function (d) { return d.label; });
+        var joined = names.length === 1 ? names[0]
+          : names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1];
+
+        $('weak-dim').textContent = joined + ', ' + lo + '%';
+        var edgeNames = [];
+        lowDims.forEach(function (d) {
+          var nm = EDGES[d.edge].name;
+          if (edgeNames.indexOf(nm) === -1) edgeNames.push(nm);
+        });
+        $('weak-copy').textContent = names.length === 1
+          ? 'Of the nine, this is where your own answers put you lowest. It sits inside ' + edgeNames[0] + '.'
+          : 'Of the nine, these are tied lowest on your own answers. They sit inside ' +
+            (edgeNames.length === 1 ? edgeNames[0] : edgeNames.slice(0, -1).join(', ') + ' and ' + edgeNames[edgeNames.length - 1]) + '.';
+
+        var edgeAvgs = EDGES.map(function (_, k) {
+          var mine = pcts.filter(function (_, i) { return DIMENSIONS[i].edge === k; });
+          return Math.round(mine.reduce(function (a, b) { return a + b; }, 0) / mine.length);
+        });
+        var loEdgeVal = Math.min.apply(null, edgeAvgs);
+        var loEdge = edgeAvgs.indexOf(loEdgeVal);
+
+        /* The link follows the lowest EDGE, not the edge of the lowest
+           dimension. Those come apart: one weak dimension does not make its
+           edge the weakest overall, and sending someone to an edge that is
+           not their lowest bar reads as an error. */
         var link = $('edge-link');
-        link.href = '/' + edge.slug + '/';
-        link.textContent = 'Read about ' + edge.name;
+        link.href = '/' + EDGES[loEdge].slug + '/';
+        link.textContent = 'Read about ' + EDGES[loEdge].name;
 
         var box = $('edge-scores');
         box.innerHTML = '';
         EDGES.forEach(function (ed, k) {
-          var mine = pcts.filter(function (_, i) { return DIMENSIONS[i].edge === k; });
-          var avg = Math.round(mine.reduce(function (a, b) { return a + b; }, 0) / mine.length);
           var row = document.createElement('div');
-          row.className = 'escore' + (k === dim.edge ? ' is-weak' : '');
-          row.innerHTML = '<b>' + ed.name + '</b><span class="ebar"><i style="width:' + avg + '%"></i></span><span class="epct">' + avg + '%</span>';
+          /* Amber marks the lowest bar. Marking anything else on a bar chart
+             looks like a mistake even when the reasoning is sound. */
+          /* Every edge at the minimum is marked, not just the first. Two bars
+             the same length with only one of them amber reads as a bug. */
+          row.className = 'escore' + (edgeAvgs[k] === loEdgeVal ? ' is-weak' : '');
+          row.innerHTML = '<b>' + ed.name + '</b><span class="ebar"><i style="width:' + edgeAvgs[k] + '%"></i></span><span class="epct">' + edgeAvgs[k] + '%</span>';
           box.appendChild(row);
         });
 
@@ -300,21 +330,25 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
     .qback:hover{color:var(--bronze)}
 
     .result-grid{display:grid;grid-template-columns:1fr;gap:2.5rem;margin-top:2.5rem}
-    @media (min-width:900px){
-      .result-grid{grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:3rem;align-items:start}
+    @media (min-width:1000px){
+      /* The radar column drove readability more than any font size did. At
+         380px a 536-unit viewBox scaled every label down by nearly a third,
+         so 13px type arrived as 9px. The column now carries the chart at
+         close to its drawn size. */
+      .result-grid{grid-template-columns:minmax(0,540px) minmax(0,1fr);gap:3.25rem;align-items:start}
     }
     /* The viewBox carries the labels rather than letting them spill past it.
    overflow:visible used to do that job, which worked until the SVG sat in a
    grid column narrower than the labels wanted and they clipped. */
-    .radar-wrap{max-width:440px;width:100%}
+    .radar-wrap{max-width:540px;width:100%}
     .radar-wrap :global(svg){width:100%;height:auto;display:block}
-    .radar-wrap :global(.rr){fill:none;stroke:rgba(215,220,228,.16);stroke-width:1}
-    .radar-wrap :global(.ra){stroke:rgba(215,220,228,.16);stroke-width:1}
+    .radar-wrap :global(.rr){fill:none;stroke:rgba(215,220,228,.22);stroke-width:1}
+    .radar-wrap :global(.ra){stroke:rgba(215,220,228,.22);stroke-width:1}
     .radar-wrap :global(.rs){fill:var(--amber);fill-opacity:.22;stroke:var(--amber);
       stroke-width:2.5;stroke-linejoin:round}
     .radar-wrap :global(.rd){fill:var(--amber)}
     .radar-wrap :global(.rl){font-family:var(--font-head);font-weight:600;
-      font-size:11px;fill:var(--pale)}
+      font-size:14px;letter-spacing:.02em;fill:var(--pale)}
     .radar-wrap :global(.rl.weak){fill:var(--amber);font-weight:700}
 
     .result-read h3{color:var(--white);margin-bottom:.5rem}
