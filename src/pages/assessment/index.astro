@@ -1,78 +1,59 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { EDGES } from '../../data/program';
+import { DIMENSIONS, SCALE, QUESTIONS, ROLES, BANDS } from '../../data/assessment';
 
-/* NOTE ON WHERE THIS LIVES.
+/* NOTHING LEAVES THE BROWSER. No endpoint, no storage, no analytics call, no
+   email gate, and the role you pick is never sent anywhere either. Everything
+   below runs on the answers in the DOM and is gone when the tab closes.
 
-   inspireyourbuyers.com keeps its assessment in public/ as a byte-for-byte
-   standalone file, which forces a hand-maintained duplicate of the header,
-   the footer and the whole brand stylesheet. That is worth it there for one
-   reason only: the URL is printed in Chapter 9 of a published book and can
-   never move.
+   The privacy page states this in those terms. If an endpoint is ever added
+   here, that page has to change in the same commit. */
 
-   Nothing here is printed in a book. So this is an ordinary Astro page and
-   inherits the real layout. Do not "port the IYB pattern" onto it.
-
-   No data leaves the browser. There is no endpoint, no storage, no analytics
-   call, and no email gate. Everything below runs on the answers in the DOM.
-   The audience for this site runs enterprise privacy reviews for a living;
-   an assessment that quietly posts somewhere is the wrong first impression. */
-
-const title = 'Which of the three is costing you the most? The Enterprise Edge assessment';
+const title = 'The Enterprise Edge assessment: which of the nine is costing you?';
 const description =
-  'A 12-question diagnostic across the three jobs that decide enterprise revenue: getting the business to believe you, getting the deal through approval, and growing the account afterward. Instant score, nothing collected.';
+  'A nine-dimension diagnostic across the arc of an enterprise deal, from finding value to expanding the account. Eighteen statements, about five minutes. Instant radar, nothing collected.';
 const canonical = 'https://getenterpriseedge.com/assessment/';
-
-const QUESTIONS = [
-  { edge: 0, t: 'If I asked ten people here what value we create, I would get one answer, not ten.' },
-  { edge: 0, t: 'Our champions can retell our value story accurately when we are not in the room.' },
-  { edge: 0, t: 'We can show a buyer what we are worth in their numbers, not in ours.' },
-  { edge: 0, t: 'We know what a buyer does if they buy nothing at all, and we can argue against it.' },
-
-  { edge: 1, t: 'We know what Procurement, Finance and Legal will evaluate before they open the file.' },
-  { edge: 1, t: 'We clear security review and AI governance review without losing a quarter to it.' },
-  { edge: 1, t: 'When the price challenge lands, we widen the value conversation instead of discounting.' },
-  { edge: 1, t: 'Our champion has what they need to make the risk case without us there.' },
-
-  { edge: 2, t: 'We see retention risk while an account is still healthy, not at renewal.' },
-  { edge: 2, t: 'Our expansion comes out of customer outcomes, not off a renewal calendar.' },
-  { edge: 2, t: 'We know who inside our customer actually holds the relationship.' },
-  { edge: 2, t: 'Growth in existing accounts is a plan here, not a scramble each quarter.' },
-];
-
-const SCALE = [
-  { v: 1, l: 'Strongly disagree' },
-  { v: 2, l: 'Disagree' },
-  { v: 3, l: 'Mixed' },
-  { v: 4, l: 'Agree' },
-  { v: 5, l: 'Strongly agree' },
-];
 ---
 <Base title={title} description={description} canonical={canonical}>
 
   <section class="band band-ink hero band-measure">
     <div class="wrap">
       <p class="eyebrow">The Enterprise Edge assessment</p>
-      <h1>Which of the three is costing you the most?</h1>
-      <p class="lede">Twelve statements, about four minutes. You get a score on each of the three edges and a straight answer about which one is leaking.</p>
-      <p class="fine">Nothing is collected. No email, no sign-in, no storage. The scoring runs in your browser and disappears when you close the tab.</p>
+      <h1>Nine dimensions. One of them is costing you.</h1>
+      <p class="lede">Eighteen statements, about five minutes. You get a shape rather than a score, and the shape shows you where in the arc of a deal your revenue is leaking.</p>
+      <p class="fine">Nothing is collected. No email, no sign-in, no storage, and the role you pick is not sent anywhere. The scoring runs in your browser and disappears when you close the tab.</p>
     </div>
   </section>
 
   <section class="band band-bone">
     <div class="wrap">
       <form id="assess" novalidate>
-        <p class="eyebrow">Rate each statement as it is today, not as you would like it to be</p>
+
+        <fieldset class="roles">
+          <legend class="eyebrow">First, so the result can talk to you rather than at you</legend>
+          <div class="role-opts" role="radiogroup">
+            {ROLES.map((r) => (
+              <label class="opt role-opt">
+                <input type="radio" name="role" value={r.v} />
+                <span class="dot" aria-hidden="true"></span>
+                <span class="lab">{r.l}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <p class="eyebrow qhead">Rate each statement as it is today, not as you would like it to be</p>
 
         <ol class="qlist">
           {QUESTIONS.map((q, i) => (
-            <li class="q">
+            <li class="q" data-dim={q.d}>
               <fieldset>
                 <legend><span class="qnum">{String(i + 1).padStart(2, '0')}</span>{q.t}</legend>
                 <div class="scale" role="radiogroup">
                   {SCALE.map((s) => (
                     <label class="opt">
-                      <input type="radio" name={`q${i}`} value={s.v} data-edge={q.edge} />
+                      <input type="radio" name={`q${i}`} value={s.v} data-dim={q.d} />
                       <span class="dot" aria-hidden="true"></span>
                       <span class="lab">{s.l}</span>
                     </label>
@@ -83,9 +64,12 @@ const SCALE = [
           ))}
         </ol>
 
+        <div class="progress" aria-hidden="true"><i id="pbar"></i></div>
+        <p class="pcount" id="pcount" role="status">0 of {QUESTIONS.length} answered</p>
+
         <p id="err" class="err" role="status" hidden></p>
         <div class="cta-pair">
-          <button class="btn" type="submit">Score my three edges</button>
+          <button class="btn" type="submit">Draw my shape</button>
         </div>
       </form>
     </div>
@@ -94,118 +78,157 @@ const SCALE = [
   <section class="band band-ink" id="result" hidden>
     <div class="wrap">
       <p class="eyebrow">Your result</p>
-      <h2 id="verdict">&nbsp;</h2>
-      <p class="lede" id="verdict-sub">&nbsp;</p>
+      <h2 id="band-name">&nbsp;</h2>
+      <p class="lede" id="band-copy">&nbsp;</p>
 
-      <div class="scores" id="scores"></div>
+      <div class="result-grid">
+        <div class="radar-wrap"><div id="radar"></div></div>
+        <div class="result-read">
+          <p class="eyebrow">Weakest</p>
+          <h3 id="weak-dim">&nbsp;</h3>
+          <p id="weak-copy">&nbsp;</p>
+          <p><a class="more" id="edge-link" href="/">&nbsp;</a></p>
 
-      <div class="pull" style="margin-top:2.5rem">
-        <p id="advice">&nbsp;</p>
+          <p class="eyebrow" style="margin-top:2rem">By edge</p>
+          <div id="edge-scores"></div>
+        </div>
       </div>
 
       <div class="cta-pair">
         <a class="btn" href="/#dates">See dates and cities</a>
-        <a class="more" id="edge-link" href="/">Read about that edge</a>
+        <a class="more" href="/work-with-us/">Work with us</a>
       </div>
       <p class="fine" style="margin-top:2rem">Scored in your browser. Nothing was sent anywhere. Reload the page to start over.</p>
     </div>
   </section>
 
-  <script is:inline define:vars={{ EDGES }}>
+  <script is:inline define:vars={{ DIMENSIONS, QUESTIONS, BANDS, EDGES }}>
     (function () {
       var form = document.getElementById('assess');
-      var result = document.getElementById('result');
+      var pbar = document.getElementById('pbar');
+      var pcount = document.getElementById('pcount');
       var err = document.getElementById('err');
+      var result = document.getElementById('result');
+      var TOTAL = QUESTIONS.length;
+      var MAX_PER_DIM = 2 * 4; /* two statements, four points each */
+
+      function answered() {
+        var n = 0;
+        for (var i = 0; i < TOTAL; i++) {
+          if (form.querySelector('input[name="q' + i + '"]:checked')) n++;
+        }
+        return n;
+      }
+
+      function refresh() {
+        var n = answered();
+        pbar.style.width = (n / TOTAL) * 100 + '%';
+        pcount.textContent = n + ' of ' + TOTAL + ' answered';
+        if (n === TOTAL) form.querySelectorAll('.q.unanswered').forEach(function (el) {
+          el.classList.remove('unanswered');
+        });
+      }
+      form.addEventListener('change', refresh);
+      refresh();
+
+      /* Radar. Nine axes, drawn as SVG so it scales and prints. */
+      function drawRadar(pcts) {
+        var n = DIMENSIONS.length, R = 118, CX = 190, CY = 168;
+        function pt(i, r) {
+          var a = (i / n) * 2 * Math.PI - Math.PI / 2;
+          return [CX + Math.cos(a) * r, CY + Math.sin(a) * r];
+        }
+        var out = [];
+        [0.25, 0.5, 0.75, 1].forEach(function (f) {
+          var p = [];
+          for (var i = 0; i < n; i++) p.push(pt(i, R * f).map(function (v) { return v.toFixed(1); }).join(','));
+          out.push('<polygon class="rr" points="' + p.join(' ') + '"/>');
+        });
+        for (var i = 0; i < n; i++) {
+          var e = pt(i, R);
+          out.push('<line class="ra" x1="' + CX + '" y1="' + CY + '" x2="' + e[0].toFixed(1) + '" y2="' + e[1].toFixed(1) + '"/>');
+        }
+        var shape = pcts.map(function (v, i) {
+          return pt(i, R * Math.max(v, 3) / 100).map(function (z) { return z.toFixed(1); }).join(',');
+        }).join(' ');
+        out.push('<polygon class="rs" points="' + shape + '"/>');
+        pcts.forEach(function (v, i) {
+          var p = pt(i, R * Math.max(v, 3) / 100);
+          out.push('<circle class="rd" cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="3.5"/>');
+        });
+        var lo = Math.min.apply(null, pcts);
+        DIMENSIONS.forEach(function (d, i) {
+          var p = pt(i, R + 24);
+          var anchor = Math.abs(p[0] - CX) < 8 ? 'middle' : (p[0] > CX ? 'start' : 'end');
+          var lines = d.axis.split('\n');
+          lines.forEach(function (ln, k) {
+            var y = p[1] + k * 12 - (lines.length - 1) * 5;
+            out.push('<text class="rl' + (pcts[i] === lo ? ' weak' : '') + '" x="' + p[0].toFixed(1) +
+              '" y="' + y.toFixed(1) + '" text-anchor="' + anchor + '">' + ln + '</text>');
+          });
+        });
+        return '<svg viewBox="0 0 380 336" role="img" aria-label="Your nine dimension scores">' + out.join('') + '</svg>';
+      }
 
       form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        /* Four statements per edge, 1-5 each, so each edge scores 4-20. */
-        var totals = [0, 0, 0];
-        var counts = [0, 0, 0];
         var missing = 0;
+        var byDim = {};
+        DIMENSIONS.forEach(function (d) { byDim[d.key] = 0; });
 
-        for (var i = 0; i < 12; i++) {
+        for (var i = 0; i < TOTAL; i++) {
           var picked = form.querySelector('input[name="q' + i + '"]:checked');
           var row = form.querySelectorAll('.q')[i];
-          if (!picked) {
-            missing++;
-            row.classList.add('unanswered');
-            continue;
-          }
+          if (!picked) { missing++; row.classList.add('unanswered'); continue; }
           row.classList.remove('unanswered');
-          var edge = +picked.dataset.edge;
-          totals[edge] += +picked.value;
-          counts[edge]++;
+          byDim[picked.dataset.dim] += +picked.value;
         }
 
         if (missing) {
           err.hidden = false;
-          err.textContent =
-            missing === 1
-              ? 'One statement is still unrated. It is marked below.'
-              : missing + ' statements are still unrated. They are marked below.';
+          err.textContent = missing === 1
+            ? 'One statement is still unrated. It is marked below.'
+            : missing + ' statements are still unrated. They are marked below.';
           form.querySelector('.unanswered').scrollIntoView({ block: 'center' });
           return;
         }
         err.hidden = true;
 
-        /* Normalise 4-20 onto 0-100 so the three bars compare directly. */
-        var pct = totals.map(function (t) { return Math.round(((t - 4) / 16) * 100); });
+        var pcts = DIMENSIONS.map(function (d) {
+          return Math.round((byDim[d.key] / MAX_PER_DIM) * 100);
+        });
+        var overall = Math.round(pcts.reduce(function (a, b) { return a + b; }, 0) / pcts.length);
 
-        var weakest = 0;
-        for (var j = 1; j < 3; j++) if (pct[j] < pct[weakest]) weakest = j;
+        var band = BANDS.filter(function (b) { return overall >= b.min; })[0];
+        document.getElementById('band-name').textContent = band.name + '. ' + overall + '%.';
+        document.getElementById('band-copy').textContent = band.copy;
 
-        var edge = EDGES[weakest];
-        var LABEL = [
-          'getting the business to believe you',
-          'getting the deal through approval',
-          'growing the account after the win',
-        ];
+        document.getElementById('radar').innerHTML = drawRadar(pcts);
 
-        document.getElementById('verdict').textContent = edge.name + '.';
-        document.getElementById('verdict-sub').textContent =
-          'On your own read, this is where your revenue is leaking hardest: ' +
-          LABEL[weakest] + '.';
-
-        var advice;
-        if (pct[weakest] >= 75) {
-          advice = 'All three scored well, which is rare. Come for the room, then. Everyone else in it is running an organization your size and working the same problems on different accounts.';
-        } else if (pct[weakest] >= 50) {
-          advice = 'A soft spot rather than a hole. It is the kind of gap that costs you deals you never find out about, because a deal that dies in a meeting you are not in does not send a reason.';
-        } else {
-          advice = 'That is a hole, not a soft spot. Deals are almost certainly stalling here now, and the loss reports will be blaming something else.';
-        }
-        document.getElementById('advice').textContent = advice;
-
+        var lowest = 0;
+        for (var j = 1; j < pcts.length; j++) if (pcts[j] < pcts[lowest]) lowest = j;
+        var dim = DIMENSIONS[lowest];
+        var edge = EDGES[dim.edge];
+        document.getElementById('weak-dim').textContent = dim.label + ', ' + pcts[lowest] + '%';
+        document.getElementById('weak-copy').textContent =
+          'Of the nine, this is where your own answers put you lowest. It sits inside ' + edge.name + '.';
         var link = document.getElementById('edge-link');
         link.href = '/' + edge.slug + '/';
         link.textContent = 'Read about ' + edge.name;
 
-        var box = document.getElementById('scores');
+        var box = document.getElementById('edge-scores');
         box.innerHTML = '';
         EDGES.forEach(function (ed, k) {
+          var mine = pcts.filter(function (_, i) { return DIMENSIONS[i].edge === k; });
+          var avg = Math.round(mine.reduce(function (a, b) { return a + b; }, 0) / mine.length);
           var row = document.createElement('div');
-          row.className = 'score' + (k === weakest ? ' is-weak' : '');
-          var bar = document.createElement('div');
-          bar.className = 'bar';
-          var fill = document.createElement('i');
-          fill.style.width = pct[k] + '%';
-          bar.appendChild(fill);
-          var head = document.createElement('b');
-          head.textContent = ed.name;
-          var num = document.createElement('span');
-          num.className = 'pct';
-          num.textContent = pct[k] + '%';
-          row.appendChild(head);
-          row.appendChild(bar);
-          row.appendChild(num);
+          row.className = 'escore' + (k === dim.edge ? ' is-weak' : '');
+          row.innerHTML = '<b>' + ed.name + '</b><span class="ebar"><i style="width:' + avg + '%"></i></span><span class="epct">' + avg + '%</span>';
           box.appendChild(row);
         });
 
         result.hidden = false;
-        /* The reveal styles hide bands until observed; this one appears after
-           the observer has already passed, so it is marked in by hand. */
         result.classList.add('is-in');
         result.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
@@ -213,7 +236,13 @@ const SCALE = [
   </script>
 
   <style>
-    .qlist{list-style:none;margin:2rem 0 0;padding:0;max-width:46rem;counter-reset:none}
+    .roles{border:0;margin:0 0 2.75rem;padding:0;max-width:46rem}
+    .roles legend{padding:0;margin:0 0 .9rem;float:left;width:100%}
+    .role-opts{display:grid;grid-template-columns:1fr;gap:.4rem;clear:both}
+    @media (min-width:640px){.role-opts{grid-template-columns:repeat(2,1fr)}}
+
+    .qhead{margin-top:0}
+    .qlist{list-style:none;margin:1.5rem 0 0;padding:0;max-width:46rem}
     .q{margin:0 0 .5rem;padding:1.5rem 0;border-bottom:1px solid var(--line)}
     .q fieldset{border:0;margin:0;padding:0}
     .q legend{font-family:var(--font-head);font-weight:600;font-size:1.25rem;
@@ -221,19 +250,18 @@ const SCALE = [
     .qnum{display:inline-block;font-family:var(--font-numeral);color:var(--bronze);
       font-size:1.1rem;margin-right:.65rem;letter-spacing:.04em}
     .scale{display:grid;grid-template-columns:1fr;gap:.35rem}
-    @media (min-width:720px){
-      .scale{grid-template-columns:repeat(5,1fr);gap:.5rem}
-    }
+    @media (min-width:720px){.scale{grid-template-columns:repeat(5,1fr);gap:.5rem}}
+
     .opt{display:flex;align-items:center;gap:.6rem;cursor:pointer;
       padding:.55rem .6rem;border:1px solid var(--line);border-radius:2px;
       background:var(--white);transition:border-color .15s ease}
     @media (min-width:720px){
-      .opt{flex-direction:column;text-align:center;gap:.45rem;padding:.75rem .4rem}
+      .scale .opt{flex-direction:column;text-align:center;gap:.45rem;padding:.75rem .4rem}
     }
     .opt:hover{border-color:var(--bronze)}
-    /* The native input is the accessible control and stays focusable; it is
-       moved off-screen rather than display:none, which would drop it out of
-       the tab order and out of the radiogroup. */
+    /* The native input stays focusable and in the radiogroup; it is moved
+       off-screen rather than display:none, which would remove it from the tab
+       order entirely. */
     .opt input{position:absolute;opacity:0;width:1px;height:1px}
     .dot{width:1.15rem;height:1.15rem;border:2px solid var(--muted);
       border-radius:50%;flex:0 0 auto;display:block}
@@ -245,22 +273,43 @@ const SCALE = [
     .q.unanswered{background:rgba(143,93,10,.06)}
     .q.unanswered legend{color:var(--bronze)}
     .err{font-family:var(--font-head);font-weight:700;font-size:1.15rem;
-      color:var(--bronze);margin:1.5rem 0 0}
+      color:var(--bronze);margin:1.25rem 0 0}
 
-    .scores{margin-top:2.5rem;max-width:46rem;display:grid;gap:1.25rem}
-    .score{display:grid;grid-template-columns:1fr;gap:.4rem;align-items:center}
-    @media (min-width:640px){
-      .score{grid-template-columns:12rem minmax(0,1fr) 3.5rem;gap:1.25rem}
+    /* Progress. Answering eighteen statements with no sense of how many are
+       left is the fastest way to lose someone halfway. */
+    .progress{height:4px;background:var(--line);margin:2.25rem 0 .6rem;max-width:46rem;
+      border-radius:2px;overflow:hidden}
+    .progress i{display:block;height:100%;width:0;background:var(--bronze);
+      transition:width .25s ease}
+    .pcount{font-family:var(--font-head);font-weight:700;font-size:.95rem;
+      letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0}
+
+    .result-grid{display:grid;grid-template-columns:1fr;gap:2.5rem;margin-top:2.5rem}
+    @media (min-width:900px){
+      .result-grid{grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:3rem;align-items:start}
     }
-    .score b{font-family:var(--font-head);font-weight:600;font-size:1.2rem;color:var(--white)}
-    .score .bar{background:rgba(215,220,228,.16);height:.85rem;border-radius:2px;overflow:hidden}
-    .score .bar i{display:block;height:100%;background:var(--pale);border-radius:2px}
-    .score .pct{font-family:var(--font-head);font-weight:700;font-size:1.2rem;
+    .radar-wrap{max-width:380px;width:100%}
+    .radar-wrap svg{width:100%;height:auto;display:block;overflow:visible}
+    .rr{fill:none;stroke:rgba(215,220,228,.14);stroke-width:1}
+    .ra{stroke:rgba(215,220,228,.14);stroke-width:1}
+    .rs{fill:var(--amber);fill-opacity:.22;stroke:var(--amber);stroke-width:2.5;
+      stroke-linejoin:round}
+    .rd{fill:var(--amber)}
+    .rl{font-family:var(--font-head);font-weight:600;font-size:10.5px;fill:var(--pale)}
+    .rl.weak{fill:var(--amber);font-weight:700}
+
+    .result-read h3{color:var(--white);margin-bottom:.5rem}
+    .escore{display:grid;grid-template-columns:1fr;gap:.3rem;margin:0 0 1rem;align-items:center}
+    @media (min-width:520px){
+      .escore{grid-template-columns:11rem minmax(0,1fr) 3rem;gap:1rem}
+    }
+    .escore b{font-family:var(--font-head);font-weight:600;font-size:1.1rem;color:var(--pale)}
+    .ebar{background:rgba(215,220,228,.16);height:.7rem;border-radius:2px;overflow:hidden;display:block}
+    .ebar i{display:block;height:100%;background:var(--pale);border-radius:2px}
+    .epct{font-family:var(--font-head);font-weight:700;font-size:1.05rem;
       color:var(--pale);text-align:right}
-    /* Only the weakest room takes the accent. Amber is the signal colour on
-       this site and the whole point of the result is one room, not three. */
-    .score.is-weak b,.score.is-weak .pct{color:var(--amber)}
-    .score.is-weak .bar i{background:var(--amber)}
+    .escore.is-weak b,.escore.is-weak .epct{color:var(--amber)}
+    .escore.is-weak .ebar i{background:var(--amber)}
   </style>
 
 </Base>
