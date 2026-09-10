@@ -138,17 +138,31 @@ export const EDGES = [
       lede:
         'Winning the deal is the beginning. A year later there is a review you are not invited to, and it ends in expansion or in a quiet search for your replacement. Very little of what decides it happens in the quarter it shows up in.',
       cover: [
+        /* Sandy's own four, supplied 2026-09-10. They replaced three written
+           for her. Her draft carried two statistics and neither had a source.
+
+           The expansion one checked out exactly and now links to it. The
+           other, "20 to 30% of subscription cancellations happen inside the
+           first 90 days", could not be traced to anything credible: the
+           figures in circulation for that claim run from 15% to 70% and every
+           one of them sits on a content marketing page with no study behind
+           it. Held out until Sandy says where hers came from. House rule:
+           open the source, find the number, or do not publish it. */
         {
-          h: 'Protecting revenue before it is at risk',
-          p: 'Retention worked as a recovery effort is already expensive and already late. What the earlier signals look like, and what a revenue organization can act on while the account is still healthy.',
+          h: 'The six moments that decide it',
+          p: 'Handoff, onboarding, adoption, retention, expansion, advocacy. Most revenue organizations can point to a system for one or two of these. The rest run on tribal memory and a renewal calendar, and every one of them is a moment where the account either commits further or quietly starts to leave.',
         },
         {
-          h: 'Where expansion actually comes from',
-          p: 'Genuine expansion follows customer outcomes and the relationships built around delivering them. It does not follow a renewal calendar, and treating the calendar as the strategy is how a growth number turns into a scramble.',
+          h: 'What it is costing you',
+          p: 'This is not a soft metric. Existing accounts now generate 40% of all new ARR in B2B SaaS, and more than half of it at companies above $50 million (<a href="https://www.benchmarkit.ai/2025benchmarks" target="_blank" rel="noopener noreferrer">Benchmarkit</a>). The exposure across those six moments runs into the millions at scale, and most revenue leaders find out about it on the renewal call rather than months earlier.',
         },
         {
-          h: 'Trust as the mechanism',
-          p: 'The kind of trust that makes retention a result rather than a rescue. What builds it after the sale, what quietly spends it, and who in your organization is actually holding it.',
+          h: 'The system, not the save',
+          p: 'What it actually takes to close the gaps: find where the value is leaking, design the specific fix, then run it until it is a repeatable motion rather than a story about the time you caught it just in time. The teams winning here have replaced the fire drill with something a customer success or sales leader can run without Sandy in the room.',
+        },
+        {
+          h: 'Beyond retention',
+          p: 'The signals that predict churn and expansion are the same ones that sharpen everything upstream: a clearer ideal customer profile, marketing that speaks to what actually renews, customer stories worth telling, and product priorities that follow real value rather than the loudest feature request. A retention system does not only save revenue. It makes every other go-to-market motion smarter.',
         },
       ],
       /* TODO: Sandy to confirm how she wants her practice and any attendee

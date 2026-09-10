@@ -52,7 +52,9 @@ const canonical = `https://getenterpriseedge.com/${edge.slug}/`;
         {edge.page.cover.map((c) => (
           <div class="card">
             <h3>{c.h}</h3>
-            <p>{c.p}</p>
+            {/* set:html so a statistic can carry its source as a link.
+                Every number on this site links to a page that states it. */}
+            <p set:html={c.p} />
           </div>
         ))}
       </div>
