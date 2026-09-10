@@ -240,7 +240,10 @@ const headDesc = ogDescription ?? description;
          for the three of them. */}
     <p>The Enterprise Edge is brought to you by Bruce Scheer, Dean Edwards and Sandy Yu.</p>
     <p><a href="/privacy/">Privacy</a></p>
-    <p>&copy; {new Date().getFullYear()} Bruce Scheer, Dean Edwards and Sandy Yu. All rights reserved.</p>
+    {/* The brand, not the three names. The line directly above this one
+         already names all three, and saying them twice in consecutive
+         sentences read as a stutter rather than as thoroughness. */}
+    <p>&copy; {new Date().getFullYear()} The Enterprise Edge. All rights reserved.</p>
   </div>
 </footer>
 
