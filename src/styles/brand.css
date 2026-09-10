@@ -611,16 +611,22 @@ a.date.is-open .when{color:var(--white)}
    (two tall towers and one low clubhouse) line up without any of them being
    letterboxed or stretched. Where the crop lands is set per city, because a
    centred crop of a tall building lands on the pavement. */
-/* Two then four, never three. This was three columns while three cities had
-   photographs. Dallas made it four, and four items in a three-column grid
-   leaves one stranded on a row of its own, which reads as a mistake rather
-   than as a set. */
+/* One column per city, which is now five. This was three columns while
+   three cities had photographs, and the count is the whole argument: five
+   items in a three-column grid gives three then two, with a hole where the
+   sixth would be, and the section grows tall enough to take over the page.
+   Rendered both before choosing. Five in a row reads as a set and a single
+   band, and these are identification thumbnails rather than hero images, so
+   the smaller size costs nothing.
+
+   Below the five-across breakpoint it drops to two, where the odd one out
+   sits bottom left and looks like an ordinary wrap rather than a gap. */
 .venues{display:grid;grid-template-columns:1fr;gap:1.75rem;margin:2.5rem 0 0}
-@media (min-width:620px){
+@media (min-width:560px){
   .venues{grid-template-columns:repeat(2,1fr);gap:1.5rem}
 }
-@media (min-width:1000px){
-  .venues{grid-template-columns:repeat(4,1fr)}
+@media (min-width:1040px){
+  .venues{grid-template-columns:repeat(5,1fr);gap:1.25rem}
 }
 .venue{margin:0;display:flex;flex-direction:column}
 .venue img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center;

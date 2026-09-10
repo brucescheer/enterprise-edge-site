@@ -309,9 +309,16 @@ export const CITIES = [
   {
     city: 'Austin',
     region: 'Texas',
-    venue: null,
+    venue: 'The Austin Club',
     venueAddress: null,
     venueLogo: null,
+    venuePhoto: '/assets/venue-austin-club.jpg',
+    /* The facade is symmetrical and fills the frame, so a centred crop is
+       the only one that does not lop off half a colonnade. */
+    venuePhotoPosition: 'center',
+    /* Provenance not established, same as Dallas. Bruce supplied it on
+       2026-09-09. Ask the Club for one of theirs. */
+    venuePhotoCredit: null,
     date: 'Thursday, December 3, 2026',
     doors: null,
     time: 'Morning',
