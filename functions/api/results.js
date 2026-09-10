@@ -185,8 +185,14 @@ export async function onRequestPost({ request, env }) {
      email and an attachment is where good things go to be ignored. */
   const png = String(d.png || '');
   const b64 = png.startsWith('data:image/png;base64,') ? png.slice(22) : '';
+  /* content_id, in snake_case. This is the raw HTTP API, and `contentId` is
+     the JavaScript SDK's spelling of the same field. Resend accepted the
+     camelCase key without complaint and quietly ignored it, so the first
+     live send arrived with the chart as a paperclip and a blank space where
+     the image should have been. The cURL example in their attachments doc is
+     the one that describes this endpoint. */
   const attachments = b64
-    ? [{ filename: 'enterprise-edge-assessment.png', content: b64, contentId: 'ee-card' }]
+    ? [{ filename: 'enterprise-edge-assessment.png', content: b64, content_id: 'ee-card' }]
     : [];
 
   const nine = DIMS.map((x, i) => bar(x.label, pcts[i], pcts[i] === lo)).join('');
