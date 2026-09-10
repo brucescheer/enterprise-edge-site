@@ -253,11 +253,12 @@ export const CITIES = [
        not to use their mark, set this to null and the name still renders. */
     venueLogo: '/assets/venue-american-club.jpg',
     venuePhoto: '/assets/venue-american-club-photo.jpg',
-    venuePhotoPosition: 'center 45%',
-    /* This one came off Google Maps, so it is somebody's user-contributed
-       photograph rather than the club's own or a freely licensed one. It is
-       the weakest provenance of the three. Ask the Club for theirs and
-       replace it. */
+    venuePhotoPosition: 'center 55%',
+    /* Supplied by the Club's own meetings team on 2026-09-09, which replaced
+       a user-contributed photograph off Google Maps. That one was the
+       weakest provenance on the site and this closes it. Kept at its native
+       680px rather than upscaled to match the others: enlarging a 680px
+       source only makes it soft and heavy. */
     venuePhotoCredit: null,
     date: 'Friday, October 23, 2026',
     doors: null,
@@ -277,14 +278,27 @@ export const CITIES = [
   {
     city: 'Dallas',
     region: 'Texas',
-    venue: null,
+    venue: 'Tower Club Dallas',
     venueAddress: null,
     venueLogo: null,
+    venuePhoto: '/assets/venue-tower-club-dallas.jpg',
+    /* A wide shot into a 4:3 box crops left and right rather than top and
+       bottom, so the useful control here is the horizontal one. Centred
+       keeps the tower filling the frame with Fountain Place's blue prism at
+       the edge, which is what makes the shot read as Dallas rather than as
+       any downtown. */
+    venuePhotoPosition: 'center',
+    /* Provenance not established. Bruce supplied it on 2026-09-09 as the
+       Tower Club, and it is consistent with Thanksgiving Tower standing
+       beside Fountain Place, but nobody has confirmed who took it. Ask the
+       Club for one of theirs, the way Singapore was resolved. */
+    venuePhotoCredit: null,
     date: 'Wednesday, December 2, 2026',
     doors: null,
-    /* Dallas runs in the morning and Austin the next day: the three drive
-       down between them. Neither has a venue or a confirmed clock time yet,
-       so the tile shows the date and says registration opens soon. */
+    /* Dallas runs the morning of the 2nd and Austin the morning of the 3rd:
+       the three drive down between them. Neither has a clock time yet, and
+       Austin has no venue, so those tiles show the date and say registration
+       opens soon. */
     time: 'Morning',
     meal: null,
     startDate: '2026-12-02T09:00:00-06:00',
@@ -300,7 +314,7 @@ export const CITIES = [
     venueLogo: null,
     date: 'Thursday, December 3, 2026',
     doors: null,
-    time: null,
+    time: 'Morning',
     meal: null,
     startDate: '2026-12-03T09:00:00-06:00',
     endDate: '2026-12-03T13:00:00-06:00',

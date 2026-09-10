@@ -611,9 +611,16 @@ a.date.is-open .when{color:var(--white)}
    (two tall towers and one low clubhouse) line up without any of them being
    letterboxed or stretched. Where the crop lands is set per city, because a
    centred crop of a tall building lands on the pavement. */
+/* Two then four, never three. This was three columns while three cities had
+   photographs. Dallas made it four, and four items in a three-column grid
+   leaves one stranded on a row of its own, which reads as a mistake rather
+   than as a set. */
 .venues{display:grid;grid-template-columns:1fr;gap:1.75rem;margin:2.5rem 0 0}
-@media (min-width:760px){
-  .venues{grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media (min-width:620px){
+  .venues{grid-template-columns:repeat(2,1fr);gap:1.5rem}
+}
+@media (min-width:1000px){
+  .venues{grid-template-columns:repeat(4,1fr)}
 }
 .venue{margin:0;display:flex;flex-direction:column}
 .venue img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center;
