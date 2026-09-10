@@ -21,6 +21,16 @@ import { FACULTY } from '../../data/program';
    record of your answers, the role you select, or your score" and that there
    is "no form to fill in", and both had to go.
 
+   AUDITED after that, which turned up four things the page had never
+   answered and could no longer skip now that something is collected:
+   retention, where the information physically goes, what protects it, and a
+   visible record of the change itself. Those are the sections How long we
+   keep things, Where your information goes, Keeping it safe, and the dated
+   entry under Changes. The security section is deliberately unimpressive.
+   Three people with business email accounts is what this is, and an audience
+   that runs vendor security reviews will trust an accurate small answer over
+   an inflated one.
+
    If any of that changes, this page has to change with it. Adding an
    analytics tag or a form without updating this page turns an accurate
    privacy policy into a false one, which is worse than not having had it.
@@ -32,7 +42,7 @@ import { FACULTY } from '../../data/program';
 const EFFECTIVE = 'September 9, 2026';
 const title = 'Privacy: The Enterprise Edge';
 const description =
-  'How The Enterprise Edge handles information when you visit this website, take the assessment, or contact us. No analytics, no cookies, no tracking.';
+  'How The Enterprise Edge handles information when you visit this website, take the assessment, or contact us. No analytics, no cookies, no tracking, and one optional email you have to ask for.';
 const canonical = 'https://getenterpriseedge.com/privacy/';
 ---
 <Base title={title} description={description} canonical={canonical}>
@@ -82,12 +92,12 @@ const canonical = 'https://getenterpriseedge.com/privacy/';
       <p>The second is a field where you can type your email address to have the result sent to you. <b>Nothing is sent until you type an address and press the button.</b> When you do, this is exactly what happens and all of what happens:</p>
       <ul class="plain">
         <li>Your address, your nine scores, the role you picked, and the chart as an image go to our server.</li>
-        <li>That server sends you one email, from assessment@getenterpriseedge.com, with your result and the chart attached. Replies to it go to Bruce.</li>
+        <li>That server sends you one email, from assessment@getenterpriseedge.com, with your result and the chart attached. Nobody reads that address as an inbox. It is set to reply to Bruce, and anything sent to it anyway is forwarded to him.</li>
         <li>Bruce is copied on that email, so he sees what you received. Dean and Sandy get a short note with the same scores and role.</li>
         <li>The server writes none of it down. There is no database, no log of addresses, and no file. Your address exists for the second or two the request takes and is then gone.</li>
       </ul>
       <p>You are not added to a mailing list, because there is no mailing list. Nobody will be enrolled in a sequence. The email carries no tracking pixel and no click tracking, so we do not know whether you opened it. If one of us follows up, it will be a person writing to you, and telling us to stop ends it.</p>
-      <p>The mail itself is delivered by <a href="https://resend.com/legal/privacy-policy" rel="noopener">Resend</a>, which is the service that puts the message in your inbox. Your address passes through them for that purpose. They are the only third party involved in any of this.</p>
+      <p>The mail itself is delivered by <a href="https://resend.com/legal/privacy-policy" rel="noopener noreferrer" target="_blank">Resend</a>, which is the service that puts the message in your inbox. Your address passes through them for that purpose. They are the only third party involved in any of this.</p>
       <p>If you skip the email field, none of the above happens and we never learn your result.</p>
 
       <h2>Loading the website</h2>
@@ -99,6 +109,20 @@ const canonical = 'https://getenterpriseedge.com/privacy/';
       <p>This site sets no cookies and uses no browser storage. There is no Google Analytics, no Cloudflare Web Analytics, no session recording, no heatmap, no chat widget, no advertising pixel, and no tag manager. We do not build a profile of you, and we have no way to recognise you if you come back.</p>
       <p>Because nothing here tracks you, there is no consent banner to click and no Do Not Track signal for us to respond to differently. Cloudflare may set a short-lived security cookie if its bot protection is triggered by a particular request. That is a security measure, not a measurement one.</p>
       <p>The one form on the site, the email field at the end of the assessment, is not an exception to any of this. It sets nothing, remembers nothing, and does not follow you to the next page. It sends one email when you ask it to.</p>
+
+      <h2>How long we keep things</h2>
+      <p>The website itself keeps nothing, so there is nothing there to age out. The question is really about the two places a copy can sit.</p>
+      <p>If you emailed yourself an assessment result, the copies are the ones in our three inboxes. We keep those the way anyone keeps business email, which is to say indefinitely unless you ask us to delete them. Ask and we will, from all three.</p>
+      <p>If you wrote to one of us directly, we keep the correspondence for as long as it is useful to the conversation and to any work that follows from it. The same request works: ask and it goes.</p>
+      <p>Resend holds a short delivery record for the message it sent you, which is how any mail service is able to tell you whether a message went out. That is theirs and it is described in their policy.</p>
+
+      <h2>Where your information goes</h2>
+      <p>The three of us are in the United States, and so is Resend. If you write to us or ask for your result from Singapore, from Europe, or from anywhere else, your information comes to the United States. There is no way to run this program and not have that be true, so we would rather say it plainly than bury it.</p>
+      <p>Registration is a separate matter. That happens on Luma under their policy, not ours.</p>
+
+      <h2>Keeping it safe</h2>
+      <p>Everything on this site is served over an encrypted connection, and the assessment result travels to our server the same way. The mail itself goes out over the ordinary encrypted channels mail services use.</p>
+      <p>Beyond that, we would rather be accurate than impressive. We are three people with business email accounts, not a company with a security department. The best protection we can offer is holding almost nothing in the first place, which is the reason the assessment was built to score in your browser and the reason the endpoint writes nothing down. If you are about to send us something that a breach of an ordinary email account would make you regret, please do not.</p>
 
       <h2>Links to other websites</h2>
       <p>This site links out to each of our own practices and to Luma, where registration for a session happens. Once you follow a link you are on someone else&rsquo;s website under their privacy policy, not this one. Registering for a session is handled entirely by Luma, and anything you enter there is theirs to explain.</p>
@@ -112,6 +136,10 @@ const canonical = 'https://getenterpriseedge.com/privacy/';
 
       <h2>Changes</h2>
       <p>If we add anything that changes the answers above, a form, a mailing list, or any kind of measurement, this page gets updated at the same time and the effective date changes with it.</p>
+      <p>That has already happened once, and it is recorded here rather than quietly absorbed:</p>
+      <ul class="plain">
+        <li><b>September 9, 2026.</b> The assessment gained an optional button to have your result emailed to you. Until that day this page said the assessment kept no record of anything and that the site had no form on it. Both statements had stopped being true, so the assessment section was rewritten the same day to describe what the button does, and this page gained the four sections above on retention, location, and security.</li>
+      </ul>
       <p>Last updated {EFFECTIVE}.</p>
     </div>
   </section>
