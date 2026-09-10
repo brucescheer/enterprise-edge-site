@@ -2,3 +2,9 @@
 # to four. 301 rather than 302: the move is permanent.
 /in-house/  /work-with-us/  301
 /in-house   /work-with-us/  301
+
+# Sandy's edge was The Growth Edge until 2026-09-09. Expansion is the specific
+# outcome; growth is the category. 301 because the move is permanent, and the
+# old URL had been live and linked.
+/growth-edge/  /expansion-edge/  301
+/growth-edge   /expansion-edge/  301

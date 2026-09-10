@@ -3,12 +3,18 @@ import Base from '../../layouts/Base.astro';
 import { EDGES } from '../../data/program';
 import { DIMENSIONS, SCALE, QUESTIONS, ROLES, BANDS } from '../../data/assessment';
 
-/* NOTHING LEAVES THE BROWSER. No endpoint, no storage, no analytics call, no
-   email gate, and the role you pick is never sent anywhere either. Everything
-   below runs on the answers in the DOM and is gone when the tab closes.
+/* One question at a time, following the Narrative Assessment on
+   inspireyourbuyers.com: a count, a progress rule, the dimension being
+   measured, the statement, and stacked answers that advance on click.
 
-   The privacy page states this in those terms. If an endpoint is ever added
-   here, that page has to change in the same commit. */
+   Eighteen statements stacked on one page read as a form to fill in.
+   Presented one at a time they read as a conversation, and each answer
+   carries the sense of getting somewhere.
+
+   NOTHING LEAVES THE BROWSER. No endpoint, no storage, no analytics call, no
+   email gate, and the role is never sent anywhere either. State lives in a
+   closure and dies with the tab. The privacy page says this in these terms;
+   if that ever stops being true, that page changes in the same commit. */
 
 const title = 'The Enterprise Edge assessment: which of the nine is costing you?';
 const description =
@@ -26,52 +32,29 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
     </div>
   </section>
 
-  <section class="band band-bone">
+  <section class="band band-bone" id="quiz">
     <div class="wrap">
-      <form id="assess" novalidate>
-
-        <fieldset class="roles">
-          <legend class="eyebrow">First, so the result can talk to you rather than at you</legend>
-          <div class="role-opts" role="radiogroup">
-            {ROLES.map((r) => (
-              <label class="opt role-opt">
-                <input type="radio" name="role" value={r.v} />
-                <span class="dot" aria-hidden="true"></span>
-                <span class="lab">{r.l}</span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-
-        <p class="eyebrow qhead">Rate each statement as it is today, not as you would like it to be</p>
-
-        <ol class="qlist">
-          {QUESTIONS.map((q, i) => (
-            <li class="q" data-dim={q.d}>
-              <fieldset>
-                <legend><span class="qnum">{String(i + 1).padStart(2, '0')}</span>{q.t}</legend>
-                <div class="scale" role="radiogroup">
-                  {SCALE.map((s) => (
-                    <label class="opt">
-                      <input type="radio" name={`q${i}`} value={s.v} data-dim={q.d} />
-                      <span class="dot" aria-hidden="true"></span>
-                      <span class="lab">{s.l}</span>
-                    </label>
-                  ))}
-                </div>
-              </fieldset>
-            </li>
-          ))}
-        </ol>
-
-        <div class="progress" aria-hidden="true"><i id="pbar"></i></div>
-        <p class="pcount" id="pcount" role="status">0 of {QUESTIONS.length} answered</p>
-
-        <p id="err" class="err" role="status" hidden></p>
-        <div class="cta-pair">
-          <button class="btn" type="submit">Draw my shape</button>
+      <div class="qcard">
+        <div class="qtop">
+          <p class="qcount" id="qcount">&nbsp;</p>
+          <button class="qclear" type="button" id="clear">Clear</button>
         </div>
-      </form>
+        <div class="qtrack"><i id="qfill"></i></div>
+
+        <div id="stage" aria-live="polite">
+          <p class="qdim" id="qdim">&nbsp;</p>
+          <h2 class="qtext" id="qtext">&nbsp;</h2>
+          <ul class="qopts" id="qopts"></ul>
+        </div>
+
+        <div class="qfoot">
+          <button class="qback" type="button" id="back">Back</button>
+        </div>
+      </div>
+
+      <noscript>
+        <p class="fine" style="margin-top:2rem">This assessment scores in your browser, so it needs JavaScript. The nine dimensions it measures are listed on the three edge pages if you would rather read them.</p>
+      </noscript>
     </div>
   </section>
 
@@ -96,42 +79,91 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
 
       <div class="cta-pair">
         <a class="btn" href="/#dates">See dates and cities</a>
-        <a class="more" href="/work-with-us/">Work with us</a>
+        <button class="more" type="button" id="again">Take it again</button>
       </div>
-      <p class="fine" style="margin-top:2rem">Scored in your browser. Nothing was sent anywhere. Reload the page to start over.</p>
+      <p class="fine" style="margin-top:2rem">Scored in your browser. Nothing was sent anywhere.</p>
     </div>
   </section>
 
-  <script is:inline define:vars={{ DIMENSIONS, QUESTIONS, BANDS, EDGES }}>
+  <script is:inline define:vars={{ DIMENSIONS, SCALE, QUESTIONS, ROLES, BANDS, EDGES }}>
     (function () {
-      var form = document.getElementById('assess');
-      var pbar = document.getElementById('pbar');
-      var pcount = document.getElementById('pcount');
-      var err = document.getElementById('err');
-      var result = document.getElementById('result');
-      var TOTAL = QUESTIONS.length;
-      var MAX_PER_DIM = 2 * 4; /* two statements, four points each */
+      var $ = function (id) { return document.getElementById(id); };
+      var DIM = {};
+      DIMENSIONS.forEach(function (d) { DIM[d.key] = d; });
 
-      function answered() {
-        var n = 0;
-        for (var i = 0; i < TOTAL; i++) {
-          if (form.querySelector('input[name="q' + i + '"]:checked')) n++;
-        }
-        return n;
-      }
+      /* Step 0 is the role. It is a question like any other so that the count,
+         the progress rule and Back all behave the same way throughout. */
+      var STEPS = [{ role: true, dim: 'Your role', text: 'Which of these is closest to your seat?', opts: ROLES.map(function (r) { return r.l; }) }]
+        .concat(QUESTIONS.map(function (q) {
+          return { dim: DIM[q.d].label, text: q.t, opts: SCALE.map(function (s) { return s.l; }), key: q.d };
+        }));
 
-      function refresh() {
-        var n = answered();
-        pbar.style.width = (n / TOTAL) * 100 + '%';
-        pcount.textContent = n + ' of ' + TOTAL + ' answered';
-        if (n === TOTAL) form.querySelectorAll('.q.unanswered').forEach(function (el) {
-          el.classList.remove('unanswered');
+      var answers = new Array(STEPS.length).fill(null);
+      var idx = 0;
+      var started = false;   /* true once the reader has actually chosen something */
+
+      function render() {
+        var s = STEPS[idx];
+        $('qcount').textContent = 'Question ' + (idx + 1) + ' of ' + STEPS.length;
+        $('qdim').textContent = s.dim;
+        $('qfill').style.width = (idx / STEPS.length) * 100 + '%';
+        $('qtext').textContent = s.text;
+
+        var ul = $('qopts');
+        ul.innerHTML = '';
+        s.opts.forEach(function (label, i) {
+          var li = document.createElement('li');
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'qopt';
+          b.textContent = label;
+          b.setAttribute('aria-pressed', answers[idx] === i ? 'true' : 'false');
+          b.addEventListener('click', function () { choose(i); });
+          li.appendChild(b);
+          ul.appendChild(li);
         });
-      }
-      form.addEventListener('change', refresh);
-      refresh();
 
-      /* Radar. Nine axes, drawn as SVG so it scales and prints. */
+        $('back').style.visibility = idx === 0 ? 'hidden' : 'visible';
+
+        /* Move focus to the first answer so the keyboard lands where the work
+           is, but never on the very first paint: focusing scrolls, and on
+           load that yanked the reader past the hero to a question they had
+           not asked for yet. */
+        if (started) {
+          var first = ul.querySelector('.qopt');
+          if (first) first.focus();
+        }
+      }
+
+      function choose(i) {
+        started = true;
+        answers[idx] = i;
+        if (idx < STEPS.length - 1) { idx++; render(); }
+        else { finish(); }
+      }
+
+      $('back').addEventListener('click', function () {
+        if (idx > 0) { started = true; idx--; render(); }
+      });
+
+      $('clear').addEventListener('click', function () {
+        answers = new Array(STEPS.length).fill(null);
+        idx = 0;
+        started = false;
+        $('result').hidden = true;
+        render();
+        $('quiz').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      $('again').addEventListener('click', function () {
+        answers = new Array(STEPS.length).fill(null);
+        idx = 0;
+        started = false;
+        $('result').hidden = true;
+        render();
+        $('quiz').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
       function drawRadar(pcts) {
         var n = DIMENSIONS.length, R = 118, CX = 190, CY = 168;
         function pt(i, r) {
@@ -170,54 +202,35 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
         return '<svg viewBox="0 0 380 336" role="img" aria-label="Your nine dimension scores">' + out.join('') + '</svg>';
       }
 
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        var missing = 0;
-        var byDim = {};
+      function finish() {
+        var byDim = {}, MAX_PER_DIM = 2 * 4;
         DIMENSIONS.forEach(function (d) { byDim[d.key] = 0; });
-
-        for (var i = 0; i < TOTAL; i++) {
-          var picked = form.querySelector('input[name="q' + i + '"]:checked');
-          var row = form.querySelectorAll('.q')[i];
-          if (!picked) { missing++; row.classList.add('unanswered'); continue; }
-          row.classList.remove('unanswered');
-          byDim[picked.dataset.dim] += +picked.value;
-        }
-
-        if (missing) {
-          err.hidden = false;
-          err.textContent = missing === 1
-            ? 'One statement is still unrated. It is marked below.'
-            : missing + ' statements are still unrated. They are marked below.';
-          form.querySelector('.unanswered').scrollIntoView({ block: 'center' });
-          return;
-        }
-        err.hidden = true;
+        STEPS.forEach(function (s, i) {
+          if (!s.key) return;                 /* the role step scores nothing */
+          byDim[s.key] += SCALE[answers[i]].v;
+        });
 
         var pcts = DIMENSIONS.map(function (d) {
           return Math.round((byDim[d.key] / MAX_PER_DIM) * 100);
         });
         var overall = Math.round(pcts.reduce(function (a, b) { return a + b; }, 0) / pcts.length);
-
         var band = BANDS.filter(function (b) { return overall >= b.min; })[0];
-        document.getElementById('band-name').textContent = band.name + '. ' + overall + '%.';
-        document.getElementById('band-copy').textContent = band.copy;
 
-        document.getElementById('radar').innerHTML = drawRadar(pcts);
+        $('band-name').textContent = band.name + '. ' + overall + '%.';
+        $('band-copy').textContent = band.copy;
+        $('radar').innerHTML = drawRadar(pcts);
 
         var lowest = 0;
         for (var j = 1; j < pcts.length; j++) if (pcts[j] < pcts[lowest]) lowest = j;
-        var dim = DIMENSIONS[lowest];
-        var edge = EDGES[dim.edge];
-        document.getElementById('weak-dim').textContent = dim.label + ', ' + pcts[lowest] + '%';
-        document.getElementById('weak-copy').textContent =
+        var dim = DIMENSIONS[lowest], edge = EDGES[dim.edge];
+        $('weak-dim').textContent = dim.label + ', ' + pcts[lowest] + '%';
+        $('weak-copy').textContent =
           'Of the nine, this is where your own answers put you lowest. It sits inside ' + edge.name + '.';
-        var link = document.getElementById('edge-link');
+        var link = $('edge-link');
         link.href = '/' + edge.slug + '/';
         link.textContent = 'Read about ' + edge.name;
 
-        var box = document.getElementById('edge-scores');
+        var box = $('edge-scores');
         box.innerHTML = '';
         EDGES.forEach(function (ed, k) {
           var mine = pcts.filter(function (_, i) { return DIMENSIONS[i].edge === k; });
@@ -228,61 +241,53 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
           box.appendChild(row);
         });
 
-        result.hidden = false;
-        result.classList.add('is-in');
-        result.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
+        $('qfill').style.width = '100%';
+        $('qcount').textContent = 'Complete';
+        $('result').hidden = false;
+        $('result').classList.add('is-in');
+        $('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      render();
     })();
   </script>
 
   <style>
-    .roles{border:0;margin:0 0 2.75rem;padding:0;max-width:46rem}
-    .roles legend{padding:0;margin:0 0 .9rem;float:left;width:100%}
-    .role-opts{display:grid;grid-template-columns:1fr;gap:.4rem;clear:both}
-    @media (min-width:640px){.role-opts{grid-template-columns:repeat(2,1fr)}}
+    .qcard{max-width:46rem}
+    .qtop{display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
+    .qcount{font-family:var(--font-head);font-weight:700;font-size:.95rem;
+      letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0}
+    .qclear{background:none;border:0;padding:0;cursor:pointer;
+      font-family:var(--font-head);font-weight:700;font-size:.95rem;
+      letter-spacing:.08em;text-transform:uppercase;color:var(--bronze)}
+    .qclear:hover{text-decoration:underline}
+    .qtrack{height:3px;background:var(--line);margin:.7rem 0 2.25rem;border-radius:2px;
+      overflow:hidden}
+    .qtrack i{display:block;height:100%;width:0;background:var(--bronze);
+      transition:width .3s cubic-bezier(.22,.61,.36,1)}
 
-    .qhead{margin-top:0}
-    .qlist{list-style:none;margin:1.5rem 0 0;padding:0;max-width:46rem}
-    .q{margin:0 0 .5rem;padding:1.5rem 0;border-bottom:1px solid var(--line)}
-    .q fieldset{border:0;margin:0;padding:0}
-    .q legend{font-family:var(--font-head);font-weight:600;font-size:1.25rem;
-      line-height:1.35;color:var(--ink);padding:0;margin:0 0 1rem;display:block;width:100%}
-    .qnum{display:inline-block;font-family:var(--font-numeral);color:var(--bronze);
-      font-size:1.1rem;margin-right:.65rem;letter-spacing:.04em}
-    .scale{display:grid;grid-template-columns:1fr;gap:.35rem}
-    @media (min-width:720px){.scale{grid-template-columns:repeat(5,1fr);gap:.5rem}}
+    .qdim{font-family:var(--font-head);font-weight:700;font-size:.9rem;
+      letter-spacing:.12em;text-transform:uppercase;color:var(--bronze);margin:0 0 .7rem}
+    .qtext{font-size:clamp(1.5rem,3.2vw,2.1rem);line-height:1.2;color:var(--ink);
+      margin:0 0 1.75rem;max-width:34ch}
 
-    .opt{display:flex;align-items:center;gap:.6rem;cursor:pointer;
-      padding:.55rem .6rem;border:1px solid var(--line);border-radius:2px;
-      background:var(--white);transition:border-color .15s ease}
-    @media (min-width:720px){
-      .scale .opt{flex-direction:column;text-align:center;gap:.45rem;padding:.75rem .4rem}
-    }
-    .opt:hover{border-color:var(--bronze)}
-    /* The native input stays focusable and in the radiogroup; it is moved
-       off-screen rather than display:none, which would remove it from the tab
-       order entirely. */
-    .opt input{position:absolute;opacity:0;width:1px;height:1px}
-    .dot{width:1.15rem;height:1.15rem;border:2px solid var(--muted);
-      border-radius:50%;flex:0 0 auto;display:block}
-    .opt input:checked ~ .dot{border-color:var(--bronze);background:var(--bronze);
-      box-shadow:inset 0 0 0 3px var(--white)}
-    .opt input:focus-visible ~ .dot{outline:3px solid var(--amber);outline-offset:3px}
-    .lab{font-size:.9rem;line-height:1.25;color:var(--text)}
-    .opt input:checked ~ .lab{font-weight:600}
-    .q.unanswered{background:rgba(143,93,10,.06)}
-    .q.unanswered legend{color:var(--bronze)}
-    .err{font-family:var(--font-head);font-weight:700;font-size:1.15rem;
-      color:var(--bronze);margin:1.25rem 0 0}
+    .qopts{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+    .qopt{display:block;width:100%;text-align:left;cursor:pointer;
+      font-family:var(--font-body);font-size:1.1rem;line-height:1.4;color:var(--ink);
+      background:var(--white);border:1px solid var(--line);border-radius:2px;
+      padding:1rem 1.2rem;transition:border-color .15s ease,background .15s ease}
+    .qopt:hover{border-color:var(--bronze);background:var(--bone-2)}
+    .qopt:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+    /* The previously chosen answer stays marked, so stepping Back shows what
+       you said rather than a blank slate. */
+    .qopt[aria-pressed="true"]{border-color:var(--bronze);border-left-width:4px;
+      font-weight:600}
 
-    /* Progress. Answering eighteen statements with no sense of how many are
-       left is the fastest way to lose someone halfway. */
-    .progress{height:4px;background:var(--line);margin:2.25rem 0 .6rem;max-width:46rem;
-      border-radius:2px;overflow:hidden}
-    .progress i{display:block;height:100%;width:0;background:var(--bronze);
-      transition:width .25s ease}
-    .pcount{font-family:var(--font-head);font-weight:700;font-size:.95rem;
-      letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0}
+    .qfoot{margin-top:1.75rem;min-height:2rem}
+    .qback{background:none;border:0;padding:0;cursor:pointer;
+      font-family:var(--font-head);font-weight:700;font-size:1.05rem;
+      color:var(--ink);border-bottom:2px solid var(--amber);padding-bottom:2px}
+    .qback:hover{color:var(--bronze)}
 
     .result-grid{display:grid;grid-template-columns:1fr;gap:2.5rem;margin-top:2.5rem}
     @media (min-width:900px){
@@ -310,6 +315,8 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
       color:var(--pale);text-align:right}
     .escore.is-weak b,.escore.is-weak .epct{color:var(--amber)}
     .escore.is-weak .ebar i{background:var(--amber)}
+
+    #again{background:none;border:0;padding:0 0 2px;cursor:pointer}
   </style>
 
 </Base>

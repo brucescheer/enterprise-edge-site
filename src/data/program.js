@@ -112,11 +112,11 @@ export const EDGES = [
   },
   {
     num: '03',
-    domain: 'Growth and expansion',
-    name: 'The Growth Edge',
-    slug: 'growth-edge',
+    domain: 'Expansion and growth',
+    name: 'The Expansion Edge',
+    slug: 'expansion-edge',
     speaker: 'Sandy Yu',
-    job: 'Getting the account to grow',
+    job: 'Turning delivered value into retention and expansion',
     promise: 'Grow the account',
     blurb:
       'Winning the deal is the beginning. A year later there is a review you are not invited to, and it ends in expansion or in a quiet search for your replacement. Sandy works on what decides which.',
@@ -423,7 +423,7 @@ export const FACULTY = [
   },
   {
     name: 'Sandy Yu',
-    edge: 'The Growth Edge',
+    edge: 'The Expansion Edge',
     title: 'Founder and CEO of Revenue Retention Advisors. Formerly Oracle.',
     photo: '/assets/sandy-yu.jpg',
     email: 'sandy@revenuecco.com',
