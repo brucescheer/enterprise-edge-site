@@ -117,7 +117,7 @@ export const EDGES = [
     slug: 'expansion-edge',
     speaker: 'Sandy Yu',
     job: 'Turning delivered value into retention and expansion',
-    promise: 'Expand the account',
+    promise: 'Get them to expand',
     /* Sandy's own words, 2026-09-09. Her disciplines are the 3D Framework
        rather than four generic capabilities, which puts her section in the
        same shape as Bruce's Find, Communicate, Quantify: a named method with
