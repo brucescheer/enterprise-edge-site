@@ -751,3 +751,29 @@ a.date.is-open .when{color:var(--white)}
   pointer-events:none}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
   overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ---------- Steps ----------
+   The last thing on the home page, and the beat the narrative model is most
+   often missing. A numbered list where the number is the design: an amber
+   numeral in the gutter, the action in the heading weight, and the objective
+   and deliverable underneath it in body copy. */
+.steps{list-style:none;counter-reset:step;margin:2.5rem 0 0;padding:0;
+  max-width:44rem}
+.steps li{counter-increment:step;position:relative;padding:1.5rem 0 1.5rem 3.75rem;
+  border-top:1px solid var(--line-dark)}
+.band-bone .steps li,.band-bone2 .steps li{border-top-color:var(--line)}
+.steps li:first-child{border-top:none;padding-top:.25rem}
+.steps li::before{content:counter(step,decimal-leading-zero);position:absolute;
+  left:0;top:1.45rem;font-family:var(--font-numeral);font-size:1.75rem;
+  line-height:1;color:var(--amber)}
+.band-bone .steps li::before,.band-bone2 .steps li::before{color:var(--bronze)}
+.steps li:first-child::before{top:.2rem}
+.steps b{display:block;font-family:var(--font-head);font-weight:700;
+  font-size:1.35rem;line-height:1.2;color:var(--white);margin-bottom:.35rem}
+.band-bone .steps b,.band-bone2 .steps b{color:var(--ink)}
+.steps span{display:block;font-size:1.05rem;line-height:1.55;color:var(--pale)}
+.band-bone .steps span,.band-bone2 .steps span{color:var(--text)}
+.steps + .cta-pair{margin-top:2.5rem}
+
+/* Landing on an anchor should not put the heading under the sticky header. */
+.band[id]{scroll-margin-top:5.5rem}

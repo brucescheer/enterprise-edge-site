@@ -30,8 +30,13 @@ const slugFor = (edgeName) => EDGES.find((e) => e.name === edgeName)?.slug;
     </div>
   </section>
 
+  {/* First name as the id, because that is what the home page's Steps
+      section links to and what anyone would type. scroll-margin-top on
+      .band[id] keeps the sticky header off the heading on arrival.
+      The comment sits out here on purpose: inside the callback it would be
+      a second returned sibling and the build fails. */}
   {FACULTY.map((p, i) => (
-    <section class={`band ${i % 2 === 0 ? 'band-bone' : 'band-bone2'}`}>
+    <section id={p.name.split(' ')[0].toLowerCase()} class={`band ${i % 2 === 0 ? 'band-bone' : 'band-bone2'}`}>
       <div class="wrap">
         <div class="person">
           <div class="person-photo">

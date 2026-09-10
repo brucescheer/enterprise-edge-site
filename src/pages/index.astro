@@ -70,7 +70,6 @@ const jsonLd = {
   canonical={canonical}
   jsonLd={jsonLd}
 >
-
   <section class="band band-ink hero has-figure">
     {/* The symbol at scale, bleeding off the right edge. It gives the hero
         depth without stock photography and reuses artwork we already have.
@@ -82,10 +81,15 @@ const jsonLd = {
       <p class="eyebrow">A half day for enterprise revenue leaders</p>
       <h1>Get them to say yes. Get the damn deal closed. Expand the account.</h1>
       <p class="lede">Three hours on the full arc of an enterprise customer, with three people who have each spent a career on one part of it.</p>
+      {/* The assessment leads, because it is step one of the four at the
+          foot of this page and because a reader who has seen their own shape
+          arrives at the dates already knowing why. Dates stay one click
+          away as the secondary. */}
       <div class="cta-pair">
-        <a class="btn" href="#dates">{HAS_DATES ? 'See dates and cities' : 'See where we are running it'}</a>
-        <a class="more" href="#edges">What we cover</a>
+        <a class="btn" href="/assessment/">Take the assessment</a>
+        <a class="more" href="#dates">{HAS_DATES ? 'See dates and cities' : 'See where we are running it'}</a>
       </div>
+      <p class="fine" style="margin-top:.9rem">Nine questions, about three minutes. No sign-in.</p>
 
       {/* The dates used to sit 82% of the way down the page, so a reader
           could get most of the way through without learning that anything
@@ -105,11 +109,11 @@ const jsonLd = {
       )}
     </div>
   </section>
-
   <section class="band band-bone band-measure">
     <div class="wrap">
-      <p class="eyebrow">The problem</p>
-      <h2>You can do everything right and still lose.</h2>
+      <p class="eyebrow">Problem</p>
+      <h2>Upmarket revenue misfires.</h2>
+      <p class="lede">You can do everything right and still lose.</p>
       <p>Strong product. A champion who genuinely wants you to win. A business case you were proud to hand over.</p>
       <p>And the deal stalls. Or it shrinks. Or it slides two quarters you cannot afford.</p>
       <p>Enterprise revenue depends on three connected motions: win preference, earn approval, and prove value after the sale. They fail in completely different ways. Winning preference is a narrative and business case problem. Earning approval is a commercial, legal, security and governance problem. Proving value afterward is an outcomes and relationships problem.</p>
@@ -126,21 +130,35 @@ const jsonLd = {
       <p>That is the shrink, measured. It does not arrive with a reason attached.</p>
     </div>
   </section>
-
-  <section class="band band-bone2 band-measure" id="promise">
+  <section class="band band-bone2 band-measure">
     <div class="wrap">
-      <p class="eyebrow">What you leave with</p>
-      <h2>New ideas to improve revenue performance.</h2>
-      <p>Working frameworks across the whole revenue motion, not one slice of it. How you acquire customers, how you get contracts approved, and how you expand the accounts you win. Most programs take one of those three. The gaps between them are where the revenue actually goes.</p>
-      <p>And the other half of the value is sitting next to you.</p>
-      <p>Every seat belongs to someone running a revenue organization at your scale, working the same problems on different accounts. The cross-fertilizing is not a side effect of the format. It is half the reason we cap the room.</p>
+      <p class="eyebrow">Who should be in the room</p>
+      <h2>Revenue leaders running 50 sellers or more.</h2>
+      <p>CROs, VPs and SVPs of Sales, and senior revenue enablement leaders at B2B companies typically above $100 million in revenue. We make selective exceptions down to $50 million and twenty sellers.</p>
+      <p>This is for leaders who are seeing healthy enterprise deals stall, disappear, or go quiet, and who cannot always see what is happening inside the customer organization to cause it.</p>
+      <p>It is also for teams with customers who are satisfied, but where renewal, expansion and account growth are harder than they should be.</p>
+      <p>Between us we have worked from the value, approval and customer-growth sides of the enterprise deal. Bruce spent his career enabling enterprise marketers and sellers at Microsoft, HP, Adobe, SAP, Oracle, Google and eBay Enterprise. Dean ran Procurement and Strategic Sourcing for Kaiser Permanente, Yahoo, Levi Strauss and Ingram Micro. Sandy led global customer success and go-to-market teams at Oracle, Cisco, PwC and WebEx.</p>
+      <p>Bring the deals that are not moving, the accounts you are trying to grow, and the questions that do not have easy answers.</p>
     </div>
   </section>
-
+  <section class="band band-bone band-measure">
+    <div class="wrap">
+      <p class="eyebrow">Outcome</p>
+      <h2>High performing revenue engine.</h2>
+      <p class="lede">What it looks like when all three motions go your way.</p>
+      <p>Your champion can tell the buying group the same value story you would have told, in their own words, without you there to correct it.</p>
+      <p>The wider organization gets the answers it needs. Procurement can defend the commercial logic. Finance understands the economics. Security, Legal and governance stakeholders can see how risk will be managed. When price pressure comes, the conversation stays anchored in total value rather than collapsing into discounting.</p>
+      <p>After the sale, the customer can see what was delivered, why it mattered, and where additional value can be created.</p>
+      <p>The result is a deal that earns preference, survives approval, delivers visible value, and creates a stronger path to renewal and expansion.</p>
+      <p class="emph">You will not be in every meeting that decides the deal. The system has to work when you are not in the room.</p>
+    </div>
+  </section>
   <section class="band band-ink" id="edges">
     <div class="wrap">
-      <p class="eyebrow">The three edges</p>
-      <h2>Three jobs. Three hours. Three people who have done them.</h2>
+      <p class="eyebrow">Path</p>
+      <h2>Get the Enterprise Edge.</h2>
+      <p class="lede">Three jobs. Three hours. Three people who have each spent a career on one of them.</p>
+      <p>Working frameworks across the whole revenue motion, not one slice of it. How you acquire customers, how you get contracts approved, and how you expand the accounts you win. Most programs take one of those three. The gaps between them are where the revenue actually goes.</p>
 
       <div class="pull">
         <p><b>Bruce</b> will get your customers to say yes. <b>Dean</b> will make sure the damn deal closes. <b>Sandy</b> will help you grow the account.</p>
@@ -180,19 +198,6 @@ const jsonLd = {
       </div>
     </div>
   </section>
-
-  <section class="band band-bone band-measure">
-    <div class="wrap">
-      <p class="eyebrow">The outcome</p>
-      <h2>What it looks like when all three go your way</h2>
-      <p>Your champion can tell the buying group the same value story you would have told, in their own words, without you there to correct it.</p>
-      <p>The wider organization gets the answers it needs. Procurement can defend the commercial logic. Finance understands the economics. Security, Legal and governance stakeholders can see how risk will be managed. When price pressure comes, the conversation stays anchored in total value rather than collapsing into discounting.</p>
-      <p>After the sale, the customer can see what was delivered, why it mattered, and where additional value can be created.</p>
-      <p>The result is a deal that earns preference, survives approval, delivers visible value, and creates a stronger path to renewal and expansion.</p>
-      <p class="emph">You will not be in every meeting that decides the deal. The system has to work when you are not in the room.</p>
-    </div>
-  </section>
-
   <section class="band band-ink" id="agenda">
     <div class="wrap">
       <p class="eyebrow">The half day</p>
@@ -210,7 +215,6 @@ const jsonLd = {
       <p class="fine" style="margin-top:2rem">The exact schedule varies by city, but every session includes all three edges, practical application, and time for peer discussion. Twenty-five seats a city, and attendance is approved in advance to keep the room senior, relevant and candid.</p>
     </div>
   </section>
-
   <section class="band band-bone band-measure">
     <div class="wrap">
       <p class="eyebrow">The room</p>
@@ -221,6 +225,7 @@ const jsonLd = {
 
       <p>That is not hospitality for its own sake. You are giving us a working morning out of a week that did not have one spare, and the room you spend it in decides whether the conversation stays polite or gets somewhere.</p>
       <p>Where a session runs into a meal, the meal is on the agenda rather than after it, because a good share of the value is in it. The people beside you are running revenue organizations at your scale, working the same problems on different accounts. An hour with them over a proper meal earns its place.</p>
+      <p>The other half of the value is sitting next to you. Every seat belongs to someone running a revenue organization at your scale, working the same problems on different accounts. The cross-fertilizing is not a side effect of the format. It is half the reason we cap the room.</p>
       <p>A seat costs a token fee. It does not cover the room or the meal and it is not meant to. It is there because a seat that cost something is a seat that gets used, and because twenty people who turned up beats sixty who meant to.</p>
       {/* Venue photographs identify where each session is held. The site
           makes no claim that a venue hosts, sponsors or endorses the
@@ -248,19 +253,6 @@ const jsonLd = {
       </div>
     </div>
   </section>
-
-  <section class="band band-bone2 band-measure">
-    <div class="wrap">
-      <p class="eyebrow">Who should be in the room</p>
-      <h2>Revenue leaders running 50 sellers or more.</h2>
-      <p>CROs, VPs and SVPs of Sales, and senior revenue enablement leaders at B2B companies typically above $100 million in revenue. We make selective exceptions down to $50 million and twenty sellers.</p>
-      <p>This is for leaders who are seeing healthy enterprise deals stall, disappear, or go quiet, and who cannot always see what is happening inside the customer organization to cause it.</p>
-      <p>It is also for teams with customers who are satisfied, but where renewal, expansion and account growth are harder than they should be.</p>
-      <p>Between us we have worked from the value, approval and customer-growth sides of the enterprise deal. Bruce spent his career enabling enterprise marketers and sellers at Microsoft, HP, Adobe, SAP, Oracle, Google and eBay Enterprise. Dean ran Procurement and Strategic Sourcing for Kaiser Permanente, Yahoo, Levi Strauss and Ingram Micro. Sandy led global customer success and go-to-market teams at Oracle, Cisco, PwC and WebEx.</p>
-      <p>Bring the deals that are not moving, the accounts you are trying to grow, and the questions that do not have easy answers.</p>
-    </div>
-  </section>
-
   <section class="band band-ink" id="dates">
     <div class="wrap">
       <p class="eyebrow">Cities</p>
@@ -317,14 +309,42 @@ const jsonLd = {
     </div>
   </section>
 
-  <section class="band band-bone band-measure">
+  <section class="band band-ink band-measure" id="steps">
     <div class="wrap">
-      <h2>Three motions. You are probably losing money on one of them.</h2>
-      <p>The hardest part is that the weak link is rarely obvious. It fails quietly, in meetings you are not in, and eventually shows up as stalled pipeline, lost deals, weak renewals, or missed expansion.</p>
-      <p class="emph">Which of the three is costing you the most right now?</p>
+      <p class="eyebrow">Steps</p>
+      <h2>What happens next</h2>
+      <p class="lede">The hardest part is that the weak link is rarely obvious. It fails quietly, in meetings you are not in, and shows up later as stalled pipeline, lost deals, weak renewals or missed expansion.</p>
+
+      {/* Four steps, each with an objective and something the reader
+          actually gets. The book is specific that a next step needs a
+          defined objective and a stated deliverable, and that a page which
+          stops at "get in touch" fumbles at the goal line. */}
+      <ol class="steps">
+        <li>
+          <b>Take the assessment.</b>
+          <span>Nine questions, about three minutes. You get a shape across nine dimensions, the one costing you most, and the edge to start with. <a href="/assessment/">Start it here</a>.</span>
+        </li>
+        <li>
+          <b>Check the dates.</b>
+          <span>Five cities, first-class rooms, three hours plus the meal. <a href="#dates">See where and when</a>.</span>
+        </li>
+        <li>
+          <b>Register.</b>
+          <span>{HAS_REGISTRATION
+            ? 'Each city is its own event. Twenty-five seats, approved in advance to keep the room senior and candid.'
+            : 'Each city is its own event. Twenty-five seats, approved in advance to keep the room senior and candid. Registration opens city by city, so check the dates for the one nearest you.'}</span>
+        </li>
+        <li>
+          <b>Ask us anything.</b>
+          <span>{FACULTY.map((f, i) => (
+            <>{i > 0 ? (i === FACULTY.length - 1 ? ' or ' : ', ') : ''}<a href={`/faculty/#${f.name.split(' ')[0].toLowerCase()}`}>{f.name.split(' ')[0]}</a></>
+          ))} will answer directly. No form, no queue.</span>
+        </li>
+      </ol>
+
       <div class="cta-pair">
-        <a class="btn" href="/assessment/">Find out in four minutes</a>
-        <a class="more" href="/faculty/">Meet the three of us</a>
+        <a class="btn" href="/assessment/">Take the assessment</a>
+        <a class="btn btn-ghost" href="/work-with-us/">Bring The Enterprise Edge in-house</a>
       </div>
     </div>
   </section>
