@@ -786,3 +786,15 @@ a.date.is-open .when{color:var(--white)}
    to clear the paragraph above it and sit tight to the list below. */
 .edges-title{margin:3rem 0 0;font-size:clamp(1.4rem,2.4vw,1.75rem)}
 .edges-title + .edges{margin-top:1.25rem}
+
+/* ---------- The qualifier ----------
+   Sits in the hero, above the first call to action, and does one job: tell a
+   reader in one line whether the next twenty are for them. Amber left edge
+   and heading weight so it reads as a checkpoint rather than as more lede. */
+.qualifier{font-family:var(--font-head);font-weight:700;
+  font-size:clamp(1.15rem,2vw,1.35rem);line-height:1.35;color:var(--white);
+  margin:1.75rem 0 0;padding:.9rem 0 .9rem 1.15rem;
+  border-left:4px solid var(--amber);max-width:40rem}
+.band-bone .qualifier,.band-bone2 .qualifier{color:var(--ink);
+  border-left-color:var(--bronze)}
+.qualifier + .cta-pair{margin-top:1.75rem}
