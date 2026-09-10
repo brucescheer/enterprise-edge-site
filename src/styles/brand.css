@@ -260,7 +260,7 @@ p{line-height:1.6;margin:0 0 1.15rem;max-width:40rem}
   padding:2.5rem 0;border-bottom:1px solid var(--line-dark)}
 .band-bone .edge,.band-bone2 .edge{border-bottom-color:var(--line)}
 @media (min-width:820px){
-  .edge{grid-template-columns:6rem minmax(0,1fr) 15rem;gap:0 3rem;align-items:start}
+  .edge{grid-template-columns:6rem minmax(0,1fr) 16rem;gap:0 3rem;align-items:start}
 }
 .edge-num{font-family:var(--font-numeral);font-size:3.5rem;line-height:.85;
   color:var(--amber);letter-spacing:.01em}
@@ -553,12 +553,26 @@ a.date:hover .go{text-decoration:underline}
 .band-bone .contact-tel,.band-bone2 .contact-tel{color:var(--muted);
   border-bottom-color:var(--line)}
 
-/* Portrait in the edge row's right-hand column. Small and round, because it
-   is there to put a face to the name rather than to compete with the edge
-   title on the left. On mobile the row stacks and the portrait leads the
-   speaker block, which is the one place it reads as a byline. */
-.edge-who img{width:5.5rem;height:5.5rem;border-radius:50%;object-fit:cover;
-  display:block;margin:0 0 .85rem}
+/* Portrait in the edge row's right-hand column. It fills the column rather
+   than sitting as a token inside it. At 5.5rem it was a byline avatar, which
+   is the right size when a face is only there to disambiguate a name. It is
+   not the right size here: three people the reader has never heard of are the
+   entire reason to believe the program, and a face at 88px asks to be
+   scrolled past.
+
+   Still round, and still square source files, so the circle is a crop of
+   about 21% at the corners. All three portraits are centred with the head
+   well inside the frame, checked before this was widened, so nothing lands
+   on an ear.
+
+   On mobile the row stacks and the portrait leads the speaker block, where it
+   reads as a byline and a column-width face would push the name off the
+   first screen. It stays smaller there on purpose. */
+.edge-who img{width:100%;aspect-ratio:1;height:auto;border-radius:50%;
+  object-fit:cover;display:block;margin:0 0 1.1rem}
+@media (max-width:819px){
+  .edge-who img{width:9rem}
+}
 @media (min-width:820px){
   .edge-who img{margin-top:.25rem}
 }
