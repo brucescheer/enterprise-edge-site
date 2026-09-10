@@ -499,8 +499,12 @@ a.date:hover .go{text-decoration:underline}
   align-items:flex-start;gap:.35rem}
 .band-bone .contact,.band-bone2 .contact{background:var(--white);
   border-top-color:var(--bronze)}
-.contact img{width:4.5rem;height:4.5rem;border-radius:50%;object-fit:cover;
-  margin-bottom:.6rem;display:block}
+/* 4.5rem was byline size, the same call the home page portraits got wrong.
+   These cards are the only place on the site where someone decides which of
+   the three to write to, so the face is the thing they are choosing. Fills
+   the card width now, capped so it does not outgrow the button under it. */
+.contact img{width:100%;max-width:11rem;aspect-ratio:1;height:auto;
+  border-radius:50%;object-fit:cover;margin-bottom:1rem;display:block}
 .contact b{font-family:var(--font-head);font-weight:700;font-size:1.35rem;
   color:var(--white);line-height:1.2}
 .band-bone .contact b,.band-bone2 .contact b{color:var(--ink)}
