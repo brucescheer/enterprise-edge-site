@@ -117,7 +117,7 @@ export const EDGES = [
     slug: 'expansion-edge',
     speaker: 'Sandy Yu',
     job: 'Turning delivered value into retention and expansion',
-    promise: 'Grow the account',
+    promise: 'Expand the account',
     blurb:
       'Winning the deal is the beginning. A year later there is a review you are not invited to, and it ends in expansion or in a quiet search for your replacement. Sandy works on what decides which.',
     disciplines: [
