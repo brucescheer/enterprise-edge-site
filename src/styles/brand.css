@@ -777,3 +777,8 @@ a.date.is-open .when{color:var(--white)}
 
 /* Landing on an anchor should not put the heading under the sticky header. */
 .band[id]{scroll-margin-top:5.5rem}
+
+/* Sits directly on the rule that opens the numbered edge list, so it needs
+   to clear the paragraph above it and sit tight to the list below. */
+.edges-title{margin:3rem 0 0;font-size:clamp(1.4rem,2.4vw,1.75rem)}
+.edges-title + .edges{margin-top:1.25rem}
