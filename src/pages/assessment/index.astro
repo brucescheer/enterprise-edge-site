@@ -1,13 +1,13 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { EDGES } from '../../data/program';
-import { DIMENSIONS, SCALE, QUESTIONS, ROLES, BANDS } from '../../data/assessment';
+import { DIMENSIONS, QUESTIONS, ROLES, BANDS, MAX_PER_DIM } from '../../data/assessment';
 
 /* One question at a time, following the Narrative Assessment on
    inspireyourbuyers.com: a count, a progress rule, the dimension being
    measured, the statement, and stacked answers that advance on click.
 
-   Eighteen statements stacked on one page read as a form to fill in.
+   Nine questions stacked on one page read as a form to fill in.
    Presented one at a time they read as a conversation, and each answer
    carries the sense of getting somewhere.
 
@@ -18,7 +18,7 @@ import { DIMENSIONS, SCALE, QUESTIONS, ROLES, BANDS } from '../../data/assessmen
 
 const title = 'The Enterprise Edge assessment: which of the nine is costing you?';
 const description =
-  'A nine-dimension diagnostic across the arc of an enterprise deal, from finding value to expanding the account. Eighteen statements, about five minutes. Instant radar, nothing collected.';
+  'A nine-dimension diagnostic across the arc of an enterprise deal, from finding value to expanding the account. Nine questions, about three minutes. Instant radar, nothing collected.';
 const canonical = 'https://getenterpriseedge.com/assessment/';
 ---
 <Base title={title} description={description} canonical={canonical}>
@@ -27,7 +27,7 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
     <div class="wrap">
       <p class="eyebrow">The Enterprise Edge assessment</p>
       <h1>Nine dimensions. One of them is costing you.</h1>
-      <p class="lede">Eighteen statements, about five minutes. You get a shape rather than a score, and the shape shows you where in the arc of a deal your revenue is leaking.</p>
+      <p class="lede">Nine questions, about three minutes. You get a shape rather than a score, and the shape shows you where in the arc of a deal your revenue is leaking.</p>
       <p class="fine">Nothing is collected. No email, no sign-in, no storage, and the role you pick is not sent anywhere. The scoring runs in your browser and disappears when you close the tab.</p>
     </div>
   </section>
@@ -53,7 +53,7 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
       </div>
 
       <noscript>
-        <p class="fine" style="margin-top:2rem">This assessment scores in your browser, so it needs JavaScript. The nine dimensions it measures are listed on the three edge pages if you would rather read them.</p>
+        <p class="fine" style="margin-top:2rem">This assessment scores in your browser, so it needs JavaScript. The nine dimensions it measures are described on the three edge pages if you would rather read them.</p>
       </noscript>
     </div>
   </section>
@@ -85,7 +85,7 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
     </div>
   </section>
 
-  <script is:inline define:vars={{ DIMENSIONS, SCALE, QUESTIONS, ROLES, BANDS, EDGES }}>
+  <script is:inline define:vars={{ DIMENSIONS, QUESTIONS, ROLES, BANDS, EDGES, MAX_PER_DIM }}>
     (function () {
       var $ = function (id) { return document.getElementById(id); };
       var DIM = {};
@@ -93,10 +93,16 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
 
       /* Step 0 is the role. It is a question like any other so that the count,
          the progress rule and Back all behave the same way throughout. */
-      var STEPS = [{ role: true, dim: 'Your role', text: 'Which of these is closest to your seat?', opts: ROLES.map(function (r) { return r.l; }) }]
-        .concat(QUESTIONS.map(function (q) {
-          return { dim: DIM[q.d].label, text: q.t, opts: SCALE.map(function (s) { return s.l; }), key: q.d };
-        }));
+      /* Every question carries its own four answers now, so a step is just a
+         label, a prompt and a list of [text, score] pairs. The role step
+         scores nothing and is marked by having no key. */
+      var STEPS = [{
+        dim: 'Your role',
+        text: 'Which of these is closest to your seat?',
+        opts: ROLES.map(function (r) { return [r.l, 0]; }),
+      }].concat(QUESTIONS.map(function (q) {
+        return { dim: DIM[q.d].label, text: q.q, opts: q.a, key: q.d };
+      }));
 
       var answers = new Array(STEPS.length).fill(null);
       var idx = 0;
@@ -111,7 +117,8 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
 
         var ul = $('qopts');
         ul.innerHTML = '';
-        s.opts.forEach(function (label, i) {
+        s.opts.forEach(function (opt, i) {
+          var label = opt[0];
           var li = document.createElement('li');
           var b = document.createElement('button');
           b.type = 'button';
@@ -203,11 +210,11 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
       }
 
       function finish() {
-        var byDim = {}, MAX_PER_DIM = 2 * 4;
+        var byDim = {};
         DIMENSIONS.forEach(function (d) { byDim[d.key] = 0; });
         STEPS.forEach(function (s, i) {
           if (!s.key) return;                 /* the role step scores nothing */
-          byDim[s.key] += SCALE[answers[i]].v;
+          byDim[s.key] += s.opts[answers[i]][1];
         });
 
         var pcts = DIMENSIONS.map(function (d) {

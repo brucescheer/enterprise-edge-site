@@ -5,14 +5,22 @@
    it, read the approval room, surface its risks, equip the champion, prove
    the value landed, hold the account, grow it.
 
-   That ordering is the point of the instrument. A dent in the shape does not
-   just say you are weak, it says WHERE IN THE ARC you are weak, which is the
-   whole argument the site makes. Do not reorder these for tidiness.
+   That ordering is the point of the instrument. A dent does not only say you
+   are weak, it says WHERE IN THE ARC you are weak, which is the argument the
+   rest of the site makes. Do not reorder these for tidiness.
 
-   Nine rather than six because it divides evenly by three, which keeps each
-   edge equally represented, and because each edge genuinely has three parts.
-   Twelve was tried and drawn: the labels collide and the polygon turns into a
-   wobbly circle. Six works but flattens each edge into two.
+   ONE QUESTION PER DIMENSION, NOT TWO. It ran at eighteen statements on a
+   five point agree scale and was too long. Nine bespoke questions replaced
+   them, following the Narrative Assessment on inspireyourbuyers.com: each
+   question is written for its own dimension and its four answers are real
+   positions rather than degrees of agreement. A question that offers "we find
+   out when they show up" against "we prepare for it deliberately" tells you
+   more than the same statement rated one to five, so one of these carries an
+   axis where two agree-statements did not.
+
+   The trade is honest: a single question per axis is less robust than two, and
+   a misread question moves that axis further than it should. The bespoke
+   options are what buy that back.
 
    HOUSE RULES: no em dashes, no en dashes, and nobody carries a case or a
    narrative. */
@@ -29,39 +37,74 @@ export const DIMENSIONS = [
   { key: 'expansion',   edge: 2, label: 'Expansion Motion',   axis: 'Expansion\nMotion' },
 ];
 
-/* Dean's scale. "Partly true" replaced "Mixed", which he rightly called vague
-   for a diagnostic: mixed describes a feeling, partly true describes a fact
-   about the business. */
-export const SCALE = [
-  { v: 0, l: 'Strongly disagree' },
-  { v: 1, l: 'Disagree' },
-  { v: 2, l: 'Partly true' },
-  { v: 3, l: 'Agree' },
-  { v: 4, l: 'Strongly agree' },
-];
+/* Four options, scored 3 to 0, best first. Best first because the list reads
+   as a ladder down rather than a scale to interpret, and because someone
+   scanning quickly should meet the strong answer before the weak one. */
+export const MAX_PER_DIM = 3;
 
-/* Two per dimension, presented in arc order without their dimension labels.
-   Naming the dimension next to its questions invites people to answer the
-   category rather than the question. */
 export const QUESTIONS = [
-  { d: 'find',        t: 'We understand the customer’s alternative to buying, including doing nothing, and can make a credible case against it.' },
-  { d: 'find',        t: 'We know which buyers feel this problem hard enough to act on it now, rather than eventually.' },
-  { d: 'communicate', t: 'If you asked ten people here what value we create, you would get one answer.' },
-  { d: 'communicate', t: 'Our champions can retell our value story accurately when we are not in the room.' },
-  { d: 'quantify',    t: 'We can quantify our value in the customer’s business metrics, not just our own.' },
-  { d: 'quantify',    t: 'Our business case survives Finance opening it and rebuilding the math.' },
-  { d: 'stakeholder', t: 'We know what Procurement, Finance, Legal and other approval stakeholders will evaluate before they engage.' },
-  { d: 'stakeholder', t: 'We can name everyone beyond our champion who has to be convinced, and what each of them is judged on.' },
-  { d: 'risk',        t: 'We identify security, risk and governance requirements early enough to prevent avoidable late-stage delay.' },
-  { d: 'risk',        t: 'Deals rarely surprise us late with a blocker that nobody saw coming.' },
-  { d: 'champion',    t: 'Our champion has what they need to make the value and risk case internally without us.' },
-  { d: 'champion',    t: 'When price pressure lands, the conversation widens to total value rather than collapsing into discounting.' },
-  { d: 'realization', t: 'Our customers can see what was delivered, why it mattered, and in what terms.' },
-  { d: 'realization', t: 'We report value after the sale in the customer’s own metrics, not in usage or activity.' },
-  { d: 'retention',   t: 'We see retention risk while an account is still healthy, not at renewal.' },
-  { d: 'retention',   t: 'We know who inside our customer actually holds the relationship.' },
-  { d: 'expansion',   t: 'Expansion comes out of customer outcomes rather than off a renewal calendar.' },
-  { d: 'expansion',   t: 'Growth in existing accounts is a plan here, not a scramble each quarter.' },
+  { d: 'find',
+    q: 'When a buyer weighs doing nothing at all, how well do you understand what that costs them?',
+    a: [['We can put a number on it, in their terms', 3],
+        ['We understand it well, but not numerically', 2],
+        ['We have a general sense of it', 1],
+        ['We mostly argue our own value instead', 0]] },
+
+  { d: 'communicate',
+    q: 'If you asked ten people here what value you create, how many answers would you get?',
+    a: [['One. We are genuinely aligned on it', 3],
+        ['Two or three, close enough to work', 2],
+        ['Several, depending who you ask', 1],
+        ['Ten', 0]] },
+
+  { d: 'quantify',
+    q: 'What happens when Finance opens your business case and rebuilds the math?',
+    a: [['It holds. They have done it and it survived', 3],
+        ['It would mostly hold', 2],
+        ['It would need work', 1],
+        ['We rarely put one in front of Finance', 0]] },
+
+  { d: 'stakeholder',
+    q: 'Before Procurement, Legal and Security engage, how well do you know what each of them will evaluate?',
+    a: [['We know, and we prepare for it deliberately', 3],
+        ['We know Procurement. The others less so', 2],
+        ['We find out when they show up', 1],
+        ['We rely on our champion to handle that', 0]] },
+
+  { d: 'risk',
+    q: 'How often does a deal surprise you late with a blocker nobody saw coming?',
+    a: [['Rarely. We surface those early', 3],
+        ['Occasionally', 2],
+        ['Often enough to hurt the forecast', 1],
+        ['It is the normal shape of our quarter', 0]] },
+
+  { d: 'champion',
+    q: 'What can your champion do with the case when you are not in the room?',
+    a: [['Make it and defend it, in their own words', 3],
+        ['Present it, but not defend it under challenge', 2],
+        ['Forward our deck', 1],
+        ['We are not really sure what they say', 0]] },
+
+  { d: 'realization',
+    q: 'A year in, can the customer see what you actually delivered?',
+    a: [['Yes, in their own metrics, and we report it', 3],
+        ['Yes, but in usage rather than outcomes', 2],
+        ['Only our sponsor could tell you', 1],
+        ['Not really. Renewal starts the argument again', 0]] },
+
+  { d: 'retention',
+    q: 'When an account is genuinely at risk, when do you find out?',
+    a: [['Early, while it still looks healthy', 3],
+        ['In time to do something about it', 2],
+        ['At the renewal conversation', 1],
+        ['When they tell us they are leaving', 0]] },
+
+  { d: 'expansion',
+    q: 'Where does expansion revenue actually come from?',
+    a: [['Customer outcomes, on a plan we run', 3],
+        ['Mostly outcomes, partly opportunism', 2],
+        ['The renewal calendar and a push', 1],
+        ['A scramble, most quarters', 0]] },
 ];
 
 export const ROLES = [
@@ -85,5 +128,3 @@ export const BANDS = [
   { min: 0, name: 'Stalling',
     copy: 'Healthy-looking deals are stopping somewhere you cannot see, and the loss reports are blaming something else. At this level the problem is rarely effort or talent. It is that one of the three motions is not really being run.' },
 ];
-
-export const EDGE_OF = (key) => DIMENSIONS.find((d) => d.key === key).edge;
