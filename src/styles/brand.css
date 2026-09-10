@@ -684,3 +684,31 @@ a.date.is-open .when{color:var(--white)}
 .band-bone .who-does li,.band-bone2 .who-does li{color:var(--ink)}
 .band-bone .who-does b,.band-bone2 .who-does b{color:var(--bronze)}
 .band-bone .who-does,.band-bone2 .who-does{border-left-color:var(--bronze)}
+
+/* ---------- Keeping a result ----------
+   The assessment scores in the browser and holds nothing, which means the
+   result dies with the tab. Two ways out: take the image, or ask for it by
+   email. The download needs nothing from anyone; the email is the only thing
+   on this site that collects anything at all, so it says so before the field
+   rather than after it. */
+.keep{margin-top:3rem;padding-top:2.25rem;border-top:1px solid var(--line-dark);
+  max-width:52rem}
+.keep-lede{font-size:1.2rem;color:var(--white);max-width:38rem}
+.keep-row{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin-top:1.5rem}
+.keep-or{font-family:var(--font-head);font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;font-size:.85rem;color:var(--pale)}
+.mailform{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.mailform input{font-family:var(--font-body);font-size:1.05rem;color:var(--white);
+  background:var(--ink-raised);border:1px solid var(--line-dark);border-radius:2px;
+  padding:.85rem 1rem;min-width:15rem}
+.mailform input::placeholder{color:var(--muted)}
+.mailform input:focus-visible{outline:3px solid var(--amber);outline-offset:2px;
+  border-color:var(--amber)}
+.keep-note{margin-top:1.25rem;max-width:44rem}
+.keep-status{margin:1rem 0 0;font-family:var(--font-head);font-weight:700;
+  font-size:1.05rem;color:var(--amber);max-width:44rem}
+.keep-status.bad{color:#FF9E80}
+.ee-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;
+  pointer-events:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}

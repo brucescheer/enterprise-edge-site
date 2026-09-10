@@ -11,14 +11,20 @@ import { DIMENSIONS, QUESTIONS, ROLES, BANDS, MAX_PER_DIM } from '../../data/ass
    Presented one at a time they read as a conversation, and each answer
    carries the sense of getting somewhere.
 
-   NOTHING LEAVES THE BROWSER. No endpoint, no storage, no analytics call, no
-   email gate, and the role is never sent anywhere either. State lives in a
-   closure and dies with the tab. The privacy page says this in these terms;
-   if that ever stops being true, that page changes in the same commit. */
+   TAKING IT SENDS NOTHING. No storage, no analytics call, no email gate.
+   State lives in a closure and dies with the tab.
+
+   ONE deliberate exception, at the end and only on request: the reader can
+   type an address to have the result emailed to them. That posts to
+   functions/api/results.js, which sends through Resend and stores nothing.
+   The download button next to it involves no server at all.
+
+   The privacy page describes both in these exact terms. If either changes,
+   that page changes in the same commit. It already had to once. */
 
 const title = 'The Enterprise Edge assessment: which of the nine is costing you?';
 const description =
-  'A nine-dimension diagnostic across the arc of an enterprise deal, from finding value to expanding the account. Nine questions, about three minutes. Instant radar, nothing collected.';
+  'A nine-dimension diagnostic across the arc of an enterprise deal, from finding value to expanding the account. Nine questions, about three minutes. Instant radar, no sign-in.';
 const canonical = 'https://getenterpriseedge.com/assessment/';
 ---
 <Base title={title} description={description} canonical={canonical}>
@@ -28,7 +34,7 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
       <p class="eyebrow">The Enterprise Edge assessment</p>
       <h1>Nine dimensions. One of them is costing you.</h1>
       <p class="lede">Nine questions, about three minutes. You get a shape rather than a score, and the shape shows you where in the arc of a deal your revenue is leaking.</p>
-      <p class="fine">Nothing is collected. No email, no sign-in, no storage, and the role you pick is not sent anywhere. The scoring runs in your browser and disappears when you close the tab.</p>
+      <p class="fine">No sign-in, no storage, and no email required to see your result. The scoring runs in your browser and disappears when you close the tab. At the end you can download the chart, or have it emailed to you if you would rather. That part is entirely up to you.</p>
     </div>
   </section>
 
@@ -77,11 +83,34 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
         </div>
       </div>
 
+      <div class="keep">
+        <p class="eyebrow">Keep this</p>
+        <p class="keep-lede">Your result exists only in this tab. Take the image, or have it sent to you.</p>
+
+        <div class="keep-row">
+          <button class="btn" type="button" id="dl">Download the image</button>
+          <span class="keep-or">or</span>
+          <form class="mailform" id="mailform" novalidate>
+            <label class="sr-only" for="mailto-addr">Your email address</label>
+            <input id="mailto-addr" name="email" type="email" inputmode="email"
+                   autocomplete="email" placeholder="you@company.com" required />
+            {/* Bots fill every field they find. People never see this one. */}
+            <input class="ee-hp" id="ee-hp" name="company" type="text" tabindex="-1"
+                   autocomplete="off" aria-hidden="true" />
+            <button class="btn btn-ghost" type="submit" id="send">Email it to me</button>
+          </form>
+        </div>
+
+        {/* Said before the field, not after. Someone should know what happens
+            to their address before they type it, not once it has gone. */}
+        <p class="fine keep-note">Nothing has left this page so far. If you enter an address, this result goes to it from assessment@getenterpriseedge.com, and Bruce, Dean and Sandy see that you asked for it along with the nine scores and the role you picked. That is the whole of it. No list, no tracking pixel, and nobody else gets your address. The <a href="/privacy/">privacy page</a> spells it out.</p>
+        <p class="keep-status" id="mailstatus" role="status" hidden></p>
+      </div>
+
       <div class="cta-pair">
         <a class="btn" href="/#dates">See dates and cities</a>
         <button class="more" type="button" id="again">Take it again</button>
       </div>
-      <p class="fine" style="margin-top:2rem">Scored in your browser. Nothing was sent anywhere.</p>
     </div>
   </section>
 
@@ -157,6 +186,10 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
         answers = new Array(STEPS.length).fill(null);
         idx = 0;
         started = false;
+        last = null;
+        $('mailform').hidden = false;
+        $('send').disabled = false;
+        $('mailstatus').hidden = true;
         $('result').hidden = true;
         render();
         $('quiz').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -166,6 +199,10 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
         answers = new Array(STEPS.length).fill(null);
         idx = 0;
         started = false;
+        last = null;
+        $('mailform').hidden = false;
+        $('send').disabled = false;
+        $('mailstatus').hidden = true;
         $('result').hidden = true;
         render();
         $('quiz').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -278,12 +315,281 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
           box.appendChild(row);
         });
 
+        /* Held so the image and the email describe exactly what is on screen,
+           rather than recomputing and risking a quiet drift between them. */
+        last = {
+          pcts: pcts, overall: overall, band: band, lo: lo,
+          lowJoined: joined,
+          edgeAvgs: edgeAvgs, loEdgeVal: loEdgeVal,
+          roleLabel: answers[0] === null ? 'Role not given' : STEPS[0].opts[answers[0]][0]
+        };
+
         $('qfill').style.width = '100%';
         $('qcount').textContent = 'Complete';
         $('result').hidden = false;
         $('result').classList.add('is-in');
         $('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
+
+      /* ---------- Keeping the result ----------
+
+         The instrument scores in the browser and stores nothing, which is the
+         right default and also means the result dies with the tab. Two exits.
+
+         The image is drawn here with Canvas 2D rather than by rasterising the
+         SVG above. Painting an SVG into a canvas drops every self-hosted
+         @font-face, so the chart would come back in Times New Roman. Drawing
+         the shapes and the text directly uses the fonts the page already
+         loaded. */
+
+      var last = null;   /* the finished result, held for the image and the email */
+
+      function wrapLines(ctx, text, max) {
+        var words = String(text).split(' '), lines = [], line = '';
+        words.forEach(function (w) {
+          var test = line ? line + ' ' + w : w;
+          if (ctx.measureText(test).width > max && line) { lines.push(line); line = w; }
+          else line = test;
+        });
+        if (line) lines.push(line);
+        return lines;
+      }
+
+      function head(ctx, weight, size, track) {
+        ctx.font = weight + ' ' + size + 'px "Archivo Narrow", Helvetica, Arial, sans-serif';
+        try { ctx.letterSpacing = (track || 0) + 'px'; } catch (e) {}
+      }
+      function body(ctx, weight, size) {
+        ctx.font = weight + ' ' + size + 'px "Inter", Helvetica, Arial, sans-serif';
+        try { ctx.letterSpacing = '0px'; } catch (e) {}
+      }
+
+      var INK = '#141A22', AMBER = '#F2A93B', PALE = '#D7DCE4', WHITE = '#FFFFFF';
+      var FAINT = 'rgba(215,220,228,.22)';
+
+      function drawCard() {
+        var W = 1200, H = 1460, S = 2;
+        var c = document.createElement('canvas');
+        c.width = W * S; c.height = H * S;
+        var ctx = c.getContext('2d');
+        ctx.scale(S, S);
+        ctx.textBaseline = 'alphabetic';
+
+        ctx.fillStyle = INK; ctx.fillRect(0, 0, W, H);
+        /* The single left edge, the one structural habit carried over from
+           every band on the site. */
+        ctx.fillStyle = AMBER; ctx.fillRect(0, 0, 10, H);
+
+        var L = 88, R = 1128, w = R - L;
+
+        head(ctx, 700, 21, 2.5);
+        ctx.fillStyle = AMBER;
+        ctx.fillText('THE ENTERPRISE EDGE ASSESSMENT', L, 100);
+
+        head(ctx, 700, 62, 0);
+        ctx.fillStyle = WHITE;
+        ctx.fillText(last.band.name + '. ' + last.overall + '%.', L, 178);
+
+        body(ctx, 400, 24);
+        ctx.fillStyle = PALE;
+        var y = 224;
+        wrapLines(ctx, last.band.copy, w).forEach(function (ln) {
+          ctx.fillText(ln, L, y); y += 34;
+        });
+
+        /* ----- radar ----- */
+        var n = DIMENSIONS.length, RR = 232, CX = 600, CY = y + 40 + RR;
+        function pt(i, r) {
+          var a = (i / n) * 2 * Math.PI - Math.PI / 2;
+          return [CX + Math.cos(a) * r, CY + Math.sin(a) * r];
+        }
+        ctx.lineWidth = 1; ctx.strokeStyle = FAINT;
+        [0.25, 0.5, 0.75, 1].forEach(function (f) {
+          ctx.beginPath();
+          for (var i = 0; i < n; i++) {
+            var q = pt(i, RR * f);
+            if (i === 0) ctx.moveTo(q[0], q[1]); else ctx.lineTo(q[0], q[1]);
+          }
+          ctx.closePath(); ctx.stroke();
+        });
+        for (var i = 0; i < n; i++) {
+          var e = pt(i, RR);
+          ctx.beginPath(); ctx.moveTo(CX, CY); ctx.lineTo(e[0], e[1]); ctx.stroke();
+        }
+
+        ctx.beginPath();
+        last.pcts.forEach(function (v, i) {
+          var q = pt(i, RR * Math.max(v, 3) / 100);
+          if (i === 0) ctx.moveTo(q[0], q[1]); else ctx.lineTo(q[0], q[1]);
+        });
+        ctx.closePath();
+        ctx.fillStyle = 'rgba(242,169,59,.22)'; ctx.fill();
+        ctx.strokeStyle = AMBER; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.stroke();
+
+        ctx.fillStyle = AMBER;
+        last.pcts.forEach(function (v, i) {
+          var q = pt(i, RR * Math.max(v, 3) / 100);
+          ctx.beginPath(); ctx.arc(q[0], q[1], 7, 0, 2 * Math.PI); ctx.fill();
+        });
+
+        head(ctx, 600, 23, 0.4);
+        DIMENSIONS.forEach(function (d, i) {
+          var q = pt(i, RR + 30);
+          var dx = q[0] - CX;
+          ctx.textAlign = Math.abs(dx) < 12 ? 'center' : (dx > 0 ? 'left' : 'right');
+          var weak = last.pcts[i] === last.lo;
+          ctx.fillStyle = weak ? AMBER : PALE;
+          head(ctx, weak ? 700 : 600, 23, 0.4);
+          var lines = d.axis.split('\n');
+          lines.forEach(function (ln, k) {
+            ctx.fillText(ln, q[0], q[1] + k * 27 - (lines.length - 1) * 13 + 8);
+          });
+        });
+        ctx.textAlign = 'left';
+
+        /* ----- the nine, grouped under their edge ----- */
+        var top = CY + RR + 96;
+        ctx.strokeStyle = FAINT; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(L, top - 46); ctx.lineTo(R, top - 46); ctx.stroke();
+
+        var colW = 320, gap = (w - colW * 3) / 2;
+        EDGES.forEach(function (ed, k) {
+          var x = L + k * (colW + gap);
+          var weak = last.edgeAvgs[k] === last.loEdgeVal;
+          var col = weak ? AMBER : PALE;
+
+          head(ctx, 700, 27, 0);
+          ctx.fillStyle = col;
+          ctx.fillText(ed.name, x, top);
+          ctx.textAlign = 'right';
+          ctx.fillText(last.edgeAvgs[k] + '%', x + colW, top);
+          ctx.textAlign = 'left';
+
+          ctx.fillStyle = FAINT;
+          ctx.fillRect(x, top + 16, colW, 8);
+          ctx.fillStyle = col;
+          ctx.fillRect(x, top + 16, colW * last.edgeAvgs[k] / 100, 8);
+
+          var ry = top + 62;
+          DIMENSIONS.forEach(function (d, i) {
+            if (d.edge !== k) return;
+            var isLo = last.pcts[i] === last.lo;
+            body(ctx, isLo ? 600 : 400, 20);
+            ctx.fillStyle = isLo ? AMBER : PALE;
+            ctx.fillText(d.label, x, ry);
+            ctx.textAlign = 'right';
+            ctx.fillText(last.pcts[i] + '%', x + colW, ry);
+            ctx.textAlign = 'left';
+            ry += 36;
+          });
+        });
+
+        /* ----- the finding, and the foot -----
+           Anchored to the bottom edge rather than to the flow above it, so a
+           band paragraph that wraps to three lines instead of four moves the
+           slack into the middle instead of pushing this off the card. */
+        ctx.strokeStyle = FAINT; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(L, H - 250); ctx.lineTo(R, H - 250); ctx.stroke();
+
+        head(ctx, 700, 20, 2.4);
+        ctx.fillStyle = AMBER;
+        ctx.fillText('LOWEST OF THE NINE', L, H - 208);
+
+        head(ctx, 700, 34, 0);
+        ctx.fillStyle = WHITE;
+        ctx.fillText(last.lowJoined, L, H - 166);
+
+        body(ctx, 400, 20);
+        ctx.fillStyle = 'rgba(215,220,228,.75)';
+        ctx.fillText('The half day works through all nine, in the order a deal actually moves.',
+          L, H - 126);
+
+        head(ctx, 700, 22, 2.5);
+        ctx.fillStyle = PALE;
+        ctx.fillText('GETENTERPRISEEDGE.COM', L, H - 58);
+        body(ctx, 400, 19);
+        ctx.fillStyle = 'rgba(215,220,228,.55)';
+        ctx.textAlign = 'right';
+        ctx.fillText(last.roleLabel, R, H - 58);
+        ctx.textAlign = 'left';
+
+        return c;
+      }
+
+      /* The fonts have to be resident before anything is painted, or the card
+         silently falls back to Helvetica and looks like a different brand. */
+      function withFonts(fn) {
+        if (!document.fonts || !document.fonts.load) { fn(); return; }
+        Promise.all([
+          document.fonts.load('700 62px "Archivo Narrow"'),
+          document.fonts.load('600 23px "Archivo Narrow"'),
+          document.fonts.load('400 24px "Inter"'),
+          document.fonts.load('600 20px "Inter"')
+        ]).then(fn, fn);
+      }
+
+      $('dl').addEventListener('click', function () {
+        if (!last) return;
+        withFonts(function () {
+          drawCard().toBlob(function (blob) {
+            var u = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = u;
+            a.download = 'enterprise-edge-assessment.png';
+            document.body.appendChild(a); a.click(); a.remove();
+            setTimeout(function () { URL.revokeObjectURL(u); }, 4000);
+          }, 'image/png');
+        });
+      });
+
+      var mailform = $('mailform'), status = $('mailstatus'), sendBtn = $('send');
+      function say(msg, bad) {
+        status.textContent = msg;
+        status.className = 'keep-status' + (bad ? ' bad' : '');
+        status.hidden = false;
+      }
+
+      mailform.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        if (!last) return;
+        var addr = $('mailto-addr').value.trim();
+        if (!/^[^@\s]+@[^@\s.]+\.[^@\s]+$/.test(addr)) {
+          say('That address does not look complete. Check it and try again.', true);
+          $('mailto-addr').focus();
+          return;
+        }
+        sendBtn.disabled = true;
+        say('Sending.');
+        withFonts(function () {
+          var png = drawCard().toDataURL('image/png');
+          fetch('/api/results', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: addr,
+              company: $('ee-hp').value,
+              role: last.roleLabel,
+              band: last.band.name,
+              overall: last.overall,
+              dims: DIMENSIONS.map(function (d, i) {
+                return { label: d.label, pct: last.pcts[i], edge: EDGES[d.edge].name };
+              }),
+              edges: EDGES.map(function (ed, k) {
+                return { name: ed.name, pct: last.edgeAvgs[k] };
+              }),
+              lowest: last.lowJoined,
+              png: png
+            })
+          }).then(function (r) {
+            if (!r.ok) throw new Error(String(r.status));
+            say('Sent. It is on its way to ' + addr + '. If it does not show up in a minute, look in your spam folder.');
+            mailform.hidden = true;
+          }).catch(function () {
+            sendBtn.disabled = false;
+            say('That did not go through. Download the image instead, or email bruce@inspireyourbuyers.com and he will send it over.', true);
+          });
+        });
+      });
 
       render();
     })();

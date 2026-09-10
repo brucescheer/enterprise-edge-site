@@ -13,6 +13,14 @@ import { FACULTY } from '../../data/program';
      one Cloudflare-injected script, email-decode.min.js, served from this
        origin
 
+   AMENDED the same day: the assessment gained an optional "email this to me"
+   button, which is the first and only thing on the site that collects
+   anything. It posts to functions/api/results.js, which sends the mail
+   through Resend and stores nothing. Every claim below was rewritten in the
+   same commit that added it. The old text said the assessment "keeps no
+   record of your answers, the role you select, or your score" and that there
+   is "no form to fill in", and both had to go.
+
    If any of that changes, this page has to change with it. Adding an
    analytics tag or a form without updating this page turns an accurate
    privacy policy into a false one, which is worse than not having had it.
@@ -41,7 +49,8 @@ const canonical = 'https://getenterpriseedge.com/privacy/';
   <section class="band band-bone band-measure">
     <div class="wrap">
       <h2>The short version</h2>
-      <p>This site runs no analytics, sets no cookies, and loads nothing from a third party. There is no form to fill in and no mailing list to join. The assessment scores your answers in your browser and forgets them when you close the tab. Nothing you do here is recorded, measured, or sent anywhere.</p>
+      <p>This site runs no analytics, sets no cookies, and loads nothing from a third party. There is no mailing list to join. The assessment scores your answers in your browser and forgets them when you close the tab.</p>
+      <p>One thing on this site collects anything at all, and only if you ask it to. At the end of the assessment you can type an email address to have your result sent to you. That is the single exception, it is described in full below, and nothing else on the site has an input box.</p>
       <p>The rest of this page is the detail behind that, because a claim like the one above is worth checking.</p>
     </div>
   </section>
@@ -68,8 +77,18 @@ const canonical = 'https://getenterpriseedge.com/privacy/';
       <p>Please do not send sensitive personal information that your inquiry does not need.</p>
 
       <h2>The assessment</h2>
-      <p>The assessment at <a href="/assessment/">getenterpriseedge.com/assessment/</a> scores your answers in your browser. Its code has no endpoint to send them to. It does not ask for your email address, does not save anything in cookies or browser storage, and keeps no record of your answers, the role you select, or your score. Reloading or closing the page resets it completely.</p>
-      <p>That means we cannot see your result, and we cannot produce it for you later. If you want us to know what it said, you have to tell us.</p>
+      <p>The assessment at <a href="/assessment/">getenterpriseedge.com/assessment/</a> scores your answers in your browser. Taking it sends nothing anywhere. It saves nothing in cookies or browser storage, and reloading or closing the page wipes it. If you take it and walk away, we never know you were there.</p>
+      <p>At the end you are offered two ways to keep the result. The first is a button that draws the chart and downloads it as an image. That happens entirely on your machine and involves us not at all.</p>
+      <p>The second is a field where you can type your email address to have the result sent to you. <b>Nothing is sent until you type an address and press the button.</b> When you do, this is exactly what happens and all of what happens:</p>
+      <ul class="plain">
+        <li>Your address, your nine scores, the role you picked, and the chart as an image go to our server.</li>
+        <li>That server sends you one email, from assessment@getenterpriseedge.com, with your result and the chart attached. Replies to it go to Bruce.</li>
+        <li>Bruce is copied on that email, so he sees what you received. Dean and Sandy get a short note with the same scores and role.</li>
+        <li>The server writes none of it down. There is no database, no log of addresses, and no file. Your address exists for the second or two the request takes and is then gone.</li>
+      </ul>
+      <p>You are not added to a mailing list, because there is no mailing list. Nobody will be enrolled in a sequence. The email carries no tracking pixel and no click tracking, so we do not know whether you opened it. If one of us follows up, it will be a person writing to you, and telling us to stop ends it.</p>
+      <p>The mail itself is delivered by <a href="https://resend.com/legal/privacy-policy" rel="noopener">Resend</a>, which is the service that puts the message in your inbox. Your address passes through them for that purpose. They are the only third party involved in any of this.</p>
+      <p>If you skip the email field, none of the above happens and we never learn your result.</p>
 
       <h2>Loading the website</h2>
       <p>The site is hosted on Cloudflare Pages. Cloudflare processes the connection in order to serve and protect the site, which involves your IP address, your browser and device information, which pages you requested, and when. That is ordinary web server processing and it happens before any of our code runs.</p>
@@ -79,12 +98,13 @@ const canonical = 'https://getenterpriseedge.com/privacy/';
       <h2>Cookies and tracking</h2>
       <p>This site sets no cookies and uses no browser storage. There is no Google Analytics, no Cloudflare Web Analytics, no session recording, no heatmap, no chat widget, no advertising pixel, and no tag manager. We do not build a profile of you, and we have no way to recognise you if you come back.</p>
       <p>Because nothing here tracks you, there is no consent banner to click and no Do Not Track signal for us to respond to differently. Cloudflare may set a short-lived security cookie if its bot protection is triggered by a particular request. That is a security measure, not a measurement one.</p>
+      <p>The one form on the site, the email field at the end of the assessment, is not an exception to any of this. It sets nothing, remembers nothing, and does not follow you to the next page. It sends one email when you ask it to.</p>
 
       <h2>Links to other websites</h2>
       <p>This site links out to each of our own practices and to Luma, where registration for a session happens. Once you follow a link you are on someone else&rsquo;s website under their privacy policy, not this one. Registering for a session is handled entirely by Luma, and anything you enter there is theirs to explain.</p>
 
       <h2>Your choices</h2>
-      <p>Because we hold nothing unless you send it to us, most requests are simple. Write to any of us and ask what we have, ask for a copy, ask for a correction, or ask us to delete it. We will do it.</p>
+      <p>Because we hold nothing unless you send it to us, most requests are simple. Write to any of us and ask what we have, ask for a copy, ask for a correction, or ask us to delete it. We will do it. In the case of an assessment result you had emailed to yourself, what we have is the copy sitting in our three inboxes, and asking gets it deleted from all of them.</p>
       <p>Depending on where you live you may have formal rights over your personal information, including access, correction, deletion, and objection. Ask and we will honour them. We will not treat you differently for asking.</p>
 
       <h2>Children</h2>
