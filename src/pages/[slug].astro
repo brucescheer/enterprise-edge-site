@@ -70,7 +70,7 @@ const canonical = `https://getenterpriseedge.com/${edge.slug}/`;
         <p class="eyebrow">Who leads it</p>
         <h2>{person.name}</h2>
         {person.title && <p class="lede">{person.title}</p>}
-        <p set:html={person.bio} />
+        {person.bio.map((para) => <p set:html={para} />)}
         <p>{edge.page.followOn}</p>
         {person.site && (
           <p><a class="more" href={person.site} target="_blank" rel="noopener noreferrer">{person.siteLabel}</a></p>
@@ -95,7 +95,7 @@ const canonical = `https://getenterpriseedge.com/${edge.slug}/`;
       </div>
       <div class="cta-pair">
         <a class="btn" href="/#dates">See dates and cities</a>
-        <a class="more" href="/work-with-us/">Bring it to your team</a>
+        <a class="more" href="/work-with-us/">Bring The Enterprise Edge in-house</a>
       </div>
     </div>
   </section>

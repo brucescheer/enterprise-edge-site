@@ -67,21 +67,22 @@ export const EDGES = [
     name: 'The Approval Edge',
     slug: 'approval-edge',
     speaker: 'Dean Edwards',
-    job: 'Getting the deal through approval',
+    job: 'Building the organizational confidence that gets deals approved',
     promise: 'Get the deal closed',
     blurb:
-      'Procurement, Finance, Legal, InfoSec and now AI governance were in none of the meetings where you built the case. They arrive at the end, they arrive sceptical, and they are measured on things nobody told you about. Dean spent two decades on their side of that table.',
+      'A champion’s support is not the same as organizational approval. Procurement, Finance, Legal, Security, Risk and executive stakeholders judge the same deal through very different lenses: value, economics, risk, governance, implementation confidence and internal defensibility. Dean spent more than 25 years inside those buying systems.',
     disciplines: [
-      'What enterprise Procurement teams really evaluate, and where a strong deal becomes vulnerable.',
-      'How security review and AI governance review became the gates that quietly cost you a quarter.',
-      'How to answer price pressure by widening the value conversation instead of discounting on reflex.',
-      'How to equip your champion to make the value and risk case when you are not in the room.',
+      'What different enterprise stakeholders are really evaluating, and where seemingly strong deals become vulnerable.',
+      'How to identify approval risks before they become late-stage blockers.',
+      'How to strengthen the value, risk and implementation case across the customer organization.',
+      'How to respond to Procurement and commercial pressure without defaulting to discounting.',
+      'How to equip your champion to make the case internally when you are not in the room.',
     ],
     extra:
-      'The goal is not to beat Procurement. It is to become easy to approve. Every attendee leaves with Dean’s approval-readiness checklist.',
+      'The goal is not to beat Procurement. It is to make the decision easier for the customer organization to approve. Every attendee leaves with a practical approval-readiness framework they can apply to a live deal.',
     page: {
       lede:
-        'Procurement, Finance, Legal, InfoSec and now AI governance were in none of the meetings where you built the case. They arrive at the end, they arrive sceptical, and they are measured on things nobody told you about. Dean spent two decades on their side of that table deciding which deals moved forward.',
+        'A champion’s support is not the same as organizational approval. Procurement, Finance, Legal, Security, Risk and executive stakeholders judge the same deal through very different lenses. Dean spent more than 25 years inside those enterprise buying systems, and he shows sellers what the wider organization needs to believe before it is ready to say yes.',
       cover: [
         {
           h: 'What they actually evaluate',
@@ -101,7 +102,7 @@ export const EDGES = [
         },
       ],
       takeaway:
-        'The goal is not to beat Procurement. It is to become easy to approve.',
+        'The goal is not to beat Procurement. It is to make the decision easier for the customer organization to approve.',
       /* TODO: confirm with Dean how he wants ConvergSPT engagements described.
          Deliberately general rather than inventing a service list he would
          then have to correct. */
@@ -121,6 +122,7 @@ export const EDGES = [
       'Winning the deal is the beginning. A year later there is a review you are not invited to, and it ends in expansion or in a quiet search for your replacement. Sandy works on what decides which.',
     disciplines: [
       'How to protect the revenue you already have, before it is at risk rather than after.',
+      'How to make delivered value visible, because a customer who cannot see it is being sold to again at renewal.',
       'Where genuine expansion comes from: customer outcomes and relationships, not a renewal calendar.',
       'How to make retention a result instead of a recovery effort.',
     ],
@@ -364,6 +366,15 @@ export const SESSION_INDEX = CITIES
   .map((c) => ({ city: c.city, date: c.date, iso: c.startDate }))
   .sort((a, b) => new Date(a.iso) - new Date(b.iso));
 
+/* Dean's one-line summary of the three of us. More formal than Bruce's
+   spoken version, which stays on the homepage; this one carries the faculty
+   page, where the register is closer to a bio than a stage line. */
+export const WHO_DOES_WHAT = [
+  { name: 'Bruce', does: 'helps you win preference.' },
+  { name: 'Dean', does: 'helps you win organizational approval.' },
+  { name: 'Sandy', does: 'helps you turn delivered value into retention and growth.' },
+];
+
 export const FACULTY = [
   {
     name: 'Bruce Scheer',
@@ -373,8 +384,12 @@ export const FACULTY = [
     email: 'bruce@inspireyourbuyers.com',
     phone: '+14254449595',
     phoneDisplay: '+1 425 444 9595',
-    bio:
-      'Bruce helps revenue teams find their differentiated position, align on a narrative spine, and quantify their unique value. He has spent his career enabling enterprise marketers and sellers at Microsoft, HP, Adobe, SAP, Oracle, Google and eBay Enterprise, along with Tableau and Concur. He wrote the Amazon bestseller <i>Inspire Your Buyers: Go to Market with a Story that Sizzles</i>.',
+    /* bio is an array of paragraphs. It used to be one long string, which
+       gave everyone a single block no matter how much they had to say. */
+    bio: [
+      'Bruce helps revenue teams find their differentiated position, align on a narrative spine, and quantify their unique value.',
+      'He has spent his career enabling enterprise marketers and sellers at Microsoft, HP, Adobe, SAP, Oracle, Google and eBay Enterprise, along with Tableau and Concur. He wrote the Amazon bestseller <i>Inspire Your Buyers: Go to Market with a Story that Sizzles</i>.',
+    ],
     /* Earned on client engagements Bruce worked on directly, across prior
        roles and companies. Same list as the About page on
        inspireyourbuyers.com, trimmed to the four industry awards. */
@@ -390,15 +405,17 @@ export const FACULTY = [
   {
     name: 'Dean Edwards',
     edge: 'The Approval Edge',
-    title: 'Founder and CEO of ConvergSPT. Former Fortune 500 Chief Procurement Officer.',
+    title: 'Former Fortune 500 Chief Procurement Officer. Founder and CEO of ConvergSPT.',
     photo: '/assets/dean-edwards.jpg',
     email: 'dean.edwards@convergspt.com',
     phone: '+19256996485',
     phoneDisplay: '+1 925 699 6485',
-    /* Every claim here comes from Dean's own LinkedIn profile. Keep it that
-       way: these are the numbers he stands behind publicly. */
-    bio:
-      'Dean spent more than twenty years running Procurement and Sourcing at Kaiser Permanente, Yahoo, Levi Strauss and Ingram Micro. As Chief Procurement and Supply Officer at Kaiser Permanente he delivered over $1 billion in savings against a $6 billion spend. At Levi Strauss he built a Procurement capability that had not existed before him, on the transformation team that took the company to its 2019 IPO. He founded ConvergSPT to help revenue teams engage Procurement as an ally instead of an obstacle.',
+    /* Dean's own words, from his review of the site. */
+    bio: [
+      'Dean spent more than 25 years inside complex enterprise buying organizations, leading Procurement and Strategic Sourcing at companies including Kaiser Permanente, Yahoo, Levi Strauss & Co. and Ingram Micro.',
+      'That experience gave him a firsthand view of what happens after a seller’s champion says yes: how Procurement, Finance, Legal, Risk, Security and executives evaluate a deal, where confidence breaks down, and why apparently healthy opportunities stall or disappear.',
+      'Today, Dean helps B2B revenue teams understand those internal decision dynamics, strengthen the case across the customer organization, and make enterprise deals easier to approve without defaulting to discounting.',
+    ],
     /* TODO: Dean's awards and recognition, if he wants them listed. */
     awards: null,
     site: 'https://www.convergspt.com',
@@ -415,8 +432,10 @@ export const FACULTY = [
     /* From Sandy's own LinkedIn profile. Her summary carries several market
        statistics; they are deliberately left off the site because they are
        unsourced there and this site cites or says nothing. */
-    bio:
-      'Sandy spent four years at Oracle, finishing as Global Lead for Cloud Customer Insights, Executive Engagement and Success. She watched a company treat thousands of customer relationships as a maintenance problem rather than a growth engine, at staggering and avoidable cost. She founded Revenue Retention Advisors to fix that, and built the 3D Framework, Diagnose, Design and Drive, that she now runs with B2B SaaS CEOs and CROs to turn an existing customer base into predictable expansion.',
+    bio: [
+      'Sandy spent four years at Oracle, finishing as Global Lead for Cloud Customer Insights, Executive Engagement and Success. She watched a company treat thousands of customer relationships as a maintenance problem rather than a growth engine, at staggering and avoidable cost.',
+      'She founded Revenue Retention Advisors to fix that, and built the 3D Framework, Diagnose, Design and Drive, that she now runs with B2B SaaS CEOs and CROs to turn an existing customer base into predictable expansion.',
+    ],
     /* TODO: Sandy's awards. Her LinkedIn lists an Oracle Social Cloud
        Platform Customer Award and a Forrester CX certification. */
     awards: null,

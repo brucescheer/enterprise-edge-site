@@ -670,3 +670,17 @@ a.date.is-open .when{color:var(--white)}
 @media (prefers-reduced-motion:reduce){
   .ns-label::before{animation:none}
 }
+
+/* Dean's one-line summary of the three practices. A list rather than a
+   paragraph, because the parallel structure is the point and prose would
+   bury it. */
+.who-does{list-style:none;margin:2.25rem 0 0;padding:0 0 0 1.5rem;
+  border-left:3px solid var(--amber);max-width:44rem}
+.who-does li{font-family:var(--font-head);font-weight:600;
+  font-size:clamp(1.2rem,2vw,1.5rem);line-height:1.4;color:var(--white);
+  margin:0 0 .35rem}
+.who-does li:last-child{margin-bottom:0}
+.who-does b{color:var(--amber);font-weight:600}
+.band-bone .who-does li,.band-bone2 .who-does li{color:var(--ink)}
+.band-bone .who-does b,.band-bone2 .who-does b{color:var(--bronze)}
+.band-bone .who-does,.band-bone2 .who-does{border-left-color:var(--bronze)}
