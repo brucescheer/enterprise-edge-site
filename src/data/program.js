@@ -68,7 +68,7 @@ export const EDGES = [
     slug: 'approval-edge',
     speaker: 'Dean Edwards',
     job: 'Building the organizational confidence that gets deals approved',
-    promise: 'Get the deal closed',
+    promise: 'Get the deal approved',
     blurb:
       'A champion’s support is not the same as organizational approval. Procurement, Finance, Legal, Security, Risk and executive stakeholders judge the same deal through very different lenses: value, economics, risk, governance, implementation confidence and internal defensibility. Dean spent more than 25 years inside those buying systems.',
     disciplines: [
