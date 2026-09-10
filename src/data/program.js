@@ -112,7 +112,7 @@ export const EDGES = [
   },
   {
     num: '03',
-    domain: 'Expansion and growth',
+    domain: 'Retention and expansion',
     name: 'The Expansion Edge',
     slug: 'expansion-edge',
     speaker: 'Sandy Yu',
@@ -400,7 +400,7 @@ export const SESSION_INDEX = CITIES
 export const WHO_DOES_WHAT = [
   { name: 'Bruce', does: 'helps you win preference.' },
   { name: 'Dean', does: 'helps you win organizational approval.' },
-  { name: 'Sandy', does: 'helps you turn delivered value into retention and growth.' },
+  { name: 'Sandy', does: 'helps you turn delivered value into retention and expansion.' },
 ];
 
 export const FACULTY = [
