@@ -343,6 +343,27 @@ export const INQUIRY_SUBJECT = 'Inquiry for Enterprise Edge';
 export const inquiryLink = (person) =>
   `mailto:${person.email}?subject=${encodeURIComponent(INQUIRY_SUBJECT)}`;
 
+/* The soonest session that has not happened yet, or null once they all have.
+
+   Computed at build time, which on a static site means it is only as fresh as
+   the last deploy. The hero corrects it in the browser from the same data, so
+   a site that has not been rebuilt since a session passed still shows the
+   right one. */
+export const NEXT_SESSION = (() => {
+  const now = Date.now();
+  const upcoming = CITIES
+    .filter((c) => c.startDate && new Date(c.startDate).getTime() > now)
+    .sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+  return upcoming[0] ?? null;
+})();
+
+/* Just enough for the browser to redo that sum without shipping the whole
+   data file. */
+export const SESSION_INDEX = CITIES
+  .filter((c) => c.startDate)
+  .map((c) => ({ city: c.city, date: c.date, iso: c.startDate }))
+  .sort((a, b) => new Date(a.iso) - new Date(b.iso));
+
 export const FACULTY = [
   {
     name: 'Bruce Scheer',

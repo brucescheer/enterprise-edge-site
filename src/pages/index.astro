@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { EDGES, CITIES, FACULTY, HAS_DATES, HAS_REGISTRATION } from '../data/program';
+import { EDGES, CITIES, FACULTY, HAS_DATES, HAS_REGISTRATION, NEXT_SESSION, SESSION_INDEX } from '../data/program';
 
 const title = 'The Enterprise Edge: A Half-Day Masterclass for Enterprise Revenue Leaders';
 const description =
@@ -71,7 +71,13 @@ const jsonLd = {
   jsonLd={jsonLd}
 >
 
-  <section class="band band-ink hero">
+  <section class="band band-ink hero has-figure">
+    {/* The symbol at scale, bleeding off the right edge. It gives the hero
+        depth without stock photography and reuses artwork we already have.
+        Decorative, so it is hidden from assistive technology and it is the
+        first thing to go when the viewport gets narrow, where it would
+        otherwise sit behind the headline. */}
+    <img class="hero-figure" src="/assets/ee-symbol.png" alt="" aria-hidden="true" />
     <div class="wrap">
       <p class="eyebrow">A half day for enterprise revenue leaders</p>
       <h1>Get them to say yes. Get the deal closed. Grow the account.</h1>
@@ -80,6 +86,23 @@ const jsonLd = {
         <a class="btn" href="#dates">{HAS_DATES ? 'See dates and cities' : 'See where we are running it'}</a>
         <a class="more" href="#edges">What we cover</a>
       </div>
+
+      {/* The dates used to sit 82% of the way down the page, so a reader
+          could get most of the way through without learning that anything
+          was happening in four weeks. This says it in the first screen.
+
+          Rendered from build-time data and corrected in the browser, because
+          a static site is only as fresh as its last deploy and this line goes
+          wrong the day a session passes. */}
+      {NEXT_SESSION && (
+        <p class="next-session" data-sessions={JSON.stringify(SESSION_INDEX)}>
+          <span class="ns-label">Next session</span>
+          <a class="ns-link" href="#dates">
+            <b class="ns-city">{NEXT_SESSION.city}</b>
+            <span class="ns-date">{NEXT_SESSION.date}</span>
+          </a>
+        </p>
+      )}
     </div>
   </section>
 

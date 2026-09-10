@@ -241,6 +241,23 @@ const headDesc = ogDescription ?? description;
 </footer>
 
 <script is:inline>
+  /* Keep the hero's next-session line honest on a site that may not have
+     been rebuilt since a session passed. Same sum the build did, redone
+     against the browser's clock. */
+  (function () {
+    var el = document.querySelector('.next-session');
+    if (!el) return;
+    var list;
+    try { list = JSON.parse(el.dataset.sessions || '[]'); } catch (e) { return; }
+    var now = Date.now();
+    var next = list.filter(function (s) { return new Date(s.iso).getTime() > now; })[0];
+    if (!next) { el.hidden = true; return; }
+    var city = el.querySelector('.ns-city');
+    var date = el.querySelector('.ns-date');
+    if (city) city.textContent = next.city;
+    if (date) date.textContent = next.date;
+  })();
+
   /* Condense the header once a 120px sentinel leaves the viewport. An
      observer rather than a scroll listener, so the browser does the work off
      the main thread. */

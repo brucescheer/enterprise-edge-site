@@ -107,9 +107,9 @@ img{max-width:100%}
                      so 8.0 / .727 = 11px.
 
    Change a size here, not by scaling the whole lockup. */
-.brand-symbol{display:block;height:68px;width:auto;flex:0 0 auto}
+.brand-symbol{display:block;height:68px;width:auto;flex:0 0 auto;transition:height .22s ease}
 .brand-type{display:flex;flex-direction:column;gap:.4rem;min-width:0}
-.brand-name{font-family:var(--font-head);font-weight:600;font-size:23px;
+.brand-name{font-family:var(--font-head);font-weight:600;font-size:23px;transition:font-size .22s ease;
   letter-spacing:.07em;text-transform:uppercase;color:var(--white);line-height:1}
 .brand-name i{font-style:normal;color:var(--amber)}
 .brand-phrase{font-family:var(--font-body);font-weight:400;font-size:11px;
@@ -348,9 +348,22 @@ p{line-height:1.6;margin:0 0 1.15rem;max-width:40rem}
 @media (min-width:960px){
   .site-head{position:sticky;top:0;z-index:50}
   .head-in{transition:padding .22s ease}
-  .site-head.is-stuck{box-shadow:0 2px 16px rgba(20,26,34,.4)}
-  .site-head.is-stuck .head-in{padding-top:.5rem;padding-bottom:.5rem}
-  .site-head.is-stuck .brand-symbol{height:52px}
+  /* Pinned state. The header goes translucent and blurs what passes beneath
+     it, which reads as depth rather than a lid. The background falls back to
+     solid ink where backdrop-filter is unsupported, so the nav is never
+     unreadable over scrolling content. */
+  .site-head{background:var(--ink);transition:background .22s ease}
+  .site-head.is-stuck{box-shadow:0 2px 20px rgba(20,26,34,.55)}
+  @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .site-head.is-stuck{background:rgba(20,26,34,.82);
+      -webkit-backdrop-filter:saturate(150%) blur(14px);
+      backdrop-filter:saturate(150%) blur(14px)}
+  }
+  .site-head.is-stuck .head-in{padding-top:.35rem;padding-bottom:.35rem}
+  /* A deeper drop than before: 68px to 44px is 35%, against the 24% it was.
+     The lockup should visibly get out of the way once someone is reading. */
+  .site-head.is-stuck .brand-symbol{height:44px}
+  .site-head.is-stuck .brand-name{font-size:19px}
   .site-head.is-stuck .brand-phrase{display:none}
   :root{--anchor-offset:5rem}
 }
@@ -611,3 +624,49 @@ a.date.is-open .when{color:var(--white)}
    scans for and the one that decides whether they keep reading. */
 .date .detail.price{font-family:var(--font-head);font-weight:700;
   color:var(--amber);font-size:1.05rem;margin-top:.35rem}
+
+/* ---------- Next session ----------
+   A single line in the hero naming the soonest session. It exists because the
+   dates section sits near the bottom of a long page, and someone deciding
+   whether to keep reading should not have to scroll nine screens to learn
+   that there is one in four weeks.
+
+   The amber dot is the only animated element on the site. It is slow and
+   small, and it stops entirely under prefers-reduced-motion via the global
+   rule. */
+.next-session{display:inline-flex;align-items:center;gap:.85rem;flex-wrap:wrap;
+  margin:2.25rem 0 0;padding:.7rem 1.1rem .7rem .95rem;max-width:none;
+  border:1px solid var(--line-dark);border-radius:2px;
+  background:var(--ink-raised)}
+.ns-label{display:inline-flex;align-items:center;gap:.55rem;
+  font-family:var(--font-head);font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;font-size:.8rem;color:var(--pale);white-space:nowrap}
+.ns-label::before{content:"";width:.5rem;height:.5rem;border-radius:50%;
+  background:var(--amber);flex:0 0 auto;animation:ns-pulse 2.6s ease-in-out infinite}
+@keyframes ns-pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.ns-link{display:inline-flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;
+  text-decoration:none;color:var(--white)}
+.ns-city{font-family:var(--font-head);font-weight:700;font-size:1.15rem;
+  color:var(--white);border-bottom:2px solid var(--amber);padding-bottom:1px}
+.ns-date{font-size:1rem;color:var(--pale)}
+.ns-link:hover .ns-city{color:var(--amber)}
+
+/* ---------- Hero figure ----------
+   The symbol at scale, off the right edge of the hero. Low contrast and
+   behind the content: it is atmosphere, not information, and the headline has
+   to stay the brightest thing in the band.
+
+   Below 1100px it is removed rather than shrunk. There it would sit under the
+   headline instead of beside it, and a decorative image competing with the
+   one sentence that matters is worse than no image. */
+.band.has-figure{position:relative;overflow:hidden}
+.band.has-figure > .wrap{position:relative;z-index:1}
+.hero-figure{position:absolute;right:-6%;top:50%;transform:translateY(-50%);
+  height:150%;width:auto;opacity:.16;pointer-events:none;user-select:none;
+  z-index:0}
+@media (max-width:1099px){
+  .hero-figure{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .ns-label::before{animation:none}
+}
