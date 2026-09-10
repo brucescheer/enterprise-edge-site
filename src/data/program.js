@@ -192,20 +192,10 @@ export const CITIES = [
     venue: 'Clavius Wealth Management',
     venueAddress: '555 Mission Street',
     venueLogo: null,
-    venuePhoto: '/assets/venue-555-mission.jpg',
+    venuePhoto: '/assets/venue-555-mission-cleared.jpg',
     venuePhotoPosition: 'center 30%',
-    /* Wikimedia Commons, CC BY-SA 4.0, which requires attribution. The credit
-       renders under the photo and both links have to stay: one to the author,
-       one to the licence. Removing either breaks the licence terms. Note that
-       cropping is an adaptation, so the cropped version is itself CC BY-SA;
-       the crop here is done in CSS rather than to the file, which keeps the
-       distributed image identical to the original. */
-    venuePhotoCredit: {
-      text: '555 Mission Street by Dead.rabbit',
-      authorUrl: 'https://commons.wikimedia.org/wiki/File:555_Mission_Street_from_Salesforce_Park_02.jpg',
-      licence: 'CC BY-SA 4.0',
-      licenceUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
-    },
+    // Replacement photo supplied by Bruce and cleared for use without attribution.
+    venuePhotoCredit: null,
     date: 'Thursday, October 8, 2026',
     doors: null,
     time: '1:00pm to 4:00pm',

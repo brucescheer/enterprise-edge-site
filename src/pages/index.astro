@@ -253,12 +253,7 @@ const jsonLd = {
       <p>A seat costs a token fee. It does not cover the room or the meal and is not meant to. A seat that cost something is a seat that gets used, and twenty people who turned up beats sixty who meant to.</p>
       {/* Venue photographs identify where each session is held. The site
           makes no claim that a venue hosts, sponsors or endorses the
-          program, and the alt text says "the venue in" for that reason.
-
-          Cropping happens in CSS rather than to the files. That keeps the
-          Wikimedia image we distribute byte-identical to the original, which
-          matters because a crop is an adaptation under CC BY-SA and would
-          otherwise carry its own licensing obligation. */}
+          program, and the alt text says "the venue in" for that reason. */}
       <div class="venues">
         {CITIES.filter((c) => c.venuePhoto).map((c) => (
           <figure class="venue">
@@ -373,13 +368,4 @@ const jsonLd = {
     </div>
   </section>
 
-  <div class="band-bone">
-    <div class="wrap" style="padding-top:1rem;padding-bottom:1rem">
-      {CITIES.filter((c) => c.venuePhotoCredit).map((c) => (
-        <p class="fine" style="margin:0;font-size:0.75rem">
-          Photo credit: <a href={c.venuePhotoCredit.authorUrl} target="_blank" rel="noopener noreferrer">{c.venuePhotoCredit.text}</a>, <a href={c.venuePhotoCredit.licenceUrl} target="_blank" rel="noopener noreferrer">{c.venuePhotoCredit.licence}</a>
-        </p>
-      ))}
-    </div>
-  </div>
 </Base>
