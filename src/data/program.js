@@ -118,13 +118,20 @@ export const EDGES = [
     speaker: 'Sandy Yu',
     job: 'Turning delivered value into retention and expansion',
     promise: 'Expand the account',
+    /* Sandy's own words, 2026-09-09. Her disciplines are the 3D Framework
+       rather than four generic capabilities, which puts her section in the
+       same shape as Bruce's Find, Communicate, Quantify: a named method with
+       three named parts, not a list of things covered.
+
+       Her draft used spaced hyphens as dashes throughout. Recast here, since
+       the rule for everything published under this brand is no dashes at all.
+       A colon does the work in Design; full stops do it in the blurb. */
     blurb:
-      'Winning the deal is the beginning. A year later there is a review you are not invited to, and it ends in expansion or in a quiet search for your replacement. Sandy works on what decides which.',
+      'Winning the deal is the beginning. A year later, the account either expands or churns quietly. Without a system to onboard, retain and grow what you just won, you do not only lose the renewal. You lose the reputation that gets you the next one. Sandy works on what decides which.',
     disciplines: [
-      'How to protect the revenue you already have, before it is at risk rather than after.',
-      'How to make delivered value visible, because a customer who cannot see it is being sold to again at renewal.',
-      'Where genuine expansion comes from: customer outcomes and relationships, not a renewal calendar.',
-      'How to make retention a result instead of a recovery effort.',
+      '<b>Diagnose</b> is finding where the account is actually leaking value, before it shows up as a surprise cancellation.',
+      '<b>Design</b> is building the specific roadmap: which playbooks, which owners, which processes, so that at risk arrives with a leading indicator and a fix rather than just a flag.',
+      '<b>Drive</b> is running the system with the team until retention and expansion become a repeatable motion instead of a hero effort every renewal cycle.',
     ],
     extra: null,
     page: {
@@ -445,21 +452,38 @@ export const FACULTY = [
   {
     name: 'Sandy Yu',
     edge: 'The Expansion Edge',
-    title: 'Founder and CEO of Revenue Retention Advisors. Formerly Oracle.',
+    title: 'Founder and CEO of Revenue Retention Advisors. Formerly Oracle, Cisco, PwC and WebEx.',
     photo: '/assets/sandy-yu.jpg',
     email: 'sandy@revenuecco.com',
     phone: '+14156998981',
     phoneDisplay: '+1 415 699 8981',
-    /* From Sandy's own LinkedIn profile. Her summary carries several market
-       statistics; they are deliberately left off the site because they are
-       unsourced there and this site cites or says nothing. */
+    /* Sandy's own copy, supplied 2026-09-09. This replaced a version written
+       off her LinkedIn profile, which had her at Oracle for four years and
+       said nothing about Cisco, PwC or WebEx. Hers is both wider and more
+       current, and it is her career to describe. Dashes recast as ever. */
     bio: [
-      'Sandy spent four years at Oracle, finishing as Global Lead for Cloud Customer Insights, Executive Engagement and Success. She watched a company treat thousands of customer relationships as a maintenance problem rather than a growth engine, at staggering and avoidable cost.',
-      'She founded Revenue Retention Advisors to fix that, and built the 3D Framework, Diagnose, Design and Drive, that she now runs with B2B SaaS CEOs and CROs to turn an existing customer base into predictable expansion.',
+      'Sandy helps hyper-growth B2B SaaS companies find their next $1M. Not by chasing new logos, but by fighting churn, articulating value, and driving expansion.',
+      'A 25-year GTM veteran, she led global customer success and go-to-market teams at Oracle, Cisco, PwC and WebEx before founding Revenue Retention Advisors in 2023.',
+      'In 2025, she delivered eight GTM workshops across three continents, helping CROs find and fix the hidden revenue leaks quietly eroding their growth.',
     ],
     /* TODO: Sandy's awards. Her LinkedIn lists an Oracle Social Cloud
        Platform Customer Award and a Forrester CX certification. */
     awards: null,
+    /* Podcast appearances, her request. This is the same kind of block as
+       Bruce's awards: each of the three gets whatever credential is theirs to
+       show, rather than one of them getting an extra billboard. Dean has none
+       listed yet and should. */
+    media: [
+      { show: 'Scale Your Sales',
+        title: 'Is Your Sales Team Missing 50% of Revenue?',
+        url: 'https://open.spotify.com/episode/2moJ8wGZewmg0hDxm4D0Yf?si=hJteNnp3RNW5fG5E43DGcA' },
+      { show: 'B2B Pipeline Pioneers',
+        title: 'Fixing the Leaky Funnel',
+        url: 'https://open.spotify.com/episode/10fb9qlF9V1bxQ2oM4MMrs?si=5U54bKafQkmITQKwi8u5IQ' },
+      { show: 'CS in Focus',
+        title: 'Turning CS Into a Growth Engine',
+        url: 'https://creators.spotify.com/pod/profile/cs-in-focus/episodes/Ep-26-Fix-Your-Revenue-Leaks-Sandy-Yu-on-Turning-CS-Into-a-Growth-Engine-e371u34/a-ac4289c' },
+    ],
     /* /homepage, not the root. The root of revenuecco.com still carries the
        unedited Webflow template title, "Authority - Webflow HTML website
        template", which would sit in the browser tab of anyone we sent there.

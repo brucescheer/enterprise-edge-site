@@ -54,6 +54,23 @@ const slugFor = (edgeName) => EDGES.find((e) => e.name === edgeName)?.slug;
                 </ul>
               </div>
             )}
+            {/* Same block as the awards above it, because the two are the
+                same thing: whatever credential this person has to show. The
+                links leave the site, so they carry the same target and rel
+                as every other outbound link here. */}
+            {p.media && (
+              <div class="creds">
+                <p class="creds-label">Hear {p.name.split(' ')[0]}</p>
+                <ul>
+                  {p.media.map((m) => (
+                    <li>
+                      <a href={m.url} target="_blank" rel="noopener noreferrer">{m.title}</a>
+                      <span class="creds-src">{m.show}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <p class="person-cta">
               <a class="btn" href={inquiryLink(p)}>Email {p.name.split(' ')[0]}</a>
               <a class="more" href={`tel:${p.phone}`}>{p.phoneDisplay}</a>
