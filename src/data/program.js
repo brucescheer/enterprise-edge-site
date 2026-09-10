@@ -226,7 +226,15 @@ export const CITIES = [
     startDate: '2026-10-08T13:00:00-07:00',
     endDate: '2026-10-08T16:00:00-07:00',
     price: 'US$99',
-    lumaUrl: null,
+    /* Verified against the Luma event on 2026-09-10: it reads
+       Thursday 8 October, 1:00pm to 4:00pm Pacific, approval required, which
+       is exactly what this row says.
+
+       ONE THING DOES NOT MATCH. The Luma event is free. This row says US$99
+       and the site says so on the tile. Fix it on Luma rather than here: the
+       fee is what protects the show rate, and a free San Francisco is the one
+       city where that protection is missing. */
+    lumaUrl: 'https://luma.com/y6oevzkw',
   },
   {
     city: 'Los Angeles',
@@ -251,7 +259,10 @@ export const CITIES = [
     startDate: '2026-10-15T09:30:00-07:00',
     endDate: '2026-10-15T13:00:00-07:00',
     price: 'US$99',
-    lumaUrl: null,
+    /* Verified against the Luma event on 2026-09-10 and fully consistent:
+       Thursday 15 October, 9:30am to 12:30pm Pacific, US$99, approval
+       required. The only city where every field already agrees. */
+    lumaUrl: 'https://luma.com/lvgyex53',
   },
   {
     city: 'Singapore',
@@ -284,6 +295,17 @@ export const CITIES = [
        own currency rather than converting in their heads. Whatever it says
        has to match what the Luma event actually charges. */
     price: 'S$99',
+    /* HELD ON PURPOSE. The Singapore event exists at luma.com/i4omikls and
+       it does not agree with this row.
+
+         Luma says  Friday 30 October, 9:30am to 12:30pm, free
+         This row says  Friday 23 October, 9:00am to 1:00pm, S$99
+
+       A week apart, and both dates fall on a Friday, which is very likely why
+       nobody caught it. Bruce gave 23 October on 2026-09-09. Somebody has to
+       say which is right before this links anywhere: a tile reading 23 October
+       that opens a page reading 30 October is worse than a tile that does not
+       link at all. Fix the disagreement, then paste the URL here. */
     lumaUrl: null,
   },
   {
@@ -342,8 +364,15 @@ export const CITIES = [
 ];
 
 /* The calendar listing every city event. Used for the header CTA and anywhere
-   a specific city is not in play. Individual events live on CITIES above. */
-export const LUMA_URL = 'https://luma.com/';
+   a specific city is not in play. Individual events live on CITIES above.
+
+   This is the PUBLIC calendar, luma.com/getenterpriseedge. The link that came
+   over was luma.com/calendar/manage/cal-EAwH2d9BC3f5jng/events, which is the
+   host console: it is where we edit events, not where anyone registers.
+   Putting that on a public site sends visitors to a page they cannot use and
+   advertises the admin path. The public slug was read off the event pages
+   themselves, which name their calendar as getenterpriseedge. */
+export const LUMA_URL = 'https://luma.com/getenterpriseedge';
 
 /* Two different questions, and they stopped having the same answer the moment
    Singapore got a date but not yet an event page.
