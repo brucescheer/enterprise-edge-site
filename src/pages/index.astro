@@ -22,10 +22,16 @@ const ORDERED_CITIES = [
 
 /* "In Singapore that is The American Club" was hardcoded, which would have
    quietly become wrong the moment a venue changed or a second one was
-   confirmed. Built from the data instead, as "A in City, B in City". */
+   confirmed. Built from the data instead.
+
+   A venue whose name already contains its city does not get the city again.
+   With two venues "City Club Los Angeles in Los Angeles" was a small
+   clumsiness. With five it ran to "Tower Club Dallas in Dallas and The
+   Austin Club in Austin" in one sentence, which reads as though nobody
+   proofread it. */
 const VENUES = CITIES.filter((c) => c.venue);
 const VENUE_LIST = VENUES.map((c, i) => {
-  const clause = `${c.venue} in ${c.city}`;
+  const clause = c.venue.includes(c.city) ? c.venue : `${c.venue} in ${c.city}`;
   if (i === 0) return clause;
   if (i === VENUES.length - 1) return ` and ${clause}`;
   return `, ${clause}`;
@@ -237,10 +243,14 @@ const jsonLd = {
           name a room we are no longer in. */}
       <p>We run these in the best rooms we can find: {VENUE_LIST}.</p>
 
-      <p>That is not hospitality for its own sake. You are giving us a working morning out of a week that did not have one spare, and the room you spend it in decides whether the conversation stays polite or gets somewhere.</p>
-      <p>Where a session runs into a meal, the meal is on the agenda rather than after it, because a good share of the value is in it. The people beside you are running revenue organizations at your scale, working the same problems on different accounts. An hour with them over a proper meal earns its place.</p>
-      <p>The other half of the value is sitting next to you. Every seat belongs to someone running a revenue organization at your scale, working the same problems on different accounts. The cross-fertilizing is not a side effect of the format. It is half the reason we cap the room.</p>
-      <p>A seat costs a token fee. It does not cover the room or the meal and it is not meant to. It is there because a seat that cost something is a seat that gets used, and because twenty people who turned up beats sixty who meant to.</p>
+      {/* Two paragraphs here used to make the peer argument twice, one of
+          them word for word: "running revenue organizations at your scale,
+          working the same problems on different accounts" appeared in both.
+          That was introduced when the old "What you leave with" band was
+          folded into this section. Merged into one. */}
+      <p>That is not hospitality for its own sake. You are giving us a working morning out of a week that did not have one spare, and the room decides whether the conversation stays polite or gets somewhere.</p>
+      <p>Where a session runs into a meal, the meal is on the agenda rather than after it, because a good share of the value is in it. The people beside you are running revenue organizations at your scale, working the same problems on different accounts. That is not a side effect of the format. It is half the reason we cap the room.</p>
+      <p>A seat costs a token fee. It does not cover the room or the meal and is not meant to. A seat that cost something is a seat that gets used, and twenty people who turned up beats sixty who meant to.</p>
       {/* Venue photographs identify where each session is held. The site
           makes no claim that a venue hosts, sponsors or endorses the
           program, and the alt text says "the venue in" for that reason.
