@@ -242,11 +242,6 @@ const jsonLd = {
             <figcaption>
               <b>{c.venue}</b>
               <span>{c.city}</span>
-              {c.venuePhotoCredit && (
-                <small class="credit">
-                  <a href={c.venuePhotoCredit.authorUrl} target="_blank" rel="noopener noreferrer">{c.venuePhotoCredit.text}</a>, <a href={c.venuePhotoCredit.licenceUrl} target="_blank" rel="noopener noreferrer">{c.venuePhotoCredit.licence}</a>
-                </small>
-              )}
             </figcaption>
           </figure>
         ))}
@@ -334,4 +329,13 @@ const jsonLd = {
     </div>
   </section>
 
+  <div class="band-bone">
+    <div class="wrap" style="padding-top:1rem;padding-bottom:1rem">
+      {CITIES.filter((c) => c.venuePhotoCredit).map((c) => (
+        <p class="fine" style="margin:0;font-size:0.75rem">
+          Photo credit: <a href={c.venuePhotoCredit.authorUrl} target="_blank" rel="noopener noreferrer">{c.venuePhotoCredit.text}</a>, <a href={c.venuePhotoCredit.licenceUrl} target="_blank" rel="noopener noreferrer">{c.venuePhotoCredit.licence}</a>
+        </p>
+      ))}
+    </div>
+  </div>
 </Base>
