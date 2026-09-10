@@ -565,19 +565,15 @@ const canonical = 'https://getenterpriseedge.com/assessment/';
           fetch('/api/results', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
+            /* Numbers and the card, and nothing else. Every word in the
+               email is written on the server. Sending it labels and band
+               copy from here would mean an endpoint that emails whatever
+               text it is handed, from our own domain. */
             body: JSON.stringify({
               email: addr,
               company: $('ee-hp').value,
               role: last.roleLabel,
-              band: last.band.name,
-              overall: last.overall,
-              dims: DIMENSIONS.map(function (d, i) {
-                return { label: d.label, pct: last.pcts[i], edge: EDGES[d.edge].name };
-              }),
-              edges: EDGES.map(function (ed, k) {
-                return { name: ed.name, pct: last.edgeAvgs[k] };
-              }),
-              lowest: last.lowJoined,
+              pcts: last.pcts,
               png: png
             })
           }).then(function (r) {
