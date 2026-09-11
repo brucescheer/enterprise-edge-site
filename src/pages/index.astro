@@ -75,8 +75,7 @@ const jsonLd = {
   description={description}
   canonical={canonical}
   jsonLd={jsonLd}
->
-  <section class="band band-ink hero has-figure">
+>  <section class="band band-ink hero has-figure">
     {/* The symbol at scale, bleeding off the right edge. It gives the hero
         depth without stock photography and reuses artwork we already have.
         Decorative, so it is hidden from assistive technology and it is the
@@ -154,38 +153,6 @@ const jsonLd = {
     </div>
   </section>
   <section class="band band-bone2 band-measure">
-    <div class="wrap">
-      {/* "Should be" made this a qualification test. The hero now does that
-          job, in one line, before the first ask. So this is "will be", and
-          its subject changed with its name: not whether you qualify, but who
-          is sitting next to you and why that seat is worth the morning.
-
-          Four paragraphs came out. The two describing the reader's symptoms
-          were the Problem section again. The one listing where the three of
-          us have worked was about us, not about the room, and it is on Who
-          We Are where it belongs. The selective exceptions line went too;
-          attendance is approved one at a time, so an exception can be made
-          quietly rather than advertised. */}
-      <p class="eyebrow">Who will be in the room</p>
-      {/* TWENTY-FIVE IS A CAP, NOT AN ATTENDANCE FIGURE. This heading read
-          "Twenty-five peers" and the paragraph under it said "twenty-five of
-          them", both of which promise a count we cannot guarantee. If twenty
-          turn up, the page has misled them. Bruce caught it.
-
-          The whole site now says "up to twenty-five participants", which is
-          the honest form: it describes the limit rather than the turnout.
-          Always "up to". Never say twenty-five people will be there. */}
-      <h2>Peers with the same problem.</h2>
-      <p>CROs, VPs and SVPs of Sales, and senior revenue enablement leaders, at B2B companies running 50 sellers or more and typically above $100 million. Up to twenty-five participants, each one approved in advance, which is how the room stays that way.</p>
-      <p>Everyone there is running a revenue organization at your scale and quietly losing money on one of the three motions. Probably not the same one as you. That is what makes the seat next to you worth as much as the agenda.</p>
-      {/* Dean's list, off the collateral, and better than what was here:
-          four scenes instead of three abstractions, and one of them lands on
-          each of the three edges. Recast for house rule 1, since his had a
-          hyphen doing dash work in the last item. */}
-      <p>Bring the deals that do not make sense. The opportunity everyone thought was healthy. The champion who went quiet. The deal that changed during approval. The account you won and have not expanded.</p>
-    </div>
-  </section>
-  <section class="band band-bone band-measure">
     <div class="wrap">
       <p class="eyebrow">Outcome</p>
       <h2>High performing revenue engine.</h2>
@@ -293,7 +260,12 @@ const jsonLd = {
           That was introduced when the old "What you leave with" band was
           folded into this section. Merged into one. */}
       <p>That is not hospitality for its own sake. You are giving us a working morning out of a week that did not have one spare, and the room decides whether the conversation stays polite or gets somewhere.</p>
-      <p>Where a session runs into a meal, the meal is on the agenda rather than after it. The people beside you are running revenue organizations at your scale, working the same problems on different accounts. That is not a side effect of the format. It is half the reason we cap the room.</p>
+      {/* The peer argument used to live in this sentence. It moved out when
+          Who will be in the room moved directly underneath: that section is
+          named for those people and describes them in full, so saying it
+          here too put the same claim in two consecutive bands. This keeps
+          the meal and the cap, which are this section's own. */}
+      <p>Where a session runs into a meal, the meal is on the agenda rather than after it. An hour with the people in this room over a proper meal is not a side effect of the format. It is half the reason we cap it.</p>
       <p>A seat costs a token fee. It does not cover the room or the meal and is not meant to. A seat that cost something is a seat that gets used, and twenty people who turned up beats sixty who meant to.</p>
       {/* Venue photographs identify where each session is held. The site
           makes no claim that a venue hosts, sponsors or endorses the
@@ -314,6 +286,43 @@ const jsonLd = {
           </figure>
         ))}
       </div>
+    </div>
+  </section>
+  <section class="band band-bone2 band-measure">
+    <div class="wrap">
+      {/* "Should be" made this a qualification test. The hero now does that
+          job, in one line, before the first ask. So this is "will be", and
+          its subject changed with its name: not whether you qualify, but who
+          is sitting next to you and why that seat is worth the morning.
+
+          It sits after The room for the same reason. Up at position three it
+          interrupted the spine between the problem and the outcome. Here the
+          page shows you the room and then tells you who is in it, which is
+          the order anyone would ask in.
+
+          Four paragraphs came out. The two describing the reader's symptoms
+          were the Problem section again. The one listing where the three of
+          us have worked was about us, not about the room, and it is on Who
+          We Are where it belongs. The selective exceptions line went too;
+          attendance is approved one at a time, so an exception can be made
+          quietly rather than advertised. */}
+      <p class="eyebrow">Who will be in the room</p>
+      {/* TWENTY-FIVE IS A CAP, NOT AN ATTENDANCE FIGURE. This heading read
+          "Twenty-five peers" and the paragraph under it said "twenty-five of
+          them", both of which promise a count we cannot guarantee. If twenty
+          turn up, the page has misled them. Bruce caught it.
+
+          The whole site now says "up to twenty-five participants", which is
+          the honest form: it describes the limit rather than the turnout.
+          Always "up to". Never say twenty-five people will be there. */}
+      <h2>Peers with the same problem.</h2>
+      <p>CROs, VPs and SVPs of Sales, and senior revenue enablement leaders, at B2B companies running 50 sellers or more and typically above $100 million. Up to twenty-five participants, each one approved in advance, which is how the room stays that way.</p>
+      <p>Everyone there is running a revenue organization at your scale and quietly losing money on one of the three motions. Probably not the same one as you. That is what makes the seat next to you worth as much as the agenda.</p>
+      {/* Dean's list, off the collateral, and better than what was here:
+          four scenes instead of three abstractions, and one of them lands on
+          each of the three edges. Recast for house rule 1, since his had a
+          hyphen doing dash work in the last item. */}
+      <p>Bring the deals that do not make sense. The opportunity everyone thought was healthy. The champion who went quiet. The deal that changed during approval. The account you won and have not expanded.</p>
     </div>
   </section>
   <section class="band band-ink" id="dates">
@@ -371,7 +380,6 @@ const jsonLd = {
       </div>
     </div>
   </section>
-
   <section class="band band-ink band-measure" id="steps">
     <div class="wrap">
       <p class="eyebrow">Steps</p>
