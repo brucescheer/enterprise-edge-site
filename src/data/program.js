@@ -211,7 +211,7 @@ export const CITIES = [
     // Replacement photo supplied by Bruce and cleared for use without attribution.
     venuePhotoCredit: null,
     date: 'Thursday, October 8, 2026',
-    doors: null,
+    doors: '12:30pm',
     time: '1:00pm to 4:00pm',
     /* The session runs the afternoon, so there is no lunch in it. It ends in
        a reception instead. `endDate` below stays at 4:00pm, which is when the
@@ -283,13 +283,13 @@ export const CITIES = [
        source only makes it soft and heavy. */
     venuePhotoCredit: null,
     date: 'Friday, October 30, 2026',
-    doors: null,
-    time: '9:00am to 1:00pm',
+    doors: '9:00am',
+    time: '9:30am to 12:30pm',
     meal: 'Lunch included',
     /* Singapore is UTC+8 and does not observe daylight saving, so the offset
        is fixed. */
-    startDate: '2026-10-30T09:00:00+08:00',
-    endDate: '2026-10-30T13:00:00+08:00',
+    startDate: '2026-10-30T09:30:00+08:00',
+    endDate: '2026-10-30T12:30:00+08:00',
     /* Singapore charges S$99 in Singapore dollars, not US$99. Prices are
        per-city display strings for exactly this reason: attendees see their
        own currency rather than converting in their heads. Whatever it says
@@ -299,11 +299,9 @@ export const CITIES = [
        Friday 30 October, not 23 October. Both fall on a Friday, which is why
        it went unnoticed for two days.
 
-       ONE THING STILL DIFFERS. Luma has the session at 9:30am to 12:30pm.
-       This row says 9:00am to 1:00pm with lunch included, which is what
-       Bruce specified and which is the fuller offering. The site is the
-       source of truth, so Luma is the one to change. Until it is, the tile
-       and the event page disagree by thirty minutes at each end. */
+       Times now match Luma exactly. Doors are 9:00am, half an hour before
+       the session, which is the pattern in every city: come early so the
+       content can start on time, and stay afterwards for the meal. */
     lumaUrl: 'https://luma.com/i4omikls',
   },
   {
