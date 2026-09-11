@@ -302,7 +302,13 @@ p{line-height:1.6;margin:0 0 1.15rem;max-width:40rem}
    "dates announcing soon" state; a table would advertise the empty column. */
 .dates{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));
   gap:1px;margin-top:2.5rem;background:var(--line-dark)}
-.date{background:var(--ink);padding:1.5rem 1.25rem}
+/* The amber rule runs across every tile. It used to sit only on .is-set,
+   the dated-but-not-yet-bookable state, to mark those as real without
+   making them look clickable. Once three cities opened for registration the
+   effect inverted: the tiles you could actually book were the plain ones,
+   and the two you could not were the ones wearing the accent. */
+.date{background:var(--ink);border-top:3px solid var(--amber);
+  padding:calc(1.5rem - 3px) 1.25rem 1.5rem}
 .date b{display:block;font-family:var(--font-head);font-weight:700;
   font-size:1.55rem;color:var(--white);line-height:1.1;margin-bottom:.35rem}
 .date span{font-size:.95rem;color:var(--pale)}
@@ -610,10 +616,8 @@ a.date:hover .go{text-decoration:underline}
 .date .when{display:block;font-family:var(--font-head);font-weight:600;
   font-size:1.1rem;color:var(--amber);margin-bottom:.4rem}
 .date .detail{display:block;font-size:.95rem;color:var(--pale);line-height:1.4}
-/* A dated city that cannot be booked yet. The amber top rule marks it as real
-   without making the tile look clickable, which it is not until there is an
-   event page behind it. */
-.date.is-set{border-top:3px solid var(--amber);padding-top:calc(1.5rem - 3px)}
+/* A dated city that cannot be booked yet. It says so where an open tile
+   says Reserve a seat. */
 .date.is-set .tbd{margin-top:.75rem;display:block}
 a.date.is-open .when{color:var(--white)}
 
