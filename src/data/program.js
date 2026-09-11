@@ -282,31 +282,29 @@ export const CITIES = [
        680px rather than upscaled to match the others: enlarging a 680px
        source only makes it soft and heavy. */
     venuePhotoCredit: null,
-    date: 'Friday, October 23, 2026',
+    date: 'Friday, October 30, 2026',
     doors: null,
     time: '9:00am to 1:00pm',
     meal: 'Lunch included',
     /* Singapore is UTC+8 and does not observe daylight saving, so the offset
        is fixed. */
-    startDate: '2026-10-23T09:00:00+08:00',
-    endDate: '2026-10-23T13:00:00+08:00',
+    startDate: '2026-10-30T09:00:00+08:00',
+    endDate: '2026-10-30T13:00:00+08:00',
     /* Singapore charges S$99 in Singapore dollars, not US$99. Prices are
        per-city display strings for exactly this reason: attendees see their
        own currency rather than converting in their heads. Whatever it says
        has to match what the Luma event actually charges. */
     price: 'S$99',
-    /* HELD ON PURPOSE. The Singapore event exists at luma.com/i4omikls and
-       it does not agree with this row.
+    /* Bruce resolved the date on 2026-09-11 in favour of the Luma event:
+       Friday 30 October, not 23 October. Both fall on a Friday, which is why
+       it went unnoticed for two days.
 
-         Luma says  Friday 30 October, 9:30am to 12:30pm, free
-         This row says  Friday 23 October, 9:00am to 1:00pm, S$99
-
-       A week apart, and both dates fall on a Friday, which is very likely why
-       nobody caught it. Bruce gave 23 October on 2026-09-09. Somebody has to
-       say which is right before this links anywhere: a tile reading 23 October
-       that opens a page reading 30 October is worse than a tile that does not
-       link at all. Fix the disagreement, then paste the URL here. */
-    lumaUrl: null,
+       ONE THING STILL DIFFERS. Luma has the session at 9:30am to 12:30pm.
+       This row says 9:00am to 1:00pm with lunch included, which is what
+       Bruce specified and which is the fuller offering. The site is the
+       source of truth, so Luma is the one to change. Until it is, the tile
+       and the event page disagree by thirty minutes at each end. */
+    lumaUrl: 'https://luma.com/i4omikls',
   },
   {
     city: 'Dallas',
