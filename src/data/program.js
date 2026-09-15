@@ -57,7 +57,7 @@ export const EDGES = [
         },
       ],
       followOn:
-        'Bruce runs Find Value, Communicate Value and Quantify Value as engagements with revenue teams through Inspire Your Buyers. The Enterprise Edge is built for organizations with 50 sellers or more; if you are earlier stage and selling into enterprise, this hour still stands on its own and he works with smaller teams too.',
+        'Bruce runs Find Value, Communicate Value and Quantify Value as engagements with revenue teams through Inspire Your Buyers. That includes teams moving upmarket and selling into the enterprise for the first time.',
     },
   },
   {

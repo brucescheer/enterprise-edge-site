@@ -53,7 +53,7 @@ Use these words. They are the site's, verbatim.
 
 **Path.** Get the Enterprise Edge.
 
-**Steps.** Take the assessment. Check the dates. Register. Ask us anything.
+**Steps.** Find your weak link. Check the dates. Register. Ask us anything.
 
 ## The three edges, and the three promises
 
@@ -67,7 +67,10 @@ underneath it. Both are fixed.
 | 03 | The Expansion Edge | Sandy Yu | Get them to expand |
 
 The headline they come from:
-**Get them to say yes. Get the damn deal approved. Get them to expand.**
+**Get them to say yes. Get the deal approved. Get them to expand.**
+
+No "damn". It came out on 15 September because it reads as off-putting in
+Singapore and across APAC, and the masterclass runs there.
 
 Three different problems. One connected motion. Not a journey, not a flow,
 not a funnel.
@@ -84,10 +87,12 @@ not meant to. It exists to protect the show rate, because a seat that cost
 something is a seat that gets used. Never write copy claiming it covers
 costs.
 
-**Who it is for.** B2B revenue and customer success leaders running 50
-sellers or more, typically above $100 million in revenue. Say so early. A
-reader who does not qualify should be able to stop reading, and one who does
-should recognise themselves immediately.
+**Who it is for.** Revenue and customer success leaders at B2B companies
+with revenue teams challenged by the complexities of selling to the
+enterprise: mid-market teams moving upmarket as well as large ones. There is
+no seller count or revenue bar any more; attendance is approved one at a
+time instead. Say who it is for early, so a reader recognises themselves in
+the first two lines.
 
 ## Hard rules
 
@@ -141,8 +146,8 @@ beats "visibility challenges".
 - Every statistic sourced and linked?
 - Nobody carrying anything?
 - Does it read as one programme rather than three consultants?
-- Would a CRO with 50 sellers know in the first two lines that this is for
-  them?
+- Would a revenue leader selling into the enterprise know in the first two
+  lines that this is for them?
 
 ## Using this outside Claude Code
 

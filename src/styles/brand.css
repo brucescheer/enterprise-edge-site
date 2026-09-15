@@ -802,3 +802,40 @@ a.date.is-open .when{color:var(--white)}
 .band-bone .qualifier,.band-bone2 .qualifier{color:var(--ink);
   border-left-color:var(--bronze)}
 .qualifier + .cta-pair{margin-top:1.75rem}
+
+/* ---------- Stacked headline ----------
+   One sentence per line so the three Gets line up down the left edge. The
+   spans are block so the stack holds at every width; the plain spaces
+   between them in the markup keep it reading as three sentences to a screen
+   reader and to anything that strips the styles. */
+.h1-stack{max-width:none}
+.h1-stack span{display:block}
+
+/* ---------- More detail ----------
+   The gist stays open, the depth sits behind a toggle. Styled to match the
+   .more text links rather than as a button, because it is a way to keep
+   reading, not an action. The chevron turns on open so the state is visible
+   without the label having to change. */
+.more-detail{margin:1.4rem 0 0}
+.more-detail > summary{list-style:none;cursor:pointer;display:inline-flex;
+  align-items:center;gap:.6rem;font-family:var(--font-head);font-weight:700;
+  font-size:1.1rem;color:var(--ink);border-bottom:2px solid var(--amber);
+  padding-bottom:2px}
+.more-detail > summary::-webkit-details-marker{display:none}
+.more-detail > summary::after{content:"";display:inline-block;width:.42em;
+  height:.42em;border-right:2px solid var(--bronze);
+  border-bottom:2px solid var(--bronze);
+  transform:translateY(-.18em) rotate(45deg);transition:transform .2s ease}
+.more-detail[open] > summary::after{transform:translateY(.12em) rotate(-135deg)}
+.more-detail > summary:hover{color:var(--bronze)}
+.more-detail > summary:focus-visible{outline:3px solid var(--amber);
+  outline-offset:3px}
+.band-ink .more-detail > summary{color:var(--white)}
+.band-ink .more-detail > summary::after{border-color:var(--amber)}
+.band-ink .more-detail > summary:hover{color:var(--amber)}
+.more-body{margin-top:1.1rem}
+.more-body > :first-child{margin-top:0}
+.more-body .edge-disciplines{margin-top:0}
+@media (prefers-reduced-motion:reduce){
+  .more-detail > summary::after{transition:none}
+}

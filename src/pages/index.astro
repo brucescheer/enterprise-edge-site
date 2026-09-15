@@ -4,7 +4,7 @@ import { EDGES, CITIES, FACULTY, HAS_DATES, HAS_REGISTRATION, NEXT_SESSION, SESS
 
 const title = 'The Enterprise Edge: A Half-Day Masterclass for Enterprise Revenue Leaders';
 const description =
-  'A half day for B2B revenue and customer success leaders running 50+ sellers. Bruce Scheer, Dean Edwards and Sandy Yu on getting customers to say yes, getting the deal through approval, and expanding the account.';
+  'A half day for B2B revenue and customer success leaders taking on the complexity of selling to the enterprise. Bruce Scheer, Dean Edwards and Sandy Yu on getting customers to say yes, getting the deal through approval, and expanding the account.';
 const canonical = 'https://getenterpriseedge.com/';
 
 /* Dated cities first and soonest first, then the ones still to be scheduled.
@@ -83,8 +83,12 @@ const jsonLd = {
         otherwise sit behind the headline. */}
     <img class="hero-figure" src="/assets/ee-symbol.png" alt="" aria-hidden="true" />
     <div class="wrap">
-      <p class="eyebrow">A half day for enterprise revenue leaders with 50 sellers or more</p>
-      <h1>Get them to say yes. Get the damn deal approved. Get them to expand.</h1>
+      <p class="eyebrow">A half day for mid-market and enterprise revenue leaders</p>
+      {/* One sentence per line so the three Gets stack and line up, Cindy's
+          note. "Damn" came out on the 15 September call: it reads as
+          off-putting in Singapore and across APAC, and the masterclass runs
+          there. */}
+      <h1 class="h1-stack"><span>Get them to say yes.</span> <span>Get the deal approved.</span> <span>Get them to expand.</span></h1>
       <p class="lede">Three hours on the full arc of an enterprise customer, with three people who have each spent a career on one part of it.</p>
 
       {/* Dean's idea on the 10 September call, and Bruce put it here: state
@@ -93,13 +97,13 @@ const jsonLd = {
           able to stop reading, and someone who does should recognise
           themselves immediately. The fuller Who should be in the room
           section still runs later; this is the filter, that is the detail. */}
-      <p class="qualifier">Are you a revenue leader with 50 sellers or more? Then this is your room. If not, better to know it here than at the door.</p>
+      <p class="qualifier">Is your revenue team selling into the enterprise, and finding it harder than it should be? Then this is your room.</p>
       {/* The assessment leads, because it is step one of the four at the
           foot of this page and because a reader who has seen their own shape
           arrives at the dates already knowing why. Dates stay one click
           away as the secondary. */}
       <div class="cta-pair">
-        <a class="btn" href="/assessment/">Take the assessment</a>
+        <a class="btn" href="/assessment/">Find your weak link</a>
         <a class="more" href="#dates">{HAS_DATES ? 'See dates and cities' : 'See where we are running it'}</a>
       </div>
       <p class="fine" style="margin-top:.9rem">Nine questions, about three minutes. No sign-in.</p>
@@ -133,8 +137,19 @@ const jsonLd = {
           claim carries as the lede and the mechanics follow as body copy.
           Same words, same order, no windup. */}
       <p class="lede">Enterprise revenue depends on three connected motions: win preference, earn approval, and prove value after the sale.</p>
-      <p>They fail in completely different ways. Winning preference is a narrative and business case problem. Earning approval is a commercial, legal, security and governance problem. Proving value afterward is an outcomes and relationships problem.</p>
       <p>Most revenue organizations are strong at one of the three, adequate at the second, and quietly losing money on the third. The trouble is that the one you are worst at never sends you a report.</p>
+      {/* PROBLEM, OUTCOME, PATH: the gist stays open and the depth sits behind
+          a toggle. Cindy's note: all three beats in full were overwhelming,
+          and a reader should be able to take the gist and keep moving down
+          the page, or stop and go deeper. <details> because it needs no
+          script, is keyboard and screen reader native, and search engines
+          still read what is inside it. The lines left open are the ones the
+          next beat depends on: "the one you are worst at" is what the
+          Outcome's "what if" answers. */}
+      <details class="more-detail">
+        <summary>Why it happens</summary>
+        <div class="more-body">
+          <p>They fail in completely different ways. Winning preference is a narrative and business case problem. Earning approval is a commercial, legal, security and governance problem. Proving value afterward is an outcomes and relationships problem.</p>
       {/* Both figures were read off the Gartner press releases they link to,
            on 2026-09-09, and both pages state the number in those words. They
            replaced a Forrester "86% stall" and a JOLT Effect "40 to 60% no
@@ -143,8 +158,10 @@ const jsonLd = {
 
            Anything that goes in this paragraph has to survive the same check:
            open the source, find the number, or do not publish it. */}
-      <p>The numbers bear it out. 64% of B2B buyers cannot tell one brand&rsquo;s digital experience from another&rsquo;s (<a href="https://www.gartner.com/en/newsroom/press-releases/gartner-says-b2b-sales-organizations-need-to-give-customers-a-se" target="_blank" rel="noopener noreferrer">Gartner</a>). And when the information reaching them contradicts itself, they are 153% more likely to settle for something smaller and less disruptive than they set out to buy (<a href="https://www.gartner.com/en/newsroom/press-releases/2019-07-29-gartner-reveals-new-b2b-sales-approach-to-win-in-toda" target="_blank" rel="noopener noreferrer">Gartner</a>).</p>
-      <p>That is the shrink, measured. It does not arrive with a reason attached.</p>
+          <p>The numbers bear it out. 64% of B2B buyers cannot tell one brand&rsquo;s digital experience from another&rsquo;s (<a href="https://www.gartner.com/en/newsroom/press-releases/gartner-says-b2b-sales-organizations-need-to-give-customers-a-se" target="_blank" rel="noopener noreferrer">Gartner</a>). And when the information reaching them contradicts itself, they are 153% more likely to settle for something smaller and less disruptive than they set out to buy (<a href="https://www.gartner.com/en/newsroom/press-releases/2019-07-29-gartner-reveals-new-b2b-sales-approach-to-win-in-toda" target="_blank" rel="noopener noreferrer">Gartner</a>).</p>
+          <p>That is the shrink, measured. It does not arrive with a reason attached.</p>
+        </div>
+      </details>
       {/* Dean's line, off the workshop collateral. The site had never said
           this plainly anywhere, and it is the hinge the whole program turns
           on: the answer is not in your CRM, it is in a room you were not
@@ -162,10 +179,15 @@ const jsonLd = {
           the Problem section: the one you are worst at never sends you a
           report. Same move Bruce uses on inspireyourbuyers.com. */}
       <p class="lede">What if the one you are worst at stopped costing you quietly?</p>
-      <p>Your champion can tell the buying group the same value story you would have told, in their own words, without you there to correct it.</p>
-      <p>The wider organization gets the answers it needs. Procurement can defend the commercial logic. Finance understands the economics. Security, Legal and governance stakeholders can see how risk will be managed. When price pressure comes, the conversation stays anchored in total value rather than collapsing into discounting.</p>
-      <p>After the sale, the customer can see what was delivered, why it mattered, and where additional value can be created.</p>
-      <p>The result is a deal that earns preference, survives approval, delivers visible value, and creates a stronger path to renewal and expansion.</p>
+      <p>Then your deals earn preference, survive approval, deliver visible value, and open a stronger path to renewal and expansion.</p>
+      <details class="more-detail">
+        <summary>What that looks like</summary>
+        <div class="more-body">
+          <p>Your champion can tell the buying group the same value story you would have told, in their own words, without you there to correct it.</p>
+          <p>The wider organization gets the answers it needs. Procurement can defend the commercial logic. Finance understands the economics. Security, Legal and governance stakeholders can see how risk will be managed. When price pressure comes, the conversation stays anchored in total value rather than collapsing into discounting.</p>
+          <p>After the sale, the customer can see what was delivered, why it mattered, and where additional value can be created.</p>
+        </div>
+      </details>
       <p class="emph">You will not be in every meeting that decides the deal. The system has to work when you are not in the room.</p>
     </div>
   </section>
@@ -178,11 +200,10 @@ const jsonLd = {
           section opened on "three jobs, three hours" and the reader had to
           hold the thread themselves. */}
       <p class="lede">Overcoming upmarket revenue misfires and building a high performing revenue engine: that is the goal, and this masterclass is how.</p>
-      <p>Three jobs. Three hours. Three people who have each spent a career on one of them.</p>
-      <p>Working frameworks across the whole revenue motion, not one slice of it. How you acquire customers, how you get contracts approved, and how you expand the accounts you win. Most programs take one of those three. The gaps between them are where the revenue actually goes.</p>
+      <p>Three jobs. Three hours. Three people who have each spent a career on one of them. Most programs take one of the three, and the gaps between them are where the revenue actually goes.</p>
 
       <div class="pull">
-        <p><b>Bruce</b> will get your customers to say yes. <b>Dean</b> will make sure the damn deal gets approved. <b>Sandy</b> will help you expand the account.</p>
+        <p><b>Bruce</b> will get your customers to say yes. <b>Dean</b> will make sure the deal gets approved. <b>Sandy</b> will help you expand the account.</p>
       </div>
 
       {/* Titles the numbered list so the three edges read as the shape of
@@ -200,10 +221,15 @@ const jsonLd = {
               <h3><a href={`/${e.slug}/`}>{e.name}</a></h3>
               <p class="edge-promise">{e.promise}</p>
               <p>{e.blurb}</p>
-              <ul class="edge-disciplines">
-                {e.disciplines.map((d) => <li set:html={d} />)}
-              </ul>
-              {e.extra && <p class="fine" style="margin-top:1rem" set:html={e.extra} />}
+              <details class="more-detail">
+                <summary>What this hour covers</summary>
+                <div class="more-body">
+                  <ul class="edge-disciplines">
+                    {e.disciplines.map((d) => <li set:html={d} />)}
+                  </ul>
+                  {e.extra && <p class="fine" style="margin-top:1rem" set:html={e.extra} />}
+                </div>
+              </details>
             </div>
             <div class="edge-who">
               {/* Portrait comes from FACULTY, matched on speaker name, so a
@@ -316,8 +342,14 @@ const jsonLd = {
           the honest form: it describes the limit rather than the turnout.
           Always "up to". Never say twenty-five people will be there. */}
       <h2>Peers with the same problem.</h2>
-      <p>CROs, VPs and SVPs of Sales, and senior revenue enablement leaders, at B2B companies running 50 sellers or more and typically above $100 million. Up to twenty-five participants, each one approved in advance, which is how the room stays that way.</p>
-      <p>Everyone there is running a revenue organization at your scale and quietly losing money on one of the three motions. Probably not the same one as you. That is what makes the seat next to you worth as much as the agenda.</p>
+      {/* The 50-seller and $100 million bar came out on the 15 September
+          call. Sandy's marketing coach made the case that it shut out mid-
+          market teams moving upmarket, who need this most. The agreed line
+          is B2B companies with revenue teams challenged by the complexities
+          of selling to the enterprise. Approval in advance is what keeps the
+          room viable now the headline filter is wider. */}
+      <p>CROs, VPs and SVPs of Sales, and senior revenue enablement leaders at B2B companies with revenue teams challenged by the complexities of selling to the enterprise. Up to twenty-five participants, each one approved in advance, which is how the room stays that way.</p>
+      <p>Everyone there is selling into the enterprise and quietly losing money on one of the three motions. Probably not the same one as you. That is what makes the seat next to you worth as much as the agenda.</p>
       {/* Dean's list, off the collateral, and better than what was here:
           four scenes instead of three abstractions, and one of them lands on
           each of the three edges. Recast for house rule 1, since his had a
@@ -375,7 +407,7 @@ const jsonLd = {
       </div>
 
       <div class="cta-pair">
-        <a class="btn" href="/assessment/">Take the assessment</a>
+        <a class="btn" href="/assessment/">Find your weak link</a>
         <a class="btn btn-ghost" href="/work-with-us/">Bring The Enterprise Edge in-house</a>
       </div>
     </div>
@@ -392,7 +424,7 @@ const jsonLd = {
           stops at "get in touch" fumbles at the goal line. */}
       <ol class="steps">
         <li>
-          <b>Take the assessment.</b>
+          <b>Find your weak link.</b>
           <span>Nine questions, about three minutes. You get a shape across nine dimensions, the one costing you most, and the edge to start with. <a href="/assessment/">Start it here</a>.</span>
         </li>
         <li>
@@ -414,7 +446,7 @@ const jsonLd = {
       </ol>
 
       <div class="cta-pair">
-        <a class="btn" href="/assessment/">Take the assessment</a>
+        <a class="btn" href="/assessment/">Find your weak link</a>
         <a class="btn btn-ghost" href="/work-with-us/">Bring The Enterprise Edge in-house</a>
       </div>
     </div>
