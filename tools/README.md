@@ -67,3 +67,16 @@ both in step or the lockup stops lining up with the copy under it.
 `functions/api/results.js` attaches it by `path` and references it as
 `cid:ee-lockup`, so Resend fetches it at send time. That means a redeploy of
 the site is enough to change the masthead in every future email.
+
+# Partiful cards for Tech Week
+
+`partiful-techweek.html` is the source of the 1200x1200 Partiful event cards
+for the two Tech Week cities. It follows Tech Week's co-branding rule from
+hosts.tech-week.com/brandkit: their city mark, an ×, then our lockup at the
+same height. Their SF and LA marks are kept in `tools/source/` as the SVGs
+they publish. The hairline amber frame is the one thing borrowed from their
+template family so the card reads as one of theirs in a feed of theirs.
+
+Placeholders `__CITY__ __DAY__ __DATE__ __TIME__ __VENUE__ __TAG__` are
+filled by a short Python loop, not sed: the hashtag in `__TAG__` breaks a
+sed `#` delimiter. Render at 1200x1200, scale factor 1.

@@ -1,0 +1,65 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:'Archivo Narrow';font-weight:500 700;
+  src:url('file:///Users/brucescheer/enterprise-edge-site/public/fonts/ArchivoNarrow-latin.woff2') format('woff2')}
+@font-face{font-family:'Inter';font-weight:400 600;
+  src:url('file:///Users/brucescheer/enterprise-edge-site/public/fonts/Inter-latin.woff2') format('woff2')}
+*{margin:0;padding:0;box-sizing:border-box}
+/* 1200 square for Partiful. Ink ground and amber accent are ours; the
+   hairline frame is the one thing borrowed from the Tech Week template
+   family so this reads as one of theirs in a feed of theirs. */
+body{width:1200px;height:1200px;background:#141A22;color:#fff;
+  font-family:'Inter',sans-serif;padding:72px;position:relative;overflow:hidden}
+.frame{position:absolute;inset:28px;border:2px solid #F2A93B;opacity:.55;pointer-events:none}
+.top{display:flex;align-items:center;gap:34px;height:96px}
+/* Tech Week's co-brand rule: their city mark, an x, our logo at the same
+   height as their mark. */
+.tw{height:96px;width:auto;display:block}
+.x{font-family:'Inter',sans-serif;font-weight:400;font-size:44px;color:#D7DCE4;opacity:.7;line-height:1}
+.lock{display:flex;align-items:center;gap:16px}
+.sym{height:84px;width:auto;display:block}
+.type{display:flex;flex-direction:column;gap:7px}
+.nm{font-family:'Archivo Narrow',sans-serif;font-weight:600;font-size:30px;letter-spacing:2.1px;
+  text-transform:uppercase;color:#fff;line-height:1}
+.nm i{font-style:normal;color:#F2A93B}
+.ph{font-family:'Inter',sans-serif;font-weight:400;font-size:14px;letter-spacing:3.1px;
+  text-transform:uppercase;color:#D7DCE4;line-height:1}
+.mid{position:absolute;left:72px;right:72px;top:300px}
+.kick{font-family:'Inter',sans-serif;font-weight:600;font-size:22px;letter-spacing:3.6px;
+  text-transform:uppercase;color:#F2A93B;margin-bottom:26px}
+h1{font-family:'Archivo Narrow',sans-serif;font-weight:700;font-size:98px;line-height:1.02;
+  letter-spacing:-.5px;color:#fff}
+.rule{width:72px;height:6px;background:#F2A93B;margin:44px 0 40px}
+.when{font-family:'Archivo Narrow',sans-serif;font-weight:700;font-size:44px;color:#fff;line-height:1.15}
+.when span{color:#F2A93B}
+.where{font-family:'Inter',sans-serif;font-weight:400;font-size:26px;color:#D7DCE4;line-height:1.45;margin-top:14px}
+.foot{position:absolute;left:72px;right:72px;bottom:72px;display:flex;justify-content:space-between;
+  align-items:flex-end;font-family:'Inter',sans-serif}
+.seats{font-size:22px;color:#D7DCE4;line-height:1.4;max-width:700px}
+.seats b{color:#fff;font-weight:600}
+.url{font-family:'Archivo Narrow',sans-serif;font-weight:700;font-size:26px;letter-spacing:2.6px;
+  text-transform:uppercase;color:#F2A93B}
+</style></head><body>
+<div class="frame"></div>
+<div class="top">
+  <img class="tw" src="file:///Users/brucescheer/enterprise-edge-site/tools/source/techweek-__CITY__-white.svg" alt="">
+  <div class="x">&times;</div>
+  <div class="lock">
+    <img class="sym" src="file:///Users/brucescheer/enterprise-edge-site/public/assets/ee-symbol.png" alt="">
+    <div class="type">
+      <div class="nm">The Enterprise <i>Edge</i></div>
+      <div class="ph">Clarity creates advantage</div>
+    </div>
+  </div>
+</div>
+<div class="mid">
+  <div class="kick">A half-day masterclass for revenue leaders and founders</div>
+  <h1>Get them to say yes.<br>Get the deal approved.<br>Get them to expand.</h1>
+  <div class="rule"></div>
+  <div class="when">__DAY__, __DATE__ <span>&middot;</span> __TIME__</div>
+  <div class="where">__VENUE__<br>__TAG__</div>
+</div>
+<div class="foot">
+  <div class="seats"><b>Up to 25 seats, approved in advance.</b><br>Three hours, a meal, and a live deal of yours on the table.</div>
+  <div class="url">getenterpriseedge.com</div>
+</div>
+</body></html>
