@@ -243,6 +243,10 @@ const jsonLd = {
               <h3><a href={`/${e.slug}/`}>{e.name}</a></h3>
               <p class="edge-promise">{e.promise}</p>
               <p>{e.blurb}</p>
+              {/* Visible on purpose. Astra's review and the CRO read both
+                  landed on the same point: what you leave with is the most
+                  persuasive line in each hour, and it was folded away. */}
+              {e.takeaway && <p class="edge-takeaway">{e.takeaway}</p>}
               <details class="more-detail">
                 <summary>What this hour covers</summary>
                 <div class="more-body">

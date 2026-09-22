@@ -66,6 +66,13 @@ underneath it. Both are fixed.
 | 02 | The Approval Edge | Dean Edwards | Get the deal approved |
 | 03 | The Expansion Edge | Sandy Yu | Get them to expand |
 
+**What each hour hands over.** Say it in this shape, and only when it is
+true: "Every attendee leaves with ..." The Value Edge: a one-page positioning
+and narrative spine canvas worked on a live deal, and a signed copy of
+Inspire Your Buyers. The Approval Edge: a practical approval-readiness
+framework for a live deal. The Expansion Edge: pending; Bruce and Sandy are
+agreeing it, and until then say nothing rather than something vague.
+
 The headline they come from:
 **Get them to say yes. Get the deal approved. Get them to expand.**
 

@@ -41,6 +41,7 @@ const canonical = `https://getenterpriseedge.com/${edge.slug}/`;
       <p class="eyebrow">The job</p>
       <h2 style="max-width:24ch">{edge.job}.</h2>
       <p>{edge.blurb}</p>
+      {edge.takeaway && <p class="edge-takeaway">{edge.takeaway}</p>}
     </div>
   </section>
 

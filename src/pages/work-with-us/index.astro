@@ -95,6 +95,7 @@ const WAYS = [
             <p class="eyebrow">{e.num} &nbsp;{e.name}</p>
             <h3>{e.promise}</h3>
             <p>{e.blurb}</p>
+            {e.takeaway && <p class="edge-takeaway">{e.takeaway}</p>}
           </div>
         ))}
       </div>
