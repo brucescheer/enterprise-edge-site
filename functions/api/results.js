@@ -60,8 +60,10 @@ const BANDS = [
 ];
 
 const ROLES = [
-  'CRO or Chief Revenue Officer', 'VP or SVP of Sales', 'VP of Customer Success',
-  'Revenue Enablement', 'Other', 'Role not given',
+  'CRO or Chief Revenue Officer', 'Chief Sales Officer, VP or SVP of Sales',
+  'CMO or marketing leader', 'Chief Customer Officer or VP of Customer Success',
+  'COO or founder responsible for revenue', 'Revenue Enablement', 'Other',
+  'Role not given',
 ];
 
 const FROM = 'The Enterprise Edge <assessment@getenterpriseedge.com>';

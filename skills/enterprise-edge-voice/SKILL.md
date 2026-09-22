@@ -87,12 +87,18 @@ not meant to. It exists to protect the show rate, because a seat that cost
 something is a seat that gets used. Never write copy claiming it covers
 costs.
 
-**Who it is for.** Revenue and customer success leaders at B2B companies
-with revenue teams challenged by the complexities of selling to the
-enterprise: mid-market teams moving upmarket as well as large ones. There is
-no seller count or revenue bar any more; attendance is approved one at a
-time instead. Say who it is for early, so a reader recognises themselves in
-the first two lines.
+**Who it is for.** Revenue leaders and founders selling to large
+organizations with complex purchasing: CROs, Chief Sales Officers, CMOs,
+Chief Customer Officers, COOs responsible for revenue, and founders of
+funded companies. The seller's size does not matter and there is no seller
+count or revenue bar; the buyer's complexity is the fit. Teams moving
+upmarket that have not won the first one yet are welcome. Attendance is
+approved one at a time. Say who it is for early, so a reader recognises
+themselves in the first two lines.
+
+**The provocation, verbatim:** A bigger revenue target will not fix a weak
+link. Never assert that one of the reader's motions definitely fails, and
+never imply they missed a number. Ask them to pressure-test it instead.
 
 ## Hard rules
 

@@ -839,3 +839,21 @@ a.date.is-open .when{color:var(--white)}
 @media (prefers-reduced-motion:reduce){
   .more-detail > summary::after{transition:none}
 }
+
+/* ---------- Hero qualifier body, and the in-house bridge ----------
+   .qualifier is the one bold line. The body lines under it share its left
+   rule so the block reads as one unit, at body weight so the bold line
+   stays the loudest thing between the headline and the buttons. */
+.qualifier-body{font-family:var(--font-body);font-weight:400;
+  font-size:clamp(1.02rem,1.6vw,1.15rem);line-height:1.5;color:var(--pale);
+  margin:0;padding:0 0 .75rem 1.15rem;border-left:4px solid var(--amber);max-width:40rem}
+.qualifier{padding-bottom:.55rem}
+.qualifier-body:last-of-type{padding-bottom:.9rem}
+.band-bone .qualifier-body,.band-bone2 .qualifier-body{color:var(--text);
+  border-left-color:var(--bronze)}
+
+.bridge{margin-top:3rem;padding-top:2.25rem;border-top:1px solid var(--line-dark);
+  max-width:44rem}
+.bridge h3{margin-bottom:.6rem}
+.bridge p{max-width:none}
+.bridge .more{margin-top:.4rem}

@@ -107,10 +107,18 @@ export const QUESTIONS = [
         ['A scramble, most quarters', 0]] },
 ];
 
+/* Widened 2026-09-21 to match the audience the home page now welcomes:
+   marketing, customer, operations and founder leaders as well as sales. The
+   site had stopped asking for 50 sellers nine days earlier and this list
+   still only knew four sales titles, so a CMO or a founder taking the
+   assessment had to pick Other. MIRRORED in functions/api/results.js, which
+   validates the role server-side; change both or the email rejects it. */
 export const ROLES = [
   { v: 'cro',        l: 'CRO or Chief Revenue Officer' },
-  { v: 'sales',      l: 'VP or SVP of Sales' },
-  { v: 'cs',         l: 'VP of Customer Success' },
+  { v: 'sales',      l: 'Chief Sales Officer, VP or SVP of Sales' },
+  { v: 'cmo',        l: 'CMO or marketing leader' },
+  { v: 'cs',         l: 'Chief Customer Officer or VP of Customer Success' },
+  { v: 'coo',        l: 'COO or founder responsible for revenue' },
   { v: 'enablement', l: 'Revenue Enablement' },
   { v: 'other',      l: 'Other' },
 ];

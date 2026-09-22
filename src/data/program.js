@@ -230,10 +230,8 @@ export const CITIES = [
        Thursday 8 October, 1:00pm to 4:00pm Pacific, approval required, which
        is exactly what this row says.
 
-       ONE THING DOES NOT MATCH. The Luma event is free. This row says US$99
-       and the site says so on the tile. Fix it on Luma rather than here: the
-       fee is what protects the show rate, and a free San Francisco is the one
-       city where that protection is missing. */
+       Price verified 2026-09-11 after the ticket was configured: US$99 on
+       Luma, matching this row. */
     lumaUrl: 'https://luma.com/y6oevzkw',
   },
   {
