@@ -68,15 +68,21 @@ both in step or the lockup stops lining up with the copy under it.
 `cid:ee-lockup`, so Resend fetches it at send time. That means a redeploy of
 the site is enough to change the masthead in every future email.
 
-# Partiful cards for Tech Week
+# Event cards for Luma and Partiful
 
-`partiful-techweek.html` is the source of the 1200x1200 Partiful event cards
-for the two Tech Week cities. It follows Tech Week's co-branding rule from
+`event-card.html` is the source of the 1200x1200 event cover for every city.
+Luma and Partiful both take a 1200 square, so one render serves both. The
+headline is one question, Bruce's: Bigger number? Same weak link? Everything
+else the reader needs is in the description beside it.
+
+For the two Tech Week cities the card It follows Tech Week's co-branding rule from
 hosts.tech-week.com/brandkit: their city mark, an ×, then our lockup at the
 same height. Their SF and LA marks are kept in `tools/source/` as the SVGs
 they publish. The hairline amber frame is the one thing borrowed from their
 template family so the card reads as one of theirs in a feed of theirs.
 
-Placeholders `__CITY__ __DAY__ __DATE__ __TIME__ __VENUE__ __TAG__` are
-filled by a short Python loop, not sed: the hashtag in `__TAG__` breaks a
-sed `#` delimiter. Render at 1200x1200, scale factor 1.
+`__COBRAND__` is the Tech Week mark and the ×; leave it empty for a city
+outside Tech Week and our lockup stands alone. `__TAG__` takes the hashtag
+for Tech Week cities and the venue name otherwise. Fill placeholders with a
+short Python loop, not sed: the hashtag breaks a sed `#` delimiter. Render at
+1200x1200, scale factor 1.
