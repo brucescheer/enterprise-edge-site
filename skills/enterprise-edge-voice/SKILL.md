@@ -38,7 +38,7 @@ Use these words. They are the site's, verbatim.
 
 **Problem.** Upmarket revenue misfires.
 > Enterprise revenue depends on three connected motions: win preference,
-> earn approval, and prove value after the sale. They fail in completely
+> earn approval, and expand the account. They fail in completely
 > different ways, and most revenue organizations are strong at one,
 > adequate at the second, and quietly losing money on the third. The trouble
 > is that the one you are worst at never sends you a report. The reason is
@@ -68,10 +68,21 @@ underneath it. Both are fixed.
 
 **What each hour hands over.** Say it in this shape, and only when it is
 true: "Every attendee leaves with ..." The Value Edge: a one-page positioning
-and narrative spine canvas worked on a live deal, and a signed copy of
-Inspire Your Buyers. The Approval Edge: a practical approval-readiness
-framework for a live deal. The Expansion Edge: pending; Bruce and Sandy are
-agreeing it, and until then say nothing rather than something vague.
+and narrative spine canvas for their team, built to hold up as a CFO-ready
+business case, and a signed copy of Inspire Your Buyers. The Approval Edge:
+an approval-readiness framework their team can run on every enterprise
+deal. The Expansion Edge: a map of the three leaks that drain expansion
+after signature, scored against their own accounts (drafted from Sandy's
+Farm to Scale OS; her final wording replaces it the day she gives it).
+
+**Pitched at executives.** The reader is a revenue leader, and a leader's
+problem is the pattern behind the deals. The ask is always "come with the
+motion that is costing you the most", never "bring a deal". Deals are the
+exercise inside the room, not the promise on the page. The three hours in
+leader language: Bruce's is the positioning and go-to-market narrative the
+team sells from; Dean's is getting through complex enterprise approvals
+without stalling and without giving the margin away; Sandy's is retention
+and expansion after signature.
 
 The headline they come from:
 **Get them to say yes. Get the deal approved. Get them to expand.**

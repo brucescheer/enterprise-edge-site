@@ -37,13 +37,14 @@ export const EDGES = [
       'Plus a look at Value Buying from the buyer’s side, across three returns: return on the solution (ROI), return on the buying experience itself (ROE), and return on the future they are signing up for when they invest with you today (ROF).',
     /* The takeaway is the thing on the desk on Monday, in the same shape as
        Dean's. Bruce committed to both on 2026-09-21: a one-page positioning
-       and narrative spine canvas, worked in the room on a live deal, and a
-       signed copy of the book. The Narrative Assessment from his own site is
+       and narrative spine canvas for the attendee's team, and a signed copy
+       of the book. "Worked on a live deal" came out on 22 September: the
+       deal is the exercise in the room, the canvas is for the team. The Narrative Assessment from his own site is
        part of the hour's exercise and lives on his edge page, not here: a
        link to one partner's practice from the shared page has no equivalent
        for the other two, and this site already has an assessment. */
     takeaway:
-      'Every attendee leaves with a one-page positioning and narrative spine canvas, worked on a live deal and built to hold up as a CFO-ready business case, so their champion can make the case without them in the room. And a signed copy of Inspire Your Buyers.',
+      'Every attendee leaves with a one-page positioning and narrative spine canvas for their team, built to hold up as a CFO-ready business case, so their champions can make the case without them in the room. And a signed copy of Inspire Your Buyers.',
     page: {
       lede:
         'Your champion is sold. Nobody else in the buying group has met you. What reaches them is whatever your champion can repeat and whatever your champion can defend, so the deal is decided by the quality of your story long before anyone opens your proposal.',
@@ -92,7 +93,7 @@ export const EDGES = [
     /* Was the last sentence of `extra`, which meant the most persuasive line
        in Dean's hour sat inside a collapsed toggle. Visible now. */
     takeaway:
-      'Every attendee leaves with a practical approval-readiness framework they can apply to a live deal.',
+      'Every attendee leaves with an approval-readiness framework their team can run on every enterprise deal.',
     page: {
       lede:
         'A champion’s support is not the same as organizational approval. Procurement, Finance, Legal, Security, Risk and executive stakeholders judge the same deal through very different lenses. Dean spent more than 25 years inside those enterprise buying systems, and he shows sellers what the wider organization needs to believe before it is ready to say yes.',
@@ -147,11 +148,16 @@ export const EDGES = [
       '<b>Drive</b> is running the system with the team until retention and expansion become a repeatable motion instead of a hero effort every renewal cycle.',
     ],
     extra: null,
-    /* Bruce is working with Sandy on a deliverable in the same shape as the
-       other two. Until then the block shows no takeaway rather than a vague
-       one. Her subject in the reader's words is growing NRR; keep that word
-       when it is written. */
-    takeaway: null,
+    /* Drafted from Sandy's own framework on 22 September (her Farm to Scale
+       OS names three leaks: the Handoff Leak, the Value Gap Leak and the
+       Silent Leak) and sent to her for approval. The short form is live
+       because the outreach note already uses it. The long form, once she
+       blesses it: a one-page Revenue Leak Map, the three leaks scored
+       against their own account base, with the first fix for each and the
+       early-warning signal that tells them it is open before the renewal
+       does. Her word for the outcome is NRR; keep it when it is written. */
+    takeaway:
+      'Every attendee leaves with a map of the three leaks that drain expansion after signature, scored against their own accounts.',
     page: {
       lede:
         'Winning the deal is the beginning. A year later there is a review you are not invited to, and it ends in expansion or in a quiet search for your replacement. Very little of what decides it happens in the quarter it shows up in.',
