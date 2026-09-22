@@ -95,7 +95,8 @@ something is a seat that gets used. Never write copy claiming it covers
 costs.
 
 **Who it is for.** Revenue leaders and founders selling to large
-organizations with complex purchasing: CROs, Chief Sales Officers, CMOs,
+organizations where a buying committee has to say yes: CROs, Chief Sales
+Officers, CMOs,
 Chief Customer Officers, COOs responsible for revenue, and founders of
 funded companies. The seller's size does not matter and there is no seller
 count or revenue bar; the buyer's complexity is the fit. Teams moving
