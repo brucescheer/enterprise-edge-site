@@ -86,13 +86,16 @@ not a funnel.
 
 **The Enterprise Edge Masterclass.** Not a roadshow, not a workshop series.
 Half a day, three hours plus the meal, five cities: San Francisco, Los
-Angeles, Singapore, Dallas, Austin. Twenty-five seats a city, approved in
-advance. US$99 a seat and S$99 in Singapore.
+Angeles, Singapore, Dallas, Austin. Limited to twenty-five participants a
+city, approved in advance, "to keep the conversation relevant and at the
+right level" (Sandy's line, use it as written). A cap, never a turnout:
+never write that twenty-five people will be there. US$99 a seat and S$99 in
+Singapore.
 
-**The fee is a token fee.** It does not cover the room or the meal and it is
-not meant to. It exists to protect the show rate, because a seat that cost
-something is a seat that gets used. Never write copy claiming it covers
-costs.
+**The fee is a token fee.** It exists to protect the show rate, because a
+seat that cost something is a seat that gets used. Do not justify it in
+copy: one sentence at most, and the price itself lives on the registration
+page. Never write copy claiming it covers costs.
 
 **Who it is for.** Revenue leaders and founders selling to large
 organizations where a buying committee has to say yes: CROs, Chief Sales
@@ -100,9 +103,13 @@ Officers, CMOs,
 Chief Customer Officers, COOs responsible for revenue, and founders of
 funded companies. The seller's size does not matter and there is no seller
 count or revenue bar; the buyer's complexity is the fit. Teams moving
-upmarket that have not won the first one yet are welcome. Attendance is
-approved one at a time. Say who it is for early, so a reader recognises
-themselves in the first two lines.
+upmarket that have not won the first one yet are welcome.
+
+**Copy invites, registration filters.** Describe who the room is for in the
+positive. Never write a line that tells a reader who cannot come, and never
+justify the fee in copy: the price is on the registration page. The
+registration question does the filtering, and it asks about the buying
+committee, not seller headcount. Attendance is approved one at a time.
 
 **The provocation, verbatim:** A bigger revenue target will not fix a weak
 link. Never assert that one of the reader's motions definitely fails, and

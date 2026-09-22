@@ -106,7 +106,13 @@ const jsonLd = {
           filter that holds in every city, Singapore included. */}
       <p class="qualifier">A bigger revenue target will not fix a weak link.</p>
       <p class="qualifier-body">Before you commit to your 2027 plan, pressure-test how your team wins preference, earns approval and turns delivered value into expansion. Bring a deal that stalled or an account that should be growing.</p>
-      <p class="qualifier-body">You do not have to be a large company. Your customers do, along with the buying committee that comes with them.</p>
+      {/* "You do not have to be a large company. Your customers do" used to
+          sit here. Sandy asked for it out on 22 September and Bruce agreed:
+          the principle is that copy invites and the registration form
+          filters, so nothing on the page tells a reader who cannot come.
+          Who will be in the room still describes the audience, positively.
+          The registration question is now the filter and has to carry the
+          buying-committee test rather than a seller headcount. */}
       {/* Two buttons of equal weight. The assessment stays first because it
           is step one of the four at the foot of this page and because a
           reader who has seen their own shape arrives at the dates knowing
@@ -295,7 +301,7 @@ const jsonLd = {
         <li><b>The meal</b><span>Debrief, and no rush to leave<i>Bring the deals that are stuck. That is the conversation.</i></span></li>
       </ul>
 
-      <p class="fine" style="margin-top:2rem">The exact schedule varies by city, but every session includes all three edges, practical application, and time for peer discussion. Up to twenty-five participants a city, approved in advance to keep the room senior, relevant and candid.</p>
+      <p class="fine" style="margin-top:2rem">The exact schedule varies by city, but every session includes all three edges, practical application, and time for peer discussion. Limited to twenty-five participants a city, approved in advance, to keep the conversation relevant and at the right level.</p>
 
       {/* The bridge to paid work, placed after the agenda so the first
           decision on the page stays the seat. The distinction it draws is
@@ -328,7 +334,7 @@ const jsonLd = {
           here too put the same claim in two consecutive bands. This keeps
           the meal and the cap, which are this section's own. */}
       <p>Where a session runs into a meal, the meal is on the agenda rather than after it. An hour with the people in this room over a proper meal is not a side effect of the format. It is half the reason we cap it.</p>
-      <p>A seat costs a token fee. It does not cover the room or the meal and is not meant to. A seat that cost something is a seat that gets used, and twenty people who turned up beats sixty who meant to.</p>
+      <p>A seat costs a token fee, there so that a reserved seat is a used seat.</p>
       {/* Venue photographs identify where each session is held. The site
           makes no claim that a venue hosts, sponsors or endorses the
           program, and the alt text says "the venue in" for that reason. */}
@@ -374,9 +380,11 @@ const jsonLd = {
           them", both of which promise a count we cannot guarantee. If twenty
           turn up, the page has misled them. Bruce caught it.
 
-          The whole site now says "up to twenty-five participants", which is
-          the honest form: it describes the limit rather than the turnout.
-          Always "up to". Never say twenty-five people will be there. */}
+          The whole site now says "limited to twenty-five participants ... to
+          keep the conversation relevant and at the right level", Sandy's
+          wording from 22 September, which Bruce approved. It describes the
+          limit and the reason for it, not the turnout. Never say twenty-
+          five people will be there. */}
       <h2>Peers with the same problem.</h2>
       {/* The 50-seller and $100 million bar came out on the 15 September
           call. Sandy's marketing coach made the case that it shut out mid-
@@ -384,8 +392,8 @@ const jsonLd = {
           is B2B companies with revenue teams challenged by the complexities
           of selling to the enterprise. Approval in advance is what keeps the
           room viable now the headline filter is wider. */}
-      <p>CROs, Chief Sales Officers, CMOs, Chief Customer Officers, COOs responsible for revenue, and founders of funded companies, at B2B companies of any size selling high-consideration solutions into large organizations where a buying committee has to say yes. That includes teams moving upmarket that have not won the first one yet. Up to twenty-five participants, each one approved in advance, which is how the room stays that way.</p>
-      <p>Everyone there is selling into the enterprise and quietly losing money on one of the three motions. Probably not the same one as you. That is what makes the seat next to you worth as much as the agenda.</p>
+      <p>CROs, Chief Sales Officers, CMOs, Chief Customer Officers, COOs responsible for revenue, and founders of funded companies, at B2B companies of any size selling high-consideration solutions into large organizations where a buying committee has to say yes. That includes teams moving upmarket that have not won the first one yet. Limited to twenty-five participants, each one approved in advance, to keep the conversation relevant and at the right level.</p>
+      <p>Everyone there is selling into the enterprise and quietly losing money on one of the three motions. Probably not the same one as you. You will hear from your peers about their toughest challenges when selling to the enterprise, and that is what makes the seat next to you worth as much as the agenda.</p>
       {/* An option, not a default. Three seats per company as the standard
           invitation would let eight firms fill the room and flatten the mix
           that the paragraph above is selling. The approval step is the
@@ -405,7 +413,7 @@ const jsonLd = {
       <p class="lede">
         {HAS_REGISTRATION
           ? 'Each city runs its own Enterprise Edge Masterclass, with its own registration. Pick yours to reserve a seat.'
-          : 'Each city runs as its own session, in a first-class venue. Up to twenty-five participants, approved before they are confirmed. Registration opens city by city.'}
+          : 'Each city runs as its own session, in a first-class venue. Limited to twenty-five participants, approved before they are confirmed, to keep the conversation relevant and at the right level. Registration opens city by city.'}
       </p>
 
       {/* Three states per city, in ORDERED_CITIES order so the next session
@@ -475,8 +483,8 @@ const jsonLd = {
         <li>
           <b>Register.</b>
           <span>{HAS_REGISTRATION
-            ? 'Each city is its own event. Up to twenty-five participants, approved in advance to keep the room senior and candid.'
-            : 'Each city is its own event. Up to twenty-five participants, approved in advance to keep the room senior and candid. Registration opens city by city, so check the dates for the one nearest you.'}</span>
+            ? 'Each city is its own event. Limited to twenty-five participants, approved in advance, to keep the conversation relevant and at the right level.'
+            : 'Each city is its own event. Limited to twenty-five participants, approved in advance, to keep the conversation relevant and at the right level. Registration opens city by city, so check the dates for the one nearest you.'}</span>
         </li>
         <li>
           <b>Ask us anything.</b>
