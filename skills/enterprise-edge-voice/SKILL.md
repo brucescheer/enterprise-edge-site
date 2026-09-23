@@ -51,7 +51,21 @@ Use these words. They are the site's, verbatim.
 > commercial logic. Finance understands the economics. After the sale the
 > customer can see what was delivered and where more value sits.
 
-**Path.** Get the Enterprise Edge.
+**Path.** The masterclass. (The Enterprise Edge is the name of the thing;
+the home page heading says "The masterclass." so a first-time visitor reads
+it as the path rather than a slogan. "Get the Enterprise Edge" still works
+as a line inside copy.)
+
+**Proof travels with the person.** Wherever one of the three is introduced,
+one proof sentence goes with the name: Bruce, the bestseller and the four
+industry awards including CEB's B2B Campaign of the Year; Dean, more than
+25 years leading Procurement and Strategic Sourcing at Kaiser Permanente,
+Yahoo, Levi Strauss & Co. and Ingram Micro; Sandy, 25 years leading customer
+success and go-to-market at Oracle, Cisco, PwC and WebEx. A reader should
+never have to click away to learn why these three.
+
+**Price is a number.** Say US$99 a seat (S$99 in Singapore) wherever the
+fee comes up; "token fee" on its own reads as hidden.
 
 **Steps.** Find your weak link. Check the dates. Register. Ask us anything.
 

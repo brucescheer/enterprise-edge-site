@@ -106,6 +106,10 @@ const jsonLd = {
           filter that holds in every city, Singapore included. */}
       <p class="qualifier">A bigger revenue target will not fix a weak link.</p>
       <p class="qualifier-body">Before you commit to your 2027 plan, pressure-test how your team wins preference, earns approval and turns delivered value into expansion. Come with the motion that is costing you the most.</p>
+      {/* Clarity audit: the deliverables lived five screens down inside the
+          outline cards, so a skimmer saw promises and no objects. One line
+          here, in the same order as the three hours. */}
+      <p class="qualifier-body">You leave with a positioning and narrative canvas for your team, an approval-readiness framework, a map of the three leaks that drain expansion, and a read on which motion is costing you the most.</p>
       {/* Was "Bring a deal that stalled or an account that should be growing."
           Changed 22 September: the room is pitched at executives, and a
           revenue leader's problem is the pattern behind the deals, not one
@@ -125,11 +129,15 @@ const jsonLd = {
           someone who already knows they are coming is not made to hunt. Warm
           outreach should link straight to the city's Luma event and never
           hit this hero at all. */}
+      {/* Clarity audit, 23 September: a first-time visitor could not find
+          the price anywhere on the page ("token fee" is not a number), and
+          the primary button was the soft ask while the first city was
+          sixteen days out. Seat first, assessment second, price stated. */}
       <div class="cta-pair">
-        <a class="btn" href="/assessment/">Find your weak link</a>
-        <a class="btn btn-ghost" href="#dates">Choose your city</a>
+        <a class="btn" href="#dates">Choose your city</a>
+        <a class="btn btn-ghost" href="/assessment/">Find your weak link</a>
       </div>
-      <p class="fine" style="margin-top:.9rem">Nine questions, about three minutes. No sign-in.</p>
+      <p class="fine" style="margin-top:.9rem">Half a day, in person. US$99 a seat, S$99 in Singapore. The assessment is nine questions, about three minutes, no sign-in.</p>
 
       {/* The dates used to sit 82% of the way down the page, so a reader
           could get most of the way through without learning that anything
@@ -231,7 +239,11 @@ const jsonLd = {
   <section class="band band-ink" id="edges">
     <div class="wrap">
       <p class="eyebrow">Path</p>
-      <h2>Get the Enterprise Edge.</h2>
+      {/* Was "Get the Enterprise Edge." The brand name as a verb reads as a
+          slogan to a first-time visitor; the section is the path, so the
+          heading says what it is. The spine is unchanged: the lede below
+          still names the problem and the outcome on the way in. */}
+      <h2>The masterclass.</h2>
       {/* Names the problem and the outcome on the way into the solution, so
           the spine is visible rather than just present. Without it this
           section opened on "three jobs, three hours" and the reader had to
@@ -239,9 +251,6 @@ const jsonLd = {
       <p class="lede">Overcoming upmarket revenue misfires and building a high performing revenue engine: that is the goal, and this masterclass is how.</p>
       <p>Three jobs. Three hours. Three people who have each spent a career on one of them. Most programs take one of the three, and the gaps between them are where the revenue actually goes.</p>
 
-      <div class="pull">
-        <p><b>Bruce</b> will get your customers to say yes. <b>Dean</b> will make sure the deal gets approved. <b>Sandy</b> will help you expand the account.</p>
-      </div>
       {/* The three hours in leader language, so a CRO reads what is being
           built rather than what is being covered. Same three lines as the
           outreach note, kept identical on purpose. */}
@@ -290,6 +299,10 @@ const jsonLd = {
               )}
               <b>{e.speaker}</b>
               <span>{e.job}</span>
+              {/* Clarity audit: the home page introduced three people with
+                  no reason to believe them. One proof line each, drawn from
+                  the bios on Who We Are so the two pages agree. */}
+              {e.proof && <span class="edge-proof">{e.proof}</span>}
             </div>
           </article>
         ))}
@@ -405,7 +418,7 @@ const jsonLd = {
           is B2B companies with revenue teams challenged by the complexities
           of selling to the enterprise. Approval in advance is what keeps the
           room viable now the headline filter is wider. */}
-      <p>CROs, Chief Sales Officers, CMOs, Chief Customer Officers, COOs responsible for revenue, and founders of funded companies, at B2B companies of any size selling high-consideration solutions into large organizations where a buying committee has to say yes. That includes teams moving upmarket that have not won the first one yet. Limited to twenty-five participants, each one approved in advance, to keep the conversation relevant and at the right level.</p>
+      <p>CROs, Chief Sales Officers, CMOs, Chief Customer Officers, COOs responsible for revenue, and founders, at B2B companies of any size selling high-consideration solutions into large organizations where a buying committee has to say yes. That includes teams moving upmarket that have not won the first one yet. Limited to twenty-five participants, each one approved in advance, to keep the conversation relevant and at the right level.</p>
       <p>Everyone there is selling into the enterprise and quietly losing money on one of the three motions. Probably not the same one as you. You will hear from your peers about their toughest challenges when selling to the enterprise, and that is what makes the seat next to you worth as much as the agenda.</p>
       {/* An option, not a default. Three seats per company as the standard
           invitation would let eight firms fill the room and flatten the mix

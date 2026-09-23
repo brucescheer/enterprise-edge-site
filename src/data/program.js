@@ -26,6 +26,9 @@ export const EDGES = [
     speaker: 'Bruce Scheer',
     job: 'Getting the business to believe you',
     promise: 'Get them to say yes',
+    /* One proof line for the home page card; the full bio and awards live
+       in FACULTY. Keep the two consistent. */
+    proof: 'Author of the Amazon bestseller Inspire Your Buyers. Four industry awards for client work, including CEB\u2019s B2B Campaign of the Year.',
     blurb:
       'Your champion is sold. Nobody else in the buying group has met you. What reaches them is whatever your champion can repeat and whatever your champion can defend, which means your story is doing the selling long before anyone reads a proposal.',
     disciplines: [
@@ -79,6 +82,7 @@ export const EDGES = [
     speaker: 'Dean Edwards',
     job: 'Building the organizational confidence that gets deals approved',
     promise: 'Get the deal approved',
+    proof: 'More than 25 years leading Procurement and Strategic Sourcing at Kaiser Permanente, Yahoo, Levi Strauss & Co. and Ingram Micro.',
     blurb:
       'A champion’s support is not the same as organizational approval. Procurement, Finance, Legal, Security, Risk and executive stakeholders judge the same deal through very different lenses: value, economics, risk, governance, implementation confidence and internal defensibility. Dean spent more than 25 years inside those buying systems.',
     disciplines: [
@@ -132,6 +136,7 @@ export const EDGES = [
     speaker: 'Sandy Yu',
     job: 'Turning delivered value into retention and expansion',
     promise: 'Get them to expand',
+    proof: 'Led global customer success and go-to-market teams at Oracle, Cisco, PwC and WebEx over 25 years, before founding Revenue Retention Advisors.',
     /* Sandy's own words, 2026-09-09. Her disciplines are the 3D Framework
        rather than four generic capabilities, which puts her section in the
        same shape as Bruce's Find, Communicate, Quantify: a named method with
