@@ -207,7 +207,10 @@ export const EDGES = [
 
    Rows are listed in date order here, though the homepage sorts them anyway.
 
-   THE FEE IS A TOKEN, NOT COST RECOVERY. US$99 does not cover the room or the
+   FREE AS OF 24 SEPTEMBER 2026. The three partners agreed to drop the fee;
+   approval in advance is the only filter now. The paragraph below is the
+   old reasoning, kept for the record.
+   THE FEE WAS A TOKEN, NOT COST RECOVERY. US$99 did not cover the room or the
    meal and is not meant to; the three absorb those. It exists to protect the
    show rate, because a seat that cost something is a seat that gets used and
    free registration turns into a reconfirmation chase. Never write copy
@@ -254,7 +257,7 @@ export const CITIES = [
        the other, and they must not disagree. */
     startDate: '2026-10-08T13:00:00-07:00',
     endDate: '2026-10-08T16:00:00-07:00',
-    price: 'US$99',
+    price: 'No charge',
     /* Verified against the Luma event on 2026-09-10: it reads
        Thursday 8 October, 1:00pm to 4:00pm Pacific, approval required, which
        is exactly what this row says.
@@ -285,7 +288,7 @@ export const CITIES = [
     meal: 'Lunch afterwards',
     startDate: '2026-10-15T09:30:00-07:00',
     endDate: '2026-10-15T13:00:00-07:00',
-    price: 'US$99',
+    price: 'No charge',
     /* Verified against the Luma event on 2026-09-10 and fully consistent:
        Thursday 15 October, 9:30am to 12:30pm Pacific, US$99, approval
        required. The only city where every field already agrees. */
@@ -321,7 +324,7 @@ export const CITIES = [
        per-city display strings for exactly this reason: attendees see their
        own currency rather than converting in their heads. Whatever it says
        has to match what the Luma event actually charges. */
-    price: 'S$99',
+    price: 'No charge',
     /* Bruce resolved the date on 2026-09-11 in favour of the Luma event:
        Friday 30 October, not 23 October. Both fall on a Friday, which is why
        it went unnoticed for two days.
@@ -359,7 +362,7 @@ export const CITIES = [
     meal: null,
     startDate: '2026-12-02T09:00:00-06:00',
     endDate: '2026-12-02T13:00:00-06:00',
-    price: 'US$99',
+    price: 'No charge',
     lumaUrl: null,
   },
   {
@@ -381,7 +384,7 @@ export const CITIES = [
     meal: null,
     startDate: '2026-12-03T09:00:00-06:00',
     endDate: '2026-12-03T13:00:00-06:00',
-    price: 'US$99',
+    price: 'No charge',
     lumaUrl: null,
   },
 ];

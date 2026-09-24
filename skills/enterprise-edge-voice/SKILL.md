@@ -64,8 +64,9 @@ Yahoo, Levi Strauss & Co. and Ingram Micro; Sandy, 25 years leading customer
 success and go-to-market at Oracle, Cisco, PwC and WebEx. A reader should
 never have to click away to learn why these three.
 
-**Price is a number.** Say US$99 a seat (S$99 in Singapore) wherever the
-fee comes up; "token fee" on its own reads as hidden.
+**There is no charge.** As of 24 September 2026 the seat is free in every
+city, Singapore included. Say "no charge" or nothing; never quote a price,
+and never resurrect "token fee". Approval in advance is the only filter.
 
 **Steps.** Find your weak link. Check the dates. Register. Ask us anything.
 
@@ -114,13 +115,10 @@ Half a day, three hours plus the meal, five cities: San Francisco, Los
 Angeles, Singapore, Dallas, Austin. Limited to twenty-five participants a
 city, approved in advance, "to keep the conversation relevant and at the
 right level" (Sandy's line, use it as written). A cap, never a turnout:
-never write that twenty-five people will be there. US$99 a seat and S$99 in
-Singapore.
+never write that twenty-five people will be there. No charge for a seat.
 
-**The fee is a token fee.** It exists to protect the show rate, because a
-seat that cost something is a seat that gets used. Do not justify it in
-copy: one sentence at most, and the price itself lives on the registration
-page. Never write copy claiming it covers costs.
+**No fee.** The token fee was dropped on 24 September 2026. Do not
+mention price at all; the seat is free and approved in advance.
 
 **Who it is for.** Revenue leaders and founders selling to large
 organizations where a buying committee has to say yes: CROs, Chief Sales
@@ -132,7 +130,7 @@ upmarket that have not won the first one yet are welcome.
 
 **Copy invites, registration filters.** Describe who the room is for in the
 positive. Never write a line that tells a reader who cannot come, and never
-justify the fee in copy: the price is on the registration page. The
+mention a fee in copy: there is none. The
 registration question does the filtering, and it asks about the buying
 committee, not seller headcount. Attendance is approved one at a time.
 
