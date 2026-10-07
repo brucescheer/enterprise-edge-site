@@ -39,15 +39,15 @@ export const EDGES = [
     extra:
       'Plus a look at Value Buying from the buyer’s side, across three returns: return on the solution (ROI), return on the buying experience itself (ROE), and return on the future they are signing up for when they invest with you today (ROF).',
     /* The takeaway is the thing on the desk on Monday, in the same shape as
-       Dean's. Bruce committed to both on 2026-09-21: a one-page positioning
-       and narrative spine canvas for the attendee's team, and a signed copy
-       of the book. "Worked on a live deal" came out on 22 September: the
+       Dean's: a one-page positioning and narrative spine canvas for the
+       attendee's team, plus a free Kindle copy of the book via a redemption
+       link. "Worked on a live deal" came out on 22 September: the
        deal is the exercise in the room, the canvas is for the team. The Narrative Assessment from his own site is
        part of the hour's exercise and lives on his edge page, not here: a
        link to one partner's practice from the shared page has no equivalent
        for the other two, and this site already has an assessment. */
     takeaway:
-      'Every attendee leaves with a one-page positioning and narrative spine canvas for their team, built to hold up as a CFO-ready business case, so their champions can make the case without them in the room. And a signed copy of Inspire Your Buyers.',
+      'Every attendee leaves with a one-page positioning and narrative spine canvas for their team, built to hold up as a CFO-ready business case, so their champions can make the case without them in the room. All participants receive a free Kindle copy of my bestselling book, Inspire Your Buyers, via a redemption link.',
     page: {
       lede:
         'Your champion is sold. Nobody else in the buying group has met you. What reaches them is whatever your champion can repeat and whatever your champion can defend, so the deal is decided by the quality of your story long before anyone opens your proposal.',
