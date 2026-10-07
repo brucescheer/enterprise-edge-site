@@ -84,7 +84,9 @@ underneath it. Both are fixed.
 **What each hour hands over.** Say it in this shape, and only when it is
 true: "Every attendee leaves with ..." The Value Edge: a one-page positioning
 and narrative spine canvas for their team, built to hold up as a CFO-ready
-business case, and a signed copy of Inspire Your Buyers. The Approval Edge:
+business case. Use Bruce's approved book offer verbatim: "All participants
+receive a free Kindle copy of my bestselling book, Inspire Your Buyers, via
+a redemption link." The Approval Edge:
 an approval-readiness framework their team can run on every enterprise
 deal. The Expansion Edge: a map of the three leaks that drain expansion
 after signature, scored against their own accounts (drafted from Sandy's
