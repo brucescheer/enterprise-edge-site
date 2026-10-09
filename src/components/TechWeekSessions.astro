@@ -4,6 +4,7 @@ interface SessionVideo {
   title: string;
   src: string;
   poster: string;
+  vimeoId?: string;
   captions?: string;
   transcript?: string;
   duration: string;
@@ -39,20 +40,34 @@ const { videos, photo } = Astro.props;
             <h3 class="sr-only" id={`session-title-${video.id}`}>{video.title}</h3>
             <span id={`session-duration-${video.id}`}>{video.duration}</span>
           </div>
-          <video
-            controls
-            playsinline
-            preload="none"
-            poster={video.poster}
-            width={video.width}
-            height={video.height}
-            aria-labelledby={`session-title-${video.id}`}
-            aria-describedby={`session-duration-${video.id}`}
-          >
-            <source src={video.src} type="video/mp4" />
-            {video.captions && <track kind="captions" src={video.captions} srclang="en" label="English" default />}
-            <p><a href={video.src}>Open this session video</a>.</p>
-          </video>
+          {video.vimeoId ? (
+            <iframe
+              src={`https://player.vimeo.com/video/${video.vimeoId}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=0&playsinline=1&preload=none&dnt=1`}
+              title={`${video.title}: Tech Week reflection (Vimeo)`}
+              width={video.width}
+              height={video.height}
+              loading="lazy"
+              allow="fullscreen; picture-in-picture; encrypted-media"
+              allowfullscreen
+              referrerpolicy="strict-origin-when-cross-origin"
+              aria-describedby={`session-duration-${video.id}`}
+            />
+          ) : (
+            <video
+              controls
+              playsinline
+              preload="none"
+              poster={video.poster}
+              width={video.width}
+              height={video.height}
+              aria-labelledby={`session-title-${video.id}`}
+              aria-describedby={`session-duration-${video.id}`}
+            >
+              <source src={video.src} type="video/mp4" />
+              {video.captions && <track kind="captions" src={video.captions} srclang="en" label="English" default />}
+              <p><a href={video.src}>Open this session video</a>.</p>
+            </video>
+          )}
           {video.note && <p class="session-note">{video.note}</p>}
           {video.transcript && <details class="more-detail">
             <summary>Read transcript</summary>
@@ -94,7 +109,8 @@ const { videos, photo } = Astro.props;
   .session-caption { display: flex; align-items: baseline; justify-content: flex-end; margin-bottom: .75rem; }
   .session-caption span { color: var(--muted); font-size: .85rem; white-space: nowrap; }
   .session-note { margin: .75rem 0 0; font-size: .9rem; line-height: 1.5; }
-  .session-video video {
+  .session-video video,
+  .session-video iframe {
     display: block;
     width: 100%;
     height: auto;

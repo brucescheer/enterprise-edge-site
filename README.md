@@ -113,7 +113,13 @@ visible participant headings or numbering.
 The original media remains unchanged outside this repository. Public files
 are the reviewed SDR H.264/AAC MP4s, optimized posters, and photo derivatives.
 
-Playback uses native controls, no autoplay, and no video preload. Keep the
+IMG_0530, the second card, is the single approved Vimeo trial: player
+`1234387764`. Its optional `vimeoId` selects a lazy-loaded 9:16 iframe with
+native Vimeo controls, explicit no autoplay, preload none, and DNT enabled.
+No parent-page Vimeo SDK is needed for the static embed. The other four
+players retain native HTML video controls and no preload. Local media and
+posters are retained unchanged; remove that one `vimeoId` to roll back.
+The privacy page describes this third-party player. Keep the
 full portrait frame. No names, roles, or quotes are inferred. The first clip
 refers to a then-upcoming Los Angeles event; its context note preserves that
 timing. Automatic caption drafts are not public assets. Add only reviewed
