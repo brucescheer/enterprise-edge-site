@@ -155,6 +155,13 @@ img{max-width:100%}
 .cta-pair{display:flex;flex-wrap:wrap;align-items:center;gap:1.25rem;margin-top:1.75rem}
 .cta-pair > *{min-width:0;max-width:100%}
 
+/* A direct route for participants arriving with only the home domain. */
+.home-resources{background:var(--ink-raised);color:var(--pale);border-block:1px solid var(--line-dark);padding:1.15rem 0}
+.home-resources-in{display:flex;align-items:center;justify-content:space-between;gap:1rem 2rem;flex-wrap:wrap}
+.home-resources p{margin:0;font-size:1rem;max-width:none}
+.home-resources strong{color:var(--white)}
+.home-resources .btn{font-size:1.1rem;padding:.55rem 1.1rem}
+
 /* ---------- Footer ---------- */
 .site-foot{background:var(--ink);color:var(--pale);padding:5.5rem 1.25rem 2.5rem}
 .foot-in{max-width:72rem;margin:0 auto;display:flex;gap:2.5rem;flex-wrap:wrap}
