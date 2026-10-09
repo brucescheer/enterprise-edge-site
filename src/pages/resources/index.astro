@@ -1,0 +1,127 @@
+---
+import Base from '../../layouts/Base.astro';
+import { EDGES } from '../../data/program';
+import { RESOURCES_BY_EDGE } from '../../data/resources';
+
+const title = 'Resources | The Enterprise Edge';
+const description = 'Put your Enterprise Edge session to work. Find participant resources for each of the three edges, including Bruce Scheer’s Tech Week takeaway deck.';
+const canonical = 'https://getenterpriseedge.com/resources/';
+const resources = EDGES.flatMap((edge) => RESOURCES_BY_EDGE[edge.slug] ?? []);
+const jsonLd = {
+  '@type': 'CollectionPage',
+  '@id': canonical,
+  url: canonical,
+  name: title,
+  description,
+  isPartOf: { '@id': 'https://getenterpriseedge.com/#website' },
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: resources.length,
+    itemListElement: resources.map((resource, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: resource.title,
+      url: resource.href,
+    })),
+  },
+};
+---
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <section class="band band-ink hero resource-hero">
+    <div class="wrap">
+      <p class="eyebrow">Resources</p>
+      <h1>Put the session to work.</h1>
+      <p class="lede">The ideas are a start. Use these resources with your team to make the next conversation count.</p>
+      <nav class="resource-jumps" aria-label="Resources by edge">
+        {EDGES.map((edge) => (
+          <a href={`#${edge.slug}`}>
+            <span class="jump-num" aria-hidden="true">{edge.num}</span>
+            <span>{edge.name}</span>
+            <span class="jump-arrow" aria-hidden="true">↓</span>
+          </a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
+  {EDGES.map((edge, index) => {
+    const items = RESOURCES_BY_EDGE[edge.slug] ?? [];
+    return (
+      <section class:list={['band', index % 2 === 0 ? 'band-bone' : 'band-bone2', 'resource-section']} id={edge.slug} aria-labelledby={`${edge.slug}-title`}>
+        <div class="wrap resource-layout">
+          <div class="resource-intro">
+            <span class="resource-num" aria-hidden="true">{edge.num}</span>
+            <h2 id={`${edge.slug}-title`}>{edge.name}</h2>
+            <p class="resource-promise">{edge.promise}.</p>
+            <p class="resource-speaker">{edge.speaker}</p>
+            <p class="fine">{edge.proof}</p>
+            <a class="more" href={`/${edge.slug}/`}>Explore the session <span aria-hidden="true">→</span></a>
+          </div>
+          {items.length > 0 ? (
+            <ul class="resource-list" aria-label={`${edge.name} resources`}>
+              {items.map((resource) => {
+                const external = resource.href.startsWith('https://');
+                return (
+                  <li>
+                    <a class="resource-link" href={resource.href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}>
+                      <span class="resource-copy">
+                        <span class="resource-kind">{resource.kind}</span>
+                        <span class="resource-title">{resource.title}</span>
+                        <span class="resource-detail">{resource.detail}</span>
+                        <span class="sr-only">{external ? ' (opens in a new tab)' : ' (opens your email app)'}</span>
+                      </span>
+                      <span class="resource-arrow" aria-hidden="true">{external ? '↗' : '→'}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <div class="resource-pending">
+              <p class="eyebrow">Resources to follow</p>
+              <p>Resources for this session are not available yet. Check back here for the materials.</p>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  })}
+</Base>
+
+<style>
+  .resource-hero { padding-bottom: 3.5rem; }
+  .resource-jumps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 2.5rem; }
+  .resource-jumps a { display: flex; align-items: center; gap: .8rem; padding: 1.2rem; border: 1px solid var(--line-dark); color: var(--white); text-decoration: none; font-family: var(--font-head); font-size: 1.3rem; font-weight: 600; }
+  .resource-jumps a:hover { border-color: var(--amber); background: var(--ink-raised); }
+  .jump-num { font-family: var(--font-numeral); color: var(--amber); font-size: 1.5rem; }
+  .jump-arrow { margin-left: auto; color: var(--amber); }
+  .resource-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 3.5rem; }
+  .resource-num { display: block; color: var(--bronze); font-family: var(--font-numeral); font-size: 3.5rem; line-height: 1; margin-bottom: 1.2rem; }
+  .resource-intro h2 { margin-bottom: .6rem; }
+  .resource-promise { font-family: var(--font-head); font-size: 1.45rem; font-weight: 600; }
+  .resource-speaker { margin-bottom: .25rem; font-weight: 600; }
+  .resource-intro .fine { line-height: 1.6; }
+  .resource-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+  .resource-list li { margin: 0; border-bottom: 1px solid var(--line); }
+  .resource-link { display: flex; align-items: center; gap: 1rem; padding: 1.5rem 1rem; text-decoration: none; color: var(--ink); }
+  .resource-link:hover { background: var(--bone-2); }
+  .resource-link:hover .resource-title { text-decoration: underline; text-underline-offset: 4px; }
+  .resource-copy { display: grid; gap: .3rem; min-width: 0; }
+  .resource-kind { color: var(--bronze); font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  .resource-title { font-family: var(--font-head); font-size: 1.55rem; line-height: 1.2; font-weight: 700; }
+  .resource-detail { color: var(--muted); font-size: 1rem; line-height: 1.5; }
+  .resource-arrow { flex: 0 0 auto; margin-left: auto; color: var(--bronze); font-size: 1.6rem; }
+  .resource-link:focus-visible, .resource-intro .more:focus-visible { outline-color: var(--bronze); }
+  .resource-pending { border-top: 2px solid var(--line); padding-top: 1.5rem; align-self: start; }
+  .resource-pending p:last-child { margin-bottom: 0; }
+  @media (max-width: 800px) {
+    .resource-jumps { grid-template-columns: 1fr; gap: .6rem; }
+    .resource-jumps a { padding: .85rem 1rem; }
+    .resource-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .resource-intro .fine { max-width: 36rem; }
+  }
+  @media (max-width: 420px) {
+    .resource-link { padding-inline: 0; }
+    .resource-title { font-size: 1.4rem; }
+  }
+</style>

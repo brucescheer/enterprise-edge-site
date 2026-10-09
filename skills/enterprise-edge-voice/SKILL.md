@@ -183,6 +183,18 @@ Write scenes, not abstractions. "The champion who went quiet" beats "a
 stalled opportunity". "The one you are worst at never sends you a report"
 beats "visibility challenges".
 
+## Public participant resources
+
+The public resource library is at `getenterpriseedge.com/resources/`, linked
+from the homepage and main navigation. It follows the three edges in their
+programme order, with names and speaker proof from `src/data/program.js`.
+
+Publish only supplied, verified public links. Bruce's Tech Week resources are
+available now, including the participant deck. Dean's and Sandy's sections
+state that materials are not yet available; do not invent links to create
+parity. The Amazon book listing is not the participant Kindle redemption link.
+Hold testimonial videos until both the files and public-use permission arrive.
+
 ## Before you publish, check
 
 - Does it open on the reader's problem rather than on us?

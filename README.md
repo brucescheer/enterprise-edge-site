@@ -71,13 +71,22 @@ amber bars, because an E is three strokes and there are three edges.
 
 ## Deploying
 
-Cloudflare Pages; the domain is on Cloudflare Registrar.
-
-```
-npx wrangler login
-npx wrangler pages project create enterprise-edge --production-branch main
-npx wrangler pages deploy dist --project-name enterprise-edge
-```
-
-Then add `getenterpriseedge.com` as a custom domain on the Pages project.
+The existing Cloudflare Pages project is `enterprise-edge-site`, connected to
+this GitHub repository. Branch pushes create preview deployments; merging to
+`main` publishes to `getenterpriseedge.com`. Inspect the `Cloudflare Pages`
+check on the exact commit, then verify the public page after deployment.
+Do not create a new Pages project or replace the existing domain setup.
 `public/_headers` ships the security headers and cache policy.
+
+## Public participant resources
+
+`/resources/` is linked in the main navigation, footer, and a prominent
+homepage callout. Its section names, promises, and speaker proof come from
+`src/data/program.js`. Public links live in `src/data/resources.js`.
+
+Bruce's eight links were verified against the live Inspire Your Buyers
+Tech Week takeaways page. The participant deck and example conversation guide
+are different resources. The Amazon listing is not a Kindle redemption link.
+Dean's and Sandy's sections remain honest availability notices until their
+approved public assets arrive. Add only supplied, verified links. Testimonial
+videos are held until the files and permission for public use are supplied.
