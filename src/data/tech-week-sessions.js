@@ -8,7 +8,8 @@ const asset = '/assets/tech-week/';
 
 export const SESSION_VIDEOS = [
   { id: '0529', duration: '19 seconds', note: 'Recorded before the Los Angeles Tech Week session.' },
-  { id: '0530', duration: '18 seconds' },
+  // One-player Vimeo trial. Remove vimeoId to restore the retained local MP4.
+  { id: '0530', duration: '18 seconds', vimeoId: '1234387764' },
   { id: '0531', duration: '12 seconds' },
   { id: '0532', duration: '12 seconds' },
   { id: '0528', duration: '13 seconds' },

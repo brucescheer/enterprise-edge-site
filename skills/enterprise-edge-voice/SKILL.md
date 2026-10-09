@@ -205,6 +205,10 @@ Playback is by choice, with no autoplay. Do not infer names, roles, or quotes
 from faces or automatic transcripts. The first recording refers to a then-upcoming
 Los Angeles Tech Week session, so do not present its timing as evergreen.
 Only reviewed captions and transcripts may be published.
+IMG_0530, the second card, is the one approved Vimeo trial (player 1234387764).
+The other four players and all local media remain unchanged. Keep its 9:16
+frame, lazy loading, explicit no autoplay and neutral accessible title.
+Do not describe the picture as sharper or higher resolution without evidence.
 
 ## Public participant resources
 
