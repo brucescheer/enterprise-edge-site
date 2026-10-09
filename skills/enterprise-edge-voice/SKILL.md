@@ -192,6 +192,17 @@ Write scenes, not abstractions. "The champion who went quiet" beats "a
 stalled opportunity". "The one you are worst at never sends you a report"
 beats "visibility challenges".
 
+## Tech Week session recordings
+
+The homepage section is titled “From our sessions at Tech Week” and sits
+immediately before Steps. Bruce supplied five short portrait recordings and
+a group photo. Use all five recordings in the approved order, two per row
+with the fifth centered, and one column on phones. Preserve the full frame.
+Playback is by choice, with no autoplay. Do not infer names, roles, or quotes
+from faces or automatic transcripts. The last recording refers to a then-upcoming
+Los Angeles Tech Week session, so do not present its timing as evergreen.
+Only reviewed captions and transcripts may be published.
+
 ## Public participant resources
 
 The public resource library is at `getenterpriseedge.com/resources/`, linked
