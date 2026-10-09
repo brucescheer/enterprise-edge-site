@@ -6,6 +6,12 @@
    `captions` (WebVTT URL) and `transcript` fields to the relevant entries. */
 const asset = '/assets/tech-week/';
 
+export const SESSION_SHOWCASE = {
+  src: 'https://vimeo.com/showcase/12446663/embed2',
+  title: 'Attendee takeaways: Vimeo Showcase',
+};
+
+// Retain the approved recordings and their context for a reversible fallback.
 export const SESSION_VIDEOS = [
   { id: '0529', duration: '19 seconds', note: 'Recorded before the Los Angeles Tech Week session.' },
   // One-player Vimeo trial. Remove vimeoId to restore the retained local MP4.

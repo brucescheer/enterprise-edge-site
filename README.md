@@ -102,27 +102,29 @@ participant resources.
 
 ## Tech Week session recordings
 
-The “Attendee takeaways” homepage section immediately before Steps uses the
-approved recordings and group photo from Bruce's supplied media bundle.
-`src/data/tech-week-sessions.js` keeps the approved order and neutral accessible
-labels; `TechWeekSessions.astro` renders
-two portrait videos per row, the fifth centered, and one column on phones.
-The previously fifth recording is first, followed by the other four in their
-original order. Player labels are available to assistive technology without
-visible participant headings or numbering.
-The original media remains unchanged outside this repository. Public files
-are the reviewed SDR H.264/AAC MP4s, optimized posters, and photo derivatives.
+The “Attendee takeaways” homepage section immediately before Steps uses one
+Vimeo Showcase supplied by Bruce: `https://vimeo.com/showcase/12446663/embed2`.
+`SESSION_SHOWCASE` in `src/data/tech-week-sessions.js` supplies its URL and
+accessible title. `TechWeekSessions.astro` renders a lazy iframe in a 9:16
+wrapper capped at 22rem, followed by the existing group photo. There are no
+city collections or added participant labels. The iframe denies autoplay
+permission and keeps fullscreen and picture-in-picture controls available.
+No parent-page Vimeo SDK is needed. Showcase contents, order and playback
+settings are managed within Vimeo; do not assume individual player parameters
+such as DNT or preload apply to the Showcase. The privacy page describes the
+third-party connection without making that assumption.
 
-IMG_0530, the second card, is the single approved Vimeo trial: player
-`1234387764`. Its optional `vimeoId` selects a lazy-loaded 9:16 iframe with
-native Vimeo controls, explicit no autoplay, preload none, and DNT enabled.
-No parent-page Vimeo SDK is needed for the static embed. The other four
-players retain native HTML video controls and no preload. Local media and
-posters are retained unchanged; remove that one `vimeoId` to roll back.
-The privacy page describes this third-party player. Keep the
-full portrait frame. No names, roles, or quotes are inferred. The first clip
-refers to a then-upcoming Los Angeles event; its context note preserves that
-timing. Automatic caption drafts are not public assets. Add only reviewed
-WebVTT and transcript fields to the data entries. Caption review remains
-outstanding; the current recordings use native controls and descriptive
-labels without a claim of full caption accessibility.
+The original media remains unchanged outside this repository. All reviewed
+local MP4s, posters, photo derivatives, and fallback player data remain
+unchanged. To restore the preceding five-player layout, remove the `showcase`
+prop from the homepage component call. This retains player `1234387764` for
+IMG_0530 and four native players. Also remove that entry's `vimeoId` to restore
+all five native players. Update the privacy page to match any rollback.
+
+The fallback keeps the approved order: the previously fifth recording first,
+then the other four in their original order, with neutral accessible labels.
+Its first recording refers to a then-upcoming Los Angeles event, so its
+context note must remain with that recording. Do not infer Showcase ordering,
+names, roles, or quotes. Only reviewed captions and transcripts may be
+published. Caption review remains outstanding; do not claim full caption
+accessibility or improved picture quality without evidence.

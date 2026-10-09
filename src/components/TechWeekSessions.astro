@@ -14,6 +14,10 @@ interface SessionVideo {
 }
 
 interface Props {
+  showcase?: {
+    src: string;
+    title: string;
+  };
   videos: SessionVideo[];
   photo: {
     src: string;
@@ -27,12 +31,26 @@ interface Props {
 
 // Use the reviewed media with neutral labels. Add captions and transcripts
 // only when their wording is verified; never publish guessed identities.
-const { videos, photo } = Astro.props;
+const { showcase, videos, photo } = Astro.props;
 ---
 
 <section class="band band-bone2 tech-week-sessions" id="tech-week-sessions" aria-labelledby="tech-week-heading">
   <div class="wrap">
     <h2 id="tech-week-heading">Attendee takeaways</h2>
+    {showcase ? (
+      <div class="session-showcase">
+        <iframe
+          src={showcase.src}
+          title={showcase.title}
+          width="720"
+          height="1280"
+          loading="lazy"
+          allow="autoplay 'none'; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+          allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"
+        />
+      </div>
+    ) : (
     <div class="session-videos">
       {videos.map((video) => (
         <article class="session-video" aria-labelledby={`session-title-${video.id}`}>
@@ -76,6 +94,7 @@ const { videos, photo } = Astro.props;
         </article>
       ))}
     </div>
+    )}
     <figure class="session-photo">
       <picture>
         <source type="image/webp" srcset={`${photo.webpSmall} 960w, ${photo.webp} 1600w`} sizes="(max-width: 968px) calc(100vw - 40px), 928px" />
@@ -93,6 +112,19 @@ const { videos, photo } = Astro.props;
 </section>
 
 <style>
+  .session-showcase {
+    width: 100%;
+    max-width: 22rem;
+    aspect-ratio: 9 / 16;
+    margin: 2.5rem auto;
+  }
+  .session-showcase iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 2px;
+  }
   .session-videos {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
