@@ -21,7 +21,7 @@ const jsonLd = {
       '@type': 'ListItem',
       position: index + 1,
       name: resource.title,
-      url: resource.href,
+      url: resource.href.startsWith('/') ? new URL(resource.href, canonical).href : resource.href,
     })),
   },
 };
@@ -61,16 +61,19 @@ const jsonLd = {
             <ul class="resource-list" aria-label={`${edge.name} resources`}>
               {items.map((resource) => {
                 const external = resource.href.startsWith('https://');
+                const email = resource.href.startsWith('mailto:');
                 return (
                   <li>
-                    <a class="resource-link" href={resource.href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}>
+                    <a class="resource-link" href={resource.href} download={resource.download} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}>
                       <span class="resource-copy">
                         <span class="resource-kind">{resource.kind}</span>
                         <span class="resource-title">{resource.title}</span>
                         {resource.detail && <span class="resource-detail">{resource.detail}</span>}
-                        <span class="sr-only">{external ? ' (opens in a new tab)' : ' (opens your email app)'}</span>
+                        {resource.attribution && <span class="resource-attribution">{resource.attribution}</span>}
+                        {resource.cta && <span class="resource-cta">{resource.cta} <span aria-hidden="true">↓</span></span>}
+                        {(external || email) && <span class="sr-only">{external ? ' (opens in a new tab)' : ' (opens your email app)'}</span>}
                       </span>
-                      <span class="resource-arrow" aria-hidden="true">{external ? '↗' : '→'}</span>
+                      {!resource.download && <span class="resource-arrow" aria-hidden="true">{external ? '↗' : '→'}</span>}
                     </a>
                   </li>
                 );
@@ -110,6 +113,8 @@ const jsonLd = {
   .resource-kind { color: var(--bronze); font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
   .resource-title { font-family: var(--font-head); font-size: 1.55rem; line-height: 1.2; font-weight: 700; }
   .resource-detail { color: var(--muted); font-size: 1rem; line-height: 1.5; }
+  .resource-attribution { color: var(--muted); font-size: .9rem; line-height: 1.5; }
+  .resource-cta { margin-top: .5rem; color: var(--bronze); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
   .resource-arrow { flex: 0 0 auto; margin-left: auto; color: var(--bronze); font-size: 1.6rem; }
   .resource-link:focus-visible, .resource-intro .more:focus-visible { outline-color: var(--bronze); }
   .resource-pending { border-top: 2px solid var(--line); padding-top: 1.5rem; align-self: start; }

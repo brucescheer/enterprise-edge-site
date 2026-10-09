@@ -227,9 +227,15 @@ available now, including the participant deck. Sandy's published resources are
 scheduling a conversation, LinkedIn, and her Expansion Edge perspective.
 Her participant deck and Expansion Edge Worksheet remain pending until their
 Drive links allow public access. Preserve her supplied labels;
-omit descriptions when no approved description was supplied. Dean's section
-states that materials are not yet available; do not invent links to create
-parity. Do not change Drive sharing or publish copies of restricted files
+omit descriptions when no approved description was supplied. Dean's Approval
+Edge resource is the supplied “Organizational Confidence - Live Deal Test,”
+with attribution to Dean Edwards, ConvergSPT and the action “Download the
+worksheet.” This is the approved resource title, including its supplied
+hyphen. Describe it as a printable PDF worksheet, not an interactive form.
+It uses seven questions to test approval readiness, identify the most
+consequential approval gap, and plan the next customer conversation. Preserve
+the original ConvergSPT branding, 2026 copyright, and PDF bytes in the directly
+hosted asset. Do not invent links to create parity. Do not change Drive sharing or publish copies of restricted files
 without separate authorization. The Amazon book listing is not the participant
 Kindle redemption link.
 Hold testimonial videos until both the files and public-use permission arrive.

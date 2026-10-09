@@ -1,6 +1,6 @@
 /* Public participant resources supplied by each session's speaker.
    Keep actual destinations here; edge names and speaker details stay in program.js.
-   Add another speaker's resources only after receiving their approved public links.
+   Add another speaker's resources only after receiving approved public links or assets.
    The Amazon book listing is not the separate participant Kindle redemption link. */
 export const RESOURCES_BY_EDGE = {
   'value-edge': [
@@ -53,7 +53,17 @@ export const RESOURCES_BY_EDGE = {
       href: 'https://www.linkedin.com/in/bscheer/',
     },
   ],
-  'approval-edge': [],
+  'approval-edge': [
+    {
+      title: 'Organizational Confidence - Live Deal Test',
+      detail: 'Use seven questions to test a live enterprise deal’s readiness for internal approval, identify the most consequential approval gap, and plan the next customer conversation.',
+      kind: 'Printable PDF worksheet',
+      attribution: 'Dean Edwards, ConvergSPT',
+      cta: 'Download the worksheet',
+      href: '/assets/resources/organizational-confidence-live-deal-test.pdf',
+      download: 'Organizational_Confidence_Live_Deal_Test_Template.pdf',
+    },
+  ],
   'expansion-edge': [
     {
       title: 'Schedule a time to speak with Sandy',

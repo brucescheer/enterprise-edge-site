@@ -94,8 +94,12 @@ Bruce's existing booking page; no trial duration or payment terms are claimed.
 Sandy's three published links cover scheduling a conversation, LinkedIn, and
 her Expansion Edge perspective. Her participant deck and Expansion Edge
 Worksheet remain pending because their Drive links require access. Dean's
-section retains its availability notice until his approved
-public assets arrive. Add only supplied, verified links. Do not change Drive
+Approval Edge resource is “Organizational Confidence - Live Deal Test,” a
+three-page printable PDF worksheet attributed to Dean Edwards, ConvergSPT.
+It is hosted directly at `/assets/resources/organizational-confidence-live-deal-test.pdf`
+with the action “Download the worksheet.” Preserve the original PDF bytes,
+ConvergSPT branding, and 2026 copyright. It is a static worksheet, not an
+interactive form. Add only supplied, verified links or authorized assets. Do not change Drive
 sharing or upload public copies of restricted files without separate
 authorization. The Tech Week recordings are maintained separately from these
 participant resources.
