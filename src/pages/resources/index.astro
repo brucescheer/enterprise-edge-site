@@ -67,7 +67,7 @@ const jsonLd = {
                       <span class="resource-copy">
                         <span class="resource-kind">{resource.kind}</span>
                         <span class="resource-title">{resource.title}</span>
-                        <span class="resource-detail">{resource.detail}</span>
+                        {resource.detail && <span class="resource-detail">{resource.detail}</span>}
                         <span class="sr-only">{external ? ' (opens in a new tab)' : ' (opens your email app)'}</span>
                       </span>
                       <span class="resource-arrow" aria-hidden="true">{external ? '↗' : '→'}</span>

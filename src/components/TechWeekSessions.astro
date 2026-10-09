@@ -31,13 +31,13 @@ const { videos, photo } = Astro.props;
 
 <section class="band band-bone2 tech-week-sessions" id="tech-week-sessions" aria-labelledby="tech-week-heading">
   <div class="wrap">
-    <h2 id="tech-week-heading">From our sessions at Tech Week</h2>
+    <h2 id="tech-week-heading">Attendee takeaways</h2>
     <div class="session-videos">
       {videos.map((video) => (
         <article class="session-video" aria-labelledby={`session-title-${video.id}`}>
           <div class="session-caption">
-            <h3 id={`session-title-${video.id}`}>{video.title}</h3>
-            <span>{video.duration}</span>
+            <h3 class="sr-only" id={`session-title-${video.id}`}>{video.title}</h3>
+            <span id={`session-duration-${video.id}`}>{video.duration}</span>
           </div>
           <video
             controls
@@ -47,6 +47,7 @@ const { videos, photo } = Astro.props;
             width={video.width}
             height={video.height}
             aria-labelledby={`session-title-${video.id}`}
+            aria-describedby={`session-duration-${video.id}`}
           >
             <source src={video.src} type="video/mp4" />
             {video.captions && <track kind="captions" src={video.captions} srclang="en" label="English" default />}
@@ -90,8 +91,7 @@ const { videos, photo } = Astro.props;
     width: calc((100% - 2rem) / 2);
     justify-self: center;
   }
-  .session-caption { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; margin-bottom: .75rem; }
-  .session-caption h3 { margin: 0; font-size: 1.35rem; }
+  .session-caption { display: flex; align-items: baseline; justify-content: flex-end; margin-bottom: .75rem; }
   .session-caption span { color: var(--muted); font-size: .85rem; white-space: nowrap; }
   .session-note { margin: .75rem 0 0; font-size: .9rem; line-height: 1.5; }
   .session-video video {

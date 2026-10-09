@@ -7,14 +7,14 @@
 const asset = '/assets/tech-week/';
 
 export const SESSION_VIDEOS = [
+  { id: '0529', duration: '19 seconds', note: 'Recorded before the Los Angeles Tech Week session.' },
   { id: '0530', duration: '18 seconds' },
   { id: '0531', duration: '12 seconds' },
   { id: '0532', duration: '12 seconds' },
   { id: '0528', duration: '13 seconds' },
-  { id: '0529', duration: '19 seconds', note: 'Recorded before the Los Angeles Tech Week session.' },
 ].map((video, index) => ({
   ...video,
-  title: `Participant reflection ${index + 1}`,
+  title: `Attendee takeaway ${index + 1}`,
   src: `${asset}img_${video.id}.mp4`,
   poster: `${asset}img_${video.id}-poster.webp`,
   width: 720,
