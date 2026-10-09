@@ -362,7 +362,7 @@ export const CITIES = [
     startDate: '2026-12-02T09:30:00-06:00',
     endDate: '2026-12-02T12:30:00-06:00',
     price: 'No charge',
-    lumaUrl: null,
+    lumaUrl: 'https://luma.com/a0xoapt2',
   },
   {
     city: 'Austin',
