@@ -384,7 +384,7 @@ export const CITIES = [
     startDate: '2026-12-03T09:30:00-06:00',
     endDate: '2026-12-03T12:30:00-06:00',
     price: 'No charge',
-    lumaUrl: null,
+    lumaUrl: 'https://luma.com/0eivjpqr',
   },
 ];
 
