@@ -112,6 +112,12 @@ not a funnel.
 
 ## The programme
 
+**Texas session hours.** Dallas is Wednesday, December 2, 2026 at Tower Club
+Dallas. Austin is Thursday, December 3, 2026 at The Austin Club. Both sessions
+run 9:30am to 12:30pm Central, in America/Chicago. These are Bruce's approved
+session hours as of 9 October 2026. Advertise the venue names without room
+names; do not describe a booking as confirmed unless that is separately verified.
+
 **The Enterprise Edge Masterclass.** Not a roadshow, not a workshop series.
 Half a day, three hours plus the meal, five cities: San Francisco, Los
 Angeles, Singapore, Dallas, Austin. Limited to twenty-five participants a

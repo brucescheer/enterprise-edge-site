@@ -354,14 +354,13 @@ export const CITIES = [
     venuePhotoCredit: null,
     date: 'Wednesday, December 2, 2026',
     doors: null,
-    /* Dallas runs the morning of the 2nd and Austin the morning of the 3rd:
-       the three drive down between them. Neither has a clock time yet, and
-       Austin has no venue, so those tiles show the date and say registration
-       opens soon. */
-    time: 'Morning',
+    /* Bruce's approved session time, 9 October 2026. Dallas and Austin use
+       America/Chicago, UTC-6 on these December dates. Keep the visible
+       session hours and structured timestamps in step. */
+    time: '9:30am to 12:30pm Central',
     meal: null,
-    startDate: '2026-12-02T09:00:00-06:00',
-    endDate: '2026-12-02T13:00:00-06:00',
+    startDate: '2026-12-02T09:30:00-06:00',
+    endDate: '2026-12-02T12:30:00-06:00',
     price: 'No charge',
     lumaUrl: null,
   },
@@ -380,10 +379,10 @@ export const CITIES = [
     venuePhotoCredit: null,
     date: 'Thursday, December 3, 2026',
     doors: null,
-    time: 'Morning',
+    time: '9:30am to 12:30pm Central',
     meal: null,
-    startDate: '2026-12-03T09:00:00-06:00',
-    endDate: '2026-12-03T13:00:00-06:00',
+    startDate: '2026-12-03T09:30:00-06:00',
+    endDate: '2026-12-03T12:30:00-06:00',
     price: 'No charge',
     lumaUrl: null,
   },
