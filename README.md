@@ -104,5 +104,6 @@ Playback uses native controls, no autoplay, and no video preload. Keep the
 full portrait frame. No names, roles, or quotes are inferred. The last clip
 refers to a then-upcoming Los Angeles event; its context note preserves that
 timing. Automatic caption drafts are not public assets. Add only reviewed
-WebVTT and transcript fields to the data entries; caption review remains
-outstanding for the current draft.
+WebVTT and transcript fields to the data entries. Caption review remains
+outstanding; the current recordings use native controls and descriptive
+labels without a claim of full caption accessibility.

@@ -24,8 +24,8 @@ interface Props {
   };
 }
 
-// Publish only after the intended files and accurate captions are reviewed.
-// Titles and transcripts must come from that review, never guessed identities.
+// Use the reviewed media with neutral labels. Add captions and transcripts
+// only when their wording is verified; never publish guessed identities.
 const { videos, photo } = Astro.props;
 ---
 
