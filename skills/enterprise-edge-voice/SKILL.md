@@ -194,21 +194,21 @@ beats "visibility challenges".
 
 ## Tech Week session recordings
 
-The homepage section is titled “Attendee takeaways” and sits
-immediately before Steps. Bruce supplied five short portrait recordings and
-a group photo. Use all five recordings in the approved order, two per row
-with the fifth centered, and one column on phones. The previously fifth
-recording is now first, with the other four retaining their relative order.
-Keep neutral player labels for assistive technology, with no visible
-participant headings or numbering. Preserve the full frame.
-Playback is by choice, with no autoplay. Do not infer names, roles, or quotes
-from faces or automatic transcripts. The first recording refers to a then-upcoming
-Los Angeles Tech Week session, so do not present its timing as evergreen.
-Only reviewed captions and transcripts may be published.
-IMG_0530, the second card, is the one approved Vimeo trial (player 1234387764).
-The other four players and all local media remain unchanged. Keep its 9:16
-frame, lazy loading, explicit no autoplay and neutral accessible title.
-Do not describe the picture as sharper or higher resolution without evidence.
+The homepage section is titled “Attendee takeaways” and sits immediately
+before Steps. It uses Bruce's single Vimeo Showcase, `12446663`, followed by
+the existing group photo. Keep the portrait 9:16 frame, lazy loading, neutral
+accessible title, and 22rem maximum width. Do not add city collections or
+participant headings. The iframe denies autoplay permission; playback should
+start by choice. Showcase contents and playback settings belong to Vimeo.
+Verify the preview rather than assuming individual player settings apply.
+
+Retain all five local recordings, posters, and the previous player data for
+rollback. That fallback preserves the approved order and the context note
+for the recording made before the Los Angeles Tech Week session. Do not
+infer Showcase order, identities, roles, or quotes from faces or automatic
+transcripts. Only reviewed captions and transcripts may be published.
+Do not claim complete caption accessibility, sharper pictures, or higher
+resolution without evidence. Keep the privacy page accurate about Vimeo.
 
 ## Public participant resources
 

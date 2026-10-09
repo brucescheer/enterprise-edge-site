@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import TechWeekSessions from '../components/TechWeekSessions.astro';
-import { SESSION_VIDEOS, SESSION_PHOTO } from '../data/tech-week-sessions';
+import { SESSION_VIDEOS, SESSION_PHOTO, SESSION_SHOWCASE } from '../data/tech-week-sessions';
 import { EDGES, CITIES, FACULTY, HAS_DATES, HAS_REGISTRATION, NEXT_SESSION, SESSION_INDEX } from '../data/program';
 
 const title = 'The Enterprise Edge: A Half-Day Masterclass for Enterprise Revenue Leaders';
@@ -499,7 +499,7 @@ const jsonLd = {
       </div>
     </div>
   </section>
-  <TechWeekSessions videos={SESSION_VIDEOS} photo={SESSION_PHOTO} />
+  <TechWeekSessions showcase={SESSION_SHOWCASE} videos={SESSION_VIDEOS} photo={SESSION_PHOTO} />
   <section class="band band-ink band-measure" id="steps">
     <div class="wrap">
       <p class="eyebrow">Steps</p>

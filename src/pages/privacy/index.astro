@@ -39,7 +39,7 @@ import { FACULTY } from '../../data/program';
    and one hour of the program is about surviving them. Precision here is a
    credibility asset, not a compliance chore. */
 
-// October 9, 2026: one homepage recording now uses a lazy Vimeo iframe.
+// October 9, 2026: homepage recordings now use a lazy Vimeo Showcase iframe.
 // The September audit above is historical; Vimeo is a third-party load.
 const EFFECTIVE = 'October 9, 2026';
 const title = 'Privacy: The Enterprise Edge';
@@ -61,7 +61,7 @@ const canonical = 'https://getenterpriseedge.com/privacy/';
   <section class="band band-bone band-measure">
     <div class="wrap">
       <h2>The short version</h2>
-      <p>We run no site analytics and have no mailing list. The assessment scores your answers in your browser and forgets them when you close the tab. One homepage recording uses a Vimeo player, which connects to Vimeo when it loads. That player is described below.</p>
+      <p>We run no site analytics and have no mailing list. The assessment scores your answers in your browser and forgets them when you close the tab. The homepage recordings use a Vimeo Showcase, which connects to Vimeo when it loads. That player is described below.</p>
       <p>At the end of the assessment you can choose to type an email address to have your result sent to you. The details of that optional email, our hosting, and the Vimeo player are below.</p>
       <p>The rest of this page is the detail behind that, because a claim like the one above is worth checking.</p>
     </div>
@@ -104,12 +104,12 @@ const canonical = 'https://getenterpriseedge.com/privacy/';
 
       <h2>Loading the website</h2>
       <p>The site is hosted on Cloudflare Pages. Cloudflare processes the connection in order to serve and protect the site, which involves your IP address, your browser and device information, which pages you requested, and when. That is ordinary web server processing and it happens before any of our code runs.</p>
-      <p>Our fonts, page images, styles and site scripts are served from this website. One recording in the homepage&rsquo;s Attendee takeaways section is embedded from Vimeo. The player loads as you approach it and connects to Vimeo and its delivery services, which can receive your IP address, browser and device information, and the referring site. The other four recordings are served from this website.</p>
+      <p>Our fonts, page images, styles and site scripts are served from this website. The homepage&rsquo;s Attendee takeaways section contains an embedded Vimeo Showcase of recordings. The player loads as you approach it and connects to Vimeo and its delivery services, which can receive your IP address, browser and device information, and the referring site.</p>
       <p>Cloudflare also scrambles the email addresses printed on this site so that address-harvesting robots cannot read them, and serves a small script from this domain to unscramble them for you. That script exists to hide the addresses, not to learn anything about you.</p>
 
       <h2>Cookies and tracking</h2>
       <p>Our site code sets no cookies and uses no browser storage. We run no Google Analytics, Cloudflare Web Analytics, session recording, heatmap, chat widget, advertising pixel, or tag manager. We do not build a visitor profile.</p>
-      <p>The Vimeo embed uses its Do Not Track setting to limit player session data and analytics. This does not make the player a first-party service or prevent your browser from sending existing Vimeo cookies. Vimeo documents that some essential cookies may remain active. See <a href="https://help.vimeo.com/hc/en-us/articles/26080940921361-Vimeo-Player-Cookies" target="_blank" rel="noopener noreferrer">Vimeo&rsquo;s player cookie information</a> and <a href="https://vimeo.com/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a> for its practices.</p>
+      <p>The Vimeo Showcase is a third-party service. Vimeo may use cookies and player usage data, and your browser may send existing Vimeo cookies when the embed loads. See <a href="https://help.vimeo.com/hc/en-us/articles/26080940921361-Vimeo-Player-Cookies" target="_blank" rel="noopener noreferrer">Vimeo&rsquo;s player cookie information</a> and <a href="https://vimeo.com/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a> for its practices.</p>
       <p>Cloudflare may set a short-lived security cookie if its bot protection is triggered by a particular request. That is a security measure, not a measurement one.</p>
       <p>The one form on the site, the email field at the end of the assessment, is not an exception to any of this. It sets nothing, remembers nothing, and does not follow you to the next page. It sends one email when you ask it to.</p>
 
@@ -141,6 +141,7 @@ const canonical = 'https://getenterpriseedge.com/privacy/';
       <p>If we add anything that changes the answers above, a form, a mailing list, or any kind of measurement, this page gets updated at the same time and the effective date changes with it.</p>
       <p>Those changes are recorded here:</p>
       <ul class="plain">
+        <li><b>October 9, 2026.</b> The homepage recordings moved into one Vimeo Showcase. The loading and cookies sections now describe the Showcase without assuming the individual player&rsquo;s Do Not Track setting applies to it.</li>
         <li><b>October 9, 2026.</b> One homepage recording changed to a lazy-loaded Vimeo player with Do Not Track enabled. The loading and cookies sections now describe that third-party connection instead of saying every resource comes from this website.</li>
         <li><b>September 9, 2026.</b> The assessment gained an optional button to have your result emailed to you. Until that day this page said the assessment kept no record of anything and that the site had no form on it. Both statements had stopped being true, so the assessment section was rewritten the same day to describe what the button does, and this page gained the four sections above on retention, location, and security.</li>
       </ul>
