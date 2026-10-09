@@ -87,21 +87,30 @@ homepage callout. Its section names, promises, and speaker proof come from
 Bruce's eight links were verified against the live Inspire Your Buyers
 Tech Week takeaways page. The participant deck and example conversation guide
 are different resources. The Amazon listing is not a Kindle redemption link.
-Dean's and Sandy's sections remain honest availability notices until their
-approved public assets arrive. Add only supplied, verified links. The Tech Week
-recordings are maintained separately from these participant resources.
+Sandy's three published links cover scheduling a conversation, LinkedIn, and
+her Expansion Edge perspective. Her participant deck and Expansion Edge
+Worksheet remain pending because their Drive links require access. Dean's
+section retains its availability notice until his approved
+public assets arrive. Add only supplied, verified links. Do not change Drive
+sharing or upload public copies of restricted files without separate
+authorization. The Tech Week recordings are maintained separately from these
+participant resources.
 
 ## Tech Week session recordings
 
-The homepage section immediately before Steps uses the approved recordings
-and group photo from Bruce's supplied media bundle. `src/data/tech-week-sessions.js`
-keeps the approved order and neutral labels; `TechWeekSessions.astro` renders
+The “Attendee takeaways” homepage section immediately before Steps uses the
+approved recordings and group photo from Bruce's supplied media bundle.
+`src/data/tech-week-sessions.js` keeps the approved order and neutral accessible
+labels; `TechWeekSessions.astro` renders
 two portrait videos per row, the fifth centered, and one column on phones.
+The previously fifth recording is first, followed by the other four in their
+original order. Player labels are available to assistive technology without
+visible participant headings or numbering.
 The original media remains unchanged outside this repository. Public files
 are the reviewed SDR H.264/AAC MP4s, optimized posters, and photo derivatives.
 
 Playback uses native controls, no autoplay, and no video preload. Keep the
-full portrait frame. No names, roles, or quotes are inferred. The last clip
+full portrait frame. No names, roles, or quotes are inferred. The first clip
 refers to a then-upcoming Los Angeles event; its context note preserves that
 timing. Automatic caption drafts are not public assets. Add only reviewed
 WebVTT and transcript fields to the data entries. Caption review remains

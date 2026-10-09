@@ -194,12 +194,15 @@ beats "visibility challenges".
 
 ## Tech Week session recordings
 
-The homepage section is titled “From our sessions at Tech Week” and sits
+The homepage section is titled “Attendee takeaways” and sits
 immediately before Steps. Bruce supplied five short portrait recordings and
 a group photo. Use all five recordings in the approved order, two per row
-with the fifth centered, and one column on phones. Preserve the full frame.
+with the fifth centered, and one column on phones. The previously fifth
+recording is now first, with the other four retaining their relative order.
+Keep neutral player labels for assistive technology, with no visible
+participant headings or numbering. Preserve the full frame.
 Playback is by choice, with no autoplay. Do not infer names, roles, or quotes
-from faces or automatic transcripts. The last recording refers to a then-upcoming
+from faces or automatic transcripts. The first recording refers to a then-upcoming
 Los Angeles Tech Week session, so do not present its timing as evergreen.
 Only reviewed captions and transcripts may be published.
 
@@ -210,9 +213,15 @@ from the homepage and main navigation. It follows the three edges in their
 programme order, with names and speaker proof from `src/data/program.js`.
 
 Publish only supplied, verified public links. Bruce's Tech Week resources are
-available now, including the participant deck. Dean's and Sandy's sections
-state that materials are not yet available; do not invent links to create
-parity. The Amazon book listing is not the participant Kindle redemption link.
+available now, including the participant deck. Sandy's published resources are
+scheduling a conversation, LinkedIn, and her Expansion Edge perspective.
+Her participant deck and Expansion Edge Worksheet remain pending until their
+Drive links allow public access. Preserve her supplied labels;
+omit descriptions when no approved description was supplied. Dean's section
+states that materials are not yet available; do not invent links to create
+parity. Do not change Drive sharing or publish copies of restricted files
+without separate authorization. The Amazon book listing is not the participant
+Kindle redemption link.
 Hold testimonial videos until both the files and public-use permission arrive.
 
 ## Before you publish, check

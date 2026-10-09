@@ -1,4 +1,4 @@
-/* Public participant resources, verified against Bruce's live takeaways page.
+/* Public participant resources supplied by each session's speaker.
    Keep actual destinations here; edge names and speaker details stay in program.js.
    Add another speaker's resources only after receiving their approved public links.
    The Amazon book listing is not the separate participant Kindle redemption link. */
@@ -54,5 +54,21 @@ export const RESOURCES_BY_EDGE = {
     },
   ],
   'approval-edge': [],
-  'expansion-edge': [],
+  'expansion-edge': [
+    {
+      title: 'Schedule a time to speak with Sandy',
+      kind: 'Conversation',
+      href: 'https://bit.ly/3SjRHTS',
+    },
+    {
+      title: 'Connect with Sandy on LinkedIn',
+      kind: 'Connect',
+      href: 'https://www.linkedin.com/in/sandysyu',
+    },
+    {
+      title: 'Hear more of Sandy’s perspective on the Expansion Edge',
+      kind: 'Resources',
+      href: 'https://www.revenuecco.com/homepage/resources',
+    },
+  ],
 };
