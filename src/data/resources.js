@@ -35,10 +35,10 @@ export const RESOURCES_BY_EDGE = {
       href: 'mailto:bruce@inspireyourbuyers.com?subject=Value%20Edge%20cohort%20inquiry',
     },
     {
-      title: 'Explore ValueNavigator',
-      detail: 'Turn your value story into a business case',
+      title: 'Try ValueNavigator free',
+      detail: 'Build a CFO-ready analysis your buyer can defend',
       kind: 'Business case',
-      href: 'https://valuepros.io/solutions/value-navigator/',
+      href: 'https://inspireyourbuyers.com/solutions/value-navigator/',
     },
     {
       title: 'Recommend a speaker',

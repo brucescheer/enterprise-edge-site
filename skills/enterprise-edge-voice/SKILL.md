@@ -208,6 +208,12 @@ Only reviewed captions and transcripts may be published.
 
 ## Public participant resources
 
+The ValueNavigator resource links to
+`inspireyourbuyers.com/solutions/value-navigator/`, where the primary action is
+the product's advertised free trial and the central outcome is CFO-ready
+analysis. Bruce's live demo is secondary. Do not invent trial duration,
+payment-card terms, or product-result guarantees.
+
 The public resource library is at `getenterpriseedge.com/resources/`, linked
 from the homepage and main navigation. It follows the three edges in their
 programme order, with names and speaker proof from `src/data/program.js`.

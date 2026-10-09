@@ -87,6 +87,10 @@ homepage callout. Its section names, promises, and speaker proof come from
 Bruce's eight links were verified against the live Inspire Your Buyers
 Tech Week takeaways page. The participant deck and example conversation guide
 are different resources. The Amazon listing is not a Kindle redemption link.
+The ValueNavigator resource now leads to IYB's `/solutions/value-navigator/`
+page, with free-trial entry and CFO-ready analysis as the next step. IYB links
+to the official product's publicly advertised Free Trial destination and
+Bruce's existing booking page; no trial duration or payment terms are claimed.
 Sandy's three published links cover scheduling a conversation, LinkedIn, and
 her Expansion Edge perspective. Her participant deck and Expansion Edge
 Worksheet remain pending because their Drive links require access. Dean's
