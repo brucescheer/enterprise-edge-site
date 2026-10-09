@@ -4,8 +4,10 @@ interface SessionVideo {
   title: string;
   src: string;
   poster: string;
-  captions: string;
-  transcript: string;
+  captions?: string;
+  transcript?: string;
+  duration: string;
+  note?: string;
   width: number;
   height: number;
 }
@@ -17,10 +19,12 @@ interface Props {
     alt: string;
     width: number;
     height: number;
+    webp: string;
+    webpSmall: string;
   };
 }
 
-// Integrate only after the intended files and accurate captions are reviewed.
+// Publish only after the intended files and accurate captions are reviewed.
 // Titles and transcripts must come from that review, never guessed identities.
 const { videos, photo } = Astro.props;
 ---
@@ -31,7 +35,10 @@ const { videos, photo } = Astro.props;
     <div class="session-videos">
       {videos.map((video) => (
         <article class="session-video" aria-labelledby={`session-title-${video.id}`}>
-          <h3 id={`session-title-${video.id}`}>{video.title}</h3>
+          <div class="session-caption">
+            <h3 id={`session-title-${video.id}`}>{video.title}</h3>
+            <span>{video.duration}</span>
+          </div>
           <video
             controls
             playsinline
@@ -42,25 +49,29 @@ const { videos, photo } = Astro.props;
             aria-labelledby={`session-title-${video.id}`}
           >
             <source src={video.src} type="video/mp4" />
-            <track kind="captions" src={video.captions} srclang="en" label="English" default />
+            {video.captions && <track kind="captions" src={video.captions} srclang="en" label="English" default />}
             <p><a href={video.src}>Open this session video</a>.</p>
           </video>
-          <details class="more-detail">
+          {video.note && <p class="session-note">{video.note}</p>}
+          {video.transcript && <details class="more-detail">
             <summary>Read transcript</summary>
             <div class="more-body"><p>{video.transcript}</p></div>
-          </details>
+          </details>}
         </article>
       ))}
     </div>
     <figure class="session-photo">
-      <img
+      <picture>
+        <source type="image/webp" srcset={`${photo.webpSmall} 960w, ${photo.webp} 1600w`} sizes="(max-width: 968px) calc(100vw - 40px), 928px" />
+        <img
         src={photo.src}
         alt={photo.alt}
         width={photo.width}
         height={photo.height}
         loading="lazy"
         decoding="async"
-      />
+        />
+      </picture>
     </figure>
   </div>
 </section>
@@ -74,7 +85,15 @@ const { videos, photo } = Astro.props;
     margin: 2.5rem auto;
   }
   .session-video { min-width: 0; }
-  .session-video h3 { margin: 0 0 .75rem; }
+  .session-video:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: calc((100% - 2rem) / 2);
+    justify-self: center;
+  }
+  .session-caption { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; margin-bottom: .75rem; }
+  .session-caption h3 { margin: 0; font-size: 1.35rem; }
+  .session-caption span { color: var(--muted); font-size: .85rem; white-space: nowrap; }
+  .session-note { margin: .75rem 0 0; font-size: .9rem; line-height: 1.5; }
   .session-video video {
     display: block;
     width: 100%;
@@ -102,5 +121,6 @@ const { videos, photo } = Astro.props;
       max-width: 22rem;
       gap: 2.5rem;
     }
+    .session-video:last-child:nth-child(odd) { grid-column: auto; width: 100%; }
   }
 </style>
