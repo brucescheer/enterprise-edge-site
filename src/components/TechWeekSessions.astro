@@ -34,7 +34,8 @@ interface Props {
 const { showcase, videos, photo } = Astro.props;
 ---
 
-<section class="band band-bone2 tech-week-sessions" id="tech-week-sessions" aria-labelledby="tech-week-heading">
+<section class="band band-bone2 tech-week-sessions" id="attendee-takeaways" aria-labelledby="tech-week-heading">
+  <span id="tech-week-sessions" class="takeaways-anchor" aria-hidden="true"></span>
   <div class="wrap">
     <h2 id="tech-week-heading">Attendee takeaways</h2>
     {showcase ? (
@@ -112,6 +113,23 @@ const { showcase, videos, photo } = Astro.props;
 </section>
 
 <style>
+  .tech-week-sessions { position: relative; }
+  .tech-week-sessions,
+  .takeaways-anchor { scroll-margin-top: var(--takeaways-scroll-offset, 1rem); }
+  .takeaways-anchor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  @media (min-width: 960px) {
+    /* Safe clearance before measurement, including when JavaScript is off. */
+    .tech-week-sessions,
+    .takeaways-anchor { scroll-margin-top: var(--takeaways-scroll-offset, 14rem); }
+  }
   .session-showcase {
     width: 100%;
     max-width: 22rem;

@@ -106,6 +106,12 @@ participant resources.
 
 ## Tech Week session recordings
 
+Share `https://getenterpriseedge.com/#attendee-takeaways` for the recordings.
+Attendee Takeaways appears in the shared navigation and footer, with a
+“Watch attendee takeaways” shortcut in the homepage hero. The former
+`#tech-week-sessions` link remains an alias at the same section. Both anchors
+clear the measured sticky header on desktop and use a smaller gap on mobile.
+
 The “Attendee takeaways” homepage section immediately before Steps uses one
 Vimeo Showcase supplied by Bruce: `https://vimeo.com/showcase/12446663/embed2`.
 `SESSION_SHOWCASE` in `src/data/tech-week-sessions.js` supplies its URL and

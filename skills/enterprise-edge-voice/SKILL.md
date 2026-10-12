@@ -194,6 +194,11 @@ beats "visibility challenges".
 
 ## Tech Week session recordings
 
+Share `getenterpriseedge.com/#attendee-takeaways` as the direct recording
+link. The shared navigation and footer say “Attendee Takeaways,” and the
+homepage hero offers “Watch attendee takeaways.” Preserve the earlier
+`#tech-week-sessions` link as an alias so previously shared links still work.
+
 The homepage section is titled “Attendee takeaways” and sits immediately
 before Steps. It uses Bruce's single Vimeo Showcase, `12446663`, followed by
 the existing group photo. Keep the portrait 9:16 frame, lazy loading, neutral

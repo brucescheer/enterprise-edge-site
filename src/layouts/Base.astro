@@ -81,6 +81,7 @@ const graphLd = { '@context': 'https://schema.org', '@graph': merged };
 
 const NAV = [
   { href: '/#edges', label: 'The Three Edges' },
+  { href: '/#attendee-takeaways', label: 'Attendee Takeaways' },
   { href: '/assessment/', label: 'Assessment' },
   { href: '/resources/', label: 'Resources' },
   { href: '/#dates', label: 'Dates' },
@@ -204,6 +205,7 @@ const headDesc = ogDescription ?? description;
       <h2>The Program</h2>
       <ul>
         <li><a href="/#edges">The Three Edges</a></li>
+        <li><a href="/#attendee-takeaways">Attendee Takeaways</a></li>
         <li><a href="/#dates">Dates and Cities</a></li>
         <li><a href="/#agenda">The Half Day</a></li>
         <li><a href="/assessment/">Find Your Weak Link</a></li>
@@ -273,6 +275,20 @@ const headDesc = ogDescription ?? description;
   (function () {
     var head = document.querySelector('.site-head');
     var sentinel = document.querySelector('.head-sentinel');
+    /* The navigation can wrap onto more than one row. Measure the real
+       pinned height so either takeaway link clears it at every width. */
+    if (head) {
+      var updateTakeawaysOffset = function () {
+        var pinned = getComputedStyle(head).position === 'sticky';
+        var offset = pinned ? Math.ceil(head.getBoundingClientRect().height) + 16 : 16;
+        document.documentElement.style.setProperty('--takeaways-scroll-offset', offset + 'px');
+      };
+      updateTakeawaysOffset();
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(updateTakeawaysOffset).observe(head);
+      }
+      window.addEventListener('resize', updateTakeawaysOffset);
+    }
     if (head && sentinel && 'IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
         head.classList.toggle('is-stuck', !entries[0].isIntersecting);
