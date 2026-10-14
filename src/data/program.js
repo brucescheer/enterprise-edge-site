@@ -295,7 +295,7 @@ export const CITIES = [
     lumaUrl: 'https://luma.com/lvgyex53',
   },
   {
-    city: 'Singapore',
+    city: 'Seattle',     region: 'Washington',     venue: '100% virtual via Zoom',     venueAddress: null,     venueLogo: null,     venuePhoto: null,     date: 'Tuesday, October 27, 2026',     doors: null,     time: '5:00pm to 7:00pm Pacific (PDT)',     meal: null,     startDate: '2026-10-27T17:00:00-07:00',     endDate: '2026-10-27T19:00:00-07:00',     courseMode: 'online',     price: 'No charge',     lumaUrl: 'https://luma.com/gz2zl5ek',   },   {     city: 'Singapore',
     region: null,
     venue: 'The American Club',
     venueAddress: null,
