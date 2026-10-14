@@ -31,7 +31,7 @@ const ORDERED_CITIES = [
    clumsiness. With five it ran to "Tower Club Dallas in Dallas and The
    Austin Club in Austin" in one sentence, which reads as though nobody
    proofread it. */
-const VENUES = CITIES.filter((c) => c.venue);
+const VENUES = CITIES.filter((c) => c.venue && c.courseMode !== 'online');
 const VENUE_LIST = VENUES.map((c, i) => {
   const clause = c.venue.includes(c.city) ? c.venue : `${c.venue} in ${c.city}`;
   if (i === 0) return clause;
@@ -53,11 +53,11 @@ const jsonLd = {
          result advertising a session that has no date. */
       hasCourseInstance: CITIES.filter((c) => c.startDate).map((c) => ({
         '@type': 'CourseInstance',
-        courseMode: 'onsite',
+        courseMode: c.courseMode || 'onsite',
         name: `The Enterprise Edge: ${c.city}`,
         startDate: c.startDate,
         endDate: c.endDate,
-        location: {
+        location: c.courseMode === 'online' ? { '@type': 'VirtualLocation', url: c.lumaUrl } : {
           '@type': 'Place',
           ...(c.venue ? { name: c.venue } : {}),
           address: {
@@ -518,7 +518,7 @@ const jsonLd = {
         </li>
         <li>
           <b>Check the dates.</b>
-          <span>Five cities, first-class rooms, three hours plus the meal. <a href="#dates">See where and when</a>.</span>
+          <span>In-person masterclasses and a two-hour virtual Seattle session. <a href="#dates">See where and when</a>.</span>
         </li>
         <li>
           <b>Register.</b>
