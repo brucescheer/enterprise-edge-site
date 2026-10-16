@@ -28,7 +28,7 @@ const ORDERED_CITIES = [
 
    A venue whose name already contains its city does not get the city again.
    With two venues "City Club Los Angeles in Los Angeles" was a small
-   clumsiness. With five it ran to "Tower Club Dallas in Dallas and The
+   clumsiness. With five it ran to "The Meeting Place DFW in Dallas and The
    Austin Club in Austin" in one sentence, which reads as though nobody
    proofread it. */
 const VENUES = CITIES.filter((c) => c.venue && c.courseMode !== 'online');
@@ -64,6 +64,7 @@ const jsonLd = {
             '@type': 'PostalAddress',
             addressLocality: c.city,
             ...(c.region ? { addressRegion: c.region } : {}),
+            ...(c.venuePostalAddress || {}),
           },
         },
         ...(c.lumaUrl ? { url: c.lumaUrl } : {}),
