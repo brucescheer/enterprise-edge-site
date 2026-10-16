@@ -337,21 +337,17 @@ export const CITIES = [
   {
     city: 'Dallas',
     region: 'Texas',
-    venue: 'Tower Club Dallas',
-    venueAddress: null,
+    venue: 'The Meeting Place DFW',
+    venueAddress: '13612 Midway Road, Suite 601, Dallas, TX 75244',
+    venuePostalAddress: {
+      streetAddress: '13612 Midway Road, Suite 601',
+      addressLocality: 'Dallas',
+      addressRegion: 'TX',
+      postalCode: '75244',
+      addressCountry: 'US',
+    },
     venueLogo: null,
-    venuePhoto: '/assets/venue-tower-club-dallas.jpg',
-    /* A wide shot into a 4:3 box crops left and right rather than top and
-       bottom, so the useful control here is the horizontal one. Centred
-       keeps the tower filling the frame with Fountain Place's blue prism at
-       the edge, which is what makes the shot read as Dallas rather than as
-       any downtown. */
-    venuePhotoPosition: 'center',
-    /* Provenance not established. Bruce supplied it on 2026-09-09 as the
-       Tower Club, and it is consistent with Thanksgiving Tower standing
-       beside Fountain Place, but nobody has confirmed who took it. Ask the
-       Club for one of theirs, the way Singapore was resolved. */
-    venuePhotoCredit: null,
+    venuePhoto: null,
     date: 'Wednesday, December 2, 2026',
     doors: null,
     /* Bruce's approved session time, 9 October 2026. Dallas and Austin use
