@@ -1,17 +1,24 @@
 ---
 import { TESTIMONIAL_VIDEOS } from '../data/testimonials';
+
+interface Props {
+  videos?: { id: string; duration: string; note?: string }[];
+  group?: string;
+}
+const { videos = TESTIMONIAL_VIDEOS, group = 'LA Tech Week' } = Astro.props;
 ---
 <div class="testimonials">
-  {TESTIMONIAL_VIDEOS.map((video, index) => (
+  {videos.map((video, index) => (
     <article class="testimonial">
       <div class="video-frame">
-        <a class="video-preview" href={`https://vimeo.com/${video.id}`} data-video-id={video.id} data-video-title={`Attendee testimonial ${index + 1}`} aria-label={`Play attendee testimonial ${index + 1}, ${video.duration}`}>
+        <a class="video-preview" href={`https://vimeo.com/${video.id}`} data-video-id={video.id} data-video-title={`${group}: attendee testimonial ${index + 1}`} aria-label={`Play ${group} testimonial ${index + 1}, ${video.duration}`}>
           <img src={`/assets/testimonials/${video.id}.jpg`} alt="" width="200" height="356" loading="lazy" decoding="async" />
           <span class="play-label"><span aria-hidden="true">▶</span> Play testimonial {index + 1}</span>
         </a>
       </div>
       <p class="video-caption"><span>Testimonial {index + 1}</span><span>{video.duration}</span></p>
-      <a class="video-direct" href={`https://vimeo.com/${video.id}`} target="_blank" rel="noopener noreferrer">Watch on Vimeo <span class="sr-only">(testimonial {index + 1}, opens in a new tab)</span></a>
+      <a class="video-direct" href={`https://vimeo.com/${video.id}`} target="_blank" rel="noopener noreferrer">Watch on Vimeo <span class="sr-only">({group} testimonial {index + 1}, opens in a new tab)</span></a>
+      {video.note && <p class="video-note">{video.note}</p>}
     </article>
   ))}
 </div>
@@ -45,6 +52,7 @@ import { TESTIMONIAL_VIDEOS } from '../data/testimonials';
   .video-frame :global(iframe) { display: block; width: 100%; height: 100%; border: 0; }
   .video-caption { display: flex; justify-content: space-between; gap: .5rem; margin: .75rem 0 .25rem; font-size: .9rem; }
   .video-caption span:last-child { color: var(--muted); }
+  .video-note { font-size: .9rem; line-height: 1.5; margin: .75rem 0 0; }
   .video-direct { font-size: .8rem; }
   @media (max-width: 900px) { .testimonials { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 44rem; margin-inline: auto; } }
   @media (max-width: 480px) { .testimonials { grid-template-columns: minmax(0, 1fr); max-width: 22rem; } }

@@ -200,12 +200,12 @@ homepage hero offers “Watch attendee takeaways.” Preserve the earlier
 `#tech-week-sessions` link as an alias so previously shared links still work.
 
 The homepage section is titled “Attendee takeaways” and sits immediately
-before Steps. It uses Bruce's single Vimeo Showcase, `12446663`, followed by
-the existing group photo. Keep the portrait 9:16 frame, lazy loading, neutral
-accessible title, and 22rem maximum width. Keep neutral participant labels. The San Francisco and LA Tech Week groups
-use the event attribution confirmed by Bruce. The iframe denies autoplay permission; playback should
-start by choice. Showcase contents and playback settings belong to Vimeo.
-Verify the preview rather than assuming individual player settings apply.
+before Steps. San Francisco Tech Week and LA Tech Week use the same responsive
+thumbnail cards. The five SF videos preserve the verified Showcase 12446663
+order, followed by the existing SF group photo. The eight LA videos stay in
+their own group. Thumbnails are local; Vimeo players load only when selected.
+Keep neutral numbered participant labels and the first SF recording's note
+that it was recorded before the Los Angeles Tech Week session.
 
 Retain all five local recordings, posters, and the previous player data for
 rollback. That fallback preserves the approved order and the context note

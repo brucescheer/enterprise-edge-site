@@ -34,3 +34,28 @@ export const TESTIMONIAL_VIDEOS = [
     "duration": "0:26"
   }
 ];
+
+// Verified against Showcase 12446663 ItemList positions on October 17, 2026.
+export const SF_TESTIMONIAL_VIDEOS = [
+  {
+    "id": "1234387763",
+    "duration": "0:19",
+    "note": "Recorded before the Los Angeles Tech Week session."
+  },
+  {
+    "id": "1234387760",
+    "duration": "0:13"
+  },
+  {
+    "id": "1234387764",
+    "duration": "0:18"
+  },
+  {
+    "id": "1234387761",
+    "duration": "0:12"
+  },
+  {
+    "id": "1234388511",
+    "duration": "0:12"
+  }
+];
