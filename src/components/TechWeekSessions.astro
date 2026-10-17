@@ -1,5 +1,6 @@
 ---
 import TestimonialVideos from './TestimonialVideos.astro';
+import { SF_TESTIMONIAL_VIDEOS } from '../data/testimonials';
 
 interface SessionVideo {
   id: string;
@@ -42,18 +43,7 @@ const { showcase, videos, photo } = Astro.props;
     <h2 id="tech-week-heading">Attendee takeaways</h2>
     <h3>San Francisco Tech Week</h3>
     {showcase ? (
-      <div class="session-showcase">
-        <iframe
-          src={showcase.src}
-          title={showcase.title}
-          width="720"
-          height="1280"
-          loading="lazy"
-          allow="autoplay 'none'; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-          allowfullscreen
-          referrerpolicy="strict-origin-when-cross-origin"
-        />
-      </div>
+      <TestimonialVideos videos={SF_TESTIMONIAL_VIDEOS} group="San Francisco Tech Week" />
     ) : (
     <div class="session-videos">
       {videos.map((video) => (
