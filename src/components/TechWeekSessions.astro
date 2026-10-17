@@ -1,4 +1,6 @@
 ---
+import TestimonialVideos from './TestimonialVideos.astro';
+
 interface SessionVideo {
   id: string;
   title: string;
@@ -38,6 +40,7 @@ const { showcase, videos, photo } = Astro.props;
   <span id="tech-week-sessions" class="takeaways-anchor" aria-hidden="true"></span>
   <div class="wrap">
     <h2 id="tech-week-heading">Attendee takeaways</h2>
+    <h3>San Francisco Tech Week</h3>
     {showcase ? (
       <div class="session-showcase">
         <iframe
@@ -109,10 +112,15 @@ const { showcase, videos, photo } = Astro.props;
         />
       </picture>
     </figure>
+    <div class="additional-testimonials">
+      <h3>LA Tech Week</h3>
+      <TestimonialVideos />
+    </div>
   </div>
 </section>
 
 <style>
+  .additional-testimonials { margin-top: 4rem; }
   .tech-week-sessions { position: relative; }
   .tech-week-sessions,
   .takeaways-anchor { scroll-margin-top: var(--takeaways-scroll-offset, 1rem); }

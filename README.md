@@ -138,3 +138,13 @@ context note must remain with that recording. Do not infer Showcase ordering,
 names, roles, or quotes. Only reviewed captions and transcripts may be
 published. Caption review remains outstanding; do not claim full caption
 accessibility or improved picture quality without evidence.
+
+## October 16 testimonial uploads
+
+Eight public Vimeo uploads are included in the existing Attendee takeaways section,
+after the preserved San Francisco Showcase and group photo. `src/data/testimonials.js`
+maintains their IDs and verified durations. Locally hosted thumbnails load lazily;
+selecting one creates an individual Vimeo player with Do Not Track enabled.
+Keep neutral numbered labels until names or captions are supplied and reviewed.
+The October 16 uploads were authorized for homepage publication by Bruce.
+No Vimeo account settings or source videos were changed.

@@ -202,8 +202,8 @@ homepage hero offers “Watch attendee takeaways.” Preserve the earlier
 The homepage section is titled “Attendee takeaways” and sits immediately
 before Steps. It uses Bruce's single Vimeo Showcase, `12446663`, followed by
 the existing group photo. Keep the portrait 9:16 frame, lazy loading, neutral
-accessible title, and 22rem maximum width. Do not add city collections or
-participant headings. The iframe denies autoplay permission; playback should
+accessible title, and 22rem maximum width. Keep neutral participant labels. The San Francisco and LA Tech Week groups
+use the event attribution confirmed by Bruce. The iframe denies autoplay permission; playback should
 start by choice. Showcase contents and playback settings belong to Vimeo.
 Verify the preview rather than assuming individual player settings apply.
 
@@ -268,3 +268,13 @@ match it before drafting."
 
 Either way, tell it to read the site first. That is rule one and it is the
 one that keeps the three of us sounding like one thing.
+
+## October 16 testimonial uploads
+
+Eight public Vimeo uploads are included in the existing Attendee takeaways section,
+after the preserved San Francisco Showcase and group photo. `src/data/testimonials.js`
+maintains their IDs and verified durations. Locally hosted thumbnails load lazily;
+selecting one creates an individual Vimeo player with Do Not Track enabled.
+Keep neutral numbered labels until names or captions are supplied and reviewed.
+The October 16 uploads were authorized for homepage publication by Bruce.
+No Vimeo account settings or source videos were changed.
