@@ -375,25 +375,6 @@ const jsonLd = {
           fee and admit people without charge. Approval is now the only
           filter, so the copy says so. */}
       <p>There is no charge for a seat. Seats are approved one at a time, which is how the room stays the right size.</p>
-      {/* Venue photographs identify where each session is held. The site
-          makes no claim that a venue hosts, sponsors or endorses the
-          program, and the alt text says "the venue in" for that reason. */}
-      <div class="venues">
-        {CITIES.filter((c) => c.venuePhoto).map((c) => (
-          <figure class="venue">
-            <img
-              src={c.venuePhoto}
-              alt={`${c.venue}, the venue in ${c.city}`}
-              loading="lazy"
-              style={c.venuePhotoPosition ? `object-position:${c.venuePhotoPosition}` : undefined}
-            />
-            <figcaption>
-              <b>{c.venue}</b>
-              <span>{c.city}</span>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
     </div>
   </section>
   <section class="band band-bone2 band-measure">
