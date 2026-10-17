@@ -116,8 +116,7 @@ The “Attendee takeaways” homepage section immediately before Steps uses one
 Vimeo Showcase supplied by Bruce: `https://vimeo.com/showcase/12446663/embed2`.
 `SESSION_SHOWCASE` in `src/data/tech-week-sessions.js` supplies its URL and
 accessible title. `TechWeekSessions.astro` renders a lazy iframe in a 9:16
-wrapper capped at 22rem, followed by the existing group photo. There are no
-city collections or added participant labels. The iframe denies autoplay
+wrapper capped at 22rem, followed by the existing group photo. The former Showcase presentation is retained as historical context below. The iframe denies autoplay
 permission and keeps fullscreen and picture-in-picture controls available.
 No parent-page Vimeo SDK is needed. Showcase contents, order and playback
 settings are managed within Vimeo; do not assume individual player parameters
@@ -148,3 +147,11 @@ selecting one creates an individual Vimeo player with Do Not Track enabled.
 Keep neutral numbered labels until names or captions are supplied and reviewed.
 The October 16 uploads were authorized for homepage publication by Bruce.
 No Vimeo account settings or source videos were changed.
+
+## Consistent SF and LA testimonial cards
+
+Both city groups now use `TestimonialVideos.astro`. The five SF IDs and their
+order are verified from Showcase 12446663 and stored in `SF_TESTIMONIAL_VIDEOS`.
+The Showcase itself, original recordings, and fallback data are retained.
+All thirteen thumbnails are local and lazy; no player connects to Vimeo until
+selected. Preserve the SF first-video context note and the existing SF photo.
