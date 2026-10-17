@@ -1,0 +1,51 @@
+---
+import { TESTIMONIAL_VIDEOS } from '../data/testimonials';
+---
+<div class="testimonials">
+  {TESTIMONIAL_VIDEOS.map((video, index) => (
+    <article class="testimonial">
+      <div class="video-frame">
+        <a class="video-preview" href={`https://vimeo.com/${video.id}`} data-video-id={video.id} data-video-title={`Attendee testimonial ${index + 1}`} aria-label={`Play attendee testimonial ${index + 1}, ${video.duration}`}>
+          <img src={`/assets/testimonials/${video.id}.jpg`} alt="" width="200" height="356" loading="lazy" decoding="async" />
+          <span class="play-label"><span aria-hidden="true">▶</span> Play testimonial {index + 1}</span>
+        </a>
+      </div>
+      <p class="video-caption"><span>Testimonial {index + 1}</span><span>{video.duration}</span></p>
+      <a class="video-direct" href={`https://vimeo.com/${video.id}`} target="_blank" rel="noopener noreferrer">Watch on Vimeo <span class="sr-only">(testimonial {index + 1}, opens in a new tab)</span></a>
+    </article>
+  ))}
+</div>
+
+<script>
+  document.querySelectorAll<HTMLAnchorElement>('.video-preview').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      const frame = document.createElement('iframe');
+      frame.src = `https://player.vimeo.com/video/${link.dataset.videoId}?autoplay=1&playsinline=1&dnt=1`;
+      frame.title = link.dataset.videoTitle || 'Attendee testimonial';
+      frame.allow = 'autoplay; fullscreen; picture-in-picture; encrypted-media';
+      frame.allowFullscreen = true;
+      frame.referrerPolicy = 'strict-origin-when-cross-origin';
+      link.replaceWith(frame);
+      frame.focus();
+    });
+  });
+</script>
+
+<style>
+  .testimonials { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem 1.5rem; margin: 2.5rem 0 3rem; }
+  .testimonial { min-width: 0; }
+  .video-frame { aspect-ratio: 9 / 16; background: var(--ink); border-radius: 2px; overflow: hidden; }
+  .video-preview { display: block; position: relative; height: 100%; color: var(--white); }
+  .video-preview img { width: 100%; height: 100%; object-fit: cover; }
+  .play-label { position: absolute; inset: auto 0 0; padding: 2.5rem .75rem 1rem; background: linear-gradient(transparent, rgba(20,26,34,.95)); font-size: .9rem; font-weight: 600; text-align: center; }
+  .play-label span { display: block; width: 2.75rem; height: 2.75rem; line-height: 2.75rem; margin: 0 auto .6rem; background: var(--amber); color: var(--ink); border-radius: 50%; }
+  .video-preview:focus-visible { outline: 3px solid var(--bronze); outline-offset: -4px; }
+  .video-frame :global(iframe) { display: block; width: 100%; height: 100%; border: 0; }
+  .video-caption { display: flex; justify-content: space-between; gap: .5rem; margin: .75rem 0 .25rem; font-size: .9rem; }
+  .video-caption span:last-child { color: var(--muted); }
+  .video-direct { font-size: .8rem; }
+  @media (max-width: 900px) { .testimonials { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 44rem; margin-inline: auto; } }
+  @media (max-width: 480px) { .testimonials { grid-template-columns: minmax(0, 1fr); max-width: 22rem; } }
+</style>
