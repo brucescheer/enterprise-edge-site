@@ -363,15 +363,12 @@ export const CITIES = [
   {
     city: 'Austin',
     region: 'Texas',
-    venue: 'The Austin Club',
-    venueAddress: null,
+    venue: 'Oscar Recruiting',
+    venueAddress: 'Mockingbird Room, Level 3, 816 Congress Ave, Austin, TX 78701',
     venueLogo: null,
-    venuePhoto: '/assets/venue-austin-club.jpg',
-    /* The facade is symmetrical and fills the frame, so a centred crop is
-       the only one that does not lop off half a colonnade. */
-    venuePhotoPosition: 'center',
-    /* Provenance not established, same as Dallas. Bruce supplied it on
-       2026-09-09. Ask the Club for one of theirs. */
+    /* Rebecca reserved this room on October 19; Sandy confirmed in the
+       venue-partner thread forwarded by Bruce on October 20. */
+    venuePhoto: null,
     venuePhotoCredit: null,
     date: 'Thursday, December 3, 2026',
     doors: null,
