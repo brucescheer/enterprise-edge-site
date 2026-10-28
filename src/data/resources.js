@@ -14,7 +14,7 @@ export const RESOURCES_BY_EDGE = {
       title: 'Read Inspire Your Buyers',
       detail: 'The book by Bruce Scheer',
       kind: 'Book',
-      href: 'https://www.amazon.com/dp/B0BZT178MH',
+      href: 'https://docs.google.com/spreadsheets/d/1fPImyA7gFekXPiTZZUmlIL90tJmuCTatALbLVE3TVAk/edit?usp=drivesdk',
     },
     {
       title: 'Take the free Narrative Assessment',
