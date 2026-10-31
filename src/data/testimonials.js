@@ -1,4 +1,5 @@
-// Eight public uploads verified through Vimeo oEmbed on October 17, 2026.
+// Public uploads verified through Vimeo oEmbed on October 17, 2026.
+// Original LA testimonials 5–7 were removed at Bruce's request.
 // Neutral labels intentionally avoid inferring identities from filenames or faces.
 export const TESTIMONIAL_VIDEOS = [
   {
@@ -16,18 +17,6 @@ export const TESTIMONIAL_VIDEOS = [
   {
     "id": "1236728684",
     "duration": "0:16"
-  },
-  {
-    "id": "1236728682",
-    "duration": "0:45"
-  },
-  {
-    "id": "1236728686",
-    "duration": "0:36"
-  },
-  {
-    "id": "1236728687",
-    "duration": "0:29"
   },
   {
     "id": "1236728051",
