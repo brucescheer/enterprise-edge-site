@@ -1,6 +1,6 @@
 ---
 import TestimonialVideos from './TestimonialVideos.astro';
-import { SF_TESTIMONIAL_VIDEOS } from '../data/testimonials';
+import { SF_TESTIMONIAL_VIDEOS, SINGAPORE_TESTIMONIAL_VIDEOS } from '../data/testimonials';
 
 interface SessionVideo {
   id: string;
@@ -118,6 +118,7 @@ const { showcase, videos, photo } = Astro.props;
     </div>
     <div class="additional-testimonials">
       <h3>Singapore Enterprise Edge</h3>
+      <TestimonialVideos videos={SINGAPORE_TESTIMONIAL_VIDEOS} group="Singapore Enterprise Edge" />
       <figure class="session-photo">
         <img
           src="/assets/tech-week/singapore-enterprise-edge-group.jpg"

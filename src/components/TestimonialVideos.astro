@@ -2,7 +2,7 @@
 import { TESTIMONIAL_VIDEOS } from '../data/testimonials';
 
 interface Props {
-  videos?: { id: string; duration: string; note?: string }[];
+  videos?: { id: string; duration: string; note?: string; thumbnail?: string }[];
   group?: string;
 }
 const { videos = TESTIMONIAL_VIDEOS, group = 'LA Tech Week' } = Astro.props;
@@ -12,7 +12,7 @@ const { videos = TESTIMONIAL_VIDEOS, group = 'LA Tech Week' } = Astro.props;
     <article class="testimonial">
       <div class="video-frame">
         <a class="video-preview" href={`https://vimeo.com/${video.id}`} data-video-id={video.id} data-video-title={`${group}: attendee testimonial ${index + 1}`} aria-label={`Play ${group} testimonial ${index + 1}, ${video.duration}`}>
-          <img src={`/assets/testimonials/${video.id}.jpg`} alt="" width="200" height="356" loading="lazy" decoding="async" />
+          <img src={video.thumbnail ?? `/assets/testimonials/${video.id}.jpg`} alt="" width="200" height="356" loading="lazy" decoding="async" />
           <span class="play-label"><span aria-hidden="true">▶</span> Play testimonial {index + 1}</span>
         </a>
       </div>
